@@ -6,7 +6,10 @@
 ## Members
 
 Sergi Perez
-Adria Martín
+
+Adria MartÃ­n
+
 Oriol Rodriguez
+
 Iban Mas
 
