@@ -1,0 +1,36 @@
+" "What is my mission?"
+"Destroy all of them."
+"That's it? Do we have a plan? Maps? Any indication of the enemy's numbers, position or weaknesses?"
+What do I look like, a robotics expert? Just shoot them, you'll figure it out." " - Took from retrovania-vgjunk.blogspot.com.es
+
+In august 1990 Toaplan released Out Zone, a run and gun with vertical scroll where the player took control of a soldier, who has to fight countless aliens and killing their chief 
+before progressing to the next level. It has a total of seven increasingly difficult levels. It also included a multiplayer feature where the players must coordinate pretty 
+well for doing what one man was supposed to do.
+
+There are four different power-ups in the game:
+ - Weapons (red fireballs, three-way shot, flamethrower and a mace)
+ - Speed increase
+ - Bombs: It has a limit of 10, after that it will give a 5000 point bonus
+ - Energy: the most important of the three; if you run out of energy during a mision you will lose a life.
+
+Out Zone's genre was nothing new. It was a booming genre; videogames' companies were trying to get the lead, like Williams with his "Smash TV" game or SNK Playmore's "Ikari Warriors", 
+released the same year as Out Zone. But it was a success, it brought the system as it's maximum potential. It has a perfect score of five over five 
+in http://www.arcade-museum.com/
+
+The game was run on a upright cabinet. It needed a motorola 68000 microprocessor at 10MHz or a Zilog Z80 at 3.5 MHz. The sound was amplified Mono of one channel, using a 
+Yamaha YM3812 as a sound chip. The display was with a 320x240 rastered resolution, using 2048's colors palette refreshing at 55.16Hz.
+Video System:
+
+"The games has 4 layers, each tile (8x8 pixel graphic unit) in each layer has one of 15 possible priority values or 0 for "off". The system has up to 256 sprites which can be any size from 
+8x8 pixels to 128x128 pixels specified in a separate size table. Each sprite has a priority value from 1 to 15 which is shared with the layers." - Took from http://allyourbase.toaplan.org/hardware/index.html#truxton
+
+Out Zone had five different versions released for the arcades, each new version uses different enemies in some stages and has extra bonuses compared to the old version. 
+The music sequences are also in different orders between the sets. It was never ported to a home console.
+
+
+TRIVIA
+everal characters from other Toaplan games make cameo appearances as powerups or bonuses :
+• Six plane squadron from "Flying Shark" fly on the screen shooting enemies in an upside down V shape pattern.
+• The "Truxton" ship follows the player helping out.
+• ZIG-01 from "Zero Wing" flies on the screen dragging a bunch of '5000' points bonuses.
+• Pipiru, Toaplan's mascot from "Zero Wing" can be summoned in level 1 from shooting a hole in a rock. It is vulnerable to all weapons, but it will bring a significant score bonus if safely taken to the level's boss.
