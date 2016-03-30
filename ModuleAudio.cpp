@@ -9,6 +9,7 @@ ModuleAudio::ModuleAudio(){
 	level2 = nullptr;
 	level3 = nullptr;
 	to_play = nullptr;
+        last_song = nullptr;
 }
 
 ModuleAudio::~ModuleAudio(){}
@@ -51,7 +52,11 @@ update_status ModuleAudio::PreUpdate(){
 
 update_status ModuleAudio::Update(){
 
-	Mix_PlayMusic(to_play, -1);
+	if (to_play != last_song){
+            Mix_HaltMusic();
+            Mix_PlayMusic(to_play, -1);
+            last_song = to_play;
+        }
 
 	return UPDATE_CONTINUE;
 }
