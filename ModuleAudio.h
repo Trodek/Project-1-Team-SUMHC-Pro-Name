@@ -29,6 +29,7 @@ public:
 	Mix_Music* level2;
 	Mix_Music* level3;
 	Mix_Music* to_play;
+        Mix_Music* last_song;
 
 
 };
