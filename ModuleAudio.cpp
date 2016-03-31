@@ -1,6 +1,6 @@
 #include "ModuleAudio.h"
 #include "Application.h"
-#include "ModuleBackground.h"
+#include "ModuleSceneLevels.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 
 ModuleAudio::ModuleAudio(){
@@ -9,26 +9,26 @@ ModuleAudio::ModuleAudio(){
 	level2 = nullptr;
 	level3 = nullptr;
 	to_play = nullptr;
-        last_song = nullptr;
+    last_song = nullptr;
 }
 
 ModuleAudio::~ModuleAudio(){}
 
 bool ModuleAudio::Init(){
 
-	LOG("Initializing Audio Module........");
-
-	if (Mix_Init(MIX_INIT_OGG) < 0) {
-		LOG("AudioModule can't initialize: %s/n", Mix_GetError());
-	}
-	else { 
-		if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) < 0) LOG("AudioModule can't open: %s", Mix_GetError()); 
-	}
-
 	return true;
 }
 
 bool ModuleAudio::Start(){
+
+	LOG("Starting Audio Module........");
+
+	if (Mix_Init(MIX_INIT_OGG) < 0) {
+		LOG("AudioModule can't initialize: %s/n", Mix_GetError());
+	}
+	else {
+		if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) < 0) LOG("AudioModule can't open: %s", Mix_GetError());
+	}
 
 	level1 = Mix_LoadMUS("Sounds/Music/level1.ogg");
 	if (level1 == NULL) LOG("Level1 Audio loading fail: %s.", Mix_GetError());
@@ -43,8 +43,8 @@ bool ModuleAudio::Start(){
 update_status ModuleAudio::PreUpdate(){
 
 	//hardcoded pixel where every level start
-	if (App->background->map.y > 11489) to_play = level1;
-	else if (App->background->map.y < 11489 && App->background->map.y > 6436) to_play = level2;
+	if (App->levels->map.y > 11489) to_play = level1;
+	else if (App->levels->map.y < 11489 && App->levels->map.y > 6436) to_play = level2;
 	else to_play = level3;
 
 	return UPDATE_CONTINUE;

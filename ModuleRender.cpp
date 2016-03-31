@@ -1,6 +1,5 @@
 #include "Globals.h"
 #include "Application.h"
-#include "ModuleBackground.h"
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
@@ -52,17 +51,17 @@ update_status ModuleRender::Update()
 {
 	int speed = 3;
 
-	if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
+	if(App->input->keyboard[SDL_SCANCODE_UP] == 1)
 		camera.y += speed;
 
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1)
+	if(App->input->keyboard[SDL_SCANCODE_DOWN] == 1)
 		camera.y -= speed;
 
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
+	if(App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
 		camera.x += speed;
 
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
-		camera.x-= speed;
+	if(App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
+		camera.x -= speed;
 
 	return update_status::UPDATE_CONTINUE;
 }

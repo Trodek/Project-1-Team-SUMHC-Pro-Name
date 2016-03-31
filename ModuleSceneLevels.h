@@ -1,5 +1,5 @@
-#ifndef __ModuleBackground_H__
-#define __ModuleBackground_H__
+#ifndef __MODULESCENELEVELS_H__
+#define __MODULESCENELEVELS_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -7,20 +7,21 @@
 
 struct SDL_Texture;
 
-class ModuleBackground : public Module
+class ModuleSceneLevels : public Module
 {
 public:
-	ModuleBackground();
-	~ModuleBackground();
+	ModuleSceneLevels();
+	~ModuleSceneLevels();
 
 	bool Start();
 	update_status Update();
+	bool CleanUp();
 
 public:
-	
+
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect map;
 
 };
 
-#endif
+#endif // __MODULESCENELevels_H__

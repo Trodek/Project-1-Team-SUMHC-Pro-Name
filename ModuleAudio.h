@@ -14,7 +14,7 @@ public:
 	// Destructor
 	~ModuleAudio();
 
-	// Called before quitting
+	
 	bool Init();
 	bool Start();
 	update_status PreUpdate();
@@ -29,7 +29,7 @@ public:
 	Mix_Music* level2;
 	Mix_Music* level3;
 	Mix_Music* to_play;
-        Mix_Music* last_song;
+	Mix_Music* last_song;
 
 
 };
