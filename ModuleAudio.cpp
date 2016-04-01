@@ -8,7 +8,6 @@ ModuleAudio::ModuleAudio(){
 	level1 = nullptr;
 	level2 = nullptr;
 	level3 = nullptr;
-	to_play = nullptr;
     last_song = nullptr;
 }
 
@@ -16,12 +15,7 @@ ModuleAudio::~ModuleAudio(){}
 
 bool ModuleAudio::Init(){
 
-	return true;
-}
-
-bool ModuleAudio::Start(){
-
-	LOG("Starting Audio Module........");
+	LOG("Init Audio Module........");
 
 	if (Mix_Init(MIX_INIT_OGG) < 0) {
 		LOG("AudioModule can't initialize: %s/n", Mix_GetError());
@@ -38,27 +32,6 @@ bool ModuleAudio::Start(){
 	if (level3 == NULL) LOG("Level3 Audio loading fail: %s.", Mix_GetError());
 
 	return true;
-}
-
-update_status ModuleAudio::PreUpdate(){
-
-	//hardcoded pixel where every level start
-	if (App->levels->map.y > 11489) to_play = level1;
-	else if (App->levels->map.y < 11489 && App->levels->map.y > 6436) to_play = level2;
-	else to_play = level3;
-
-	return UPDATE_CONTINUE;
-}
-
-update_status ModuleAudio::Update(){
-
-	if (to_play != last_song){
-            Mix_HaltMusic();
-            Mix_PlayMusic(to_play, -1);
-            last_song = to_play;
-        }
-
-	return UPDATE_CONTINUE;
 }
 
 bool ModuleAudio::CleanUp(){
@@ -81,4 +54,22 @@ bool ModuleAudio::CleanUp(){
 	Mix_Quit();
 
 	return true;
+}
+
+void ModuleAudio::StopAudio(){
+
+	Mix_HaltMusic();
+}
+
+void ModuleAudio::ResetState(){
+
+	last_song = NULL;
+}
+
+void ModuleAudio::PlayMusic(Mix_Music* to_play, Repetitions n_times){
+
+	if (to_play != last_song){
+		Mix_PlayMusic(to_play, n_times);
+		last_song = to_play;
+	}
 }

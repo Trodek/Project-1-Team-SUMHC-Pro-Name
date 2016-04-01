@@ -8,14 +8,13 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 
-// Reference at https://youtu.be/6OlenbCC4WI?t=382
 
 ModuleSceneLevels::ModuleSceneLevels()
 {
 	// map
 	map.x = 0;
 	map.y = 15063;
-	map.w = 256;
+	map.w = 240;
 	map.h = 320;
 }
 
@@ -29,7 +28,6 @@ bool ModuleSceneLevels::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/Map/Map.png");
 
-	App->audio->Enable();
 	App->player->Enable();
 
 	return ret;
@@ -39,8 +37,13 @@ bool ModuleSceneLevels::Start()
 bool ModuleSceneLevels::CleanUp()
 {
 	LOG("Unloading Levels stage");
+
+	//Diable player
 	App->player->Disable();
-	App->audio->Disable();
+	
+	//Stop audio and reset audio state
+	App->audio->StopAudio();
+	App->audio->ResetState();
 
 	return true;
 }
@@ -64,6 +67,10 @@ update_status ModuleSceneLevels::Update()
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &map, 3); // Map
 
+	//Check song to play
+	if (map.y > 11489) App->audio->PlayMusic(App->audio->level1, LOOP);
+	else if (map.y < 11489 && map.y > 6436) App->audio->PlayMusic(App->audio->level2, LOOP);
+	else App->audio->PlayMusic(App->audio->level3, LOOP);
 
 	return UPDATE_CONTINUE;
 }

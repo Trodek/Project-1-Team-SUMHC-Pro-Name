@@ -36,14 +36,15 @@ bool Application::Init()
 	player->Disable();
 	// Disable the map that you do not start with
 	levels->Disable();
-	//Disable audio 
-	audio->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
+
+	//Stop audio 
+	audio->StopAudio();
 
 	return ret;
 }
@@ -68,7 +69,7 @@ bool Application::CleanUp()
 {
 	bool ret = true;
 
-	for(int i = NUM_MODULES - 2; i >= 0 && ret == true; --i)
+	for(int i = NUM_MODULES - 1; i >= 0 && ret == true; --i)
 		ret = modules[i]->CleanUp();
 
 	return ret;

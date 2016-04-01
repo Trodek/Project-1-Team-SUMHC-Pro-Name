@@ -5,6 +5,10 @@
 #include "Globals.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 
+enum Repetitions {
+	LOOP = -1, ONCE = 1, TWICE, THRICE
+
+};
 
 class ModuleAudio : public Module{
 public:
@@ -16,19 +20,20 @@ public:
 
 	
 	bool Init();
-	bool Start();
-	update_status PreUpdate();
-	update_status Update();
 
 	// Called before quitting
 	bool CleanUp();
+
+	// Audio methods
+	void StopAudio();
+	void ResetState();
+	void PlayMusic(Mix_Music* to_play, Repetitions n_times);
 
 public:
 	
 	Mix_Music* level1;
 	Mix_Music* level2;
 	Mix_Music* level3;
-	Mix_Music* to_play;
 	Mix_Music* last_song;
 
 
