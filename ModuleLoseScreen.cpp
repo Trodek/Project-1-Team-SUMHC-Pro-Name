@@ -8,6 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
+#include "ModuleAudio.h"
 
 
 ModuleLoseScreen::ModuleLoseScreen()
@@ -32,6 +33,9 @@ bool ModuleLoseScreen::Start()
 
 	App->player->Disable();
 
+	// Play gameover audio
+	App->audio->PlayMusic(App->audio->gameover, LOOP);
+
 	return true;
 }
 
@@ -39,6 +43,9 @@ bool ModuleLoseScreen::Start()
 bool ModuleLoseScreen::CleanUp()
 {
 	LOG("Unloading Lose scene");
+
+	// Stop Audio
+	App->audio->StopAudio();
 
 	return true;
 }
