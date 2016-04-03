@@ -3,6 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
+#include "ModuleAudio.h"
 #include "ModuleContinue.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
@@ -31,6 +32,7 @@ bool ModuleContinue::Start()
 
 	graphics = App->textures->Load("Sprites/UI/ui_continue_small.png");
 
+	App->audio->PlayMusic(App->audio->continue_song, LOOP);
 
 	return true;
 }
@@ -39,6 +41,8 @@ bool ModuleContinue::Start()
 bool ModuleContinue::CleanUp()
 {
 	LOG("Unloading Title scene");
+	
+	App->audio->StopAudio();
 
 	return true;
 }
@@ -52,8 +56,7 @@ update_status ModuleContinue::Update()
 
 	// swap Scene
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
-		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
-		App->levels->map.y = 15063;
+		App->fade->FadeToBlack(this, (Module*)App->namescreen, 1.0f);
 	}
 
 	return UPDATE_CONTINUE;

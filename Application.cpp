@@ -12,6 +12,7 @@
 #include "ModuleLoseScreen.h"
 #include "ModuleNameScreen.h"
 #include "ModuleScoreScreen.h"
+#include "ModuleContinue.h"
 
 Application::Application()
 {
@@ -28,6 +29,7 @@ Application::Application()
 	modules[10] = losescreen = new ModuleLoseScreen();
 	modules[11] = namescreen = new ModuleNameScreen();
 	modules[12] = scorescreen = new ModuleScoreScreen();
+	modules[13] = continuescreen = new ModuleContinue();
 }	
 
 Application::~Application()
@@ -48,6 +50,8 @@ bool Application::Init()
 	losescreen->Disable();
 	namescreen->Disable();
 	scorescreen->Disable();
+	continuescreen->Disable();
+
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
 

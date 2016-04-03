@@ -53,7 +53,7 @@ update_status ModuleLoseScreen::Update()
 
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
-		App->fade->FadeToBlack(this, (Module*)App->namescreen,0.5f);
+		App->fade->FadeToBlack(this, (Module*)App->continuescreen,0.5f);
 	}
 
 
