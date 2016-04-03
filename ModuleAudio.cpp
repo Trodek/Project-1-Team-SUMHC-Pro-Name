@@ -30,6 +30,10 @@ bool ModuleAudio::Init(){
 	if (level2 == NULL) LOG("Level2 Audio loading fail: %s.", Mix_GetError());
 	level3 = Mix_LoadMUS("Sounds/Music/level3.ogg");
 	if (level3 == NULL) LOG("Level3 Audio loading fail: %s.", Mix_GetError());
+	continue_song = Mix_LoadMUS("Sounds/Music/continue.ogg");
+	if (level3 == NULL) LOG("Continue Audio loading fail: %s.", Mix_GetError());
+	gameover = Mix_LoadMUS("Sounds/Music/gameover.ogg");
+	if (level3 == NULL) LOG("GameOver Audio loading fail: %s.", Mix_GetError());
 
 	return true;
 }
@@ -48,6 +52,12 @@ bool ModuleAudio::CleanUp(){
 	}
 	if (level3 != NULL){
 		Mix_FreeMusic(level3);
+	}
+	if (continue_song != NULL){
+		Mix_FreeMusic(continue_song);
+	}
+	if (gameover != NULL){
+		Mix_FreeMusic(gameover);
 	}
 
 	Mix_CloseAudio();

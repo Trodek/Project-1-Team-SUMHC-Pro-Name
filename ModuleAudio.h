@@ -34,6 +34,8 @@ public:
 	Mix_Music* level1;
 	Mix_Music* level2;
 	Mix_Music* level3;
+	Mix_Music* continue_song;
+	Mix_Music* gameover;
 	Mix_Music* last_song;
 
 

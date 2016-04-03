@@ -71,6 +71,9 @@
     <ClInclude Include="ModuleScoreScreen.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleContinue.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -119,6 +122,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleScoreScreen.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleContinue.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
