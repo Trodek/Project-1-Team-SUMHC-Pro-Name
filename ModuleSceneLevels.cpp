@@ -19,10 +19,16 @@ ModuleSceneLevels::ModuleSceneLevels()
 	map.h = 320;
 }
 
+// MAP RESET FUNCTION
+bool ModuleSceneLevels::MapReset(){
+	map.y = 15063;
+	return true;
+}
 ModuleSceneLevels::~ModuleSceneLevels()
 {}
 
 // Load assets
+
 bool ModuleSceneLevels::Start()
 {
 	LOG("Loading background assets");

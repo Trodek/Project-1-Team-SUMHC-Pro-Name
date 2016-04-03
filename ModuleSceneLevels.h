@@ -17,6 +17,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	bool MapReset();
 public:
 
 	SDL_Texture* graphics = nullptr;

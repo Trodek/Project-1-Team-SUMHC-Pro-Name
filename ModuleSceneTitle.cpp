@@ -56,7 +56,7 @@ update_status ModuleSceneTitle::Update()
 	// TODO 3: make so pressing SPACE the HONDA stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
-		App->levels->map.y = 15063;
+		App->levels->MapReset();
 	}
 
 	return UPDATE_CONTINUE;
