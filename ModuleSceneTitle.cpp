@@ -8,6 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
+#include "ModuleSceneLevels.h"
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModuleSceneTitle::ModuleSceneTitle()
@@ -55,6 +56,7 @@ update_status ModuleSceneTitle::Update()
 	// TODO 3: make so pressing SPACE the HONDA stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
+		App->levels->map.y = 15063;
 	}
 
 	return UPDATE_CONTINUE;
