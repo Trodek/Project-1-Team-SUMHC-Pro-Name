@@ -34,7 +34,7 @@ bool ModuleLoseScreen::Start()
 	App->player->Disable();
 
 	// Play gameover audio
-	App->audio->PlayMusic(App->audio->gameover, LOOP);
+	App->audio->PlayMusic(App->audio->gameover, ONCE);
 
 	return true;
 }
@@ -59,7 +59,7 @@ update_status ModuleLoseScreen::Update()
 	App->render->Blit(graphics, 0, 0, &lose_screen, 0.75f); // background
 
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
+	if (!(App->audio->IsPlaying())){
 		App->fade->FadeToBlack(this, (Module*)App->continuescreen,0.5f);
 	}
 

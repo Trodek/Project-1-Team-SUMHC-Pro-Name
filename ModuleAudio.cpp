@@ -83,3 +83,8 @@ void ModuleAudio::PlayMusic(Mix_Music* to_play, Repetitions n_times){
 		last_song = to_play;
 	}
 }
+
+bool ModuleAudio::IsPlaying(){
+	if (Mix_PlayingMusic() == 1) return true;
+	else return false;
+}

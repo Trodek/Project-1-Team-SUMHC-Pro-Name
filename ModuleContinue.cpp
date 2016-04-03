@@ -32,7 +32,7 @@ bool ModuleContinue::Start()
 
 	graphics = App->textures->Load("Sprites/UI/ui_continue_small.png");
 
-	App->audio->PlayMusic(App->audio->continue_song, LOOP);
+	App->audio->PlayMusic(App->audio->continue_song, ONCE);
 
 	return true;
 }
@@ -55,7 +55,7 @@ update_status ModuleContinue::Update()
 	App->render->Blit(graphics, 0, 0, &continue_screen, 0.75f); // background
 
 	// swap Scene
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
+	if (!(App->audio->IsPlaying())){
 		App->fade->FadeToBlack(this, (Module*)App->namescreen, 1.0f);
 	}
 

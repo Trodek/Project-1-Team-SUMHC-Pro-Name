@@ -28,6 +28,7 @@ public:
 	void StopAudio();
 	void ResetState();
 	void PlayMusic(Mix_Music* to_play, Repetitions n_times);
+	bool IsPlaying();
 
 public:
 	

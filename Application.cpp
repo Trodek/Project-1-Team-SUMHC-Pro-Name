@@ -23,13 +23,14 @@ Application::Application()
 	modules[4] = levels = new ModuleSceneLevels();
 	modules[5] = title = new ModuleSceneTitle();
 	modules[6] = player = new ModulePlayer();
-	modules[7] = fade = new ModuleFadeToBlack();
+	modules[7] = continuescreen = new ModuleContinue();
 	modules[8] = audio = new ModuleAudio();
 	modules[9] = winscreen = new ModuleWinScreen();
 	modules[10] = losescreen = new ModuleLoseScreen();
 	modules[11] = namescreen = new ModuleNameScreen();
 	modules[12] = scorescreen = new ModuleScoreScreen();
-	modules[13] = continuescreen = new ModuleContinue();
+	modules[13] = fade = new ModuleFadeToBlack();
+	
 }	
 
 Application::~Application()
