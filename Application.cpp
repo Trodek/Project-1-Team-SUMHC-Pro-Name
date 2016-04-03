@@ -4,10 +4,14 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleSceneTitle.h"
+#include "ModuleWinScreen.h"
 #include "ModuleSceneLevels.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
+#include "ModuleLoseScreen.h"
+#include "ModuleNameScreen.h"
+#include "ModuleScoreScreen.h"
 
 Application::Application()
 {
@@ -20,6 +24,10 @@ Application::Application()
 	modules[6] = player = new ModulePlayer();
 	modules[7] = fade = new ModuleFadeToBlack();
 	modules[8] = audio = new ModuleAudio();
+	modules[9] = winscreen = new ModuleWinScreen();
+	modules[10] = losescreen = new ModuleLoseScreen();
+	modules[11] = namescreen = new ModuleNameScreen();
+	modules[12] = scorescreen = new ModuleScoreScreen();
 }	
 
 Application::~Application()
@@ -36,7 +44,10 @@ bool Application::Init()
 	player->Disable();
 	// Disable the map that you do not start with
 	levels->Disable();
-
+	winscreen->Disable();
+	losescreen->Disable();
+	namescreen->Disable();
+	scorescreen->Disable();
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
 

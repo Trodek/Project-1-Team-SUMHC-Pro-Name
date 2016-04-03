@@ -6,7 +6,8 @@
 #include "ModuleSceneTitle.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
-
+#include "ModuleLoseScreen.h"
+#include "ModuleScoreScreen.h"
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModuleSceneTitle::ModuleSceneTitle()

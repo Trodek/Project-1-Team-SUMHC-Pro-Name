@@ -7,8 +7,9 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
-
-
+#include "ModuleWinScreen.h"
+#include "ModuleLoseScreen.h"
+#include "ModuleScoreScreen.h"
 ModuleSceneLevels::ModuleSceneLevels()
 {
 	// map
@@ -62,7 +63,10 @@ update_status ModuleSceneLevels::Update()
 		if (map.y < 15063) map.y += speed;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
-		App->fade->FadeToBlack(this, (Module*)App->title, 1.0f);
+		App->fade->FadeToBlack(this, (Module*)App->losescreen, 1.0f);
+	}
+	if (map.y <0){
+		App->fade->FadeToBlack(this, (Module*)App->winscreen, 0.3f);
 	}
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &map, 3); // Map
