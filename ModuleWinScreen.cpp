@@ -15,7 +15,7 @@ ModuleWinScreen::ModuleWinScreen()
 	// ground
 	win_screen.x = 0;
 	win_screen.y = 0;
-	win_screen.w = 256;
+	win_screen.w = 240;
 	win_screen.h = 320;
 
 }

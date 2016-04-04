@@ -16,7 +16,7 @@ ModuleLoseScreen::ModuleLoseScreen()
 	// ground
 	lose_screen.x = 0;
 	lose_screen.y = 0;
-	lose_screen.w = 256;
+	lose_screen.w = 240;
 	lose_screen.h = 320;
 
 }

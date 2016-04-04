@@ -15,7 +15,7 @@ ModuleScoreScreen::ModuleScoreScreen()
 	// ground
 	score_screen.x = 0;
 	score_screen.y = 0;
-	score_screen.w = 256;
+	score_screen.w = 240;
 	score_screen.h = 320;
 
 }

@@ -15,7 +15,7 @@ ModuleNameScreen::ModuleNameScreen()
 	// ground
 	name_screen.x = 0;
 	name_screen.y = 0;
-	name_screen.w = 256;
+	name_screen.w = 240;
 	name_screen.h = 320;
 
 }
