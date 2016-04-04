@@ -29,7 +29,7 @@ Application::Application()
 	modules[10] = losescreen = new ModuleLoseScreen();
 	modules[11] = namescreen = new ModuleNameScreen();
 	modules[12] = scorescreen = new ModuleScoreScreen();
-	modules[13] = fade = new ModuleFadeToBlack();
+	modules[13] = fade = new ModuleFadeToBlack(); // Fade Module must be the last of the scenes
 	
 }	
 
