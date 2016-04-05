@@ -10,6 +10,8 @@
 #include "ModuleWinScreen.h"
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
+
+
 ModuleSceneLevels::ModuleSceneLevels()
 {
 	// map
@@ -22,11 +24,12 @@ ModuleSceneLevels::ModuleSceneLevels()
 	camera_y = -15063;
 }
 
-// MAP RESET FUNCTION
+// CAMERA RESET FUNCTION
 bool ModuleSceneLevels::CameraReset(){
 	camera_y = -15063;
 	return true;
 }
+
 ModuleSceneLevels::~ModuleSceneLevels()
 {}
 
@@ -37,6 +40,10 @@ bool ModuleSceneLevels::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/Map/Map.png");
+	
+	level1_song = App->audio->LoadMusic("Sounds/Music/level1.ogg");
+	level2_song = App->audio->LoadMusic("Sounds/Music/level2.ogg");
+	level3_song = App->audio->LoadMusic("Sounds/Music/level3.ogg");
 
 	App->player->Enable();
 
@@ -51,9 +58,11 @@ bool ModuleSceneLevels::CleanUp()
 	//Diable player
 	App->player->Disable();
 	
-	//Stop audio and reset audio state
+	//Stop audio
 	App->audio->StopAudio();
-	App->audio->ResetState();
+	App->audio->UnloadMusic(level1_song);
+	App->audio->UnloadMusic(level2_song);
+	App->audio->UnloadMusic(level3_song);
 
 	return true;
 }
@@ -81,9 +90,9 @@ update_status ModuleSceneLevels::Update()
 	App->render->Blit(graphics, 0, camera_y, &map, 3); // Map
 
 	//Check song to play
-	if (camera_y < -11489) App->audio->PlayMusic(App->audio->level1, LOOP);
-	else if (camera_y > -11489 && camera_y < -6436) App->audio->PlayMusic(App->audio->level2, LOOP);
-	else App->audio->PlayMusic(App->audio->level3, LOOP);
+	if (camera_y < -11489) App->audio->PlayMusic(level1_song, LOOP);
+	else if (camera_y > -11489 && camera_y < -6436) App->audio->PlayMusic(level2_song, LOOP);
+	else App->audio->PlayMusic(level3_song, LOOP);
 
 	return UPDATE_CONTINUE;
 }

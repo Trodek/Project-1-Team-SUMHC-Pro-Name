@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 
 struct SDL_Texture;
 
@@ -18,11 +19,16 @@ public:
 	bool CleanUp();
 
 	bool CameraReset();
+
 public:
 
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect map;
 	int camera_y;
+
+	Mix_Music* level1_song;
+	Mix_Music* level2_song;
+	Mix_Music* level3_song;
 
 };
 

@@ -31,8 +31,8 @@ bool ModuleContinue::Start()
 	LOG("Loading Title scene");
 
 	graphics = App->textures->Load("Sprites/UI/ui_continue_small.png");
-
-	App->audio->PlayMusic(App->audio->continue_song, ONCE);
+	continue_song = App->audio->LoadMusic("Sounds/Music/continue.ogg");
+	App->audio->PlayMusic(continue_song, ONCE);
 
 	return true;
 }
@@ -43,6 +43,7 @@ bool ModuleContinue::CleanUp()
 	LOG("Unloading Title scene");
 	
 	App->audio->StopAudio();
+	App->audio->UnloadMusic(continue_song);
 
 	return true;
 }

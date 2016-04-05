@@ -11,6 +11,7 @@
 #include "ModuleAudio.h"
 
 
+
 ModuleLoseScreen::ModuleLoseScreen()
 {
 	// ground
@@ -33,8 +34,9 @@ bool ModuleLoseScreen::Start()
 
 	App->player->Disable();
 
-	// Play gameover audio
-	App->audio->PlayMusic(App->audio->gameover, ONCE);
+	// Load and Play gameover audio
+	gameover_song = App->audio->LoadMusic("Sounds/Music/gameover.ogg");
+	App->audio->PlayMusic(gameover_song, ONCE);
 
 	return true;
 }
@@ -46,6 +48,7 @@ bool ModuleLoseScreen::CleanUp()
 
 	// Stop Audio
 	App->audio->StopAudio();
+	App->audio->UnloadMusic(gameover_song);
 
 	return true;
 }

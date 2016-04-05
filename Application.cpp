@@ -21,17 +21,17 @@ Application::Application()
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
-	modules[4] = levels = new ModuleSceneLevels();
+	modules[4] = audio = new ModuleAudio(); // audio must be befor all the scenes
 	modules[5] = title = new ModuleSceneTitle();
 	modules[6] = player = new ModulePlayer();
 	modules[7] = continuescreen = new ModuleContinue();
-	modules[8] = audio = new ModuleAudio();
+	modules[8] = levels = new ModuleSceneLevels();
 	modules[9] = winscreen = new ModuleWinScreen();
 	modules[10] = losescreen = new ModuleLoseScreen();
 	modules[11] = namescreen = new ModuleNameScreen();
 	modules[12] = scorescreen = new ModuleScoreScreen();
 	modules[13] = particles = new ModuleParticles();
-	modules[14] = fade = new ModuleFadeToBlack(); // Fade Module must be the last of the scenes
+	modules[14] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
 	
 }	
 
