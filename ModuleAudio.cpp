@@ -34,6 +34,8 @@ bool ModuleAudio::Init(){
 	if (level3 == NULL) LOG("Continue Audio loading fail: %s.", Mix_GetError());
 	gameover = Mix_LoadMUS("Sounds/Music/gameover.ogg");
 	if (level3 == NULL) LOG("GameOver Audio loading fail: %s.", Mix_GetError());
+	laser_shoot = Mix_LoadMUS("Sounds/Effects/basic_laser_shoot.wav");
+	if (level3 == NULL) LOG("GameOver Audio loading fail: %s.", Mix_GetError());
 
 	return true;
 }
@@ -58,6 +60,9 @@ bool ModuleAudio::CleanUp(){
 	}
 	if (gameover != NULL){
 		Mix_FreeMusic(gameover);
+	}
+	if (laser_shoot != NULL){
+		Mix_FreeMusic(laser_shoot);
 	}
 
 	Mix_CloseAudio();

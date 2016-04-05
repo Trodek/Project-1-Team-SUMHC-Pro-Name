@@ -6,18 +6,24 @@
 #include "Globals.h"
 #include "p2Point.h"
 
-#define MAX_ACTIVE_PARTICLES 100
+#define MAX_ACTIVE_PARTICLES 1000
 
 struct SDL_Texture;
+struct SDL_Rect;
 
 struct Particle
 {
+	Animation start_anim;
 	Animation anim;
+	Animation end_anim;
 	uint fx = 0;
 	iPoint position;
+	iPoint start_pos;
 	fPoint speed;
 	Uint32 born = 0;
 	Uint32 life = 0;
+	SDL_Rect crearion;
+	
 	bool fx_played = false;
 
 	Particle();
@@ -39,13 +45,13 @@ public:
 
 private:
 
-	SDL_Texture* graphics = nullptr;
+	SDL_Texture* basic_laser_tex = nullptr;
 	Particle* active[MAX_ACTIVE_PARTICLES];
 	uint last_particle = 0;
 
 public:
 
-	Particle explosion;
+	Particle basic_laser_p0;
 };
 
 #endif // __MODULEPARTICLES_H__

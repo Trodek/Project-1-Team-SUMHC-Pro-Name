@@ -6,7 +6,7 @@
 #include "SDL_mixer\include\SDL_mixer.h"
 
 enum Repetitions {
-	LOOP = -1, ONCE = 1, TWICE, THRICE
+	LOOP = -1, ONCE, TWICE, THRICE
 
 };
 
@@ -38,6 +38,7 @@ public:
 	Mix_Music* continue_song;
 	Mix_Music* gameover;
 	Mix_Music* last_song;
+	Mix_Music* laser_shoot;
 
 
 };

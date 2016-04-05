@@ -12,6 +12,7 @@
 #include "ModuleLoseScreen.h"
 #include "ModuleNameScreen.h"
 #include "ModuleScoreScreen.h"
+#include "ModuleParticles.h"
 #include "ModuleContinue.h"
 
 Application::Application()
@@ -29,7 +30,8 @@ Application::Application()
 	modules[10] = losescreen = new ModuleLoseScreen();
 	modules[11] = namescreen = new ModuleNameScreen();
 	modules[12] = scorescreen = new ModuleScoreScreen();
-	modules[13] = fade = new ModuleFadeToBlack(); // Fade Module must be the last of the scenes
+	modules[13] = particles = new ModuleParticles();
+	modules[14] = fade = new ModuleFadeToBlack(); // Fade Module must be the last of the scenes
 	
 }	
 

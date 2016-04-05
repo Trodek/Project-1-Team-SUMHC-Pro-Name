@@ -124,7 +124,7 @@ bool ModuleRender::BlitParticle(SDL_Texture* texture, int x, int y, SDL_Rect* se
 
 	SDL_Point center;
 	center.x = 0;
-	center.y = section->h;
+	center.y = 0;
 
 	if (section != NULL)
 	{

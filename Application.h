@@ -3,11 +3,11 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 14
+#define NUM_MODULES 15
 
 class ModuleWindow;
 class ModuleInput;
-
+class ModuleParticles;
 class ModuleTextures;
 class ModuleRender;
 class ModuleSceneTitle;
@@ -43,6 +43,7 @@ public:
 	ModuleNameScreen* namescreen;
 	ModuleScoreScreen* scorescreen;
 	ModuleContinue* continuescreen;
+	ModuleParticles* particles;
 
 public:
 

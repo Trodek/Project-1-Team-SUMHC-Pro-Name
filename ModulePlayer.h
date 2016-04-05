@@ -18,7 +18,7 @@ public:
 	update_status Update();
 
 public:
-
+	iPoint position;
 	
 
 };
