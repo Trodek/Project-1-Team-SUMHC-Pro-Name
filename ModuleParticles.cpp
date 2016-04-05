@@ -71,7 +71,7 @@ update_status ModuleParticles::Update()
 		}
 		else if(SDL_GetTicks() >= p->born)
 		{
-			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			App->render->BlitParticle(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 			if(p->fx_played == false)
 			{
 				p->fx_played = true;

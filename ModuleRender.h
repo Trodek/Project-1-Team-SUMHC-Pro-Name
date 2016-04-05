@@ -3,6 +3,8 @@
 
 #include "Module.h"
 #include "SDL\include\SDL_rect.h"
+#include "SDL\include\SDL_render.h"
+
 
 struct SDL_Renderer;
 struct SDL_Texture;
@@ -20,6 +22,7 @@ public:
 	bool CleanUp();
 
 	bool Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed = 1.0f);
+	bool BlitParticle(SDL_Texture* texture, int x, int y, SDL_Rect* section, double angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE, float speed = 1.0f);
 
 public:
 	SDL_Renderer* renderer = nullptr;
