@@ -17,11 +17,12 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	bool MapReset();
+	bool CameraReset();
 public:
 
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect map;
+	int camera_y;
 
 };
 

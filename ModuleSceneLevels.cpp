@@ -14,14 +14,17 @@ ModuleSceneLevels::ModuleSceneLevels()
 {
 	// map
 	map.x = 0;
-	map.y = 15063;
+	map.y = 0;
 	map.w = 240;
-	map.h = 320;
+	map.h = 15383;
+
+	//set start point camera
+	camera_y = -15063;
 }
 
 // MAP RESET FUNCTION
-bool ModuleSceneLevels::MapReset(){
-	map.y = 15063;
+bool ModuleSceneLevels::CameraReset(){
+	camera_y = -15063;
 	return true;
 }
 ModuleSceneLevels::~ModuleSceneLevels()
@@ -63,10 +66,10 @@ update_status ModuleSceneLevels::Update()
 	int speed = 5;
 
 	if (App->input->keyboard[SDL_SCANCODE_W] == 1){
-		if (map.y > 0) map.y -= speed;
+		if (camera_y < 0) camera_y += speed;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_S] == 1){
-		if (map.y < 15063) map.y += speed;
+		if (camera_y > -15063) camera_y -= speed;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
 		App->fade->FadeToBlack(this, (Module*)App->losescreen, 1.0f);
@@ -75,11 +78,11 @@ update_status ModuleSceneLevels::Update()
 		App->fade->FadeToBlack(this, (Module*)App->winscreen, 0.3f);
 	}
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, 0, 0, &map, 3); // Map
+	App->render->Blit(graphics, 0, camera_y, &map, 3); // Map
 
 	//Check song to play
-	if (map.y > 11489) App->audio->PlayMusic(App->audio->level1, LOOP);
-	else if (map.y < 11489 && map.y > 6436) App->audio->PlayMusic(App->audio->level2, LOOP);
+	if (camera_y < -11489) App->audio->PlayMusic(App->audio->level1, LOOP);
+	else if (camera_y > -11489 && camera_y < -6436) App->audio->PlayMusic(App->audio->level2, LOOP);
 	else App->audio->PlayMusic(App->audio->level3, LOOP);
 
 	return UPDATE_CONTINUE;
