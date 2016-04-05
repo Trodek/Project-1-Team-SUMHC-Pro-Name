@@ -25,6 +25,7 @@ struct Particle
 	SDL_Rect crearion;
 	
 	bool fx_played = false;
+	double angle;
 
 	Particle();
 	Particle(const Particle& p);
@@ -41,7 +42,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	void AddParticle(const Particle& particle, int x, int y, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y,double angle = 0 ,Uint32 delay = 0);
 
 private:
 
@@ -52,6 +53,7 @@ private:
 public:
 
 	Particle basic_laser_p0;
+
 };
 
 #endif // __MODULEPARTICLES_H__

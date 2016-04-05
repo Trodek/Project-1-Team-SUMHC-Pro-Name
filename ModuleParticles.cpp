@@ -79,12 +79,13 @@ update_status ModuleParticles::Update()
 				active[i] = nullptr;
 			}
 			else 
-				App->render->BlitParticle(basic_laser_tex, p->position.x-6, p->position.y, &(p->end_anim.GetCurrentFrame()));
+				App->render->BlitParticle(basic_laser_tex, p->position.x-6, p->position.y, &(p->end_anim.GetCurrentFrame()), p->angle);
 		}
 		else if(SDL_GetTicks() >= p->born)
 		{
-			if (!p->start_anim.Finished()) App->render->BlitParticle(basic_laser_tex, p->start_pos.x, p->start_pos.y, &(p->start_anim.GetCurrentFrame()));
-			App->render->BlitParticle(basic_laser_tex, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			if (!p->start_anim.Finished())
+				App->render->BlitParticle(basic_laser_tex, p->start_pos.x, p->start_pos.y, &(p->start_anim.GetCurrentFrame()), p->angle);
+			App->render->BlitParticle(basic_laser_tex, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), p->angle);
 			if(p->fx_played == false)
 			{
 				p->fx_played = true;
@@ -96,7 +97,7 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, double angle, Uint32 delay)
 {
 	Particle* p = new Particle(particle);
 	p->born = SDL_GetTicks() + delay;
@@ -104,6 +105,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32
 	p->position.y = y;
 	p->start_pos.x = x-5;
 	p->start_pos.y = y;
+	p->angle = angle;
 
 	active[last_particle++] = p;
 }

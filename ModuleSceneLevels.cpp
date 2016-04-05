@@ -65,13 +65,13 @@ update_status ModuleSceneLevels::Update()
 
 	int speed = 5;
 
-	if (App->input->keyboard[SDL_SCANCODE_W] == 1){
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		if (camera_y < 0) camera_y += speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_S] == 1){
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
 		if (camera_y > -15063) camera_y -= speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
 		App->fade->FadeToBlack(this, (Module*)App->losescreen, 1.0f);
 	}
 	if (map.y <0){
