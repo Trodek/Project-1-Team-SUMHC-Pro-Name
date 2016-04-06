@@ -72,7 +72,7 @@ update_status ModuleSceneLevels::Update()
 {
 	// Map movement
 
-	int speed = 5;
+	int speed = 1;
 
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		if (camera_y < 0) camera_y += speed;

@@ -23,6 +23,7 @@ public:
 		frames[last_frame++] = rect;
 	}
 
+	// return current_frame+speed frame Rect
 	SDL_Rect& GetCurrentFrame()
 	{
 		current_frame += speed;
@@ -33,6 +34,34 @@ public:
 		}
 
 		return frames[(int)current_frame];
+	}
+
+	// return current_current frame Rect
+	SDL_Rect& GetActualFrame(){ 
+
+		return frames[(int)current_frame];
+	}
+
+	uint GetFrameIndex()const{
+		return current_frame;
+	}
+
+	void SetInitialFrame(uint frame){
+		current_frame = frame;
+	}
+
+	bool IsFrame(uint frame_index){
+		return (current_frame == frame_index);
+	}
+
+	void AnimForward(){
+		if (current_frame >= last_frame-1) current_frame = 0;
+		else current_frame += speed;
+	}
+
+	void AnimBack(){
+		if (current_frame <= 0)current_frame = last_frame-1;
+		else current_frame -= speed;
 	}
 
 	bool Finished() const

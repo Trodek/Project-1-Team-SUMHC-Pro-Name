@@ -64,9 +64,15 @@ ModulePlayer::ModulePlayer()
 	//180º
 	char_move_360.PushBack({ 55, 192, 29, 35 });  //-- left
 	char_move_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
+	char_move_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
+	char_move_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
 	char_move_360.PushBack({ 17, 273, 29, 38 });  //-- up
 	char_move_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
+	char_move_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
+	char_move_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
 	char_move_360.PushBack({ 55, 231, 29, 35 });  //-- right
+	char_move_360.speed = 0.3f;
+	char_move_360.SetInitialFrame(4);
 
 }
 
@@ -80,6 +86,7 @@ bool ModulePlayer::Start()
 	main_char_tex = App->textures->Load("Sprites/Main Char/Main_moves.png");
 	current_animation = &idle_up;
 	bool ret = true;
+	direction = -1;
 	return ret;
 }
 
@@ -100,21 +107,22 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		current_animation = &up;
 		position.y -= speed;
-		direction = 2;
+		direction = 4;
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
 		current_animation = &idle_up;
+		direction = -1;
 	}
 
 	// D key
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 		current_animation = &right;
 		position.x += speed;
-		direction = 4;
+		direction = 8;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
-
+		direction = -1;
 		current_animation = &idle_right;	
 	}
 
@@ -127,17 +135,25 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
 			current_animation = &idle_left;
+			direction = -1;
 	}
-		
-	if (CheckAnimPos(direction))
-	App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	else App->render->Blit(main_char_tex, position.x, position.y, &char_move_360.GetCurrentFrame());
+	
+	if (direction != -1){
+		if (CheckAnimPos(direction))
+			App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		else App->render->Blit(main_char_tex, position.x, position.y, &char_move_360.GetActualFrame());
+	}
+	else App->render->Blit(main_char_tex, position.x, position.y, &char_move_360.GetActualFrame());
 
 	return UPDATE_CONTINUE;
 }
 
 bool ModulePlayer::CheckAnimPos(uint dest_anim){
-	if (char_move_360.GetCurrentFrame().x == char_move_360.frames[dest_anim].x 
-		&& char_move_360.GetCurrentFrame().y == char_move_360.frames[dest_anim].y) return true;
-	else return false;
+
+	bool ret = false;
+
+	if (char_move_360.GetFrameIndex() == dest_anim) ret = true;
+	else char_move_360.AnimForward();
+
+	return ret;
 }
