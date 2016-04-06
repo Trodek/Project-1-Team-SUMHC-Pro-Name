@@ -17,6 +17,8 @@ public:
 	bool Start();
 	update_status Update();
 
+	bool CheckAnimPos(uint dest_anim);
+
 public:
 	iPoint position;
 	SDL_Texture* main_char_tex = nullptr;
@@ -32,6 +34,9 @@ public:
 	Animation idle_right;
 	Animation* current_animation = nullptr;
 	Animation char_move_360;
+
+	uint direction;
+
 };
 
 #endif
