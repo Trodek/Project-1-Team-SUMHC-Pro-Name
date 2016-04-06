@@ -30,8 +30,7 @@ bool ModuleSceneTitle::Start()
 	LOG("Loading Title scene");
 	
 	graphics = App->textures->Load("Sprites/UI/ui_maintitle.png");
-	
-	App->player->Enable();
+	App->player->Disable();
 	
 	return true;
 }
@@ -40,7 +39,6 @@ bool ModuleSceneTitle::Start()
 bool ModuleSceneTitle::CleanUp()
 {
 	LOG("Unloading Title scene");
-	App->player->Disable();
 
 	return true;
 }
