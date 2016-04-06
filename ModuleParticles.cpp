@@ -25,10 +25,8 @@ bool ModuleParticles::Start()
 
 	// laser particle and sound
 	basic_laser_p0.start_anim.PushBack({ 7, 6, 14, 16 });
-	basic_laser_p0.start_anim.PushBack({ 7, 6, 14, 16 });
 	basic_laser_p0.start_anim.loop = false;
 	basic_laser_p0.start_anim.speed = 0.2f;
-	basic_laser_p0.anim.PushBack({ 34, 6, 4, 16 });
 	basic_laser_p0.anim.PushBack({ 34, 6, 4, 16 });
 	basic_laser_p0.anim.loop = true;
 	basic_laser_p0.anim.speed = 0.1f;
