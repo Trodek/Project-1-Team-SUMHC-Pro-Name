@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
 
@@ -22,7 +23,7 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	basic_laser_tex = App->textures->Load("Sprites/Main Char/Weapons/basic laser.png");
 
-	// laser particle
+	// laser particle and sound
 	basic_laser_p0.start_anim.PushBack({ 7, 6, 14, 16 });
 	basic_laser_p0.start_anim.PushBack({ 7, 6, 14, 16 });
 	basic_laser_p0.start_anim.loop = false;
@@ -39,7 +40,7 @@ bool ModuleParticles::Start()
 	basic_laser_p0.end_anim.speed = 0.2f;
 	basic_laser_p0.life = 800;
 	basic_laser_p0.speed.y = -5;
-	
+	basic_laser_p0.sound = App->audio->LoadSoundEffect("Sounds/Effects/basic_laser_shoot.wav");
 
 	return true;
 }
@@ -54,6 +55,7 @@ bool ModuleParticles::CleanUp()
 	{
 		if(active[i] != nullptr)
 		{
+			App->audio->UnloadSoundEffect(active[i]->sound);
 			delete active[i];
 			active[i] = nullptr;
 		}
@@ -89,6 +91,7 @@ update_status ModuleParticles::Update()
 			if(p->fx_played == false)
 			{
 				p->fx_played = true;
+				App->audio->PlaySoundEffect(p->sound);
 				// Play particle fx here
 			}
 		}
@@ -121,7 +124,7 @@ Particle::Particle()
 
 Particle::Particle(const Particle& p) :
 start_anim(p.start_anim), anim(p.anim), end_anim(p.end_anim), position(p.position), start_pos(p.start_pos), speed(p.speed),
-fx(p.fx), born(p.born), life(p.life)
+fx(p.fx), born(p.born), life(p.life), sound(p.sound), angle(p.angle)
 {}
 
 bool Particle::Update()

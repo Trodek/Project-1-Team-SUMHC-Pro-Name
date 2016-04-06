@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 
 #define MAX_ACTIVE_PARTICLES 1000
 
@@ -23,6 +24,7 @@ struct Particle
 	Uint32 born = 0;
 	Uint32 life = 0;
 	SDL_Rect crearion;
+	Mix_Chunk* sound;
 	
 	bool fx_played = false;
 	double angle;
@@ -53,7 +55,7 @@ private:
 public:
 
 	Particle basic_laser_p0;
-
+	
 };
 
 #endif // __MODULEPARTICLES_H__

@@ -71,7 +71,7 @@ void ModuleAudio::PlayMusic(Mix_Music* to_play, Repetitions n_times){
 	}
 }
 
-void PlaySoundEffect(Mix_Chunk* to_play){
+void ModuleAudio::PlaySoundEffect(Mix_Chunk* to_play){
 
 	Mix_PlayChannel(-1, to_play, 0);
 }
