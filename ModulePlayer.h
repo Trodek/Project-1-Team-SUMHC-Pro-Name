@@ -19,7 +19,8 @@ public:
 
 public:
 	iPoint position;
-	
+	SDL_Texture* main_char_up_tex = nullptr;
+	Animation up;
 
 };
 
