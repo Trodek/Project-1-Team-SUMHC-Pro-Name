@@ -12,10 +12,10 @@ ModulePlayer::ModulePlayer()
 	position.x = 120;
 	position.y = 245;
 
-	//char idle up
+	/*//char idle up
 	idle_up.PushBack({ 17, 273, 29, 38 });
 	idle_up.speed = 0.1f;
-	idle_up.loop = false;
+	idle_up.loop = false;*/
 
 	//Char Up anim
 	up.PushBack({ 17, 273, 29, 38 });
@@ -25,10 +25,10 @@ ModulePlayer::ModulePlayer()
 	up.PushBack({ 161, 274, 28, 37 });
 	up.speed = 0.1f;
 
-	//char up_to_right anim
+	/*//char up_to_right anim
 	up_to_right.PushBack({ 18, 230, 27, 36 });
 	up_to_right.speed = 0.1f;
-	up_to_right.loop = false;
+	up_to_right.loop = false;*/
 
 	//char right anim
 	right.PushBack({ 94, 230, 27, 35 });
@@ -38,7 +38,7 @@ ModulePlayer::ModulePlayer()
 	right.PushBack({ 55, 231, 29, 35 });
 	right.speed = 0.1f;
 
-	//char idle_right
+	/*//char idle_right
 	idle_right.PushBack({ 55, 231, 29, 35 });
 	idle_right.speed = 0.1f;
 	idle_right.loop = false;
@@ -46,7 +46,7 @@ ModulePlayer::ModulePlayer()
 	//char up_to_left
 	up_to_left.PushBack({ 202, 190, 28, 36 });
 	up_to_left.speed = 0.1f;
-	up_to_left.loop = false;
+	up_to_left.loop = false;*/
 
 	//char left
 	left.PushBack({ 166, 191, 29, 35 });
@@ -56,10 +56,18 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 18, 191, 27, 35 });
 	left.speed = 0.1f;
 
-	//char idle_left
+	/*//char idle_left
 	idle_left.PushBack({ 55, 192, 29, 35 });
 	idle_left.speed = 0.1f;
-	idle_left.loop = false;
+	idle_left.loop = false;*/
+
+	//180º
+	char_move_360.PushBack({ 55, 192, 29, 35 });  //-- left
+	char_move_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
+	char_move_360.PushBack({ 17, 273, 29, 38 });  //-- up
+	char_move_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
+	char_move_360.PushBack({ 55, 231, 29, 35 });  //-- right
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -122,7 +130,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
 		if (current_animation == &right){
 			current_animation = &idle_right;
-			//right.Reset();
+			right.Reset();
 		}
 		//if (current_animation == &up_to_right)
 	}

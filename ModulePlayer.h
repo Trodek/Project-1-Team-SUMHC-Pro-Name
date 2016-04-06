@@ -31,6 +31,7 @@ public:
 	Animation right;
 	Animation idle_right;
 	Animation* current_animation = nullptr;
+	Animation char_move_360;
 };
 
 #endif
