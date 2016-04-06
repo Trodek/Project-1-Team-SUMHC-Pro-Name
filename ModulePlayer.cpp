@@ -91,72 +91,43 @@ update_status ModulePlayer::Update()
 	// W key
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		current_animation = &up;
+		position.y -= speed;
+		direction = 2;
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
-		up.Reset();
 		current_animation = &idle_up;
 	}
 
 	// D key
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
-		if (idle_up.Finished()){
-			current_animation = &up_to_right;
-			idle_up.Reset();
-		}
-		if (up_to_right.Finished()){
-			current_animation = &right;
-			up_to_right.Reset();
-		}
-		if (idle_left.Finished()){
-			current_animation = &up_to_left;
-			idle_left.Reset();
-		}
-		if (up_to_left.Finished()){
-			current_animation = &idle_up;
-			up_to_left.Reset();
-		}
-		//current_animation = &right;
+		current_animation = &right;
 		position.x += speed;
+		direction = 4;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
-		if (current_animation == &right){
-			current_animation = &idle_right;
-			//right.Reset();
-		}
-		//if (current_animation == &up_to_right)
+		current_animation = &idle_right;	
 	}
 
 	// A key
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
-		if (idle_up.Finished()){
-			current_animation = &up_to_left;
-			idle_up.Reset();
-		}
-		if (up_to_left.Finished()){
-			current_animation = &left;
-			up_to_left.Reset();
-		}
-		if (idle_right.Finished()){
-			current_animation = &up_to_right;
-			idle_right.Reset();
-		}
-		if (up_to_right.Finished()){
-			current_animation = &idle_up;
-			up_to_right.Reset();
-		}
-		
+		current_animation = &left;
 		position.x -= speed;
+		direction = 0;
 	}
+
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
-		if (current_animation == &left){
 			current_animation = &idle_left;
-			left.Reset();
-		}
 	}
 		
-
+	if (CheckAnimPos(direction))
 	App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	
+	else App->render->Blit(main_char_tex, position.x, position.y, &(char_move_360->GetCurrentFrame()));
+
 	return UPDATE_CONTINUE;
+}
+
+bool ModulePlayer::CheckAnimPos(uint dest_anim){
+	if (char_move_360->GetCurrentFrame() == char_move_360[dest_anim]) return true;
+	else return false;
 }
