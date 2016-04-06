@@ -45,6 +45,7 @@ public:
 	bool CleanUp();
 
 	void AddParticle(const Particle& particle, int x, int y,double angle = 0 ,Uint32 delay = 0);
+	void SetParticleSpeed(Particle* part, float x, float y);
 
 private:
 

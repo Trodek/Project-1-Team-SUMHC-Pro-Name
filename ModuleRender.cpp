@@ -122,10 +122,6 @@ bool ModuleRender::BlitParticle(SDL_Texture* texture, int x, int y, SDL_Rect* se
 	rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE;
 	rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE;
 
-	SDL_Point center;
-	center.x = 0;
-	center.y = 0;
-
 	if (section != NULL)
 	{
 		rect.w = section->w;
@@ -139,7 +135,7 @@ bool ModuleRender::BlitParticle(SDL_Texture* texture, int x, int y, SDL_Rect* se
 	rect.w *= SCREEN_SIZE;
 	rect.h *= SCREEN_SIZE;
 
-	if (SDL_RenderCopyEx(renderer, texture, section, &rect, angle, &center,flip) != 0)
+	if (SDL_RenderCopyEx(renderer, texture, section, &rect, angle, NULL, flip) != 0)
 	{
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;

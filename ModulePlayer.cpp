@@ -61,18 +61,18 @@ ModulePlayer::ModulePlayer()
 	idle_left.speed = 0.1f;
 	idle_left.loop = false;*/
 
-	//180º
-	char_move_360.PushBack({ 55, 192, 29, 35 });  //-- left
-	char_move_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
-	char_move_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
-	char_move_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
-	char_move_360.PushBack({ 17, 273, 29, 38 });  //-- up
-	char_move_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
-	char_move_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
-	char_move_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
-	char_move_360.PushBack({ 55, 231, 29, 35 });  //-- right
-	char_move_360.speed = 0.3f;
-	char_move_360.SetInitialFrame(4);
+	//laser 180º
+	laser_360.PushBack({ 55, 192, 29, 35 });  //-- left
+	laser_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
+	laser_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
+	laser_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
+	laser_360.PushBack({ 17, 273, 29, 38 });  //-- up
+	laser_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
+	laser_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
+	laser_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
+	laser_360.PushBack({ 55, 231, 29, 35 });  //-- right
+	laser_360.speed = 0.3f;
+	laser_360.SetInitialFrame(UP);
 
 }
 
@@ -86,43 +86,45 @@ bool ModulePlayer::Start()
 	main_char_tex = App->textures->Load("Sprites/Main Char/Main_moves.png");
 	current_animation = &idle_up;
 	bool ret = true;
-	direction = -1;
+	weapon_anim = &laser_360;
+	current_weapon = LASER_P0;
+	direction = IDLE;
+	laser_p0 = &App->particles->basic_laser_p0;
 	return ret;
 }
 
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-
-
 	int speed = 1;
-
 
 	// Shoot key
 	if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN){
-		App->particles->AddParticle(App->particles->basic_laser_p0, position.x, position.y);
+		CreateShoot(current_weapon, weapon_anim);
 	}
 
 	// W key
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		current_animation = &up;
 		position.y -= speed;
-		direction = 4;
+		direction = UP;
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
 		current_animation = &idle_up;
-		direction = -1;
+		direction = IDLE;
 	}
 
 	// D key
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 		current_animation = &right;
 		position.x += speed;
-		direction = 8;
+		direction = RIGHT;
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+			direction = RIGHT_UP;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
-		direction = -1;
+		direction = IDLE;
 		current_animation = &idle_right;	
 	}
 
@@ -130,30 +132,177 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
 		current_animation = &left;
 		position.x -= speed;
-		direction = 0;
+		direction = LEFT;
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+			direction = LEFT_UP;
+		}
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
 			current_animation = &idle_left;
-			direction = -1;
+			direction = IDLE;
 	}
 	
-	if (direction != -1){
-		if (CheckAnimPos(direction))
+	if (direction != IDLE){
+		if (CheckPJAnimPos(weapon_anim, direction))
 			App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
-		else App->render->Blit(main_char_tex, position.x, position.y, &char_move_360.GetActualFrame());
+		else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 	}
-	else App->render->Blit(main_char_tex, position.x, position.y, &char_move_360.GetActualFrame());
+	else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 
 	return UPDATE_CONTINUE;
 }
 
-bool ModulePlayer::CheckAnimPos(uint dest_anim){
+bool ModulePlayer::CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim){
 
 	bool ret = false;
+	uint FrameIndex = (uint)anim->GetFrameIndex();
+	if (FrameIndex == dest_anim) ret = true;
+	else {
+		switch (dest_anim){
+		case LEFT: if (FrameIndex > RIGHT) anim->AnimForward();
+				   else anim->AnimBack();
+				   break;
+		case ANGLE_60: if (FrameIndex > ANGLE_240 || FrameIndex < ANGLE_60)
+							anim->AnimForward();
+					   else anim->AnimBack();
+					   break;
+		case LEFT_UP: if (FrameIndex > RIGHT_DOWN || FrameIndex < LEFT_UP)
+						anim->AnimForward();
+				   else anim->AnimBack();
+				   break;
+		case ANGLE_30: if (FrameIndex > ANGLE_210 || FrameIndex < ANGLE_30)
+							anim->AnimForward();
+					   else anim->AnimBack();
+					   break;
+		case UP: if (FrameIndex > DOWN || FrameIndex < UP)
+					 anim->AnimForward();
+				   else anim->AnimBack();
+				   break;
+		case ANGLE_330: if (FrameIndex > ANGLE_150 || FrameIndex < ANGLE_330)
+							anim->AnimForward();
+					   else anim->AnimBack();
+					   break;
+		case RIGHT_UP: if (FrameIndex > LEFT_DOWN || FrameIndex < RIGHT_UP) 
+							anim->AnimForward();
+				   else anim->AnimBack();
+				   break;
+		case ANGLE_300: if (FrameIndex < ANGLE_300)
+							anim->AnimForward();
+					   else anim->AnimBack();
+					   break;
+		case RIGHT: if (FrameIndex < RIGHT) 
+							anim->AnimForward();
+				   else anim->AnimBack();
+				   break;
+		case ANGLE_240: if (FrameIndex > 9 || FrameIndex < ANGLE_60)
+			anim->AnimForward();
+					   else anim->AnimBack();
+					   break;
+		case RIGHT_DOWN: if (FrameIndex > 8) anim->AnimForward();
+				   else anim->AnimBack();
+				   break;
+		case ANGLE_210: if (FrameIndex > 9 || FrameIndex < ANGLE_60)
+			anim->AnimForward();
+					   else anim->AnimBack();
+					   break;
+		case DOWN: if (FrameIndex > 8) anim->AnimForward();
+				   else anim->AnimBack();
+				   break;
+		case ANGLE_150: if (FrameIndex > 9 || FrameIndex < ANGLE_60)
+			anim->AnimForward();
+					   else anim->AnimBack();
+					   break;
+		case LEFT_DOWN: if (FrameIndex > 8) anim->AnimForward();
+				   else anim->AnimBack();
+				   break;
+		case ANGLE_120: if (FrameIndex > 9 || FrameIndex < ANGLE_60)
+			anim->AnimForward();
+					   else anim->AnimBack();
+					   break;
 
-	if (char_move_360.GetFrameIndex() == dest_anim) ret = true;
-	else char_move_360.AnimForward();
-
+		}
+	}
 	return ret;
+}
+
+void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
+
+	uint FrameIndex = (uint)anim->GetFrameIndex();
+	switch (equiped)
+	{
+	case LASER_P0:
+		switch (FrameIndex)
+		{
+		case LEFT:
+			App->particles->SetParticleSpeed(laser_p0, -5, 0);
+			App->particles->AddParticle(*laser_p0, position.x - 8, position.y + 1, -90);
+			break;
+		case ANGLE_60:
+			App->particles->SetParticleSpeed(laser_p0, -4.61f, -1.91f);
+			App->particles->AddParticle(*laser_p0, position.x, position.y - 5, -67.5);
+			break;
+		case LEFT_UP:
+			App->particles->SetParticleSpeed(laser_p0, -3.53f, -3.53f);
+			App->particles->AddParticle(*laser_p0, position.x + 3, position.y - 12, -45);
+			break;
+		case ANGLE_30:
+			App->particles->SetParticleSpeed(laser_p0, -1.91f, -4.61f);
+			App->particles->AddParticle(*laser_p0, position.x + 8, position.y - 12, -22.5);
+			break;
+		case UP:
+			App->particles->SetParticleSpeed(laser_p0, 0, -5);
+			App->particles->AddParticle(*laser_p0, position.x + 19, position.y - 15);
+			break;
+		case ANGLE_330:
+			App->particles->SetParticleSpeed(laser_p0, 1.91f, -4.61f);
+			App->particles->AddParticle(*laser_p0, position.x + 25, position.y - 12, 22.5);
+			break;
+		case RIGHT_UP:
+			App->particles->SetParticleSpeed(laser_p0, 3.53f, -3.53f);
+			App->particles->AddParticle(*laser_p0, position.x + 30, position.y - 12, 45);
+			break;
+		case ANGLE_300:
+			App->particles->SetParticleSpeed(laser_p0, 4.61f, -1.91f);
+			App->particles->AddParticle(*laser_p0, position.x + 33, position.y - 5, 67.5);
+			break;
+		case RIGHT:
+			App->particles->SetParticleSpeed(laser_p0, 5, 0);
+			App->particles->AddParticle(*laser_p0, position.x + 35, position.y + 2, 90);
+			break;
+		case ANGLE_240:
+			break;
+		case RIGHT_DOWN:
+			break;
+		case ANGLE_210:
+			break;
+		case DOWN:
+			break;
+		case ANGLE_150:
+			break;
+		case LEFT_DOWN:
+			break;
+		case ANGLE_120:
+			break;
+		default:
+			break;
+		}
+		break;
+	case LASER_P1:
+		break;
+	case LASER_P2:
+		break;
+	case MULTI_P0:
+		break;
+	case MULTI_P1:
+		break;
+	case MULTI_P2:
+		break;
+	case SUPERBALL:
+		break;
+	case SUPERBURNER:
+		break;
+	default:
+		break;
+	}
 }

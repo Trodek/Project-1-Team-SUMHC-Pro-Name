@@ -37,7 +37,6 @@ bool ModuleParticles::Start()
 	basic_laser_p0.end_anim.loop = false;
 	basic_laser_p0.end_anim.speed = 0.2f;
 	basic_laser_p0.life = 800;
-	basic_laser_p0.speed.y = -5;
 	basic_laser_p0.sound = App->audio->LoadSoundEffect("Sounds/Effects/basic_laser_shoot.wav");
 
 	return true;
@@ -143,4 +142,10 @@ bool Particle::Update()
 	}
 
 	return ret;
+}
+
+void ModuleParticles::SetParticleSpeed(Particle* part, float x, float y){
+
+	part->speed.x = x;
+	part->speed.y = y;
 }

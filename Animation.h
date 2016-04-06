@@ -42,7 +42,7 @@ public:
 		return frames[(int)current_frame];
 	}
 
-	uint GetFrameIndex()const{
+	float GetFrameIndex()const{
 		return current_frame;
 	}
 
@@ -55,13 +55,13 @@ public:
 	}
 
 	void AnimForward(){
-		if (current_frame >= last_frame-1) current_frame = 0;
-		else current_frame += speed;
+		current_frame += speed;
+		if (current_frame >= last_frame) current_frame = 0;
 	}
 
 	void AnimBack(){
-		if (current_frame <= 0)current_frame = last_frame-1;
-		else current_frame -= speed;
+		current_frame -= speed;
+		if (current_frame < 0)current_frame = last_frame-1;
 	}
 
 	bool Finished() const
