@@ -46,6 +46,8 @@ bool ModuleLoseScreen::CleanUp()
 {
 	LOG("Unloading Lose scene");
 
+	App->textures->Unload(graphics);
+
 	// Stop Audio
 	App->audio->StopAudio();
 	App->audio->UnloadMusic(gameover_song);

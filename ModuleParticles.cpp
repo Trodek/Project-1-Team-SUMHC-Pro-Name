@@ -97,6 +97,7 @@ bool ModuleParticles::CleanUp()
 {
 	LOG("Unloading particles");
 	App->textures->Unload(basic_laser_tex);
+	App->textures->Unload(multi_laser_tex);
 
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{

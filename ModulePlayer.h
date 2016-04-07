@@ -32,6 +32,7 @@ public:
 
 	bool Start();
 	update_status Update();
+	bool CleanUp();
 
 	bool CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim);
 	void CreateShoot(Weapons equiped, Animation* anim)const;

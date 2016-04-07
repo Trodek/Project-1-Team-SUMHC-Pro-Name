@@ -42,6 +42,8 @@ bool ModuleContinue::CleanUp()
 {
 	LOG("Unloading Title scene");
 	
+	App->textures->Unload(graphics);
+
 	App->audio->StopAudio();
 	App->audio->UnloadMusic(continue_song);
 

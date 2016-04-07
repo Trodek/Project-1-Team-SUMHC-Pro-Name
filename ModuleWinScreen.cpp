@@ -39,7 +39,7 @@ bool ModuleWinScreen::Start()
 bool ModuleWinScreen::CleanUp()
 {
 	LOG("Unloading Win scene");
-	
+	App->textures->Unload(graphics);
 	return true;
 }
 
