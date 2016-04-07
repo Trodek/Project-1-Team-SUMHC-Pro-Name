@@ -93,6 +93,7 @@ bool ModulePlayer::Start()
 	bool ret = true;
 	weapon_anim = &laser_360;
 	current_weapon = LASER_P0;
+	last_basic_weapon = LASER_P0;
 	direction = IDLE;
 	laser_p0 = &App->particles->basic_laser_p0;
 	shoot_start = &App->particles->shoot_start;
@@ -110,8 +111,8 @@ update_status ModulePlayer::Update()
 
 	// change weapon
 	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN){ //ARREGLAR
-		if (current_weapon == LASER_P0) current_weapon = MULTI_P0;
-		else current_weapon = LASER_P0;
+		current_weapon = ChangeWeapon(current_weapon);
+		last_basic_weapon = current_weapon;
 	} 
 
 	// Shoot key
@@ -389,4 +390,37 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 	default:
 		break;
 	}
+}
+
+Weapons ModulePlayer::ChangeWeapon(Weapons current){
+	Weapons ret;
+	switch (current)
+	{
+	case LASER_P0:
+		ret = MULTI_P0;
+		break;
+	case LASER_P1:
+		ret = MULTI_P1;
+		break;
+	case LASER_P2:
+		ret = MULTI_P2;
+		break;
+	case MULTI_P0:
+		ret = LASER_P0;
+		break;
+	case MULTI_P1:
+		ret = LASER_P1;
+		break;
+	case MULTI_P2:
+		ret = LASER_P2;
+		break;
+	case SUPERBALL:
+		ret = last_basic_weapon;
+		break;
+	case SUPERBURNER:
+		ret = last_basic_weapon;
+		break;
+	}
+
+	return ret;
 }
