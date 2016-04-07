@@ -438,13 +438,13 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 		switch (current_power)
 		{
 		case P0:
-			App->particles->AddParticle(*multi_start, position.x, position.y);
+			App->particles->AddParticle(*multi_start, position.x-3, position.y-15);
 			App->particles->SetParticleSpeed(multi_laser_p0, 0, -5);
-			App->particles->AddParticle(*multi_laser_p0, position.x, position.y);
-			App->particles->SetParticleSpeed(multi_laser_p0, -5, -5);
-			App->particles->AddParticle(*multi_laser_p0, position.x, position.y, -45);
-			App->particles->SetParticleSpeed(multi_laser_p0, 5, -5);
-			App->particles->AddParticle(*multi_laser_p0, position.x, position.y, 45);
+			App->particles->AddParticle(*multi_laser_p0, position.x+12, position.y);
+			App->particles->SetParticleSpeed(multi_laser_p0, -1.91f, -4.61f);
+			App->particles->AddParticle(*multi_laser_p0, position.x+6, position.y, -22.5);
+			App->particles->SetParticleSpeed(multi_laser_p0, 2.91f, -4.61f);
+			App->particles->AddParticle(*multi_laser_p0, position.x+18, position.y, 22.5);
 			break;
 		case P1:
 			break;
