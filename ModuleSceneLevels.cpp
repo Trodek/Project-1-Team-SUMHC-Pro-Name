@@ -39,6 +39,7 @@ bool ModuleSceneLevels::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
+	lava = App->textures->Load("Sprites/Map/lava proba.png");
 	graphics = App->textures->Load("Sprites/Map/Map.png");
 	
 	level1_song = App->audio->LoadMusic("Sounds/Music/level1.ogg");
@@ -81,6 +82,7 @@ update_status ModuleSceneLevels::Update()
 		App->fade->FadeToBlack(this, (Module*)App->winscreen, 0.3f);
 	}
 	// Draw everything --------------------------------------
+	App->render->Blit(lava,0,camera_y,&map,3);
 	App->render->Blit(graphics, 0, camera_y, &map, 3); // Map
 
 	//Check song to play

@@ -23,7 +23,9 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* lava = nullptr;
 	SDL_Rect map;
+	
 	int camera_y;
 
 	Mix_Music* level1_song;
