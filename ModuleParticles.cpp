@@ -30,10 +30,12 @@ bool ModuleParticles::Start()
 	basic_laser_p0.anim.speed = 0.1f;
 	basic_laser_p0.life = 800;
 	basic_laser_p0.sound = App->audio->LoadSoundEffect("Sounds/Effects/basic_laser_shoot.wav");
+	basic_laser_p0.tex = basic_laser_tex;
 
 	shoot_start.anim.PushBack({ 7, 6, 14, 16 });
 	shoot_start.anim.loop = false;
 	shoot_start.anim.speed = 0.2f;
+	shoot_start.tex = basic_laser_tex;
 
 	laser_end.anim.PushBack({ 54, 6, 16, 16 });
 	laser_end.anim.PushBack({ 74, 6, 16, 16 });
@@ -41,6 +43,7 @@ bool ModuleParticles::Start()
 	laser_end.anim.PushBack({ 108, 6, 14, 15 });
 	laser_end.anim.loop = false;
 	laser_end.anim.speed = 0.2f;
+	laser_end.tex = basic_laser_tex;
 
 
 	return true;
@@ -84,7 +87,7 @@ update_status ModuleParticles::Update()
 		}
 		else if(SDL_GetTicks() >= p->born)
 		{
-			App->render->BlitParticle(basic_laser_tex, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), p->angle);
+			App->render->BlitParticle(p->tex, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), p->angle);
 			if(p->fx_played == false)
 			{
 				p->fx_played = true;
@@ -119,7 +122,7 @@ Particle::Particle()
 
 Particle::Particle(const Particle& p) :
  anim(p.anim), position(p.position), start_pos(p.start_pos), speed(p.speed),
-fx(p.fx), born(p.born), life(p.life), sound(p.sound), angle(p.angle)
+ fx(p.fx), born(p.born), life(p.life), sound(p.sound), angle(p.angle), tex(p.tex)
 {}
 
 bool Particle::Update()

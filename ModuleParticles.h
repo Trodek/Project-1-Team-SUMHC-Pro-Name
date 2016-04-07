@@ -23,6 +23,7 @@ struct Particle
 	Uint32 life = 0;
 	SDL_Rect crearion;
 	Mix_Chunk* sound = nullptr;
+	SDL_Texture* tex = nullptr;
 	
 	bool fx_played = false;
 	double angle;
