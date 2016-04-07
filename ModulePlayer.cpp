@@ -117,7 +117,6 @@ ModulePlayer::ModulePlayer()
 	multi_360.PushBack({ 146, 431, 30, 36 });
 	multi_360.PushBack({ 146, 431, 30, 36 });
 	multi_360.speed = 0.8f;
-	multi_360.SetInitialFrame(UP);
 
 	//multi up
 	multi_up.PushBack({ 19, 432, 30, 37 });
@@ -164,6 +163,7 @@ bool ModulePlayer::Start()
 	current_animation = &up;
 	bool ret = true;
 	weapon_anim = &laser_360;
+	multi_360.SetInitialFrame(UP);
 	current_weapon = LASER;
 	last_basic_weapon = LASER;
 	current_power = P0;
@@ -325,7 +325,8 @@ bool ModulePlayer::CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim){
 	if (FrameIndex == dest_anim) ret = true;
 	else {
 		switch (dest_anim){
-		case LEFT: if (FrameIndex > RIGHT) anim->AnimForward();
+		case LEFT: if (FrameIndex > RIGHT) 
+						anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
 		case ANGLE_60: if (FrameIndex > ANGLE_240 || FrameIndex < ANGLE_60)
@@ -333,7 +334,7 @@ bool ModulePlayer::CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim){
 					   else anim->AnimBack();
 					   break;
 		case LEFT_UP: if (FrameIndex > RIGHT_DOWN || FrameIndex < LEFT_UP)
-						anim->AnimForward();
+							anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
 		case ANGLE_30: if (FrameIndex > ANGLE_210 || FrameIndex < ANGLE_30)
@@ -357,32 +358,35 @@ bool ModulePlayer::CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim){
 					   else anim->AnimBack();
 					   break;
 		case RIGHT: if (FrameIndex < RIGHT) 
-							anim->AnimForward();
+						anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
 		case ANGLE_240: if (FrameIndex >= ANGLE_60)
-			anim->AnimForward();
+							anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
-		case RIGHT_DOWN: if (FrameIndex >= LEFT_UP && FrameIndex < RIGHT_DOWN) anim->AnimForward();
+		case RIGHT_DOWN: if (FrameIndex >= LEFT_UP && FrameIndex < RIGHT_DOWN) 
+							anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
 		case ANGLE_210: if (FrameIndex >= ANGLE_30)
-			anim->AnimForward();
+							anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
-		case DOWN: if (FrameIndex >= UP && FrameIndex < DOWN) anim->AnimForward();
+		case DOWN: if (FrameIndex >= UP && FrameIndex < DOWN) 
+						anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
 		case ANGLE_150: if (FrameIndex  >= ANGLE_330)
-			anim->AnimForward();
+							anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
-		case LEFT_DOWN: if (FrameIndex >= RIGHT_UP && FrameIndex < LEFT_DOWN) anim->AnimForward();
+		case LEFT_DOWN: if (FrameIndex >= RIGHT_UP && FrameIndex < LEFT_DOWN) 
+							anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
 		case ANGLE_120: if (FrameIndex >= ANGLE_300)
-			anim->AnimForward();
+							anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
 
