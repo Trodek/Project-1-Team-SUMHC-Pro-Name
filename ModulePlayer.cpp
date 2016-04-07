@@ -270,6 +270,10 @@ update_status ModulePlayer::Update()
 		}
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 				direction = IDLE;
+				if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+					direction = UP;
+					current_animation = SelectAnimation(direction);
+				}
 		}
 
 	}
