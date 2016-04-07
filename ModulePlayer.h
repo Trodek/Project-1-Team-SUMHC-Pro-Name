@@ -17,8 +17,11 @@ enum PlayerDirection{
 };
 
 enum Weapons{
-	LASER_P0, LASER_P1, LASER_P2, MULTI_P0, MULTI_P1, MULTI_P2,
-	SUPERBALL, SUPERBURNER
+	LASER, MULTI, SUPERBALL, SUPERBURNER
+};
+
+enum Power{
+	P0, P1, P2
 };
 
 class ModulePlayer : public Module
@@ -49,6 +52,12 @@ public:
 	Animation* weapon_anim = nullptr;
 	Animation laser_360;
 
+	Animation multi_up;
+	Animation multi_down;
+	Animation multi_left;
+	Animation multi_right;
+	Animation multi_360;
+
 	Particle* laser_p0 = nullptr;
 	Particle* shoot_start = nullptr;
 	Particle* laser_end = nullptr;
@@ -58,6 +67,7 @@ public:
 	Particle* multi_end = nullptr;
 
 	PlayerDirection direction;
+	Power current_power;
 	Weapons current_weapon;
 	Weapons last_basic_weapon;
 
