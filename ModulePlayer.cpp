@@ -178,6 +178,9 @@ bool ModulePlayer::Start()
 	multi_laser_p2 = &App->particles->multi_laser_p2;
 	multi_start = &App->particles->multi_start;
 	multi_end = &App->particles->multi_end;
+
+	ResetPosition();
+
 	return ret;
 }
 
@@ -295,6 +298,14 @@ update_status ModulePlayer::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
 		direction = IDLE;
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
+			direction = LEFT_DOWN;
+			current_animation = SelectAnimation(direction);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
+			direction = RIGHT_DOWN;
+			current_animation = SelectAnimation(direction);
+		}
 	}
 
 	if (direction != IDLE){
@@ -395,7 +406,6 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				App->particles->SetParticleSpeed(laser_p0, -5, 0);
 				App->particles->AddParticle(*laser_p0, position.x - 8, position.y + 1, -90);
 				App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 1, -90);
-
 				break;
 			case ANGLE_60:
 				App->particles->SetParticleSpeed(laser_p0, -4.61f, -1.91f);
@@ -490,7 +500,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case LEFT_UP:
 				App->particles->SetParticleSpeed(laser_p1, -3.53f, -3.53f);
-				App->particles->AddParticle(*laser_p1, position.x + 3, position.y - 12, -45);
+				App->particles->AddParticle(*laser_p1, position.x + 1, position.y - 11, -45);
 				App->particles->AddParticle(*shoot_start, position.x - 2, position.y - 12, -45);
 				break;
 			case ANGLE_30:
@@ -500,7 +510,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case UP:
 				App->particles->SetParticleSpeed(laser_p1, 0, -5);
-				App->particles->AddParticle(*laser_p1, position.x + 21, position.y - 15);
+				App->particles->AddParticle(*laser_p1, position.x + 17, position.y - 15);
 				App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 15);
 				break;
 			case ANGLE_330:
@@ -530,7 +540,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case RIGHT_DOWN:
 				App->particles->SetParticleSpeed(laser_p1, 3.53f, 3.53f);
-				App->particles->AddParticle(*laser_p1, position.x + 20, position.y + 17, 135);
+				App->particles->AddParticle(*laser_p1, position.x + 20, position.y + 20, 135);
 				App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, 135);
 				break;
 			case ANGLE_210:
@@ -540,7 +550,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case DOWN:
 				App->particles->SetParticleSpeed(laser_p1, 0, 5);
-				App->particles->AddParticle(*laser_p1, position.x + 8, position.y + 20, 180);
+				App->particles->AddParticle(*laser_p1, position.x + 4, position.y + 20, 180);
 				App->particles->AddParticle(*shoot_start, position.x + 3, position.y + 27, 180);
 				break;
 			case ANGLE_150:
@@ -550,7 +560,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case LEFT_DOWN:
 				App->particles->SetParticleSpeed(laser_p1, -3.53f, 3.53f);
-				App->particles->AddParticle(*laser_p1, position.x - 5, position.y + 17, -125);
+				App->particles->AddParticle(*laser_p1, position.x - 5, position.y + 13, -125);
 				App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 17, -135);
 				break;
 			case ANGLE_120:
@@ -565,7 +575,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 			{
 			case LEFT:
 				App->particles->SetParticleSpeed(laser_p2, -5, 0);
-				App->particles->AddParticle(*laser_p2, position.x - 8, position.y + 1, -90);
+				App->particles->AddParticle(*laser_p2, position.x - 8, position.y - 3, -90);
 				App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 1, -90);
 
 				break;
@@ -576,7 +586,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case LEFT_UP:
 				App->particles->SetParticleSpeed(laser_p2, -3.53f, -3.53f);
-				App->particles->AddParticle(*laser_p2, position.x + 3, position.y - 12, -45);
+				App->particles->AddParticle(*laser_p2, position.x - 6, position.y - 16, -45);
 				App->particles->AddParticle(*shoot_start, position.x - 2, position.y - 12, -45);
 				break;
 			case ANGLE_30:
@@ -586,7 +596,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case UP:
 				App->particles->SetParticleSpeed(laser_p2, 0, -5);
-				App->particles->AddParticle(*laser_p2, position.x + 21, position.y - 15);
+				App->particles->AddParticle(*laser_p2, position.x + 10, position.y - 15);
 				App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 15);
 				break;
 			case ANGLE_330:
@@ -596,7 +606,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case RIGHT_UP:
 				App->particles->SetParticleSpeed(laser_p2, 3.53f, -3.53f);
-				App->particles->AddParticle(*laser_p2, position.x + 30, position.y - 12, 45);
+				App->particles->AddParticle(*laser_p2, position.x + 21, position.y - 16, 45);
 				App->particles->AddParticle(*shoot_start, position.x + 25, position.y - 12, 45);
 				break;
 			case ANGLE_300:
@@ -606,7 +616,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case RIGHT:
 				App->particles->SetParticleSpeed(laser_p2, 5, 0);
-				App->particles->AddParticle(*laser_p2, position.x + 35, position.y + 2, 90);
+				App->particles->AddParticle(*laser_p2, position.x + 35, position.y - 2, 90);
 				App->particles->AddParticle(*shoot_start, position.x + 30, position.y + 2, 90);
 				break;
 			case ANGLE_240:
@@ -616,7 +626,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case RIGHT_DOWN:
 				App->particles->SetParticleSpeed(laser_p2, 3.53f, 3.53f);
-				App->particles->AddParticle(*laser_p2, position.x + 20, position.y + 17, 135);
+				App->particles->AddParticle(*laser_p2, position.x + 16, position.y + 20, 135);
 				App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, 135);
 				break;
 			case ANGLE_210:
@@ -626,7 +636,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case DOWN:
 				App->particles->SetParticleSpeed(laser_p2, 0, 5);
-				App->particles->AddParticle(*laser_p2, position.x + 8, position.y + 20, 180);
+				App->particles->AddParticle(*laser_p2, position.x - 3, position.y + 20, 180);
 				App->particles->AddParticle(*shoot_start, position.x + 3, position.y + 27, 180);
 				break;
 			case ANGLE_150:
@@ -636,7 +646,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				break;
 			case LEFT_DOWN:
 				App->particles->SetParticleSpeed(laser_p2, -3.53f, 3.53f);
-				App->particles->AddParticle(*laser_p2, position.x - 5, position.y + 17, -125);
+				App->particles->AddParticle(*laser_p2, position.x - 10, position.y + 10, -125);
 				App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 17, -135);
 				break;
 			case ANGLE_120:
@@ -795,4 +805,9 @@ Animation* ModulePlayer::SelectAnimation(PlayerDirection direction){
 	}
 
 	return ret;
+}
+
+void ModulePlayer::ResetPosition(){
+	position.x = 120;
+	position.y = 245;
 }

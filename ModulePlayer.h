@@ -37,6 +37,7 @@ public:
 	void CreateShoot(Weapons equiped, Animation* anim)const;
 	Weapons ChangeWeapon(Weapons current);
 	Animation* SelectAnimation(PlayerDirection direction);
+	void ResetPosition();
 
 public:
 	fPoint position;
