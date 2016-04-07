@@ -112,7 +112,28 @@ ModulePlayer::ModulePlayer()
 	multi_up.speed = 0.2f;
 
 	//multi down
-	
+	multi_down.PushBack({ 19, 488, 30, 37 });
+	multi_down.PushBack({ 62, 489, 30, 36 });
+	multi_down.PushBack({ 102, 488, 30, 37 });
+	multi_down.PushBack({ 146, 488, 30, 37 });
+	multi_down.PushBack({ 191, 489, 30, 37 });
+	multi_down.speed = 0.2f;
+
+	//multi left
+	multi_left.PushBack({ 21, 544, 30, 36 });
+	multi_left.PushBack({ 63, 543, 30, 37 });
+	multi_left.PushBack({ 105, 543, 30, 37 });
+	multi_left.PushBack({ 147, 543, 30, 37 });
+	multi_left.PushBack({ 189, 543, 30, 37 });
+	multi_left.speed = 0.2f;
+
+	//multi right
+	multi_right.PushBack({ 22, 594, 30, 37 });
+	multi_right.PushBack({ 64, 594, 30, 37 });
+	multi_right.PushBack({ 108, 594, 30, 37 });
+	multi_right.PushBack({ 150, 594, 30, 37 });
+	multi_right.PushBack({ 189, 595, 30, 36 });
+	multi_right.speed = 0.2f;
 
 }
 
