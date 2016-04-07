@@ -35,7 +35,7 @@ ModuleSceneLevels::ModuleSceneLevels()
 	lavaanim.PushBack({ 256, 0, 256, 15383 });
 	lavaanim.PushBack({ 512, 0, 256, 15383 });
 	lavaanim.speed = 0.03;
-
+	
 	
 }
 
@@ -61,9 +61,9 @@ bool ModuleSceneLevels::Start()
 	graphics = App->textures->Load("Sprites/Map/Map.png");
 	
 	//Truck
-	boss2truck.anim.PushBack(0,0, 224, 272);
+	boss2truck.anim.PushBack({ 0, 0, 224, 272 });
 	boss2truck.anim.loop = true;
-	boss2truck.anim.speed = 0.1f;
+	boss2truck.anim.speed = 1;
 	boss2truck.life = 5000;
 	boss2truck.tex = boss2trucktex;
 	/////////////////////////////////
@@ -118,14 +118,16 @@ update_status ModuleSceneLevels::Update()
 	// Draw everything --------------------------------------
 	App->render->Blit(lava, 0, camera_y, &lavaanim.GetCurrentFrame());
 	App->render->Blit(sublighttex, 0, camera_y, &sublightanim.GetCurrentFrame());
+	App->particles->AddParticle(boss2truck, 120, 10309, 0, 0.0);
 	App->render->Blit(graphics, 0, camera_y, &map, 3); // Map
 	App->render->Blit(on_bg, 0, camera_y, &lights.GetCurrentFrame());
+
+
+
 	
 	//TEST
-	if (App->input->keyboard[SDL_SCANCODE_6 == KEY_STATE::KEY_DOWN]){
 	
-		App->render->BlitParticle(boss2trucktex, 120, 10309, &map, f, 1.0f);
-	}
+	
 
 	//Check song to play
 	if (camera_y < -11489) App->audio->PlayMusic(level1_song, LOOP);
