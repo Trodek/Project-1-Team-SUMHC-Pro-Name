@@ -39,7 +39,7 @@ public:
 	Animation* SelectAnimation(PlayerDirection direction);
 
 public:
-	iPoint position;
+	fPoint position;
 	SDL_Texture* main_char_tex = nullptr;
 	Animation up;
 	Animation down;
@@ -60,10 +60,14 @@ public:
 	Animation multi_360;
 
 	Particle* laser_p0 = nullptr;
+	Particle* laser_p1 = nullptr;
+	Particle* laser_p2 = nullptr;
 	Particle* shoot_start = nullptr;
 	Particle* laser_end = nullptr;
 	
 	Particle* multi_laser_p0 = nullptr;
+	Particle* multi_laser_p1 = nullptr;
+	Particle* multi_laser_p2 = nullptr;
 	Particle* multi_start = nullptr;
 	Particle* multi_end = nullptr;
 

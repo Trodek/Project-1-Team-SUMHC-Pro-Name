@@ -29,8 +29,8 @@ Application::Application()
 	modules[9] = losescreen = new ModuleLoseScreen();
 	modules[10] = namescreen = new ModuleNameScreen();
 	modules[11] = scorescreen = new ModuleScoreScreen();
-	modules[12] = particles = new ModuleParticles();
-	modules[13] = player = new ModulePlayer();
+	modules[12] = player = new ModulePlayer();
+	modules[13] = particles = new ModuleParticles();
 	modules[14] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
 	
 }	
