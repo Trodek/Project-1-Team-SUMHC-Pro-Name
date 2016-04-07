@@ -153,7 +153,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
 		if(position.y < SCREEN_HEIGHT-38)position.y+= speed; // + is - character speed
 		direction = DOWN;
-		if (App->input->keyboard[SDL_SCANCODE_W]){
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE :: KEY_REPEAT){
 				direction = IDLE;
 		}
 
