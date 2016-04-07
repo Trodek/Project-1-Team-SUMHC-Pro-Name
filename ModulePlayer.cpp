@@ -318,8 +318,8 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 			break;
 		case DOWN:
 			App->particles->SetParticleSpeed(laser_p0, 0, 5);
-			App->particles->AddParticle(*laser_p0, position.x - 19, position.y + 15);
-			App->particles->AddParticle(*shoot_start, position.x - 14, position.y + 15);
+			App->particles->AddParticle(*laser_p0, position.x + 8, position.y + 15);
+			App->particles->AddParticle(*shoot_start, position.x +3 , position.y + 27, 180);
 			break;
 		case ANGLE_150:
 			App->particles->SetParticleSpeed(laser_p0, -1.91f, 4.61f);
@@ -333,7 +333,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 			break;
 		case ANGLE_120:
 			App->particles->SetParticleSpeed(laser_p0, -4.61f, 1.91f);
-			App->particles->AddParticle(*laser_p0, position.x - 33, position.y + 5, 67.5);
+			App->particles->AddParticle(*laser_p0, position.x - 33, position.y + 5, -67.5);
 			App->particles->AddParticle(*shoot_start, position.x - 28, position.y + 5, -67.5);
 			break;
 		default:
