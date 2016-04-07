@@ -12,11 +12,6 @@ ModulePlayer::ModulePlayer()
 	position.x = 120;
 	position.y = 245;
 
-	/*//char idle up
-	idle_up.PushBack({ 17, 273, 29, 38 });
-	idle_up.speed = 0.1f;
-	idle_up.loop = false;*/
-
 	//Char Up anim
 	up.PushBack({ 17, 273, 29, 38 });
 	up.PushBack({ 55, 274, 27, 37 });
@@ -25,28 +20,13 @@ ModulePlayer::ModulePlayer()
 	up.PushBack({ 161, 274, 28, 37 });
 	up.speed = 0.1f;
 
-	/*//char up_to_right anim
-	up_to_right.PushBack({ 18, 230, 27, 36 });
-	up_to_right.speed = 0.1f;
-	up_to_right.loop = false;*/
-
-	//char right anim
+	//char right
 	right.PushBack({ 94, 230, 27, 35 });
 	right.PushBack({ 131, 230, 25, 36 });
 	right.PushBack({ 166, 231, 28, 35 });
 	right.PushBack({ 204, 230, 26, 37 });
 	right.PushBack({ 55, 231, 29, 35 });
 	right.speed = 0.1f;
-
-	/*//char idle_right
-	idle_right.PushBack({ 55, 231, 29, 35 });
-	idle_right.speed = 0.1f;
-	idle_right.loop = false;
-
-	//char up_to_left
-	up_to_left.PushBack({ 202, 190, 28, 36 });
-	up_to_left.speed = 0.1f;
-	up_to_left.loop = false;*/
 
 	//char left
 	left.PushBack({ 166, 191, 29, 35 });
@@ -56,10 +36,13 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 18, 191, 27, 35 });
 	left.speed = 0.1f;
 
-	/*//char idle_left
-	idle_left.PushBack({ 55, 192, 29, 35 });
-	idle_left.speed = 0.1f;
-	idle_left.loop = false;*/
+	//char down
+	down.PushBack({ 54, 139, 31, 39 });
+	down.PushBack({ 92, 141, 28, 39 });
+	down.PushBack({ 125, 143, 27, 37 });
+	down.PushBack({ 158, 143, 28, 39 });
+	down.PushBack({ 193, 145, 28, 39 });
+	down.speed = 0.1f;
 
 	//laser 180º
 	laser_360.PushBack({ 55, 192, 29, 35 });  //-- left
@@ -71,6 +54,13 @@ ModulePlayer::ModulePlayer()
 	laser_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
 	laser_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
 	laser_360.PushBack({ 55, 231, 29, 35 });  //-- right
+	laser_360.PushBack({ 18, 139, 27, 37 });  //-- right-down
+	laser_360.PushBack({ 18, 139, 27, 37 });  //-- right-down
+	laser_360.PushBack({ 18, 139, 27, 37 });  //-- right-down
+	laser_360.PushBack({ 54, 139, 31, 39 });  //-- down
+	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
+	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
+	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
 	laser_360.speed = 0.3f;
 	laser_360.SetInitialFrame(UP);
 
