@@ -5,7 +5,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
-
+#include "ModuleSceneLevels.h"
 
 ModulePlayer::ModulePlayer()
 {
@@ -61,7 +61,7 @@ ModulePlayer::ModulePlayer()
 	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
 	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
 	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
-	laser_360.speed = 0.3f;
+	laser_360.speed = 0.8f;
 	laser_360.SetInitialFrame(UP);
 
 }
@@ -74,12 +74,14 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	main_char_tex = App->textures->Load("Sprites/Main Char/Main_moves.png");
-	current_animation = &idle_up;
+	current_animation = &up;
 	bool ret = true;
 	weapon_anim = &laser_360;
 	current_weapon = LASER_P0;
 	direction = IDLE;
 	laser_p0 = &App->particles->basic_laser_p0;
+	shoot_start = &App->particles->shoot_start;
+	laser_end = &App->particles->laser_end;
 	return ret;
 }
 
@@ -96,18 +98,25 @@ update_status ModulePlayer::Update()
 	// W key
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		current_animation = &up;
-		position.y -= speed;
 		direction = UP;
+		if (position.y < 160){
+			App->levels->camera_y += speed; // = to character speed
+		}
+		else{
+			position.y -= speed; // - is + character speed
+		}
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
-		current_animation = &idle_up;
 		direction = IDLE;
 	}
+	///////////////////////////////////////////////////////////////////////////////////////
 
 	// D key
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 		current_animation = &right;
-		position.x += speed;
+		if (position.x <SCREEN_WIDTH-29){
+			position.x += speed;
+		}
 		direction = RIGHT;
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 			direction = RIGHT_UP;
@@ -115,24 +124,35 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
 		direction = IDLE;
-		current_animation = &idle_right;	
 	}
+	///////////////////////////////////////////////////////////////////////////////////////
 
 	// A key
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
 		current_animation = &left;
-		position.x -= speed;
+		if (position.x > 0 ){
+			position.x -= speed;
+		}
 		direction = LEFT;
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 			direction = LEFT_UP;
+			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+				direction = UP;
+				current_animation = &up;
+			}
 		}
+
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
-			current_animation = &idle_left;
 			direction = IDLE;
 	}
-	
+	///////////////////////////////////////////////////////////////////////////////////////
+
+	// S key
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
+		if(position.y < SCREEN_HEIGHT-38)position.y+= speed; // + is - character speed
+	}
 	if (direction != IDLE){
 		if (CheckPJAnimPos(weapon_anim, direction))
 			App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -227,38 +247,48 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 		case LEFT:
 			App->particles->SetParticleSpeed(laser_p0, -5, 0);
 			App->particles->AddParticle(*laser_p0, position.x - 8, position.y + 1, -90);
+			App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 1, -90);
+
 			break;
 		case ANGLE_60:
 			App->particles->SetParticleSpeed(laser_p0, -4.61f, -1.91f);
 			App->particles->AddParticle(*laser_p0, position.x, position.y - 5, -67.5);
+			App->particles->AddParticle(*shoot_start, position.x-5, position.y - 5, -67.5);
 			break;
 		case LEFT_UP:
 			App->particles->SetParticleSpeed(laser_p0, -3.53f, -3.53f);
 			App->particles->AddParticle(*laser_p0, position.x + 3, position.y - 12, -45);
+			App->particles->AddParticle(*shoot_start, position.x - 2, position.y - 12, -45);
 			break;
 		case ANGLE_30:
 			App->particles->SetParticleSpeed(laser_p0, -1.91f, -4.61f);
 			App->particles->AddParticle(*laser_p0, position.x + 8, position.y - 12, -22.5);
+			App->particles->AddParticle(*shoot_start, position.x + 3, position.y - 12, -22.5);
 			break;
 		case UP:
 			App->particles->SetParticleSpeed(laser_p0, 0, -5);
 			App->particles->AddParticle(*laser_p0, position.x + 19, position.y - 15);
+			App->particles->AddParticle(*shoot_start, position.x + 14, position.y - 15);
 			break;
 		case ANGLE_330:
 			App->particles->SetParticleSpeed(laser_p0, 1.91f, -4.61f);
 			App->particles->AddParticle(*laser_p0, position.x + 25, position.y - 12, 22.5);
+			App->particles->AddParticle(*shoot_start, position.x + 20, position.y - 12, 22.5);
 			break;
 		case RIGHT_UP:
 			App->particles->SetParticleSpeed(laser_p0, 3.53f, -3.53f);
 			App->particles->AddParticle(*laser_p0, position.x + 30, position.y - 12, 45);
+			App->particles->AddParticle(*shoot_start, position.x + 25, position.y - 12, 45);
 			break;
 		case ANGLE_300:
 			App->particles->SetParticleSpeed(laser_p0, 4.61f, -1.91f);
 			App->particles->AddParticle(*laser_p0, position.x + 33, position.y - 5, 67.5);
+			App->particles->AddParticle(*shoot_start, position.x + 28, position.y - 5, 67.5);
 			break;
 		case RIGHT:
 			App->particles->SetParticleSpeed(laser_p0, 5, 0);
 			App->particles->AddParticle(*laser_p0, position.x + 35, position.y + 2, 90);
+			App->particles->AddParticle(*shoot_start, position.x + 30, position.y + 2, 90);
 			break;
 		case ANGLE_240:
 			break;

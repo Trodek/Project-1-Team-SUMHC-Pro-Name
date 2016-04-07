@@ -14,9 +14,7 @@ struct SDL_Rect;
 
 struct Particle
 {
-	Animation start_anim;
 	Animation anim;
-	Animation end_anim;
 	uint fx = 0;
 	iPoint position;
 	iPoint start_pos;
@@ -24,7 +22,7 @@ struct Particle
 	Uint32 born = 0;
 	Uint32 life = 0;
 	SDL_Rect crearion;
-	Mix_Chunk* sound;
+	Mix_Chunk* sound = nullptr;
 	
 	bool fx_played = false;
 	double angle;
@@ -56,6 +54,8 @@ private:
 public:
 
 	Particle basic_laser_p0;
+	Particle shoot_start;
+	Particle laser_end;
 	
 };
 
