@@ -24,20 +24,24 @@ bool ModuleParticles::Start()
 	basic_laser_tex = App->textures->Load("Sprites/Main Char/Weapons/basic laser.png");
 
 	// laser particle and sound
-	basic_laser_p0.start_anim.PushBack({ 7, 6, 14, 16 });
-	basic_laser_p0.start_anim.loop = false;
-	basic_laser_p0.start_anim.speed = 0.2f;
+	
 	basic_laser_p0.anim.PushBack({ 34, 6, 4, 16 });
 	basic_laser_p0.anim.loop = true;
 	basic_laser_p0.anim.speed = 0.1f;
-	basic_laser_p0.end_anim.PushBack({ 54, 6, 16, 16 });
-	basic_laser_p0.end_anim.PushBack({ 74, 6, 16, 16 });
-	basic_laser_p0.end_anim.PushBack({ 95, 11, 6, 6 });
-	basic_laser_p0.end_anim.PushBack({ 108, 6, 14, 15 });
-	basic_laser_p0.end_anim.loop = false;
-	basic_laser_p0.end_anim.speed = 0.2f;
 	basic_laser_p0.life = 800;
 	basic_laser_p0.sound = App->audio->LoadSoundEffect("Sounds/Effects/basic_laser_shoot.wav");
+
+	shoot_start.anim.PushBack({ 7, 6, 14, 16 });
+	shoot_start.anim.loop = false;
+	shoot_start.anim.speed = 0.2f;
+
+	laser_end.anim.PushBack({ 54, 6, 16, 16 });
+	laser_end.anim.PushBack({ 74, 6, 16, 16 });
+	laser_end.anim.PushBack({ 95, 11, 6, 6 });
+	laser_end.anim.PushBack({ 108, 6, 14, 15 });
+	laser_end.anim.loop = false;
+	laser_end.anim.speed = 0.2f;
+
 
 	return true;
 }
@@ -73,17 +77,13 @@ update_status ModuleParticles::Update()
 
 		if(p->Update() == false)
 		{
-			if (p->end_anim.Finished()){
-				delete p;
-				active[i] = nullptr;
-			}
-			else 
-				App->render->BlitParticle(basic_laser_tex, p->position.x-6, p->position.y, &(p->end_anim.GetCurrentFrame()), p->angle);
+			delete p;
+			active[i] = nullptr;
+			
+
 		}
 		else if(SDL_GetTicks() >= p->born)
 		{
-			if (!p->start_anim.Finished())
-				App->render->BlitParticle(basic_laser_tex, p->start_pos.x, p->start_pos.y, &(p->start_anim.GetCurrentFrame()), p->angle);
 			App->render->BlitParticle(basic_laser_tex, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), p->angle);
 			if(p->fx_played == false)
 			{
@@ -103,8 +103,6 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, double
 	p->born = SDL_GetTicks() + delay;
 	p->position.x = x;
 	p->position.y = y;
-	p->start_pos.x = x-5;
-	p->start_pos.y = y;
 	p->angle = angle;
 
 	active[last_particle++] = p;
@@ -120,7 +118,7 @@ Particle::Particle()
 }
 
 Particle::Particle(const Particle& p) :
-start_anim(p.start_anim), anim(p.anim), end_anim(p.end_anim), position(p.position), start_pos(p.start_pos), speed(p.speed),
+ anim(p.anim), position(p.position), start_pos(p.start_pos), speed(p.speed),
 fx(p.fx), born(p.born), life(p.life), sound(p.sound), angle(p.angle)
 {}
 

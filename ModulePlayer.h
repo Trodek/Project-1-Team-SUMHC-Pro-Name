@@ -51,6 +51,8 @@ public:
 	Animation laser_360;
 
 	Particle* laser_p0 = nullptr;
+	Particle* shoot_start = nullptr;
+	Particle* laser_end = nullptr;
 
 	PlayerDirection direction;
 	Weapons current_weapon;

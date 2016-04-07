@@ -71,7 +71,7 @@ ModulePlayer::ModulePlayer()
 	laser_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
 	laser_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
 	laser_360.PushBack({ 55, 231, 29, 35 });  //-- right
-	laser_360.speed = 0.3f;
+	laser_360.speed = 0.4f;
 	laser_360.SetInitialFrame(UP);
 
 }
@@ -90,6 +90,8 @@ bool ModulePlayer::Start()
 	current_weapon = LASER_P0;
 	direction = IDLE;
 	laser_p0 = &App->particles->basic_laser_p0;
+	shoot_start = &App->particles->shoot_start;
+	laser_end = &App->particles->laser_end;
 	return ret;
 }
 
@@ -253,38 +255,48 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 		case LEFT:
 			App->particles->SetParticleSpeed(laser_p0, -5, 0);
 			App->particles->AddParticle(*laser_p0, position.x - 8, position.y + 1, -90);
+			App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 1, -90);
+
 			break;
 		case ANGLE_60:
 			App->particles->SetParticleSpeed(laser_p0, -4.61f, -1.91f);
 			App->particles->AddParticle(*laser_p0, position.x, position.y - 5, -67.5);
+			App->particles->AddParticle(*shoot_start, position.x-5, position.y - 5, -67.5);
 			break;
 		case LEFT_UP:
 			App->particles->SetParticleSpeed(laser_p0, -3.53f, -3.53f);
 			App->particles->AddParticle(*laser_p0, position.x + 3, position.y - 12, -45);
+			App->particles->AddParticle(*shoot_start, position.x - 2, position.y - 12, -45);
 			break;
 		case ANGLE_30:
 			App->particles->SetParticleSpeed(laser_p0, -1.91f, -4.61f);
 			App->particles->AddParticle(*laser_p0, position.x + 8, position.y - 12, -22.5);
+			App->particles->AddParticle(*shoot_start, position.x + 3, position.y - 12, -22.5);
 			break;
 		case UP:
 			App->particles->SetParticleSpeed(laser_p0, 0, -5);
 			App->particles->AddParticle(*laser_p0, position.x + 19, position.y - 15);
+			App->particles->AddParticle(*shoot_start, position.x + 14, position.y - 15);
 			break;
 		case ANGLE_330:
 			App->particles->SetParticleSpeed(laser_p0, 1.91f, -4.61f);
 			App->particles->AddParticle(*laser_p0, position.x + 25, position.y - 12, 22.5);
+			App->particles->AddParticle(*shoot_start, position.x + 20, position.y - 12, 22.5);
 			break;
 		case RIGHT_UP:
 			App->particles->SetParticleSpeed(laser_p0, 3.53f, -3.53f);
 			App->particles->AddParticle(*laser_p0, position.x + 30, position.y - 12, 45);
+			App->particles->AddParticle(*shoot_start, position.x + 25, position.y - 12, 45);
 			break;
 		case ANGLE_300:
 			App->particles->SetParticleSpeed(laser_p0, 4.61f, -1.91f);
 			App->particles->AddParticle(*laser_p0, position.x + 33, position.y - 5, 67.5);
+			App->particles->AddParticle(*shoot_start, position.x + 28, position.y - 5, 67.5);
 			break;
 		case RIGHT:
 			App->particles->SetParticleSpeed(laser_p0, 5, 0);
 			App->particles->AddParticle(*laser_p0, position.x + 35, position.y + 2, 90);
+			App->particles->AddParticle(*shoot_start, position.x + 30, position.y + 2, 90);
 			break;
 		case ANGLE_240:
 			break;
