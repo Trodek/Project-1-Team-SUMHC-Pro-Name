@@ -24,18 +24,18 @@ bool ModuleParticles::Start()
 	basic_laser_tex = App->textures->Load("Sprites/Main Char/Weapons/basic laser.png");
 	multi_laser_tex = App->textures->Load("Sprites/Main Char/Weapons/multi laser.png");
 
-	// laser particle and sound
+	// laser particles and sound
 	
 	basic_laser_p0.anim.PushBack({ 34, 6, 4, 16 });
 	basic_laser_p0.anim.loop = true;
 	basic_laser_p0.anim.speed = 0.1f;
 	basic_laser_p0.life = 1000;
-	basic_laser_p0.sound = App->audio->LoadSoundEffect("Sounds/Effects/basic_laser_shoot.wav");
 	basic_laser_p0.tex = basic_laser_tex;
 
 	shoot_start.anim.PushBack({ 7, 6, 14, 16 });
 	shoot_start.anim.loop = false;
 	shoot_start.anim.speed = 0.2f;
+	shoot_start.sound = App->audio->LoadSoundEffect("Sounds/Effects/basic_laser_shoot.wav");
 	shoot_start.tex = basic_laser_tex;
 
 	laser_end.anim.PushBack({ 54, 6, 16, 16 });
@@ -46,15 +46,17 @@ bool ModuleParticles::Start()
 	laser_end.anim.speed = 0.2f;
 	laser_end.tex = basic_laser_tex;
 
+	// multi laser particles and sound
+
 	multi_laser_p0.anim.PushBack({ 24, 38, 6, 14 });
 	multi_laser_p0.anim.loop = true;
 	multi_laser_p0.life = 1000;
-	multi_laser_p0.sound = App->audio->LoadSoundEffect("Sounds/Effects/3-gun shoot.wav");
 	multi_laser_p0.tex = multi_laser_tex;
 
 	multi_start.anim.PushBack({ 39, 66, 36, 16 });
 	multi_start.anim.loop = false;
 	multi_start.anim.speed = 0.3f;
+	multi_start.sound = App->audio->LoadSoundEffect("Sounds/Effects/3-gun shoot.wav");
 	multi_start.tex = multi_laser_tex;
 
 	multi_end.anim.PushBack({ 11, 5, 16, 16 });
