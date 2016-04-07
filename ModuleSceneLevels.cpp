@@ -84,6 +84,12 @@ bool ModuleSceneLevels::CleanUp()
 {
 	LOG("Unloading Levels stage");
 
+	// Unload textures
+	App->textures->Unload(graphics);
+	App->textures->Unload(on_bg);
+	App->textures->Unload(lava);
+	App->textures->Unload(sublighttex);
+
 	//Diable player
 	App->player->Disable();
 	

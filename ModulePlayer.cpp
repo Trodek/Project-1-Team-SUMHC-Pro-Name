@@ -184,6 +184,15 @@ bool ModulePlayer::Start()
 	return ret;
 }
 
+bool ModulePlayer::CleanUp(){
+
+	LOG("Player CleanUp--------");
+
+	App->textures->Unload(main_char_tex);
+
+	return true;
+}
+
 // Update: draw background
 update_status ModulePlayer::Update()
 {

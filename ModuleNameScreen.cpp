@@ -39,6 +39,8 @@ bool ModuleNameScreen::CleanUp()
 {
 	LOG("Unloading name scene");
 
+	App->textures->Unload(graphics);
+
 	return true;
 }
 

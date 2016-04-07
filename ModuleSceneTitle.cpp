@@ -39,6 +39,7 @@ bool ModuleSceneTitle::Start()
 bool ModuleSceneTitle::CleanUp()
 {
 	LOG("Unloading Title scene");
+	App->textures->Unload(graphics);
 
 	return true;
 }

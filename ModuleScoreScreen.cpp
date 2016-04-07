@@ -37,6 +37,7 @@ bool ModuleScoreScreen::Start()
 bool ModuleScoreScreen::CleanUp()
 {
 	LOG("Unloading score scene");
+	App->textures->Unload(graphics);
 
 	return true;
 }
