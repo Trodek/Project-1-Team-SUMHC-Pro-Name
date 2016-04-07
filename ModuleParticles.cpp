@@ -32,6 +32,18 @@ bool ModuleParticles::Start()
 	basic_laser_p0.life = 1000;
 	basic_laser_p0.tex = basic_laser_tex;
 
+	basic_laser_p1.anim.PushBack({ 32, 35, 10, 16 });
+	basic_laser_p1.anim.loop = true;
+	basic_laser_p1.anim.speed = 0.1f;
+	basic_laser_p1.life = 1000;
+	basic_laser_p1.tex = basic_laser_tex;
+
+	basic_laser_p2.anim.PushBack({ 26, 64, 24, 24 });
+	basic_laser_p2.anim.loop = true;
+	basic_laser_p2.anim.speed = 0.1f;
+	basic_laser_p2.life = 1000;
+	basic_laser_p2.tex = basic_laser_tex;
+
 	shoot_start.anim.PushBack({ 7, 6, 14, 16 });
 	shoot_start.anim.loop = false;
 	shoot_start.anim.speed = 0.2f;
@@ -52,6 +64,16 @@ bool ModuleParticles::Start()
 	multi_laser_p0.anim.loop = true;
 	multi_laser_p0.life = 1000;
 	multi_laser_p0.tex = multi_laser_tex;
+
+	multi_laser_p1.anim.PushBack({ 52, 35, 10, 18 });
+	multi_laser_p1.anim.loop = true;
+	multi_laser_p1.life = 1000;
+	multi_laser_p1.tex = multi_laser_tex;
+
+	multi_laser_p2.anim.PushBack({ 86, 32, 14, 21 });
+	multi_laser_p2.anim.loop = true;
+	multi_laser_p2.life = 1000;
+	multi_laser_p2.tex = multi_laser_tex;
 
 	multi_start.anim.PushBack({ 39, 66, 36, 16 });
 	multi_start.anim.loop = false;

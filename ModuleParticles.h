@@ -56,10 +56,14 @@ private:
 public:
 
 	Particle basic_laser_p0;
+	Particle basic_laser_p1;
+	Particle basic_laser_p2;
 	Particle shoot_start;
 	Particle laser_end;
 
 	Particle multi_laser_p0;
+	Particle multi_laser_p1;
+	Particle multi_laser_p2;
 	Particle multi_start;
 	Particle multi_end;
 	
