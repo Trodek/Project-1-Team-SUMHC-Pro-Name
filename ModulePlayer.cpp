@@ -196,7 +196,7 @@ bool ModulePlayer::CleanUp(){
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	float speed = 30;
+	float speed = 1.7f;
 
 	// change weapon
 	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN){ 

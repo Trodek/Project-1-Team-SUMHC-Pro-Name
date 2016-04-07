@@ -27,13 +27,11 @@ public:
 	SDL_Texture* lava = nullptr;
 	SDL_Texture* on_bg = nullptr;
 	SDL_Texture* sublighttex = nullptr;
-	SDL_Texture* boss2trucktex = nullptr;
 
 	Animation lavaanim;
 	Animation sublightanim;
 	Animation lights;
 	SDL_Rect map;
-	Particle boss2truck;
 	float camera_y;
 
 	Mix_Music* level1_song;
