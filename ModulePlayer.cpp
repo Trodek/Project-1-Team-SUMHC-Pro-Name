@@ -178,6 +178,9 @@ bool ModulePlayer::Start()
 	multi_laser_p2 = &App->particles->multi_laser_p2;
 	multi_start = &App->particles->multi_start;
 	multi_end = &App->particles->multi_end;
+
+	ResetPosition();
+
 	return ret;
 }
 
@@ -403,7 +406,6 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				App->particles->SetParticleSpeed(laser_p0, -5, 0);
 				App->particles->AddParticle(*laser_p0, position.x - 8, position.y + 1, -90);
 				App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 1, -90);
-
 				break;
 			case ANGLE_60:
 				App->particles->SetParticleSpeed(laser_p0, -4.61f, -1.91f);
@@ -803,4 +805,9 @@ Animation* ModulePlayer::SelectAnimation(PlayerDirection direction){
 	}
 
 	return ret;
+}
+
+void ModulePlayer::ResetPosition(){
+	position.x = 120;
+	position.y = 245;
 }

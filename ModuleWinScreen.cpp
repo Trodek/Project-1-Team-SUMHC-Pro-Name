@@ -30,7 +30,7 @@ bool ModuleWinScreen::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/UI/ui_endgame2.png");
 
-	App->player->Disable();
+
 
 	return true;
 }
@@ -39,7 +39,7 @@ bool ModuleWinScreen::Start()
 bool ModuleWinScreen::CleanUp()
 {
 	LOG("Unloading Win scene");
-	App->player->Enable();
+	
 	return true;
 }
 
@@ -54,7 +54,6 @@ update_status ModuleWinScreen::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
-		App->levels->map.y = 15063;
 	}
 	
 

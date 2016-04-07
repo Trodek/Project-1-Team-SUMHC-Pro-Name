@@ -59,6 +59,8 @@ bool ModuleSceneLevels::Start()
 
 	App->player->Enable();
 
+	CameraReset();
+
 	return ret;
 }
 
@@ -89,7 +91,7 @@ update_status ModuleSceneLevels::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
 		App->fade->FadeToBlack(this, (Module*)App->losescreen, 1.0f);
 	}
-	if (map.y <0){
+	if (camera_y > 0){
 		App->fade->FadeToBlack(this, (Module*)App->winscreen, 0.3f);
 	}
 	// Draw everything --------------------------------------
