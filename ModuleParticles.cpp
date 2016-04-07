@@ -29,7 +29,7 @@ bool ModuleParticles::Start()
 	basic_laser_p0.anim.PushBack({ 34, 6, 4, 16 });
 	basic_laser_p0.anim.loop = true;
 	basic_laser_p0.anim.speed = 0.1f;
-	basic_laser_p0.life = 800;
+	basic_laser_p0.life = 1000;
 	basic_laser_p0.sound = App->audio->LoadSoundEffect("Sounds/Effects/basic_laser_shoot.wav");
 	basic_laser_p0.tex = basic_laser_tex;
 
@@ -48,7 +48,8 @@ bool ModuleParticles::Start()
 
 	multi_laser_p0.anim.PushBack({ 24, 38, 6, 14 });
 	multi_laser_p0.anim.loop = true;
-	multi_laser_p0.life = 800;
+	multi_laser_p0.life = 1000;
+	multi_laser_p0.sound = App->audio->LoadSoundEffect("Sounds/Effects/3-gun shoot.wav");
 	multi_laser_p0.tex = multi_laser_tex;
 
 	multi_start.anim.PushBack({ 39, 66, 36, 16 });
@@ -56,6 +57,13 @@ bool ModuleParticles::Start()
 	multi_start.anim.speed = 0.3f;
 	multi_start.tex = multi_laser_tex;
 
+	multi_end.anim.PushBack({ 11, 5, 16, 16 });
+	multi_end.anim.PushBack({ 38, 5, 16, 15 });
+	multi_end.anim.PushBack({ 75, 5, 10, 12 });
+	multi_end.anim.PushBack({ 100, 5, 15, 13 });
+	multi_end.anim.loop = false;
+	multi_end.anim.speed = 0.3f;
+	multi_end.tex = multi_laser_tex;
 
 	return true;
 }
