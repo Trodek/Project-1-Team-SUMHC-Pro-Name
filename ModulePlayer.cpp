@@ -656,29 +656,29 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 		{
 		case P0:
 			App->particles->SetParticleSpeed(multi_laser_p0, 0, -5);
-			App->particles->AddParticle(*multi_laser_p0, position.x+12, position.y);
+			App->particles->AddParticle(*multi_laser_p0, position.x+12, position.y-10);
 			App->particles->SetParticleSpeed(multi_laser_p0, -1.91f, -4.61f);
-			App->particles->AddParticle(*multi_laser_p0, position.x+6, position.y, -22.5);
+			App->particles->AddParticle(*multi_laser_p0, position.x+1, position.y-10, -22.5);
 			App->particles->SetParticleSpeed(multi_laser_p0, 2.91f, -4.61f);
-			App->particles->AddParticle(*multi_laser_p0, position.x+18, position.y, 22.5);
+			App->particles->AddParticle(*multi_laser_p0, position.x+23, position.y-10, 22.5);
 			App->particles->AddParticle(*multi_start, position.x - 3, position.y - 15);
 			break;
 		case P1:
 			App->particles->SetParticleSpeed(multi_laser_p1, 0, -5);
-			App->particles->AddParticle(*multi_laser_p1, position.x + 12, position.y);
+			App->particles->AddParticle(*multi_laser_p1, position.x + 10, position.y-10);
 			App->particles->SetParticleSpeed(multi_laser_p1, -1.91f, -4.61f);
-			App->particles->AddParticle(*multi_laser_p1, position.x + 6, position.y, -22.5);
+			App->particles->AddParticle(*multi_laser_p1, position.x + 1, position.y-10, -22.5);
 			App->particles->SetParticleSpeed(multi_laser_p1, 2.91f, -4.61f);
-			App->particles->AddParticle(*multi_laser_p1, position.x + 18, position.y, 22.5);
+			App->particles->AddParticle(*multi_laser_p1, position.x + 19, position.y-10, 22.5);
 			App->particles->AddParticle(*multi_start, position.x - 3, position.y - 15);
 			break;
 		case P2:
 			App->particles->SetParticleSpeed(multi_laser_p2, 0, -5);
-			App->particles->AddParticle(*multi_laser_p2, position.x + 12, position.y);
+			App->particles->AddParticle(*multi_laser_p2, position.x + 9, position.y-10);
 			App->particles->SetParticleSpeed(multi_laser_p2, -1.91f, -4.61f);
-			App->particles->AddParticle(*multi_laser_p2, position.x + 6, position.y, -22.5);
+			App->particles->AddParticle(*multi_laser_p2, position.x + 1, position.y-10, -22.5);
 			App->particles->SetParticleSpeed(multi_laser_p2, 2.91f, -4.61f);
-			App->particles->AddParticle(*multi_laser_p2, position.x + 18, position.y, 22.5);
+			App->particles->AddParticle(*multi_laser_p2, position.x + 17, position.y-8, 22.5);
 			App->particles->AddParticle(*multi_start, position.x - 3, position.y - 15);
 			break;
 		default:
