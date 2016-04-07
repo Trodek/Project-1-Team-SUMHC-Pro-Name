@@ -148,7 +148,12 @@ update_status ModulePlayer::Update()
 		direction = LEFT;
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 			direction = LEFT_UP;
+			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+				direction = UP;
+				current_animation = &up;
+			}
 		}
+
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
