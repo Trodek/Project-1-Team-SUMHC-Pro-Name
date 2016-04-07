@@ -152,12 +152,17 @@ update_status ModulePlayer::Update()
 	// S key
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
 		if(position.y < SCREEN_HEIGHT-38)position.y+= speed; // + is - character speed
+		current_animation = &down;
 		direction = DOWN;
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE :: KEY_REPEAT){
 				direction = IDLE;
 		}
 
 	}
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
+		direction = IDLE;
+	}
+
 	if (direction != IDLE){
 		if (CheckPJAnimPos(weapon_anim, direction))
 			App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -210,28 +215,28 @@ bool ModulePlayer::CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim){
 							anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
-		case ANGLE_240: if (FrameIndex > 9 || FrameIndex < ANGLE_60)
+		case ANGLE_240: if (FrameIndex >= ANGLE_60)
 			anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
-		case RIGHT_DOWN: if (FrameIndex > 8) anim->AnimForward();
+		case RIGHT_DOWN: if (FrameIndex >= LEFT_UP) anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
-		case ANGLE_210: if (FrameIndex > 9 || FrameIndex < ANGLE_60)
+		case ANGLE_210: if (FrameIndex >= ANGLE_30)
 			anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
-		case DOWN: if (FrameIndex > 8) anim->AnimForward();
+		case DOWN: if (FrameIndex >= UP && FrameIndex < DOWN) anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
-		case ANGLE_150: if (FrameIndex > 9 || FrameIndex < ANGLE_60)
+		case ANGLE_150: if (FrameIndex  >= ANGLE_330)
 			anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
-		case LEFT_DOWN: if (FrameIndex > 8) anim->AnimForward();
+		case LEFT_DOWN: if (FrameIndex >= RIGHT_UP) anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
-		case ANGLE_120: if (FrameIndex > 9 || FrameIndex < ANGLE_60)
+		case ANGLE_120: if (FrameIndex >= ANGLE_300)
 			anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
