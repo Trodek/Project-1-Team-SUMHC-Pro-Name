@@ -39,7 +39,7 @@ public:
 	Animation* SelectAnimation(PlayerDirection direction);
 
 public:
-	iPoint position;
+	fPoint position;
 	SDL_Texture* main_char_tex = nullptr;
 	Animation up;
 	Animation down;
