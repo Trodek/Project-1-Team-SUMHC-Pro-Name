@@ -24,6 +24,9 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* lava = nullptr;
+	SDL_Texture* on_bg = nullptr;
+	Animation lavaanim;
+	Animation lights;
 	SDL_Rect map;
 	
 	int camera_y;

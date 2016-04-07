@@ -22,6 +22,16 @@ ModuleSceneLevels::ModuleSceneLevels()
 
 	//set start point camera
 	camera_y = -15063;
+	//Lights
+
+	lights.PushBack({ 0, 0, 256, 15383 });
+	lights.PushBack({ 256, 0, 256, 15383 });
+	lights.speed = 0.03f;
+	// Lava
+	lavaanim.PushBack({ 0, 0, 256, 15383 });
+	lavaanim.PushBack({ 256, 0, 256, 15383 });
+	lavaanim.PushBack({ 512, 0, 256, 15383 });
+	lavaanim.speed = 0.03;
 }
 
 // CAMERA RESET FUNCTION
@@ -39,7 +49,8 @@ bool ModuleSceneLevels::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	lava = App->textures->Load("Sprites/Map/lava proba.png");
+	on_bg = App->textures->Load("Sprites/Map/MAP LAYER ON.png");
+	lava = App->textures->Load("Sprites/Map/lava.png");
 	graphics = App->textures->Load("Sprites/Map/Map.png");
 	
 	level1_song = App->audio->LoadMusic("Sounds/Music/level1.ogg");
@@ -82,8 +93,9 @@ update_status ModuleSceneLevels::Update()
 		App->fade->FadeToBlack(this, (Module*)App->winscreen, 0.3f);
 	}
 	// Draw everything --------------------------------------
-	App->render->Blit(lava,0,camera_y,&map,3);
+	App->render->Blit(lava, 0, camera_y, &lavaanim.GetCurrentFrame());
 	App->render->Blit(graphics, 0, camera_y, &map, 3); // Map
+	App->render->Blit(on_bg, 0, camera_y, &lights.GetCurrentFrame());
 
 	//Check song to play
 	if (camera_y < -11489) App->audio->PlayMusic(level1_song, LOOP);
