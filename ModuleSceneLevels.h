@@ -25,7 +25,9 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* lava = nullptr;
 	SDL_Texture* on_bg = nullptr;
+	SDL_Texture* sublighttex = nullptr;
 	Animation lavaanim;
+	Animation sublightanim;
 	Animation lights;
 	SDL_Rect map;
 	
