@@ -23,12 +23,12 @@ ModulePlayer::ModulePlayer()
 	up.speed = 0.2f;
 
 	//char right
-	right.PushBack({ 94, 230, 27, 35 });
-	right.PushBack({ 131, 230, 25, 36 });
-	right.PushBack({ 166, 231, 28, 35 });
-	right.PushBack({ 204, 230, 26, 37 });
+	right.PushBack({ 92, 230, 28, 35 });
+	right.PushBack({ 128, 230, 27, 36 });
+	right.PushBack({ 165, 231, 30, 35 });
+	right.PushBack({ 202, 230, 28, 37 });
 	right.PushBack({ 55, 231, 29, 35 });
-	right.speed = 0.2f;
+	right.speed = 0.25f;
 
 	//char left
 	left.PushBack({ 166, 191, 29, 35 });
@@ -36,7 +36,7 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 93, 191, 28, 35 });
 	left.PushBack({ 55, 192, 29, 35 });
 	left.PushBack({ 18, 191, 27, 35 });
-	left.speed = 0.2f;
+	left.speed = 0.25f;
 
 	//char down
 	down.PushBack({ 54, 139, 31, 39 });
@@ -54,12 +54,28 @@ ModulePlayer::ModulePlayer()
 	left_up.PushBack({ 202, 190, 28, 36 });
 	left_up.speed = 0.2f;
 
-	/*left_down.PushBack({ 57, 93, 29, 36 });
-	left_down.PushBack({ 90, 93, 30, 37 });
-	left_down.PushBack({ 123, 92, 30, 37 });
-	left_down.PushBack({ 156, 91, 31, 35 });
-	left_down.PushBack({ 202, 190, 28, 36 });
-	left_down.speed = 0.2f;*/
+	// char left-down
+	left_down.PushBack({ 193, 90, 30, 37 });
+	left_down.PushBack({ 20, 372, 30, 37 });
+	left_down.PushBack({ 53, 374, 31, 38 });
+	left_down.PushBack({ 91, 374, 31, 39 });
+	left_down.PushBack({ 128, 376, 28, 37 });
+	left_down.speed = 0.2f;
+
+	// char right-down
+	right_down.PushBack({ 18, 41, 25, 38 });
+	right_down.PushBack({ 51, 44, 28, 38 });
+	right_down.PushBack({ 86, 45, 28, 37 });
+	right_down.PushBack({ 121, 45, 27, 37 });
+	right_down.PushBack({ 157, 46, 27, 37 });
+	right_down.speed = 0.2f;
+
+	// char right-up
+	right_up.PushBack({ 20, 329, 24, 37 });
+	right_up.PushBack({ 50, 326, 25, 38 });
+	right_up.PushBack({ 82, 325, 24, 36 });
+	right_up.PushBack({ 114, 323, 25, 37 });
+	right_up.speed = 0.2f;
 
 	//laser 180º
 	laser_360.PushBack({ 55, 192, 29, 35 });  //-- left
@@ -168,7 +184,7 @@ bool ModulePlayer::Start()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	int speed = 1;
+	float speed = 1.7;
 
 	// change weapon
 	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN){ 
@@ -216,8 +232,17 @@ update_status ModulePlayer::Update()
 		}
 		direction = RIGHT;
 		current_animation = SelectAnimation(direction);
-		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 			direction = RIGHT_UP;
+			current_animation = SelectAnimation(direction);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
+			direction = RIGHT_DOWN;
+			current_animation = SelectAnimation(direction);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
+			direction = IDLE;
+		}
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
@@ -235,10 +260,13 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 			direction = LEFT_UP;
 			current_animation = SelectAnimation(direction);
-			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
-				direction = UP;
-				current_animation = SelectAnimation(direction);
-			}
+		}
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
+			direction = LEFT_DOWN;
+			current_animation = SelectAnimation(direction);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+				direction = IDLE;
 		}
 
 	}
@@ -256,7 +284,14 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE :: KEY_REPEAT){
 				direction = IDLE;
 		}
-
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
+			direction = LEFT_DOWN;
+			current_animation = SelectAnimation(direction);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+			direction = RIGHT_DOWN;
+			current_animation = SelectAnimation(direction);
+		}
 	}
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
 		direction = IDLE;
@@ -318,7 +353,7 @@ bool ModulePlayer::CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim){
 			anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
-		case RIGHT_DOWN: if (FrameIndex >= LEFT_UP) anim->AnimForward();
+		case RIGHT_DOWN: if (FrameIndex >= LEFT_UP && FrameIndex < RIGHT_DOWN) anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
 		case ANGLE_210: if (FrameIndex >= ANGLE_30)
@@ -332,7 +367,7 @@ bool ModulePlayer::CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim){
 			anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
-		case LEFT_DOWN: if (FrameIndex >= RIGHT_UP) anim->AnimForward();
+		case LEFT_DOWN: if (FrameIndex >= RIGHT_UP && FrameIndex < LEFT_DOWN) anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
 		case ANGLE_120: if (FrameIndex >= ANGLE_300)
