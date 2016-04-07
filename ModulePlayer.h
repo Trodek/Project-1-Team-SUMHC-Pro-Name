@@ -36,6 +36,7 @@ public:
 	bool CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim);
 	void CreateShoot(Weapons equiped, Animation* anim)const;
 	Weapons ChangeWeapon(Weapons current);
+	Animation* SelectAnimation(PlayerDirection direction);
 
 public:
 	iPoint position;

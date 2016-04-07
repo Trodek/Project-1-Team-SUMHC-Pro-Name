@@ -104,7 +104,15 @@ ModulePlayer::ModulePlayer()
 	multi_360.SetInitialFrame(UP);
 
 	//multi up
-	multi_up.PushBack({});
+	multi_up.PushBack({ 19, 432, 30, 37 });
+	multi_up.PushBack({ 62, 432, 30, 37 });
+	multi_up.PushBack({ 103, 431, 30, 37 });
+	multi_up.PushBack({ 146, 431, 30, 36 });
+	multi_up.PushBack({ 191, 432, 30, 37 });
+	multi_up.speed = 0.2f;
+
+	//multi down
+	
 
 }
 
@@ -150,8 +158,8 @@ update_status ModulePlayer::Update()
 
 	// W key
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
-		current_animation = &up;
 		direction = UP;
+		current_animation = SelectAnimation(direction);
 		if (position.y < 160){
 			App->levels->camera_y += speed; // = to character speed
 		}
@@ -166,11 +174,11 @@ update_status ModulePlayer::Update()
 
 	// D key
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
-		current_animation = &right;
 		if (position.x <SCREEN_WIDTH-29){
 			position.x += speed;
 		}
 		direction = RIGHT;
+		current_animation = SelectAnimation(direction);
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 			direction = RIGHT_UP;
 	}
@@ -182,17 +190,17 @@ update_status ModulePlayer::Update()
 
 	// A key
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
-		current_animation = &left;
 		if (position.x > 0 ){
 			position.x -= speed;
 		}
 		direction = LEFT;
+		current_animation = SelectAnimation(direction);
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
-			current_animation = &left_up;
 			direction = LEFT_UP;
+			current_animation = SelectAnimation(direction);
 			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 				direction = UP;
-				current_animation = &up;
+				current_animation = SelectAnimation(direction);
 			}
 		}
 
@@ -206,9 +214,8 @@ update_status ModulePlayer::Update()
 	// S key
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
 		if(position.y < SCREEN_HEIGHT-38)position.y+= speed; // + is - character speed
-		current_animation = &down;
 		direction = DOWN;
-		current_animation = &down;
+		current_animation = SelectAnimation(direction);
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE :: KEY_REPEAT){
 				direction = IDLE;
 		}
@@ -458,6 +465,80 @@ Weapons ModulePlayer::ChangeWeapon(Weapons current){
 		if (last_basic_weapon == LASER)
 			weapon_anim = &laser_360;
 		else weapon_anim = &multi_360;
+		break;
+	}
+
+	return ret;
+}
+
+Animation* ModulePlayer::SelectAnimation(PlayerDirection direction){
+
+	Animation* ret = current_animation;
+	switch (current_weapon)
+	{
+	case LASER:
+		switch (direction)
+		{
+		case LEFT:
+			ret = &left;
+			break;
+		case LEFT_UP:
+			ret = &left_up;
+			break;
+		case UP:
+			ret = &up;
+			break;
+		case RIGHT_UP:
+			ret = &right_up;
+			break;
+		case RIGHT:
+			ret = &right;
+			break;
+		case RIGHT_DOWN:
+			ret = &right_down;
+			break;
+		case DOWN:
+			ret = &down;
+			break;
+		case LEFT_DOWN:
+			ret = &left_down;
+			break;
+		}
+		break;
+	case MULTI:
+		switch (direction)
+		{
+		case LEFT:
+			ret = &multi_left;
+			break;
+		case LEFT_UP:
+			ret = &multi_up;
+			break;
+		case UP:
+			ret = &multi_up;
+			break;
+		case RIGHT_UP:
+			ret = &multi_up;
+			break;
+		case RIGHT:
+			ret = &multi_right;
+			break;
+		case RIGHT_DOWN:
+			ret = &multi_down;
+			break;
+		case DOWN:
+			ret = &multi_down;
+			break;
+		case LEFT_DOWN:
+			ret = &multi_down;
+			break;
+		}
+		break;
+	case SUPERBALL:
+		break;
+	case SUPERBURNER:
+		break;
+	default:
 		break;
 	}
 
