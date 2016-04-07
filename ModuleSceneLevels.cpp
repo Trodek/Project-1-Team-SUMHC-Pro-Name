@@ -11,7 +11,6 @@
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
 
-
 ModuleSceneLevels::ModuleSceneLevels()
 {
 	// map
@@ -36,6 +35,7 @@ ModuleSceneLevels::ModuleSceneLevels()
 	lavaanim.PushBack({ 256, 0, 256, 15383 });
 	lavaanim.PushBack({ 512, 0, 256, 15383 });
 	lavaanim.speed = 0.03;
+
 	
 }
 
@@ -57,12 +57,20 @@ bool ModuleSceneLevels::Start()
 	on_bg = App->textures->Load("Sprites/Map/MAP LAYER ON.png");
 	lava = App->textures->Load("Sprites/Map/lava.png");
 	sublighttex = App->textures->Load("Sprites/Map/sublights.png");
+	boss2trucktex = App->textures->Load("Sprites/Map/truck.png");
 	graphics = App->textures->Load("Sprites/Map/Map.png");
 	
-
+	//Truck
+	boss2truck.anim.PushBack(0,0, 224, 272);
+	boss2truck.anim.loop = true;
+	boss2truck.anim.speed = 0.1f;
+	boss2truck.life = 5000;
+	boss2truck.tex = boss2trucktex;
+	/////////////////////////////////
 	level1_song = App->audio->LoadMusic("Sounds/Music/level1.ogg");
 	level2_song = App->audio->LoadMusic("Sounds/Music/level2.ogg");
 	level3_song = App->audio->LoadMusic("Sounds/Music/level3.ogg");
+
 
 	App->player->Enable();
 
@@ -107,6 +115,11 @@ update_status ModuleSceneLevels::Update()
 	App->render->Blit(graphics, 0, camera_y, &map, 3); // Map
 	App->render->Blit(on_bg, 0, camera_y, &lights.GetCurrentFrame());
 	
+	//TEST
+	if (App->input->keyboard[SDL_SCANCODE_6 == KEY_STATE::KEY_DOWN]){
+	
+		App->render->BlitParticle(boss2trucktex, 120, 10309, &map, f, 1.0f);
+	}
 
 	//Check song to play
 	if (camera_y < -11489) App->audio->PlayMusic(level1_song, LOOP);
