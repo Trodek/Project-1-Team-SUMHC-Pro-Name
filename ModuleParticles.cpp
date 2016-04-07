@@ -46,6 +46,15 @@ bool ModuleParticles::Start()
 	laser_end.anim.speed = 0.2f;
 	laser_end.tex = basic_laser_tex;
 
+	multi_laser_p0.anim.PushBack({ 24, 38, 6, 14 });
+	multi_laser_p0.anim.loop = true;
+	multi_laser_p0.life = 800;
+	multi_laser_p0.tex = multi_laser_tex;
+
+	multi_start.anim.PushBack({ 39, 66, 36, 16 });
+	multi_start.anim.loop = false;
+	multi_start.tex = multi_laser_tex;
+
 
 	return true;
 }

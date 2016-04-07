@@ -93,6 +93,12 @@ update_status ModulePlayer::Update()
 {
 	int speed = 1;
 
+	// change weapon
+	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN){ //ARREGLAR
+		if (current_weapon == LASER_P0) current_weapon = MULTI_P0;
+		else current_weapon = LASER_P0;
+	} 
+
 	// Shoot key
 	if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN){
 		CreateShoot(current_weapon, weapon_anim);
@@ -348,6 +354,13 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 	case LASER_P2:
 		break;
 	case MULTI_P0:
+		App->particles->AddParticle(*multi_start, position.x, position.y);
+		App->particles->SetParticleSpeed(multi_laser_p0, 0, -5);
+		App->particles->AddParticle(*multi_laser_p0, position.x, position.y);
+		App->particles->SetParticleSpeed(multi_laser_p0, -5, -5);
+		App->particles->AddParticle(*multi_laser_p0, position.x, position.y, -45);
+		App->particles->SetParticleSpeed(multi_laser_p0, 5, -5);
+		App->particles->AddParticle(*multi_laser_p0, position.x, position.y, 45);
 		break;
 	case MULTI_P1:
 		break;
