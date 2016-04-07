@@ -49,6 +49,7 @@ public:
 private:
 
 	SDL_Texture* basic_laser_tex = nullptr;
+	SDL_Texture* multi_laser_tex = nullptr;
 	Particle* active[MAX_ACTIVE_PARTICLES];
 	uint last_particle = 0;
 
@@ -57,6 +58,10 @@ public:
 	Particle basic_laser_p0;
 	Particle shoot_start;
 	Particle laser_end;
+
+	Particle multi_laser_p0;
+	Particle multi_start;
+	Particle multi_end;
 	
 };
 

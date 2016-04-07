@@ -47,6 +47,10 @@ public:
 	Particle* laser_p0 = nullptr;
 	Particle* shoot_start = nullptr;
 	Particle* laser_end = nullptr;
+	
+	Particle* multi_laser_p0 = nullptr;
+	Particle* multi_start = nullptr;
+	Particle* multi_end = nullptr;
 
 	PlayerDirection direction;
 	Weapons current_weapon;

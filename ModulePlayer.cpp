@@ -82,6 +82,9 @@ bool ModulePlayer::Start()
 	laser_p0 = &App->particles->basic_laser_p0;
 	shoot_start = &App->particles->shoot_start;
 	laser_end = &App->particles->laser_end;
+	multi_laser_p0 = &App->particles->multi_laser_p0;
+	multi_start = &App->particles->multi_start;
+	multi_end = &App->particles->multi_end;
 	return ret;
 }
 
@@ -278,7 +281,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 			break;
 		case UP:
 			App->particles->SetParticleSpeed(laser_p0, 0, -5);
-			App->particles->AddParticle(*laser_p0, position.x + 20, position.y - 15);
+			App->particles->AddParticle(*laser_p0, position.x + 21, position.y - 15);
 			App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 15);
 			break;
 		case ANGLE_330:

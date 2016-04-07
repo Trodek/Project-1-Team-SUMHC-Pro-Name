@@ -22,6 +22,7 @@ bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
 	basic_laser_tex = App->textures->Load("Sprites/Main Char/Weapons/basic laser.png");
+	multi_laser_tex = App->textures->Load("Sprites/Main Char/Weapons/multi laser.png");
 
 	// laser particle and sound
 	
