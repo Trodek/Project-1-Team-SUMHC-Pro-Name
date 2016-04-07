@@ -152,6 +152,11 @@ update_status ModulePlayer::Update()
 	// S key
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
 		if(position.y < SCREEN_HEIGHT-38)position.y+= speed; // + is - character speed
+		direction = DOWN;
+		if (App->input->keyboard[SDL_SCANCODE_W]){
+				direction = IDLE;
+		}
+
 	}
 	if (direction != IDLE){
 		if (CheckPJAnimPos(weapon_anim, direction))
