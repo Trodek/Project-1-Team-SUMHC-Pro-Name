@@ -18,7 +18,7 @@ ModulePlayer::ModulePlayer()
 	up.PushBack({ 90, 274, 27, 37 });
 	up.PushBack({ 126, 273, 26, 37 });
 	up.PushBack({ 161, 274, 28, 37 });
-	up.speed = 0.1f;
+	up.speed = 0.2f;
 
 	//char right
 	right.PushBack({ 94, 230, 27, 35 });
@@ -26,7 +26,7 @@ ModulePlayer::ModulePlayer()
 	right.PushBack({ 166, 231, 28, 35 });
 	right.PushBack({ 204, 230, 26, 37 });
 	right.PushBack({ 55, 231, 29, 35 });
-	right.speed = 0.1f;
+	right.speed = 0.2f;
 
 	//char left
 	left.PushBack({ 166, 191, 29, 35 });
@@ -34,15 +34,30 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 93, 191, 28, 35 });
 	left.PushBack({ 55, 192, 29, 35 });
 	left.PushBack({ 18, 191, 27, 35 });
-	left.speed = 0.1f;
+	left.speed = 0.2f;
 
 	//char down
 	down.PushBack({ 54, 139, 31, 39 });
 	down.PushBack({ 92, 141, 28, 39 });
 	down.PushBack({ 125, 143, 27, 37 });
-	down.PushBack({ 158, 143, 28, 39 });
+	down.PushBack({ 156, 143, 28, 39 });
 	down.PushBack({ 193, 145, 28, 39 });
-	down.speed = 0.1f;
+	down.speed = 0.2f;
+
+	//char left-up
+	left_up.PushBack({ 57, 93, 29, 36 });
+	left_up.PushBack({ 90, 93, 30, 37 });
+	left_up.PushBack({ 123, 92, 30, 37 });
+	left_up.PushBack({ 156, 91, 31, 35 });
+	left_up.PushBack({ 202, 190, 28, 36 });
+	left_up.speed = 0.2f;
+
+	/*left_down.PushBack({ 57, 93, 29, 36 });
+	left_down.PushBack({ 90, 93, 30, 37 });
+	left_down.PushBack({ 123, 92, 30, 37 });
+	left_down.PushBack({ 156, 91, 31, 35 });
+	left_down.PushBack({ 202, 190, 28, 36 });
+	left_down.speed = 0.2f;*/
 
 	//laser 180º
 	laser_360.PushBack({ 55, 192, 29, 35 });  //-- left
@@ -144,6 +159,7 @@ update_status ModulePlayer::Update()
 		}
 		direction = LEFT;
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+			current_animation = &left_up;
 			direction = LEFT_UP;
 			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 				direction = UP;

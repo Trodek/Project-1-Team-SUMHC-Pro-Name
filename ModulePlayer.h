@@ -40,6 +40,10 @@ public:
 	Animation down;
 	Animation left;
 	Animation right;
+	Animation left_up;
+	Animation left_down;
+	Animation right_up;
+	Animation right_down;
 	Animation* current_animation = nullptr;
 	Animation* weapon_anim = nullptr;
 	Animation laser_360;
