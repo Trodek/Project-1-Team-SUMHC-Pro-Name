@@ -72,6 +72,7 @@ public:
 	void Reset()
 	{
 		current_frame = 0;
+		loops = 0;
 	}
 };
 #endif

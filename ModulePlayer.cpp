@@ -176,7 +176,7 @@ ModulePlayer::ModulePlayer()
 	bomb.PushBack({ 3600, 0, 240, 320 });
 	bomb.PushBack({ 3840, 0, 240, 320 });
 	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
-	bomb.speed = 0.3f;
+	bomb.speed = 0.8f;
 	bomb.loop = false;
 
 }
@@ -371,7 +371,7 @@ update_status ModulePlayer::Update()
 		}
 		else{
 			bomb_pressed = false;
-			//bomb.Reset();
+			bomb.Reset();
 		}
 	}
 
