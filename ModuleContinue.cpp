@@ -30,8 +30,8 @@ bool ModuleContinue::Start()
 {
 	LOG("Loading Title scene");
 
-	graphics = App->textures->Load("Sprites/UI/ui_continue_small.png");
 	continue_song = App->audio->LoadMusic("Sounds/Music/continue.ogg");
+	graphics = App->textures->Load("Sprites/UI/ui_continue_small.png");
 	App->audio->PlayMusic(continue_song, ONCE);
 
 	return true;
