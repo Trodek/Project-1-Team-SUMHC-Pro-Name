@@ -43,6 +43,7 @@ public:
 public:
 	fPoint position;
 	SDL_Texture* main_char_tex = nullptr;
+	SDL_Texture* bomb_tex = nullptr;
 	Animation up;
 	Animation down;
 	Animation left;
@@ -54,6 +55,7 @@ public:
 	Animation* current_animation = nullptr;
 	Animation* weapon_anim = nullptr;
 	Animation laser_360;
+	Animation bomb;
 
 	Animation multi_up;
 	Animation multi_down;
@@ -77,6 +79,8 @@ public:
 	Power current_power;
 	Weapons current_weapon;
 	Weapons last_basic_weapon;
+
+	bool bomb_pressed;
 
 };
 

@@ -150,6 +150,35 @@ ModulePlayer::ModulePlayer()
 	multi_right.PushBack({ 189, 595, 30, 36 });
 	multi_right.speed = 0.2f;
 
+	//bomb anim
+	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
+	bomb.PushBack({ 240, 0, 240, 320 });
+	bomb.PushBack({ 480, 0, 240, 320 });
+	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
+	bomb.PushBack({ 720, 0, 240, 320 });
+	bomb.PushBack({ 960, 0, 240, 320 });
+	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
+	bomb.PushBack({ 1200, 0, 240, 320 });
+	bomb.PushBack({ 1440, 0, 240, 320 });
+	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
+	bomb.PushBack({ 1680, 0, 240, 320 });
+	bomb.PushBack({ 1920, 0, 240, 320 });
+	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
+	bomb.PushBack({ 2160, 0, 240, 320 });
+	bomb.PushBack({ 2400, 0, 240, 320 });
+	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
+	bomb.PushBack({ 2640, 0, 240, 320 });
+	bomb.PushBack({ 2880, 0, 240, 320 });
+	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
+	bomb.PushBack({ 3120, 0, 240, 320 });
+	bomb.PushBack({ 3360, 0, 240, 320 });
+	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
+	bomb.PushBack({ 3600, 0, 240, 320 });
+	bomb.PushBack({ 3840, 0, 240, 320 });
+	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
+	bomb.speed = 0.3f;
+	bomb.loop = false;
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -160,6 +189,8 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	main_char_tex = App->textures->Load("Sprites/Main Char/Main_moves.png");
+	bomb_tex = App->textures->Load("Sprites/Weapon Shots/bomb.png");
+	bomb_pressed = false;
 	current_animation = &up;
 	bool ret = true;
 	weapon_anim = &laser_360;
@@ -189,6 +220,7 @@ bool ModulePlayer::CleanUp(){
 	LOG("Player CleanUp--------");
 
 	App->textures->Unload(main_char_tex);
+	App->textures->Unload(bomb_tex);
 
 	return true;
 }
@@ -208,6 +240,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN){
 		if (current_power == P0) current_power = P1;
 		else if (current_power == P1)current_power = P2;
+		SDL_SetTextureColorMod(main_char_tex, 255, 120, 86);
 	}
 
 	//power down
@@ -219,6 +252,10 @@ update_status ModulePlayer::Update()
 	// Shoot key
 	if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN){
 		CreateShoot(current_weapon, weapon_anim);
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN){
+		bomb_pressed = true;
 	}
 
 	// W key
@@ -327,6 +364,16 @@ update_status ModulePlayer::Update()
 		else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 	}
 	else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
+
+	if (bomb_pressed){
+		if (!bomb.Finished()){
+			App->render->Blit(bomb_tex, 0, 0, &(bomb.GetCurrentFrame()));
+		}
+		else{
+			bomb_pressed = false;
+			//bomb.Reset();
+		}
+	}
 
 	return UPDATE_CONTINUE;
 }
