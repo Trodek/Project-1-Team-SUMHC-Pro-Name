@@ -40,11 +40,15 @@ public:
 	Weapons ChangeWeapon(Weapons current);
 	Animation* SelectAnimation(PlayerDirection direction);
 	void ResetPosition();
+	void OnCollision(Collider* c1, Collider* c2);
 
 public:
 	fPoint position;
+	fPoint PreviousPos;
+
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
+
 	Animation up;
 	Animation down;
 	Animation left;
@@ -53,8 +57,6 @@ public:
 	Animation left_down;
 	Animation right_up;
 	Animation right_down;
-	Animation* current_animation = nullptr;
-	Animation* weapon_anim = nullptr;
 	Animation laser_360;
 	Animation bomb;
 
@@ -63,6 +65,9 @@ public:
 	Animation multi_left;
 	Animation multi_right;
 	Animation multi_360;
+
+	Animation* current_animation = nullptr;
+	Animation* weapon_anim = nullptr;
 
 	Particle* laser_p0 = nullptr;
 	Particle* laser_p1 = nullptr;

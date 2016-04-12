@@ -68,6 +68,9 @@ bool ModuleSceneLevels::Start()
 	App->player->Enable();
 	App->collisions->Enable();
 
+	App->collisions->AddCollider({0,15170,240,5}, COLLIDER_WALL);
+	App->render->camera.y = -15063*SCREEN_SIZE;
+
 	CameraReset();
 
 	return ret;
@@ -113,10 +116,10 @@ update_status ModuleSceneLevels::Update()
 		App->fade->FadeToBlack(this, (Module*)App->winscreen, 0.3f);
 	}
 	// Draw everything --------------------------------------
-	App->render->Blit(lava, 0, camera_y, &lavaanim.GetCurrentFrame());
-	App->render->Blit(sublighttex, 0, camera_y, &sublightanim.GetCurrentFrame());
-	App->render->Blit(graphics, 0, camera_y, &map, 3); // Map
-	App->render->Blit(on_bg, 0, camera_y, &lights.GetCurrentFrame());
+	App->render->Blit(lava, 0, 0, &lavaanim.GetCurrentFrame());
+	App->render->Blit(sublighttex, 0, 0, &sublightanim.GetCurrentFrame());
+	App->render->Blit(graphics, 0, 0, &map); // Map
+	App->render->Blit(on_bg, 0, 0, &lights.GetCurrentFrame());
 
 
 

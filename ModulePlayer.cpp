@@ -11,7 +11,7 @@
 ModulePlayer::ModulePlayer()
 {
 	position.x = 120;
-	position.y = 245;
+	position.y = -15308;
 
 	//// LASER ANIMATIONS
 
@@ -213,7 +213,7 @@ bool ModulePlayer::Start()
 
 	ResetPosition();
 
-	PlayerCollider = App->collisions->AddCollider({ 0, 0, 30, 33 }, COLLIDER_PLAYER);
+	PlayerCollider = App->collisions->AddCollider({ 0, 0, 30, 33 }, COLLIDER_PLAYER, (Module*)App->player);
 
 	return ret;
 }
@@ -231,6 +231,7 @@ bool ModulePlayer::CleanUp(){
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+	PreviousPos = position;
 	float speed = 1.7f;
 
 	// change weapon
@@ -878,5 +879,13 @@ Animation* ModulePlayer::SelectAnimation(PlayerDirection direction){
 
 void ModulePlayer::ResetPosition(){
 	position.x = 120;
-	position.y = 245;
+	position.y = 15308;
+}
+
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+	if (PlayerCollider == c1 && PlayerCollider != nullptr){
+		if (c2->type == COLLIDER_WALL){
+			position = PreviousPos;
+		}
+	}
 }
