@@ -68,7 +68,38 @@ bool ModuleSceneLevels::Start()
 	App->player->Enable();
 	App->collisions->Enable();
 
-	App->collisions->AddCollider({0,15070,240,5}, COLLIDER_WALL);
+	//App->collisions->AddCollider({0,15070,240,5}, COLLIDER_WALL);
+	//Level2 boss
+	App->collisions->AddCollider({ 0, 6254, 92, 180 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 150, 6254, 92, 180 }, COLLIDER_WALL);
+	//Level3 lava
+	App->collisions->AddCollider({ 0, 5604, 42, 318 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 42, 5703, 27, 119 }, COLLIDER_HOLE);
+	//Level3 lava
+	App->collisions->AddCollider({ 0, 5203, 75, 156 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 75, 5271, 32, 88 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 53, 5359, 52, 94 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 107, 5325, 33, 96 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 140, 5356, 21, 63 }, COLLIDER_HOLE);
+	//Levek3 lava
+	App->collisions->AddCollider({ 181, 5176, 32, 58 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 212, 5144, 30, 149 }, COLLIDER_HOLE);
+	//Level3 wall(lassers)
+	App->collisions->AddCollider({ 0, 4705, 66, 93 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 190, 4705, 66, 93 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 0, 4318, 16, 388 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 223, 4318, 16, 388 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 0, 4225, 66, 93 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 193, 4225, 66, 93 }, COLLIDER_WALL);
+	//Level3 walls
+	App->collisions->AddCollider({ 29, 3874, 35, 62 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 64, 3874, 33, 93 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 97, 3874, 30, 126 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 127, 3908, 67, 59 }, COLLIDER_WALL);
+	//Level3 walls
+	App->collisions->AddCollider({ 0, 3746, 32, 97 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 32, 3746, 32, 62 }, COLLIDER_WALL);
+
 	App->render->camera.y = -15063*SCREEN_SIZE;
 
 	CameraReset();
