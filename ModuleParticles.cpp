@@ -143,6 +143,8 @@ update_status ModuleParticles::Update()
 
 		if(p->Update() == false)
 		{
+			if (p->collider_box != nullptr)
+				p->collider_box->to_delete = true;
 			delete p;
 			active[i] = nullptr;
 			
