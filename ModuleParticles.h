@@ -15,7 +15,8 @@ enum COLLIDER_TYPE;
 
 struct Particle
 {
-	Collider* collider = nullptr;
+	COLLIDER_TYPE collider;
+	Collider* collider_box = nullptr;
 	Animation anim;
 	uint fx = 0;
 	iPoint position;
@@ -24,6 +25,7 @@ struct Particle
 	Uint32 life = 0;
 	Mix_Chunk* sound = nullptr;
 	SDL_Texture* tex = nullptr;
+	Particle* end_particle = nullptr;
 	
 	bool fx_played = false;
 	double angle;
@@ -44,7 +46,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	void AddParticle(const Particle& particle, int x, int y,double angle = 0 ,Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, SDL_Rect collider_pos, double angle = 0, Uint32 delay = 0);
 	void SetParticleSpeed(Particle* part, float x, float y);
 
 private:

@@ -9,6 +9,8 @@
 
 #include "SDL/include/SDL_timer.h"
 
+#define nullrect {0,0,0,0} 
+
 ModuleParticles::ModuleParticles()
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
@@ -32,24 +34,31 @@ bool ModuleParticles::Start()
 	basic_laser_p0.anim.speed = 0.1f;
 	basic_laser_p0.life = 1000;
 	basic_laser_p0.tex = basic_laser_tex;
+	basic_laser_p0.end_particle = &laser_end;
+	basic_laser_p0.collider = COLLIDER_PLAYER_SHOT;
 
 	basic_laser_p1.anim.PushBack({ 32, 35, 10, 16 });
 	basic_laser_p1.anim.loop = true;
 	basic_laser_p1.anim.speed = 0.1f;
 	basic_laser_p1.life = 1000;
 	basic_laser_p1.tex = basic_laser_tex;
+	basic_laser_p1.end_particle = &laser_end;
+	basic_laser_p1.collider = COLLIDER_PLAYER_SHOT;
 
 	basic_laser_p2.anim.PushBack({ 26, 64, 24, 24 });
 	basic_laser_p2.anim.loop = true;
 	basic_laser_p2.anim.speed = 0.1f;
 	basic_laser_p2.life = 1000;
 	basic_laser_p2.tex = basic_laser_tex;
+	basic_laser_p2.end_particle = &laser_end;
+	basic_laser_p2.collider = COLLIDER_PLAYER_SHOT;
 
 	shoot_start.anim.PushBack({ 7, 6, 14, 16 });
 	shoot_start.anim.loop = false;
 	shoot_start.anim.speed = 0.2f;
 	shoot_start.sound = App->audio->LoadSoundEffect("Sounds/Effects/basic_laser_shoot.wav");
 	shoot_start.tex = basic_laser_tex;
+	shoot_start.collider = COLLIDER_NONE;
 
 	laser_end.anim.PushBack({ 54, 6, 16, 16 });
 	laser_end.anim.PushBack({ 74, 6, 16, 16 });
@@ -58,6 +67,7 @@ bool ModuleParticles::Start()
 	laser_end.anim.loop = false;
 	laser_end.anim.speed = 0.2f;
 	laser_end.tex = basic_laser_tex;
+	laser_end.collider = COLLIDER_NONE;
 
 	// multi laser particles and sound
 
@@ -65,22 +75,29 @@ bool ModuleParticles::Start()
 	multi_laser_p0.anim.loop = true;
 	multi_laser_p0.life = 1000;
 	multi_laser_p0.tex = multi_laser_tex;
+	multi_laser_p0.end_particle = &multi_end;
+	multi_laser_p0.collider = COLLIDER_PLAYER_SHOT;
 
 	multi_laser_p1.anim.PushBack({ 52, 35, 10, 18 });
 	multi_laser_p1.anim.loop = true;
 	multi_laser_p1.life = 1000;
 	multi_laser_p1.tex = multi_laser_tex;
+	multi_laser_p1.end_particle = &multi_end;
+	multi_laser_p1.collider = COLLIDER_PLAYER_SHOT;
 
 	multi_laser_p2.anim.PushBack({ 86, 32, 14, 21 });
 	multi_laser_p2.anim.loop = true;
 	multi_laser_p2.life = 1000;
 	multi_laser_p2.tex = multi_laser_tex;
+	multi_laser_p2.end_particle = &multi_end;
+	multi_laser_p2.collider = COLLIDER_PLAYER_SHOT;
 
 	multi_start.anim.PushBack({ 39, 66, 36, 16 });
 	multi_start.anim.loop = false;
 	multi_start.anim.speed = 0.3f;
 	multi_start.sound = App->audio->LoadSoundEffect("Sounds/Effects/3-gun shoot.wav");
 	multi_start.tex = multi_laser_tex;
+	multi_start.collider = COLLIDER_NONE;
 
 	multi_end.anim.PushBack({ 11, 5, 16, 16 });
 	multi_end.anim.PushBack({ 38, 5, 16, 15 });
@@ -89,6 +106,7 @@ bool ModuleParticles::Start()
 	multi_end.anim.loop = false;
 	multi_end.anim.speed = 0.3f;
 	multi_end.tex = multi_laser_tex;
+	multi_end.collider = COLLIDER_NONE;
 
 	return true;
 }
@@ -145,18 +163,50 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, double angle, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, SDL_Rect collider_pos, double angle, Uint32 delay)
 {
-	Particle* p = new Particle(particle);
-	p->born = SDL_GetTicks() + delay;
-	p->position.x = x;
-	p->position.y = y;
-	p->angle = angle;
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		if (active[i] == nullptr)
+		{
+			Particle* p = new Particle(particle);
+			p->born = SDL_GetTicks() + delay;
+			p->position.x = x;
+			p->position.y = y;
+			p->angle = angle;
+			if (collider_type != COLLIDER_NONE)
+				p->collider_box = App->collisions->AddCollider(collider_pos, collider_type, this);
+			active[i] = p;
+			break;
+		}
+	}
 
-	active[last_particle++] = p;
+}
+
+void ModuleParticles::SetParticleSpeed(Particle* part, float x, float y){
+
+	part->speed.x = x;
+	part->speed.y = y;
+}
+
+void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
+{
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		// Always destroy particles that collide
+		if (active[i] != nullptr && active[i]->collider_box == c1)
+		{
+			AddParticle(*active[i]->end_particle, active[i]->position.x-5, active[i]->position.y, COLLIDER_NONE, nullrect);
+			active[i]->collider_box->to_delete = true;
+			delete active[i];
+			active[i] = nullptr;
+			break;
+		}
+	}
 }
 
 // -------------------------------------------------------------
+//                          Particle
 // -------------------------------------------------------------
 
 Particle::Particle()
@@ -166,8 +216,9 @@ Particle::Particle()
 }
 
 Particle::Particle(const Particle& p) :
-anim(p.anim), position(p.position), speed(p.speed), angle(p.angle), tex(p.tex),
- fx(p.fx), born(p.born), life(p.life), sound(p.sound)
+	anim(p.anim), position(p.position), speed(p.speed), angle(p.angle), tex(p.tex), end_particle(p.end_particle),
+	fx(p.fx), born(p.born), life(p.life), sound(p.sound), collider(p.collider), collider_box(p.collider_box),
+	fx_played(p.fx_played)
 {}
 
 bool Particle::Update()
@@ -187,29 +238,9 @@ bool Particle::Update()
 			position.y += speed.y;
 	}
 
-	if (collider != nullptr)
-		collider->SetPos(position.x, position.y);
+	if (collider_box != nullptr)
+		collider_box->SetPos(position.x, position.y);
 
 	return ret;
 }
 
-void ModuleParticles::SetParticleSpeed(Particle* part, float x, float y){
-
-	part->speed.x = x;
-	part->speed.y = y;
-}
-
-void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
-{
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-	{
-		// Always destroy particles that collide
-		if (active[i] != nullptr && active[i]->collider == c1)
-		{
-			//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
-			delete active[i];
-			active[i] = nullptr;
-			break;
-		}
-	}
-}
