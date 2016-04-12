@@ -267,8 +267,7 @@ update_status ModulePlayer::Update()
 		direction = UP;
 		current_animation = SelectAnimation(direction);
 		if (App->render->camera.y+(position.y*3)<330){
-			App->render->camera.y += speed*2; // = to character speed
-			position.y -= speed/2;
+			App->render->camera.y += speed; // = to character speed
 		}
 		else
 			position.y -= speed; // - is + character speed
