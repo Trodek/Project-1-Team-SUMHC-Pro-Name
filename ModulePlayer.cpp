@@ -232,7 +232,7 @@ bool ModulePlayer::CleanUp(){
 update_status ModulePlayer::Update()
 {
 	PreviousPos = position;
-	float speed = 1.7f;
+	int speed = 2;
 
 	// change weapon
 	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN){ 
@@ -266,9 +266,11 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		direction = UP;
 		current_animation = SelectAnimation(direction);
-		if (App->render->camera.y+(position.y*3)>330){
-			App->render->camera.y += speed; // = to character speed
+		if (App->render->camera.y+(position.y*3)<330){
+			App->render->camera.y += speed*2; // = to character speed
+			position.y -= speed/2;
 		}
+		else
 			position.y -= speed; // - is + character speed
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){

@@ -43,8 +43,8 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 
 public:
-	fPoint position;
-	fPoint PreviousPos;
+	iPoint position;
+	iPoint PreviousPos;
 
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
