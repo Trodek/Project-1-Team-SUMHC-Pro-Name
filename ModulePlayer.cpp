@@ -266,9 +266,9 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		direction = UP;
 		current_animation = SelectAnimation(direction);
-		if (App->render->camera.y+(position.y*3)<525){
-			App->render->camera.y += 3; // = to character speed
-			position.y -= speed / 2;
+		if ((App->render->camera.y/3-200)+(position.y)<0){
+			App->render->camera.y += 6; // = to character speed
+			position.y -= speed;
 		}
 		else
 			position.y -= speed; // - is + character speed
@@ -335,7 +335,7 @@ update_status ModulePlayer::Update()
 
 	// S key
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
-		if (App->render->camera.y + (position.y * 3)<870)position.y += speed; // + is - character speed
+		if ((App->render->camera.y / 3 - 200) + (position.y)<88) position.y += speed; // + is - character speed
 		direction = DOWN;
 		current_animation = SelectAnimation(direction);
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE :: KEY_REPEAT){
@@ -879,7 +879,7 @@ Animation* ModulePlayer::SelectAnimation(PlayerDirection direction){
 
 void ModulePlayer::ResetPosition(){
 	position.x = 105;
-	position.y = 5275;
+	position.y = 15308;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
