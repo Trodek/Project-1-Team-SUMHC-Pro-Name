@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
+#include "ModuleCollision.h"
 #include "ModuleSceneLevels.h"
 
 ModulePlayer::ModulePlayer()
@@ -212,6 +213,8 @@ bool ModulePlayer::Start()
 
 	ResetPosition();
 
+	PlayerCollider = App->collisions->AddCollider({ 0, 0, 30, 33 }, COLLIDER_PLAYER);
+
 	return ret;
 }
 
@@ -357,6 +360,8 @@ update_status ModulePlayer::Update()
 			current_animation = SelectAnimation(direction);
 		}
 	}
+
+	PlayerCollider->SetPos(position.x, position.y);
 
 	if (direction != IDLE){
 		if (CheckPJAnimPos(weapon_anim, direction))

@@ -9,6 +9,7 @@
 struct SDL_Texture;
 struct Particle;
 class ModuleParticles;
+struct Collider;
 
 enum PlayerDirection{
 	IDLE = -1, LEFT, ANGLE_60, LEFT_UP, ANGLE_30, UP, ANGLE_330,
@@ -79,6 +80,8 @@ public:
 	Power current_power;
 	Weapons current_weapon;
 	Weapons last_basic_weapon;
+
+	Collider* PlayerCollider;
 
 	bool bomb_pressed;
 

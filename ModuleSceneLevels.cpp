@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleSceneLevels.h"
 #include "ModuleAudio.h"
+#include "ModuleCollision.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
@@ -63,9 +64,9 @@ bool ModuleSceneLevels::Start()
 	level2_song = App->audio->LoadMusic("Sounds/Music/level2.ogg");
 	level3_song = App->audio->LoadMusic("Sounds/Music/level3.ogg");
 
-
+	//Enable Player and Collisions
 	App->player->Enable();
-	
+	App->collisions->Enable();
 
 	CameraReset();
 
@@ -83,8 +84,11 @@ bool ModuleSceneLevels::CleanUp()
 	App->textures->Unload(lava);
 	App->textures->Unload(sublighttex);
 
-	//Diable player
+	//Disable player
 	App->player->Disable();
+
+	//Disable Collisions
+	App->collisions->Disable();
 	
 	//Stop audio
 	App->audio->StopAudio();
