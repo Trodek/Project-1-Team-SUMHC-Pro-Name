@@ -373,7 +373,7 @@ update_status ModulePlayer::Update()
 
 	if (bomb_pressed){
 		if (!bomb.Finished()){
-			App->render->Blit(bomb_tex, 0, 0, &(bomb.GetCurrentFrame()));
+			App->render->Blit(bomb_tex, 0, -App->render->camera.y/3, &(bomb.GetCurrentFrame()));
 		}
 		else{
 			bomb_pressed = false;
