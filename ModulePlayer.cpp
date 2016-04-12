@@ -335,7 +335,7 @@ update_status ModulePlayer::Update()
 
 	// S key
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
-		position.y+= speed; // + is - character speed
+		if (App->render->camera.y + (position.y * 3)<870)position.y += speed; // + is - character speed
 		direction = DOWN;
 		current_animation = SelectAnimation(direction);
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE :: KEY_REPEAT){
