@@ -14,6 +14,7 @@
 #include "ModuleScoreScreen.h"
 #include "ModuleParticles.h"
 #include "ModuleContinue.h"
+#include "ModuleCollision.h"
 
 Application::Application()
 {
@@ -31,7 +32,8 @@ Application::Application()
 	modules[11] = scorescreen = new ModuleScoreScreen();
 	modules[12] = player = new ModulePlayer();
 	modules[13] = particles = new ModuleParticles();
-	modules[14] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
+	modules[14] = collisions = new ModuleCollision;
+	modules[15] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
 	
 }	
 
@@ -47,13 +49,15 @@ bool Application::Init()
 
 	// Player will be enabled on the first update of a new scene
 	player->Disable();
-	// Disable the map that you do not start with
+	// Disable the scenes that you do not start with
 	levels->Disable();
 	winscreen->Disable();
 	losescreen->Disable();
 	namescreen->Disable();
 	scorescreen->Disable();
 	continuescreen->Disable();
+	//Disable collision system
+	collisions->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

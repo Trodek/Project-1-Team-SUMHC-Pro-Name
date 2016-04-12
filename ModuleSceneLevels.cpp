@@ -65,6 +65,7 @@ bool ModuleSceneLevels::Start()
 
 
 	App->player->Enable();
+	
 
 	CameraReset();
 

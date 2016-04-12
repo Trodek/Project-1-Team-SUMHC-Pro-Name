@@ -1,6 +1,7 @@
 #include <math.h>
 #include "Globals.h"
 #include "Application.h"
+#include "ModuleCollision.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
@@ -165,8 +166,8 @@ Particle::Particle()
 }
 
 Particle::Particle(const Particle& p) :
- anim(p.anim), position(p.position), start_pos(p.start_pos), speed(p.speed),
- fx(p.fx), born(p.born), life(p.life), sound(p.sound), angle(p.angle), tex(p.tex)
+anim(p.anim), position(p.position), speed(p.speed), angle(p.angle), tex(p.tex),
+ fx(p.fx), born(p.born), life(p.life), sound(p.sound)
 {}
 
 bool Particle::Update()
@@ -193,4 +194,19 @@ void ModuleParticles::SetParticleSpeed(Particle* part, float x, float y){
 
 	part->speed.x = x;
 	part->speed.y = y;
+}
+
+void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
+{
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		// Always destroy particles that collide
+		if (active[i] != nullptr && active[i]->collider == c1)
+		{
+			//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
+			delete active[i];
+			active[i] = nullptr;
+			break;
+		}
+	}
 }

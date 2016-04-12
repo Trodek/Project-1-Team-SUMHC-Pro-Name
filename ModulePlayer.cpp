@@ -240,7 +240,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN){
 		if (current_power == P0) current_power = P1;
 		else if (current_power == P1)current_power = P2;
-		SDL_SetTextureColorMod(main_char_tex, 255, 120, 86);
+		//SDL_SetTextureColorMod(main_char_tex, 255, 120, 86);
 	}
 
 	//power down
