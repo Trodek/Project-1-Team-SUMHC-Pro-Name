@@ -4,10 +4,10 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleSceneLevels.h"
-
 #include "SDL/include/SDL_timer.h"
 
 #define nullrect {0,0,0,0} 
@@ -84,6 +84,17 @@ ModulePlayer::ModulePlayer()
 	right_up.PushBack({ 82, 325, 24, 36 });
 	right_up.PushBack({ 114, 323, 25, 37 });
 	right_up.speed = 0.2f;
+
+	// char fall in a hole
+	fall_hole.PushBack({ 6, 645, 32, 37 });
+	fall_hole.PushBack({ 45, 649, 31, 30 });
+	fall_hole.PushBack({ 83, 650, 30, 32 });
+	fall_hole.PushBack({ 123, 653, 27, 22 });
+	fall_hole.PushBack({ 156, 653, 21, 26 });
+	fall_hole.PushBack({ 187, 655, 26, 22 });
+	fall_hole.PushBack({ 223, 653, 11, 21 });
+	fall_hole.speed = 0.1f;
+	fall_hole.loop = false;
 
 	//laser 180º
 	laser_360.PushBack({ 55, 192, 29, 35 });  //-- left
@@ -220,7 +231,7 @@ bool ModulePlayer::Start()
 	last_laser = SDL_GetTicks();
 	ResetPosition();
 
-	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 30 }, COLLIDER_PLAYER, this);
+	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
 
 	return ret;
 }
@@ -228,6 +239,9 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp(){
 
 	LOG("Player CleanUp--------");
+
+	dead = false;
+	fall_hole.Reset();
 
 	App->textures->Unload(main_char_tex);
 	App->textures->Unload(bomb_tex);
@@ -242,164 +256,175 @@ update_status ModulePlayer::Update()
 	int speed = 2;
 	now = SDL_GetTicks();
 
-	// change weapon
-	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN){ 
-		current_weapon = ChangeWeapon(current_weapon);
-		last_basic_weapon = current_weapon;
-	} 
+	if (!dead){
 
-	//power up
-	if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN){
-		if (current_power == P0) current_power = P1;
-		else if (current_power == P1)current_power = P2;
-		//SDL_SetTextureColorMod(main_char_tex, 255, 120, 86);
-	}
+		// change weapon
+		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN){
+			current_weapon = ChangeWeapon(current_weapon);
+			last_basic_weapon = current_weapon;
+		}
 
-	//power down
-	if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN){
-		if (current_power == P2) current_power = P1;
-		else if (current_power == P1)current_power = P0;
-	}
+		//power up
+		if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN){
+			if (current_power == P0) current_power = P1;
+			else if (current_power == P1)current_power = P2;
+			//SDL_SetTextureColorMod(main_char_tex, 255, 120, 86);
+		}
 
-	// Shoot key
-	if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN){
-		if (current_weapon == MULTI)
-			CreateShoot(current_weapon, weapon_anim);
-	}
+		//power down
+		if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN){
+			if (current_power == P2) current_power = P1;
+			else if (current_power == P1)current_power = P0;
+		}
 
-	if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_REPEAT){
-		if (current_weapon == LASER){
-			if (now - last_laser > 140){
+		// Shoot key
+		if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN){
+			if (current_weapon == MULTI)
 				CreateShoot(current_weapon, weapon_anim);
-				last_laser = SDL_GetTicks();
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_REPEAT){
+			if (current_weapon == LASER){
+				if (now - last_laser > 140){
+					CreateShoot(current_weapon, weapon_anim);
+					last_laser = SDL_GetTicks();
+				}
 			}
 		}
-	}
 
-	//Special attack key
-	if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN){
-		bomb_pressed = true;
-	}
-
-	// W key
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
-		direction = UP;
-		current_animation = SelectAnimation(direction);
-		if ((App->render->camera.y/3-200)+(position.y)<0){
-			App->render->camera.y += 6; // = to character speed
-			position.y -= speed;
+		//Special attack key
+		if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN){
+			bomb_pressed = true;
 		}
-		else
-			position.y -= speed; // - is + character speed
-	}
-	else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
-		direction = IDLE;
-	}
-	///////////////////////////////////////////////////////////////////////////////////////
 
-	// D key
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
-		if (position.x <SCREEN_WIDTH-29){
-			position.x += speed;
-		}
-		direction = RIGHT;
-		current_animation = SelectAnimation(direction);
+		// W key
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
-			direction = RIGHT_UP;
+			direction = UP;
 			current_animation = SelectAnimation(direction);
+			if ((App->render->camera.y / 3 - 200) + (position.y) < 0){
+				App->render->camera.y += 6; // = to character speed
+				position.y -= speed;
+			}
+			else
+				position.y -= speed; // - is + character speed
 		}
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
-			direction = RIGHT_DOWN;
-			current_animation = SelectAnimation(direction);
-		}
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
+		else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
 			direction = IDLE;
 		}
-	}
+		///////////////////////////////////////////////////////////////////////////////////////
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
-		direction = IDLE;
-	}
-	///////////////////////////////////////////////////////////////////////////////////////
-
-	// A key
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
-		if (position.x > 0 ){
-			position.x -= speed;
-		}
-		direction = LEFT;
-		current_animation = SelectAnimation(direction);
-		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
-			direction = LEFT_UP;
-			current_animation = SelectAnimation(direction);
-		}
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
-			direction = LEFT_DOWN;
-			current_animation = SelectAnimation(direction);
-		}
+		// D key
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+			if (position.x < SCREEN_WIDTH - 29){
+				position.x += speed;
+			}
+			direction = RIGHT;
+			current_animation = SelectAnimation(direction);
+			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+				direction = RIGHT_UP;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
+				direction = RIGHT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
+				direction = IDLE;
+			}
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
+			direction = IDLE;
+		}
+		///////////////////////////////////////////////////////////////////////////////////////
+
+		// A key
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
+			if (position.x > 0){
+				position.x -= speed;
+			}
+			direction = LEFT;
+			current_animation = SelectAnimation(direction);
+			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+				direction = LEFT_UP;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
+				direction = LEFT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 				direction = IDLE;
 				if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 					direction = UP;
 					current_animation = SelectAnimation(direction);
 				}
+			}
+
 		}
 
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
-			direction = IDLE;
-	}
-	///////////////////////////////////////////////////////////////////////////////////////
-
-	// S key
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
-		if ((App->render->camera.y / 3 - 200) + (position.y)<88) position.y += speed; // + is - character speed
-		direction = DOWN;
-		current_animation = SelectAnimation(direction);
-		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE :: KEY_REPEAT){
-				direction = IDLE;
-		}
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
-			direction = LEFT_DOWN;
-			current_animation = SelectAnimation(direction);
-		}
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
-			direction = RIGHT_DOWN;
-			current_animation = SelectAnimation(direction);
-		}
-	}
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
-		direction = IDLE;
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
-			direction = LEFT_DOWN;
-			current_animation = SelectAnimation(direction);
+			direction = IDLE;
 		}
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
-			direction = RIGHT_DOWN;
+		///////////////////////////////////////////////////////////////////////////////////////
+
+		// S key
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
+			if ((App->render->camera.y / 3 - 200) + (position.y) < 88) position.y += speed; // + is - character speed
+			direction = DOWN;
 			current_animation = SelectAnimation(direction);
+			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+				direction = IDLE;
+			}
+			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
+				direction = LEFT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+				direction = RIGHT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
 		}
-	}
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
+			direction = IDLE;
+			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
+				direction = LEFT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
+				direction = RIGHT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
+		}
 
-	PlayerCollider->SetPos(position.x+10, position.y);
-
-	if (direction != IDLE){
-		if (CheckPJAnimPos(weapon_anim, direction))
-			App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		if (direction != IDLE){
+			if (CheckPJAnimPos(weapon_anim, direction))
+				App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
+			else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
+		}
 		else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
-	}
-	else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 
-	if (bomb_pressed){
-		if (!bomb.Finished()){
-			App->render->Blit(bomb_tex, 0, -App->render->camera.y/3, &(bomb.GetCurrentFrame()));
+		if (bomb_pressed){
+			if (!bomb.Finished()){
+				App->render->Blit(bomb_tex, 0, -App->render->camera.y / 3, &(bomb.GetCurrentFrame()));
+			}
+			else{
+				bomb_pressed = false;
+				bomb.Reset();
+			}
 		}
-		else{
-			bomb_pressed = false;
-			bomb.Reset();
-		}
+
+	}
+	else{
+		if (fall_hole.Finished())
+			App->fade->FadeToBlack((Module*)App->levels, (Module*)App->losescreen);
+		else
+			App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	}
 
+	PlayerCollider->SetPos(position.x+10, position.y+20);
+
+	
 	return UPDATE_CONTINUE;
 }
 
@@ -961,6 +986,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	if (PlayerCollider == c1 && PlayerCollider != nullptr){
 		if (c2->type == COLLIDER_WALL){
 			position = PreviousPos;
+		}
+		if (c2->type == COLLIDER_HOLE){
+			dead = true;
+			current_animation = &fall_hole;
 		}
 	}
 }

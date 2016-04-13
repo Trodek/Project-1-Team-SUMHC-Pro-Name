@@ -354,7 +354,7 @@ update_status ModuleSceneLevels::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
 		App->fade->FadeToBlack(this, (Module*)App->losescreen, 1.0f);
 	}
-	if (camera_y > 0){
+	if (App->render->camera.y > 0){
 		App->fade->FadeToBlack(this, (Module*)App->winscreen, 0.3f);
 	}
 	// Draw everything --------------------------------------
@@ -371,8 +371,8 @@ update_status ModuleSceneLevels::Update()
 	
 
 	//Check song to play
-	if (App->render->camera.y < -11489) App->audio->PlayMusic(level1_song, LOOP);
-	else if (App->render->camera.y > -11489 && App->render->camera.y < -6436) App->audio->PlayMusic(level2_song, LOOP);
+	if (App->render->camera.y < -11489*SCREEN_SIZE) App->audio->PlayMusic(level1_song, LOOP);
+	else if (App->render->camera.y > -11489*SCREEN_SIZE && App->render->camera.y < -6436*SCREEN_SIZE) App->audio->PlayMusic(level2_song, LOOP);
 	else App->audio->PlayMusic(level3_song, LOOP);
 
 	return UPDATE_CONTINUE;

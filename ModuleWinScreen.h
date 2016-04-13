@@ -21,6 +21,8 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect win_screen;
+	uint born;
+	uint now;
 
 };
 

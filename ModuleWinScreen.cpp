@@ -9,6 +9,7 @@
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
 #include "ModuleSceneLevels.h"
+#include "SDL/include/SDL_timer.h"
 
 ModuleWinScreen::ModuleWinScreen()
 {
@@ -30,7 +31,7 @@ bool ModuleWinScreen::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/UI/ui_endgame2.png");
 
-
+	born = SDL_GetTicks();
 
 	return true;
 }
@@ -46,16 +47,14 @@ bool ModuleWinScreen::CleanUp()
 // Update: draw background
 update_status ModuleWinScreen::Update()
 {
+	now = SDL_GetTicks();
 
 	// Draw everything --------------------------------------
-
 	App->render->Blit(graphics, 0, 0, &win_screen, 0.75f); // background
 
-
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
+	if (now-born>5000){
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
 	}
-	
 
 	return UPDATE_CONTINUE;
 }

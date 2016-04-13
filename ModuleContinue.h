@@ -24,6 +24,8 @@ public:
 	SDL_Rect continue_screen;
 
 	Mix_Music* continue_song;
+	uint born;
+	uint now;
 
 };
 

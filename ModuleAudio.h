@@ -6,7 +6,7 @@
 
 #include "SDL_mixer\include\SDL_mixer.h"
 
-#define MAX_SONGS 20
+#define MAX_SONGS 50
 #define MAX_EFFECTS 50
 
 enum Repetitions {

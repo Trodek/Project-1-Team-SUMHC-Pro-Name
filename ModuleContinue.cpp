@@ -10,6 +10,7 @@
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
 #include "ModuleSceneLevels.h"
+#include "SDL/include/SDL_timer.h"
 
 
 ModuleContinue::ModuleContinue()
@@ -29,6 +30,8 @@ ModuleContinue::~ModuleContinue()
 bool ModuleContinue::Start()
 {
 	LOG("Loading Title scene");
+
+	born = SDL_GetTicks();
 
 	continue_song = App->audio->LoadMusic("Sounds/Music/continue.ogg");
 	graphics = App->textures->Load("Sprites/UI/ui_continue_small.png");
@@ -53,12 +56,12 @@ bool ModuleContinue::CleanUp()
 // Update: draw background
 update_status ModuleContinue::Update()
 {
-
+	now = SDL_GetTicks();
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &continue_screen, 0.75f); // background
 
 	// swap Scene
-	if (!(App->audio->IsPlaying())){
+	if (now-born>10000){
 		App->fade->FadeToBlack(this, (Module*)App->namescreen, 1.0f);
 	}
 

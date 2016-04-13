@@ -24,6 +24,8 @@ public:
 	SDL_Rect lose_screen;
 
 	Mix_Music* gameover_song;
+	uint born;
+	uint now;
 
 };
 

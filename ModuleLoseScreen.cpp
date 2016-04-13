@@ -9,6 +9,7 @@
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
 #include "ModuleAudio.h"
+#include "SDL/include/SDL_timer.h"
 
 
 
@@ -33,7 +34,7 @@ bool ModuleLoseScreen::Start()
 	graphics = App->textures->Load("Sprites/Ui/ui_gameover2.png");
 
 	App->player->Disable();
-
+	born = SDL_GetTicks();
 	// Load and Play gameover audio
 	gameover_song = App->audio->LoadMusic("Sounds/Music/gameover.ogg");
 	App->audio->PlayMusic(gameover_song, ONCE);
@@ -60,11 +61,11 @@ update_status ModuleLoseScreen::Update()
 {
 
 	// Draw everything --------------------------------------
+	now = SDL_GetTicks();
 
 	App->render->Blit(graphics, 0, 0, &lose_screen, 0.75f); // background
 
-
-	if (!(App->audio->IsPlaying())){
+	if (now-born>5000){
 		App->fade->FadeToBlack(this, (Module*)App->continuescreen,0.5f);
 	}
 

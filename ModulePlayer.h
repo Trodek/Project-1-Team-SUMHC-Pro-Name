@@ -45,6 +45,7 @@ public:
 public:
 	iPoint position;
 	iPoint PreviousPos;
+	bool dead = false;
 
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
@@ -57,6 +58,7 @@ public:
 	Animation left_down;
 	Animation right_up;
 	Animation right_down;
+	Animation fall_hole;
 	Animation laser_360;
 	Animation bomb;
 

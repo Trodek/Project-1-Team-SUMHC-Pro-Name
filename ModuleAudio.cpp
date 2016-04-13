@@ -60,7 +60,7 @@ void ModuleAudio::StopAudio(){
 
 void ModuleAudio::ResetState(){
 
-	last_song = NULL;
+	prev_song = nullptr;
 }
 
 void ModuleAudio::PlayMusic(Mix_Music* to_play, Repetitions n_times){
