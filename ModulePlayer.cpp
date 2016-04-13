@@ -215,7 +215,7 @@ bool ModulePlayer::Start()
 
 	ResetPosition();
 
-	PlayerCollider = App->collisions->AddCollider({ 0, 0, 30, 33 }, COLLIDER_PLAYER, (Module*)App->player);
+	PlayerCollider = App->collisions->AddCollider({ 0, 0, 22, 30 }, COLLIDER_PLAYER, (Module*)App->player);
 
 	return ret;
 }
@@ -364,7 +364,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	PlayerCollider->SetPos(position.x, position.y);
+	PlayerCollider->SetPos(position.x+4, position.y);
 
 	if (direction != IDLE){
 		if (CheckPJAnimPos(weapon_anim, direction))
