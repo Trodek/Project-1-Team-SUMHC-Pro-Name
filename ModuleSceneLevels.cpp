@@ -130,7 +130,93 @@ bool ModuleSceneLevels::Start()
 	App->collisions->AddCollider({ 223, 3329, 32, 64 }, COLLIDER_WALL);
 
 
-	//Level 1
+	//Level 1 start
+	App->collisions->AddCollider({ 0, 14893, 98, 212 }, COLLIDER_WALL);//LEFT
+	App->collisions->AddCollider({ 0, 14873, 75, 20 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 160, 14907, 96, 87 }, COLLIDER_WALL);//RIGHT
+	App->collisions->AddCollider({ 178, 14993, 78, 30 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 195, 15023, 61, 17 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 226, 15040, 30, 19 }, COLLIDER_WALL);
+	//level 1 rocks
+
+	App->collisions->AddCollider({ 129, 14357, 31, 38 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 192, 14293, 31, 38 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 1, 14164, 30, 38 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 162, 14001, 31, 38 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 66, 13328, 29, 38 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 193, 13297, 31, 38 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 0, 13265, 32, 38 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 95, 13171, 33, 38 }, COLLIDER_WALL);
+	//Level 1 more walls
+	App->collisions->AddCollider({ 0, 13700, 123, 145 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 0, 13843, 32, 35 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 198, 13699, 58, 143 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 0, 13414, 61, 141 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 136, 13410, 120, 146 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 0, 11925, 95, 82 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 163, 11925, 93, 79 }, COLLIDER_WALL);
+	//level 2 walls
+	App->collisions->AddCollider({ 163, 11040, 93, 97 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 0, 10550, 94, 73 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 161, 10552, 95, 73 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 0, 9283, 97, 64 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 161, 9284, 95, 63 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 0, 9154, 33, 64 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 97, 9178, 159, 41 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 87, 9007, 84, 171 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 64, 8641, 34, 132 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 161, 8641, 31, 131 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 0, 8458, 75, 126 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 182, 8465, 74, 118 }, COLLIDER_WALL);
+	//level 2 holes
+	App->collisions->AddCollider({ 0, 10086, 68, 200 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 10285, 48, 22 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 189, 10090, 66, 196 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 207, 10286, 49, 19 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 73, 9959, 94, 58 }, COLLIDER_HOLE);
+
+	App->collisions->AddCollider({ 171, 9799, 28, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 197, 9831, 59, 56 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 44, 9767, 58, 121 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 9830, 44, 58 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 108, 9639, 132, 56 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 168, 9695, 67, 33 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 9640, 37, 57 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 9447, 38, 121 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 106, 9448, 29, 121 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 202, 9447, 55, 121 }, COLLIDER_HOLE);
+
+	App->collisions->AddCollider({ 202, 7557, 54, 59 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 74, 7528, 59, 88 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 7527, 36, 89 }, COLLIDER_HOLE);
+
+	App->collisions->AddCollider({ 202, 7398, 54, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 75, 7364, 61, 93 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 138, 7396, 30, 93 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 7205, 42, 91 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 43, 7176, 27, 153 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 71, 7237, 34, 60 }, COLLIDER_HOLE);
+
+	App->collisions->AddCollider({ 107, 7207, 26, 89 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 174, 7078, 82, 155 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 135, 7110, 39, 58 }, COLLIDER_HOLE);
+
+	App->collisions->AddCollider({ 108, 7078, 27, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 7079, 70, 57 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 6917, 69, 59 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 46, 6953, 87, 55 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 107, 6888, 27, 120 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 172, 6855, 84, 58 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 170, 6760, 28, 58 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 6758, 68, 59 }, COLLIDER_HOLE);
 
 
 
