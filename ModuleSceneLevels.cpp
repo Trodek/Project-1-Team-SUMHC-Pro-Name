@@ -25,7 +25,7 @@ ModuleSceneLevels::ModuleSceneLevels()
 	//Sub-Lights
 	sublightanim.PushBack({ 0, 0, 256, 15383 });
 	sublightanim.PushBack({ 256, 0, 256, 15383 });
-	sublightanim.speed = 0.06;
+	sublightanim.speed = 0.06f;
 	//Lights
 
 	lights.PushBack({ 0, 0, 256, 15383 });
@@ -35,7 +35,7 @@ ModuleSceneLevels::ModuleSceneLevels()
 	lavaanim.PushBack({ 0, 0, 256, 15383 });
 	lavaanim.PushBack({ 256, 0, 256, 15383 });
 	lavaanim.PushBack({ 512, 0, 256, 15383 });
-	lavaanim.speed = 0.03;
+	lavaanim.speed = 0.03f;
 	
 	
 }

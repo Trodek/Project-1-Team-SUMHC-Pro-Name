@@ -47,7 +47,7 @@ public:
 	}
 
 	void SetInitialFrame(uint frame){
-		current_frame = frame;
+		current_frame = (float)frame;
 	}
 
 	bool IsFrame(uint frame_index){
@@ -61,7 +61,7 @@ public:
 
 	void AnimBack(){
 		current_frame -= speed;
-		if (current_frame < 0)current_frame = last_frame-1;
+		if (current_frame < 0)current_frame = (float)last_frame-1;
 	}
 
 	bool Finished() const
