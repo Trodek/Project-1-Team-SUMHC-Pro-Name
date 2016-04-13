@@ -68,7 +68,6 @@ bool ModuleSceneLevels::Start()
 	App->player->Enable();
 	App->collisions->Enable();
 
-	//App->collisions->AddCollider({0,15070,240,5}, COLLIDER_WALL);
 	//Level2 boss
 	App->collisions->AddCollider({ 0, 6254, 92, 180 }, COLLIDER_WALL);
 	App->collisions->AddCollider({ 150, 6254, 92, 180 }, COLLIDER_WALL);
@@ -139,8 +138,8 @@ bool ModuleSceneLevels::Start()
 	//Level3 walls
 	App->collisions->AddCollider({ 63, 2481, 32, 80 }, COLLIDER_WALL);
 	App->collisions->AddCollider({ 63, 2372, 32, 80 }, COLLIDER_WALL);
-	App->collisions->AddCollider({ 95, 2593, 32, 193 }, COLLIDER_WALL);
-	App->collisions->AddCollider({ 127, 2593, 32, 193 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 95, 2372, 32, 193 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 127, 2372, 32, 193 }, COLLIDER_WALL);
 	App->collisions->AddCollider({ 159, 2481, 32, 80 }, COLLIDER_WALL);
 	//Level3 walls
 	App->collisions->AddCollider({ 0, 2433, 32, 64 }, COLLIDER_WALL);
@@ -208,6 +207,22 @@ bool ModuleSceneLevels::Start()
 	App->collisions->AddCollider({ 143, 708, 32, 60 }, COLLIDER_HOLE);
 	App->collisions->AddCollider({ 175, 708, 32, 187 }, COLLIDER_HOLE);
 	App->collisions->AddCollider({ 207, 642, 32, 284 }, COLLIDER_HOLE);
+	//Level3 boss left
+	App->collisions->AddCollider({ 0, 365, 15, 147 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 15, 380, 15, 132 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 30, 395, 15, 117 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 45, 410, 15, 102 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 60, 425, 15, 87 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 75, 440, 15, 72 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 90, 455, 15, 57 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 105, 470, 15, 42 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 120, 485, 7, 27 }, COLLIDER_HOLE_BOSS);
+	//Level3 boss right
+	App->collisions->AddCollider({ 127, 484, 30, 28 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 157, 470, 30, 42 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 187, 457, 30, 55 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 217, 464, 30, 68 }, COLLIDER_HOLE_BOSS);
+
 
 	//Level 1 start
 	App->collisions->AddCollider({ 0, 14893, 98, 212 }, COLLIDER_WALL);//LEFT
@@ -296,18 +311,6 @@ bool ModuleSceneLevels::Start()
 	App->collisions->AddCollider({ 172, 6855, 84, 58 }, COLLIDER_HOLE);
 	App->collisions->AddCollider({ 170, 6760, 28, 58 }, COLLIDER_HOLE);
 	App->collisions->AddCollider({ 0, 6758, 68, 59 }, COLLIDER_HOLE);
-
-
-
-
-
-
-
-
-
-
-
-
 
 	App->render->camera.y = -15063*SCREEN_SIZE;
 
