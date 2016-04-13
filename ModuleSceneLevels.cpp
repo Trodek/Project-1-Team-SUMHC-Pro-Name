@@ -99,6 +99,19 @@ bool ModuleSceneLevels::Start()
 	//Level3 walls
 	App->collisions->AddCollider({ 0, 3746, 32, 97 }, COLLIDER_WALL);
 	App->collisions->AddCollider({ 32, 3746, 32, 62 }, COLLIDER_WALL);
+	//Level 1
+
+
+
+
+
+
+
+
+
+
+
+
 
 	App->render->camera.y = -15063*SCREEN_SIZE;
 
