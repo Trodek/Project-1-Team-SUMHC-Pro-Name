@@ -89,6 +89,8 @@ public:
 	Collider* PlayerCollider;
 
 	bool bomb_pressed;
+	uint last_laser;
+	uint now;
 
 };
 
