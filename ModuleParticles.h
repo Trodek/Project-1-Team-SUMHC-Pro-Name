@@ -17,6 +17,7 @@ struct Particle
 {
 	COLLIDER_TYPE collider;
 	Collider* collider_box = nullptr;
+	iPoint collider_correction;
 	Animation anim;
 	uint fx = 0;
 	iPoint position;
@@ -48,6 +49,7 @@ public:
 
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, SDL_Rect collider_pos, double angle = 0, Uint32 delay = 0);
 	void SetParticleSpeed(Particle* part, float x, float y);
+	void SetColliderCorrection(Particle* part, uint x, uint y);
 
 private:
 

@@ -165,7 +165,7 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, SDL_Rect collider_pos, double angle, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, SDL_Rect collider_size, double angle, Uint32 delay)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -177,7 +177,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			p->position.y = y;
 			p->angle = angle;
 			if (collider_type != COLLIDER_NONE)
-				p->collider_box = App->collisions->AddCollider(collider_pos, collider_type, this);
+				p->collider_box = App->collisions->AddCollider(collider_size, collider_type, this);
 			active[i] = p;
 			break;
 		}
@@ -189,6 +189,11 @@ void ModuleParticles::SetParticleSpeed(Particle* part, float x, float y){
 
 	part->speed.x = x;
 	part->speed.y = y;
+}
+
+void ModuleParticles::SetColliderCorrection(Particle* part, uint x, uint y){
+	part->collider_correction.x = x;
+	part->collider_correction.y = y;
 }
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
@@ -220,7 +225,7 @@ Particle::Particle()
 Particle::Particle(const Particle& p) :
 	anim(p.anim), position(p.position), speed(p.speed), angle(p.angle), tex(p.tex), end_particle(p.end_particle),
 	fx(p.fx), born(p.born), life(p.life), sound(p.sound), collider(p.collider), collider_box(p.collider_box),
-	fx_played(p.fx_played)
+	fx_played(p.fx_played), collider_correction(p.collider_correction)
 {}
 
 bool Particle::Update()
@@ -241,7 +246,7 @@ bool Particle::Update()
 	}
 
 	if (collider_box != nullptr)
-		collider_box->SetPos(position.x, position.y);
+		collider_box->SetPos(position.x+collider_correction.x, position.y+collider_correction.y);
 
 	return ret;
 }
