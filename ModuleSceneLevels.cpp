@@ -211,19 +211,20 @@ bool ModuleSceneLevels::Start()
 	App->collisions->AddCollider({ 175, 708, 32, 187 }, COLLIDER_HOLE);
 	App->collisions->AddCollider({ 207, 642, 32, 284 }, COLLIDER_HOLE);
 	//Level3 boss left
-	App->collisions->AddCollider({ 0, 365, 15, 147 }, COLLIDER_HOLE_BOSS);
-	App->collisions->AddCollider({ 15, 380, 15, 132 }, COLLIDER_HOLE_BOSS);
-	App->collisions->AddCollider({ 30, 395, 15, 117 }, COLLIDER_HOLE_BOSS);
-	App->collisions->AddCollider({ 45, 410, 15, 102 }, COLLIDER_HOLE_BOSS);
-	App->collisions->AddCollider({ 60, 425, 15, 87 }, COLLIDER_HOLE_BOSS);
-	App->collisions->AddCollider({ 75, 440, 15, 72 }, COLLIDER_HOLE_BOSS);
-	App->collisions->AddCollider({ 90, 455, 15, 57 }, COLLIDER_HOLE_BOSS);
-	App->collisions->AddCollider({ 105, 470, 15, 42 }, COLLIDER_HOLE_BOSS);
-	App->collisions->AddCollider({ 120, 485, 7, 27 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 0, 365, 15, 147 }, COLLIDER_HOLE_BOSS_LEFT);
+	App->collisions->AddCollider({ 15, 380, 15, 132 }, COLLIDER_HOLE_BOSS_LEFT);
+	App->collisions->AddCollider({ 30, 395, 15, 117 }, COLLIDER_HOLE_BOSS_LEFT);
+	App->collisions->AddCollider({ 45, 410, 15, 102 }, COLLIDER_HOLE_BOSS_LEFT);
+	App->collisions->AddCollider({ 60, 425, 15, 87 }, COLLIDER_HOLE_BOSS_LEFT);
+	App->collisions->AddCollider({ 75, 440, 15, 72 }, COLLIDER_HOLE_BOSS_LEFT);
+	App->collisions->AddCollider({ 90, 455, 15, 57 }, COLLIDER_HOLE_BOSS_LEFT);
+	App->collisions->AddCollider({ 105, 470, 15, 42 }, COLLIDER_HOLE_BOSS_LEFT);
+	App->collisions->AddCollider({ 120, 485, 7, 27 }, COLLIDER_HOLE_BOSS_LEFT);
 	//Level3 boss right
-
-	App->collisions->AddCollider({ 187, 457, 30, 55 }, COLLIDER_HOLE_BOSS);
-	App->collisions->AddCollider({ 217, 464, 30, 68 }, COLLIDER_HOLE_BOSS);
+	App->collisions->AddCollider({ 127, 480, 30, 32 }, COLLIDER_HOLE_BOSS_RIGHT);
+	App->collisions->AddCollider({ 157, 467, 30, 45 }, COLLIDER_HOLE_BOSS_RIGHT);
+	App->collisions->AddCollider({ 187, 452, 30, 60 }, COLLIDER_HOLE_BOSS_RIGHT);
+	App->collisions->AddCollider({ 217, 440, 30, 72 }, COLLIDER_HOLE_BOSS_RIGHT);
 
 
 	//Level 1 start
