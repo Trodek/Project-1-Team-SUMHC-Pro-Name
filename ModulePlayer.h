@@ -11,7 +11,7 @@ struct Particle;
 class ModuleParticles;
 struct Collider;
 
-enum PlayerDirection{
+enum Direction{
 	IDLE = -1, LEFT, ANGLE_60, LEFT_UP, ANGLE_30, UP, ANGLE_330,
 	RIGHT_UP, ANGLE_300, RIGHT, ANGLE_240, RIGHT_DOWN,
 	ANGLE_210, DOWN, ANGLE_150, LEFT_DOWN, ANGLE_120 
@@ -35,10 +35,10 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	bool CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim);
+	bool CheckPJAnimPos(Animation* anim, Direction dest_anim);
 	void CreateShoot(Weapons equiped, Animation* anim)const;
 	Weapons ChangeWeapon(Weapons current);
-	Animation* SelectAnimation(PlayerDirection direction);
+	Animation* SelectAnimation(Direction direction);
 	void ResetPosition();
 	void OnCollision(Collider* c1, Collider* c2);
 
@@ -83,7 +83,7 @@ public:
 	Particle* multi_start = nullptr;
 	Particle* multi_end = nullptr;
 
-	PlayerDirection direction;
+	Direction direction;
 	Power current_power;
 	Weapons current_weapon;
 	Weapons last_basic_weapon;

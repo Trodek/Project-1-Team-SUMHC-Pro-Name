@@ -424,7 +424,7 @@ update_status ModulePlayer::Update()
 	return UPDATE_CONTINUE;
 }
 
-bool ModulePlayer::CheckPJAnimPos(Animation* anim, PlayerDirection dest_anim){
+bool ModulePlayer::CheckPJAnimPos(Animation* anim, Direction dest_anim){
 
 	bool ret = false;
 	uint FrameIndex = (uint)anim->GetFrameIndex();
@@ -899,7 +899,7 @@ Weapons ModulePlayer::ChangeWeapon(Weapons current){
 	return ret;
 }
 
-Animation* ModulePlayer::SelectAnimation(PlayerDirection direction){
+Animation* ModulePlayer::SelectAnimation(Direction direction){
 
 	Animation* ret = current_animation;
 	switch (current_weapon)

@@ -6,6 +6,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleGreenBasic.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleWinScreen.h"
@@ -86,6 +87,8 @@ bool ModuleSceneLevels::Start()
 	App->player->Enable();
 	App->collisions->Enable();
 	App->levelstop->Enable();
+	App->green_basic_enemy->Enable();
+
 
 	//Level2 boss
 	App->collisions->AddCollider({ 0, 6254, 92, 180 }, COLLIDER_WALL);

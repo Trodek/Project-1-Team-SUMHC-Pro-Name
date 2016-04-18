@@ -79,6 +79,7 @@
     <ClInclude Include="ModuleCollision.h" />
     <ClInclude Include="ModuleContinue.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
+    <ClInclude Include="ModuleGreenBasic.h" />
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleLevelsTop.h" />
     <ClInclude Include="ModuleLoseScreen.h" />
@@ -102,6 +103,7 @@
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleContinue.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
+    <ClCompile Include="ModuleGreenBasic.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleLevelsTop.cpp" />
     <ClCompile Include="ModuleLoseScreen.cpp" />
