@@ -21,9 +21,6 @@
     <Filter Include="Modules\Scenes">
       <UniqueIdentifier>{eaea22b5-1896-483f-9558-11c20cc126d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Levels">
-      <UniqueIdentifier>{5b1fb7f3-a8c7-4040-8424-cddb94c75482}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MemLeaks.h">

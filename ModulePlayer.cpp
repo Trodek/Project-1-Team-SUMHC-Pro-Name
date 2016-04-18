@@ -389,14 +389,6 @@ update_status ModulePlayer::Update()
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
 			direction = IDLE;
-			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
-				direction = LEFT_DOWN;
-				current_animation = SelectAnimation(direction);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
-				direction = RIGHT_DOWN;
-				current_animation = SelectAnimation(direction);
-			}
 		}
 
 		if (direction != IDLE){
