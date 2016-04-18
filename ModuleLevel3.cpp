@@ -220,9 +220,9 @@ update_status ModuleLevel3::Update(){
 		App->fade->FadeToBlack(this, (Module*)App->winscreen, 1.0f);
 	}
 
-	if (App->render->camera.y > -6436) App->level2->Disable();
+	if (App->render->camera.y > -6436*SCREEN_SIZE) App->level2->Disable();
 
-	if (App->render->camera.y > -6435){
+	if (App->render->camera.y > -6435 * SCREEN_SIZE){
 		App->audio->PlayMusic(level3_song, LOOP);
 		App->audio->UnloadMusic(App->level2->level2_song);
 	}

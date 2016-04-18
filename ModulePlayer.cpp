@@ -256,6 +256,8 @@ update_status ModulePlayer::Update()
 	int speed = 2;
 	now = SDL_GetTicks();
 
+	LOG("Camera.y = %d.", App->render->camera.y);
+
 	if (!dead){
 
 		// change weapon

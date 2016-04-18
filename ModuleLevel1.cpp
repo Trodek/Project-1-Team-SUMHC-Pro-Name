@@ -94,7 +94,7 @@ update_status ModuleLevel1::Update(){
 	}
 
 	//load level2
-	if (App->render->camera.y > -117876) App->level2->Enable();
+	if (App->render->camera.y > -11776 * SCREEN_SIZE) App->level2->Enable();
 
 	App->audio->PlayMusic(level1_song, LOOP);
 	App->render->Blit(graphics, 0, 11456, &map); // Map
