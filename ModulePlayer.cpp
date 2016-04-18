@@ -233,6 +233,7 @@ bool ModulePlayer::Start()
 
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
 	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 29, 33 }, COLLIDER_PLAYER_EBULLETS, this);
+	BombCollider = App->collisions->AddCollider({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }, COLLIDER_BOMB, this);
 
 	return ret;
 }
@@ -408,6 +409,7 @@ update_status ModulePlayer::Update()
 		if (bomb_pressed){
 			if (!bomb.Finished()){
 				App->render->Blit(bomb_tex, 0, -App->render->camera.y / 3, &(bomb.GetCurrentFrame()));
+				BombCollider->SetPos(App->render->camera.x/3, App->render->camera.y/3);
 			}
 			else{
 				bomb_pressed = false;
