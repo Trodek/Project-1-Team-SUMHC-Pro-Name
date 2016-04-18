@@ -222,9 +222,11 @@ update_status ModuleLevel3::Update(){
 
 	if (App->render->camera.y > -6436*SCREEN_SIZE) App->level2->Disable();
 
-	if (App->render->camera.y > -6435 * SCREEN_SIZE){
+	if (App->render->camera.y > -6435 * SCREEN_SIZE&&change_music){
+		App->audio->StopAudio();
 		App->audio->PlayMusic(level3_song, LOOP);
 		App->audio->UnloadMusic(App->level2->level2_song);
+		change_music = false;
 	}
 
 	App->render->Blit(graphics, 0, 0, &map); // Map

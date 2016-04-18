@@ -31,6 +31,8 @@ public:
 
 	dynArray<Collider*> colliders;
 
+	bool change_music = true;
+
 };
 
 #endif
