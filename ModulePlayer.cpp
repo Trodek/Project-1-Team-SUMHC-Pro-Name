@@ -256,8 +256,6 @@ update_status ModulePlayer::Update()
 	int speed = 2;
 	now = SDL_GetTicks();
 
-	LOG("Camera.y = %d.", App->render->camera.y);
-
 	if (!dead){
 
 		// change weapon
@@ -303,8 +301,8 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 			direction = UP;
 			current_animation = SelectAnimation(direction);
-			if ((App->render->camera.y / 3 - 200) + (position.y) < 0){
-				App->render->camera.y += 6; // = to character speed
+			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y<0){
+				App->render->camera.y += 6; 
 				position.y -= speed;
 			}
 			else
@@ -420,7 +418,6 @@ update_status ModulePlayer::Update()
 	else{
 		if (fall_hole.Finished()){
 			App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
-			App->render->camera.y = 0;
 		}
 		else
 			App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
