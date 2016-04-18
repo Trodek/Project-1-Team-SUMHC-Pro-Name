@@ -21,6 +21,9 @@
     <Filter Include="Modules\Scenes">
       <UniqueIdentifier>{eaea22b5-1896-483f-9558-11c20cc126d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Levels">
+      <UniqueIdentifier>{5b1fb7f3-a8c7-4040-8424-cddb94c75482}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MemLeaks.h">
@@ -89,6 +92,18 @@
     <ClInclude Include="ModuleCollision.h">
       <Filter>Modules\CoreModules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleLevel1.h">
+      <Filter>Modules\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="dynArray.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleLevel2.h">
+      <Filter>Modules\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleLevel3.h">
+      <Filter>Modules\Levels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -147,6 +162,15 @@
     </ClCompile>
     <ClCompile Include="ModuleCollision.cpp">
       <Filter>Modules\CoreModules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLevel1.cpp">
+      <Filter>Modules\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLevel2.cpp">
+      <Filter>Modules\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLevel3.cpp">
+      <Filter>Modules\Levels</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

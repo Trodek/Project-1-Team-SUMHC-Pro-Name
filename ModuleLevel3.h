@@ -1,5 +1,5 @@
-#ifndef __MODULELEVEL1_H__
-#define __MODULELEVEL1_H__
+#ifndef __MODULELEVEL3_H__
+#define __MODULELEVEL3_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -12,10 +12,10 @@
 
 struct SDL_Texture;
 
-class ModuleLevel1 : public Module{
+class ModuleLevel3 : public Module{
 public:
-	ModuleLevel1();
-	~ModuleLevel1();
+	ModuleLevel3();
+	~ModuleLevel3();
 
 	bool Start();
 	update_status Update();
@@ -27,11 +27,10 @@ public:
 
 	SDL_Rect map;
 
-	Mix_Music* level1_song;
+	Mix_Music* level3_song;
 
 	dynArray<Collider*> colliders;
 
 };
-
 
 #endif
