@@ -3,11 +3,10 @@
 
 #include "Globals.h"
 
-<<<<<<< HEAD
-#define NUM_MODULES 19
-=======
+
+
 #define NUM_MODULES 17
->>>>>>> origin/master
+
 
 class ModuleWindow;
 class ModuleInput;
@@ -26,8 +25,14 @@ class ModuleNameScreen;
 class ModuleContinue;
 class ModuleCollision;
 class Module;
+<<<<<<< HEAD
 class ModuleLevelsTop;
 class ModuleSceneLevels;
+=======
+class ModuleLevel1;
+class ModuleLevel2;
+class ModuleLevel3;
+>>>>>>> parent of c185ede... levels Wip
 
 
 
@@ -42,8 +47,12 @@ public:
 	ModuleWinScreen* winscreen;
 	ModuleTextures* textures;
 	ModuleSceneTitle* title;
+<<<<<<< HEAD
 	ModuleLevelsTop* levelstop;
 	ModuleSceneLevels* levels;
+=======
+	ModuleLevel3* level3;
+>>>>>>> parent of c185ede... levels Wip
 	ModulePlayer* player;
 	ModuleGreenBasic* basic_green_enemy;
 	ModuleFadeToBlack* fade;
