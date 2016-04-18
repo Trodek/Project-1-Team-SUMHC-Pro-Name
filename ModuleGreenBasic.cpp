@@ -114,8 +114,8 @@ ModuleGreenBasic::~ModuleGreenBasic()
 // Load assets
 bool ModuleGreenBasic::Start()
 {
-	LOG("Loading player textures");
-	basic_green_tex = App->textures->Load("Sprites\Enemies\Level 1\Soldier_Green.png");
+	LOG("Loading basic green enemy textures");
+	basic_green_tex = App->textures->Load("Sprites\Enemies\Level 1\Soldier Green.png");
 	current_animation = &down;
 	bool ret = true;
 	weapon_anim = &move_360;
