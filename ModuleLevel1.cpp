@@ -28,6 +28,8 @@ bool ModuleLevel1::Start(){
 	LOG("Loading Level1 assets");
 	bool ret = true;
 
+	App->current_level = this;
+
 	//Load map
 	graphics = App->textures->Load("Sprites/Map/Level1.png");
 
@@ -88,6 +90,7 @@ update_status ModuleLevel1::Update(){
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
 		App->fade->FadeToBlack(this, (Module*)App->losescreen, 1.0f);
+		App->render->camera.y = 0;
 	}
 
 	//load level2

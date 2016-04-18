@@ -53,7 +53,7 @@ update_status ModuleWinScreen::Update()
 	App->render->Blit(graphics, 0, 0, &win_screen, 0.75f); // background
 
 	if (now-born>5000){
-		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
+		App->fade->FadeToBlack(this, (Module*)App->level1, 1.0f);
 	}
 
 	return UPDATE_CONTINUE;

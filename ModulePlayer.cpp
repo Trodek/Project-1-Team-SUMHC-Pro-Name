@@ -416,8 +416,10 @@ update_status ModulePlayer::Update()
 
 	}
 	else{
-		if (fall_hole.Finished())
-			App->fade->FadeToBlack((Module*)App->levels, (Module*)App->losescreen);
+		if (fall_hole.Finished()){
+			App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
+			App->render->camera.y = 0;
+		}
 		else
 			App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	}

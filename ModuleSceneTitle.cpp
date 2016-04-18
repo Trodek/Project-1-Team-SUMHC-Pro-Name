@@ -54,7 +54,6 @@ update_status ModuleSceneTitle::Update()
 	// swap Scene
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
 		App->fade->FadeToBlack(this, (Module*)App->level1, 1.0f);
-		App->levels->CameraReset();
 	}
 
 	return UPDATE_CONTINUE;

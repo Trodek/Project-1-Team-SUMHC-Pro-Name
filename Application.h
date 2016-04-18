@@ -11,7 +11,6 @@ class ModuleParticles;
 class ModuleTextures;
 class ModuleRender;
 class ModuleSceneTitle;
-class ModuleSceneLevels;
 class ModuleWinScreen;
 class ModulePlayer;
 class ModuleFadeToBlack;
@@ -24,6 +23,8 @@ class ModuleCollision;
 class Module;
 class ModuleLevel1;
 class ModuleLevel2;
+class ModuleLevel3;
+
 
 
 class Application
@@ -37,7 +38,7 @@ public:
 	ModuleWinScreen* winscreen;
 	ModuleTextures* textures;
 	ModuleSceneTitle* title;
-	ModuleSceneLevels* levels;
+	ModuleLevel3* level3;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
 	ModuleAudio* audio;
@@ -58,6 +59,8 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
+
+	Module* current_level=nullptr;
 
 };
 

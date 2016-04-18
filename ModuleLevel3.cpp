@@ -26,6 +26,8 @@ bool ModuleLevel3::Start(){
 	LOG("Loading Level3 assets");
 	bool ret = true;
 
+	App->current_level = this;
+
 	//Load map
 	graphics = App->textures->Load("Sprites/Map/Level3.png");
 
@@ -189,4 +191,43 @@ bool ModuleLevel3::Start(){
 	colliders.PushBack(App->collisions->AddCollider({ 217, 440, 30, 72 }, COLLIDER_HOLE_BOSS_RIGHT));
 
 	return true;
+}
+
+bool ModuleLevel3::CleanUp(){
+
+	App->textures->Unload(graphics);
+
+	App->audio->UnloadMusic(level3_song);
+
+	for (int i = 0; i < colliders.size(); i++){
+		App->collisions->EraseCollider(colliders[i]);
+	}
+
+	App->render->camera.y = 0;
+
+	return true;
+}
+
+update_status ModuleLevel3::Update(){
+
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
+		App->fade->FadeToBlack(this, (Module*)App->losescreen, 1.0f);
+		App->level2->Disable();
+		App->render->camera.y = 0;
+	}
+
+	if (App->render->camera.y >= 0){
+		App->fade->FadeToBlack(this, (Module*)App->winscreen, 1.0f);
+	}
+
+	if (App->render->camera.y > -6436) App->level2->Disable();
+
+	if (App->render->camera.y > -6435){
+		App->audio->PlayMusic(level3_song, LOOP);
+		App->audio->UnloadMusic(App->level2->level2_song);
+	}
+
+	App->render->Blit(graphics, 0, 0, &map); // Map
+
+	return UPDATE_CONTINUE;
 }
