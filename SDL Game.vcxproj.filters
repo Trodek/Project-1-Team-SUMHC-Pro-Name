@@ -24,6 +24,9 @@
     <Filter Include="Modules\Levels">
       <UniqueIdentifier>{5b1fb7f3-a8c7-4040-8424-cddb94c75482}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Enemies">
+      <UniqueIdentifier>{aeb086ce-a59f-439d-a3ec-b4cf3a205cdb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MemLeaks.h">
@@ -104,6 +107,9 @@
     <ClInclude Include="ModuleLevel3.h">
       <Filter>Modules\Levels</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleGreenBasic.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -171,6 +177,9 @@
     </ClCompile>
     <ClCompile Include="ModuleLevel3.cpp">
       <Filter>Modules\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGreenBasic.cpp">
+      <Filter>Modules\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

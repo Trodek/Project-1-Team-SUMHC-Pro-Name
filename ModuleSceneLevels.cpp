@@ -6,6 +6,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleGreenBasic.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleWinScreen.h"
@@ -83,6 +84,7 @@ bool ModuleSceneLevels::Start()
 
 	//Enable Player and Collisions
 	App->player->Enable();
+	App->basic_green_enemy->Enable();
 	App->collisions->Enable();
 
 	//Level2 boss
@@ -264,11 +266,11 @@ bool ModuleSceneLevels::Start()
 	App->collisions->AddCollider({ 0, 13265, 32, 38 }, COLLIDER_WALL);
 	App->collisions->AddCollider({ 95, 13171, 33, 38 }, COLLIDER_WALL);
 	//Level 1 more walls
-	App->collisions->AddCollider({ 0, 13700, 123, 145 }, COLLIDER_WALL);
-	App->collisions->AddCollider({ 0, 13843, 32, 35 }, COLLIDER_WALL);
-	App->collisions->AddCollider({ 198, 13699, 58, 143 }, COLLIDER_WALL);
-	App->collisions->AddCollider({ 0, 13414, 61, 141 }, COLLIDER_WALL);
-	App->collisions->AddCollider({ 136, 13410, 120, 146 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 0, 13700, 123, 145 }, COLLIDER_PASS_BULLET);
+	App->collisions->AddCollider({ 0, 13843, 32, 35 }, COLLIDER_PASS_BULLET);
+	App->collisions->AddCollider({ 198, 13699, 58, 143 }, COLLIDER_PASS_BULLET);
+	App->collisions->AddCollider({ 0, 13414, 61, 141 }, COLLIDER_PASS_BULLET);
+	App->collisions->AddCollider({ 136, 13410, 120, 146 }, COLLIDER_PASS_BULLET);
 
 	App->collisions->AddCollider({ 0, 11925, 95, 82 }, COLLIDER_WALL);
 	App->collisions->AddCollider({ 163, 11925, 93, 79 }, COLLIDER_WALL);

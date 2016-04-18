@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleSceneTitle.h"
 #include "ModulePlayer.h"
+#include "ModuleGreenBasic.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
@@ -31,6 +32,7 @@ bool ModuleSceneTitle::Start()
 	
 	graphics = App->textures->Load("Sprites/UI/ui_maintitle.png");
 	App->player->Disable();
+	App->basic_green_enemy->Disable();
 	
 	return true;
 }
