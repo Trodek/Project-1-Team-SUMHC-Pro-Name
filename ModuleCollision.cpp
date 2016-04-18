@@ -198,7 +198,7 @@ void ModuleCollision::DebugDraw()
 			case COLLIDER_HOLE_BOSS_LEFT: // cyan
 			App->render->DrawQuad(colliders[i]->rect, 176, 196, 222, alpha);
 			break;
-			case COLLIDER_PASS_BULLET: // cyan
+			case COLLIDER_PASS_BULLET: // lime
 			App->render->DrawQuad(colliders[i]->rect, 127, 201, 22, alpha);
 			break;
 		}

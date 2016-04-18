@@ -988,7 +988,7 @@ void ModulePlayer::ResetPosition(){
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	if (PlayerCollider == c1 && PlayerCollider != nullptr){
-		if (c2->type == COLLIDER_WALL){
+		if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_PASS_BULLET){
 			position = PreviousPos;
 		}
 		if (c2->type == COLLIDER_HOLE){
