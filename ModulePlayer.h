@@ -89,6 +89,7 @@ public:
 	Weapons last_basic_weapon;
 
 	Collider* PlayerCollider;
+	Collider* PlayerEBulletsCollider;
 
 	bool bomb_pressed;
 	uint last_laser;

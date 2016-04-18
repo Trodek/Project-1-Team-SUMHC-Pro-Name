@@ -232,6 +232,7 @@ bool ModulePlayer::Start()
 	ResetPosition();
 
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
+	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 29, 33 }, COLLIDER_PLAYER_EBULLETS, this);
 
 	return ret;
 }
@@ -424,7 +425,7 @@ update_status ModulePlayer::Update()
 	}
 
 	PlayerCollider->SetPos(position.x+10, position.y+20);
-
+	PlayerEBulletsCollider->SetPos(position.x , position.y);
 	
 	return UPDATE_CONTINUE;
 }
