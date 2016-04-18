@@ -18,31 +18,26 @@ ModuleGreenBasic::ModuleGreenBasic()
 	position.x = 120;
 	position.y = 14000;
 
-	//// LASER ANIMATIONS
-
-	/*//Char Up anim
-	up.PushBack({ 17, 273, 29, 38 });
-	up.PushBack({ 55, 274, 27, 37 });
-	up.PushBack({ 90, 274, 27, 37 });
-	up.PushBack({ 126, 273, 26, 37 });
-	up.PushBack({ 161, 274, 28, 37 });
+	//Char Up anim
+	up.PushBack({ 186, 311, 26, 36 });
+	up.PushBack({ 220, 310, 27, 37 });
+	up.PushBack({ 255, 312, 26, 35 });
+	up.PushBack({ 289, 312, 26, 35 });
 	up.speed = 0.2f;
 
 	//char right
-	right.PushBack({ 92, 230, 28, 35 });
-	right.PushBack({ 128, 230, 27, 36 });
-	right.PushBack({ 165, 231, 30, 35 });
-	right.PushBack({ 202, 230, 28, 37 });
-	right.PushBack({ 55, 231, 29, 35 });
+	right.PushBack({ 19, 221, 28, 32 });
+	right.PushBack({ 58, 219, 25, 32 });
+	right.PushBack({ 95, 220, 27, 32 });
+	right.PushBack({ 135, 219, 25, 33 });
 	right.speed = 0.25f;
 
 	//char left
-	left.PushBack({ 166, 191, 29, 35 });
-	left.PushBack({ 131, 192, 28, 33 });
-	left.PushBack({ 93, 191, 28, 35 });
-	left.PushBack({ 55, 192, 29, 35 });
-	left.PushBack({ 18, 191, 27, 35 });
-	left.speed = 0.25f;*/
+	left.PushBack({ 186, 221, 25, 32 });
+	left.PushBack({ 223, 221, 28, 32 });
+	left.PushBack({ 260, 220, 25, 33 });
+	left.PushBack({ 297, 221, 25, 33 });
+	left.speed = 0.25f;
 
 	//char down
 	down.PushBack({ 19, 311, 27, 35 });
@@ -51,61 +46,65 @@ ModuleGreenBasic::ModuleGreenBasic()
 	down.PushBack({ 134, 315, 27, 31 });
 	down.speed = 0.2f;
 
-	/*//char left-up
-	left_up.PushBack({ 57, 93, 29, 36 });
-	left_up.PushBack({ 90, 93, 30, 37 });
-	left_up.PushBack({ 123, 92, 30, 37 });
-	left_up.PushBack({ 156, 91, 31, 35 });
-	left_up.PushBack({ 202, 190, 28, 36 });
+	//char left-up
+	left_up.PushBack({ 188, 172, 26, 35 });
+	left_up.PushBack({ 222, 172, 28, 35 });
+	left_up.PushBack({ 258, 170, 28, 34 });
+	left_up.PushBack({ 297, 170, 27, 33 });
 	left_up.speed = 0.2f;
 
 	// char left-down
-	left_down.PushBack({ 193, 90, 30, 37 });
-	left_down.PushBack({ 20, 372, 30, 37 });
-	left_down.PushBack({ 53, 374, 31, 38 });
-	left_down.PushBack({ 91, 374, 31, 39 });
-	left_down.PushBack({ 128, 376, 28, 37 });
+	left_down.PushBack({ 186, 265, 27, 33 });
+	left_down.PushBack({ 224, 265, 27, 34 });
+	left_down.PushBack({ 260, 264, 25, 34 });
+	left_down.PushBack({ 291, 265, 28, 34 });
 	left_down.speed = 0.2f;
 
 	// char right-down
-	right_down.PushBack({ 18, 41, 25, 38 });
-	right_down.PushBack({ 51, 44, 28, 38 });
-	right_down.PushBack({ 86, 45, 28, 37 });
-	right_down.PushBack({ 121, 45, 27, 37 });
-	right_down.PushBack({ 157, 46, 27, 37 });
+	right_down.PushBack({ 19, 265, 27, 34 });
+	right_down.PushBack({ 54, 266, 26, 33 });
+	right_down.PushBack({ 91, 266, 27, 33 });
+	right_down.PushBack({ 129, 266, 26, 35 });
 	right_down.speed = 0.2f;
 
 	// char right-up
-	right_up.PushBack({ 20, 329, 24, 37 });
-	right_up.PushBack({ 50, 326, 25, 38 });
-	right_up.PushBack({ 82, 325, 24, 36 });
-	right_up.PushBack({ 114, 323, 25, 37 });
+	right_up.PushBack({ 16, 173, 29, 34 });
+	right_up.PushBack({ 57, 173, 26, 34 });
+	right_up.PushBack({ 96, 173, 24, 33 });
+	right_up.PushBack({ 131, 171, 25, 36 });
 	right_up.speed = 0.2f;
 
 	// char die
-	
-	fall_hole.speed = 0.1f;
-	fall_hole.loop = false;
+	die.PushBack({ 3, 33, 41, 39 });
+	die.PushBack({ 54, 34, 39, 38 });
+	die.PushBack({ 106, 31, 44, 43 });
+	die.PushBack({ 163, 31, 39, 39 });
+	die.PushBack({ 214, 33, 30, 36 });
+	die.PushBack({ 259, 37, 24, 31 });
+	die.PushBack({ 293, 37, 16, 27 });
+	die.PushBack({ 319, 38, 11, 15 });
+	die.speed = 0.1f;
+	die.loop = false;
 
 	//laser 360º
-	laser_360.PushBack({ 55, 192, 29, 35 });  //-- left
-	laser_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
-	laser_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
-	laser_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
-	laser_360.PushBack({ 17, 273, 29, 38 });  //-- up
-	laser_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
-	laser_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
-	laser_360.PushBack({ 18, 230, 27, 36 });  //-- right-up
-	laser_360.PushBack({ 55, 231, 29, 35 });  //-- right
-	laser_360.PushBack({ 18, 139, 27, 37 });  //-- right-down
-	laser_360.PushBack({ 18, 139, 27, 37 });  //-- right-down
-	laser_360.PushBack({ 18, 139, 27, 37 });  //-- right-down*/
-	laser_360.PushBack({ 19, 311, 27, 35 });  //-- down
-	/*laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
-	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
-	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down*/
-	laser_360.speed = 0.6f;
-	laser_360.SetInitialFrame(DOWN);
+	move_360.PushBack({ 125, 81, 23, 33 });  //-- left
+	move_360.PushBack({ 185, 79, 24, 35 }); //-- left-up
+	move_360.PushBack({ 224, 77, 27, 35 }); //-- left-up
+	move_360.PushBack({ 263, 77, 26, 35 }); //-- left-up
+	move_360.PushBack({ 298, 76, 28, 35 });  //-- up
+	move_360.PushBack({ 300, 122, 28, 36 });  //-- right-up
+	move_360.PushBack({ 265, 123, 25, 35 });  //-- right-up
+	move_360.PushBack({ 229, 123, 21, 36 });  //-- right-up
+	move_360.PushBack({ 188, 124, 24, 35 });  //-- right
+	move_360.PushBack({ 125, 124, 26, 35 });  //-- right-down
+	move_360.PushBack({ 89, 126, 27, 35 });  //-- right-down
+	move_360.PushBack({ 52, 126, 29, 34 });  //-- right-down
+	move_360.PushBack({ 17, 125, 28, 35 });  //-- down
+	move_360.PushBack({ 19, 81, 26, 35 });  //-- left-down
+	move_360.PushBack({ 54, 80, 27, 36 });  //-- left-down
+	move_360.PushBack({ 90, 81, 26, 35 });  //-- left-down
+	move_360.speed = 0.6f;
+	move_360.SetInitialFrame(DOWN);
 
 }
 
@@ -116,17 +115,17 @@ ModuleGreenBasic::~ModuleGreenBasic()
 bool ModuleGreenBasic::Start()
 {
 	LOG("Loading player textures");
-	basic_green_tex = App->textures->Load("Sprites\Enemies\Level 1\Soldier Green.png");
-	current_animation = &up;
+	basic_green_tex = App->textures->Load("Sprites\Enemies\Level 1\Soldier_Green.png");
+	current_animation = &down;
 	bool ret = true;
-	weapon_anim = &laser_360;
-	direction = IDLE;
+	weapon_anim = &move_360;
+	direction = DOWN;
 	laser_p0 = &App->particles->basic_laser_p0;
 	shoot_start = &App->particles->shoot_start;
 	laser_end = &App->particles->laser_end;
-	ResetPosition();
+	//ResetPosition();
 
-	//GreenBasicCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, this);
+	GreenBasicCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, this);
 
 	return ret;
 }
@@ -136,7 +135,6 @@ bool ModuleGreenBasic::CleanUp(){
 	LOG("Player CleanUp--------");
 
 	dead = false;
-	fall_hole.Reset();
 
 	App->textures->Unload(basic_green_tex);
 
@@ -154,8 +152,9 @@ update_status ModuleGreenBasic::Update()
 
 	if (!dead){
 	}
+	position.y += speed;
 
-	//GreenBasicCollider->SetPos(position.x + 10, position.y + 20);
+	GreenBasicCollider->SetPos(position.x + 10, position.y + 20);
 
 
 	return UPDATE_CONTINUE;
@@ -378,19 +377,15 @@ Animation* ModuleGreenBasic::SelectAnimation(Direction direction){
 	return ret;
 }
 
-void ModuleGreenBasic::ResetPosition(){
+/*void ModuleGreenBasic::ResetPosition(){
 	position.x = 105;
-	position.y = 15308;
-}
+	position.y = 14000;
+}*/
 
 void ModuleGreenBasic::OnCollision(Collider* c1, Collider* c2) {
 	if (GreenBasicCollider == c1 && GreenBasicCollider != nullptr){
 		if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_PASS_BULLET){
 			position = PreviousPos;
-		}
-		if (c2->type == COLLIDER_HOLE){
-			dead = true;
-			current_animation = &fall_hole;
 		}
 	}
 }

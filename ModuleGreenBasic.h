@@ -43,8 +43,8 @@ public:
 	Animation left_down;
 	Animation right_up;
 	Animation right_down;
-	Animation fall_hole;
-	Animation laser_360;
+	Animation die;
+	Animation move_360;
 
 	Animation* current_animation = nullptr;
 	Animation* weapon_anim = nullptr;
