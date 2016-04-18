@@ -8,7 +8,6 @@
 #include "ModuleSceneLevels.h"
 #include "ModuleLevelsTop.h"
 #include "ModulePlayer.h"
-#include "ModuleGreenBasic.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
 #include "ModuleLoseScreen.h"
@@ -37,7 +36,6 @@ Application::Application()
 	modules[14] = levelstop = new ModuleLevelsTop();
 	modules[15] = collisions = new ModuleCollision;
 	modules[16] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
-
 	
 }	
 
@@ -53,7 +51,6 @@ bool Application::Init()
 
 	// Player will be enabled on the first update of a new scene
 	player->Disable();
-	basic_green_enemy->Disable();
 	// Disable the scenes that you do not start with
 	levels->Disable();
 	levelstop->Disable();
