@@ -11,11 +11,6 @@ struct Particle;
 class ModuleParticles;
 struct Collider;
 
-enum Direction{
-	IDLE = -1, LEFT, ANGLE_60, LEFT_UP, ANGLE_30, UP, ANGLE_330,
-	RIGHT_UP, ANGLE_300, RIGHT, ANGLE_240, RIGHT_DOWN,
-	ANGLE_210, DOWN, ANGLE_150, LEFT_DOWN, ANGLE_120 
-};
 
 enum Weapons{
 	LASER, MULTI, SUPERBALL, SUPERBURNER
