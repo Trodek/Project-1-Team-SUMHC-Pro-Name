@@ -11,6 +11,7 @@
 #include "ModuleWinScreen.h"
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
+#include "ModuleLevelsTop.h"
 
 ModuleSceneLevels::ModuleSceneLevels()
 {
@@ -84,6 +85,7 @@ bool ModuleSceneLevels::Start()
 	//Enable Player and Collisions
 	App->player->Enable();
 	App->collisions->Enable();
+	App->levelstop->Enable();
 
 	//Level2 boss
 	App->collisions->AddCollider({ 0, 6254, 92, 180 }, COLLIDER_WALL);
@@ -358,6 +360,8 @@ bool ModuleSceneLevels::CleanUp()
 	//Disable Collisions
 	App->collisions->Disable();
 	
+	App->levelstop->Disable();
+
 	//Stop audio
 	App->audio->StopAudio();
 	App->audio->UnloadMusic(level1_song);

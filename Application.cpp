@@ -6,9 +6,7 @@
 #include "ModuleSceneTitle.h"
 #include "ModuleWinScreen.h"
 #include "ModuleSceneLevels.h"
-#include "ModuleLevel1.h"
-#include "ModuleLevel2.h"
-#include "ModuleLevel3.h"
+#include "ModuleLevelsTop.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
@@ -29,16 +27,15 @@ Application::Application()
 	modules[5] = title = new ModuleSceneTitle();
 	modules[6] = continuescreen = new ModuleContinue();
 	modules[7] = levels = new ModuleSceneLevels();
-	modules[8] = level2 = new ModuleLevel2();
-	modules[9] = level1 = new ModuleLevel1();
-	modules[10] = winscreen = new ModuleWinScreen();
-	modules[11] = losescreen = new ModuleLoseScreen();
-	modules[12] = namescreen = new ModuleNameScreen();
-	modules[13] = scorescreen = new ModuleScoreScreen();
-	modules[14] = player = new ModulePlayer();
-	modules[15] = particles = new ModuleParticles();
-	modules[16] = collisions = new ModuleCollision;
-	modules[17] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
+	modules[8] = winscreen = new ModuleWinScreen();
+	modules[9] = losescreen = new ModuleLoseScreen();
+	modules[10] = namescreen = new ModuleNameScreen();
+	modules[11] = scorescreen = new ModuleScoreScreen();
+	modules[12] = player = new ModulePlayer();
+	modules[13] = particles = new ModuleParticles();
+	modules[14] = levelstop = new ModuleLevelsTop();
+	modules[15] = collisions = new ModuleCollision;
+	modules[16] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
 	
 }	
 
@@ -56,8 +53,7 @@ bool Application::Init()
 	player->Disable();
 	// Disable the scenes that you do not start with
 	levels->Disable();
-	level1->Disable();
-	level2->Disable();
+	levelstop->Disable();
 	winscreen->Disable();
 	losescreen->Disable();
 	namescreen->Disable();

@@ -80,9 +80,7 @@
     <ClInclude Include="ModuleContinue.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInput.h" />
-    <ClInclude Include="ModuleLevel1.h" />
-    <ClInclude Include="ModuleLevel2.h" />
-    <ClInclude Include="ModuleLevel3.h" />
+    <ClInclude Include="ModuleLevelsTop.h" />
     <ClInclude Include="ModuleLoseScreen.h" />
     <ClInclude Include="ModuleNameScreen.h" />
     <ClInclude Include="ModuleParticles.h" />
@@ -105,9 +103,7 @@
     <ClCompile Include="ModuleContinue.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
-    <ClCompile Include="ModuleLevel1.cpp" />
-    <ClCompile Include="ModuleLevel2.cpp" />
-    <ClCompile Include="ModuleLevel3.cpp" />
+    <ClCompile Include="ModuleLevelsTop.cpp" />
     <ClCompile Include="ModuleLoseScreen.cpp" />
     <ClCompile Include="ModuleNameScreen.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />

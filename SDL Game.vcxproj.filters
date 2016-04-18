@@ -92,17 +92,11 @@
     <ClInclude Include="ModuleCollision.h">
       <Filter>Modules\CoreModules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleLevel1.h">
-      <Filter>Modules\Levels</Filter>
-    </ClInclude>
     <ClInclude Include="dynArray.h">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleLevel2.h">
-      <Filter>Modules\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleLevel3.h">
-      <Filter>Modules\Levels</Filter>
+    <ClInclude Include="ModuleLevelsTop.h">
+      <Filter>Modules\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -163,14 +157,8 @@
     <ClCompile Include="ModuleCollision.cpp">
       <Filter>Modules\CoreModules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleLevel1.cpp">
-      <Filter>Modules\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleLevel2.cpp">
-      <Filter>Modules\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleLevel3.cpp">
-      <Filter>Modules\Levels</Filter>
+    <ClCompile Include="ModuleLevelsTop.cpp">
+      <Filter>Modules\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
