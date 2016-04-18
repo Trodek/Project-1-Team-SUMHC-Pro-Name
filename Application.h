@@ -24,6 +24,7 @@ class Module;
 class ModuleLevel1;
 class ModuleLevel2;
 class ModuleLevel3;
+class ModuleSceneLevels;
 
 
 
@@ -39,6 +40,7 @@ public:
 	ModuleTextures* textures;
 	ModuleSceneTitle* title;
 	ModuleLevel3* level3;
+	ModuleSceneLevels* levels;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
 	ModuleAudio* audio;

@@ -5,6 +5,7 @@
 #include "ModuleTextures.h"
 #include "ModuleSceneTitle.h"
 #include "ModuleWinScreen.h"
+#include "ModuleSceneLevels.h"
 #include "ModuleLevel1.h"
 #include "ModuleLevel2.h"
 #include "ModuleLevel3.h"
@@ -27,7 +28,7 @@ Application::Application()
 	modules[4] = audio = new ModuleAudio(); // audio must be befor all the scenes
 	modules[5] = title = new ModuleSceneTitle();
 	modules[6] = continuescreen = new ModuleContinue();
-	modules[7] = level3 = new ModuleLevel3();
+	modules[7] = levels = new ModuleSceneLevels();
 	modules[8] = level2 = new ModuleLevel2();
 	modules[9] = level1 = new ModuleLevel1();
 	modules[10] = winscreen = new ModuleWinScreen();
@@ -54,7 +55,7 @@ bool Application::Init()
 	// Player will be enabled on the first update of a new scene
 	player->Disable();
 	// Disable the scenes that you do not start with
-	level3->Disable();
+	levels->Disable();
 	level1->Disable();
 	level2->Disable();
 	winscreen->Disable();

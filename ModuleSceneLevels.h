@@ -23,7 +23,9 @@ public:
 
 public:
 
-	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphics_l1 = nullptr;
+	SDL_Texture* graphics_l2 = nullptr;
+	SDL_Texture* graphics_l3 = nullptr;
 	SDL_Texture* lava = nullptr;
 	SDL_Texture* on_bg = nullptr;
 	SDL_Texture* sublighttex = nullptr;
@@ -31,7 +33,9 @@ public:
 	Animation lavaanim;
 	Animation sublightanim;
 	Animation lights;
-	SDL_Rect map;
+	SDL_Rect level1;
+	SDL_Rect level2;
+	SDL_Rect level3;
 	float camera_y;
 
 	Mix_Music* level1_song;

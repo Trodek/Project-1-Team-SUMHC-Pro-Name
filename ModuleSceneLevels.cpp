@@ -14,11 +14,23 @@
 
 ModuleSceneLevels::ModuleSceneLevels()
 {
-	// map
-	map.x = 0;
-	map.y = 0;
-	map.w = 240;
-	map.h = 15383;
+	// level1
+	level1.x = 0;
+	level1.y = 0;
+	level1.w = 240;
+	level1.h = 3927;
+
+	//level2
+	level2.x = 0;
+	level2.y = 0;
+	level2.w = 240;
+	level2.h = 5441;
+
+	//level3
+	level3.x = 0;
+	level3.y = 0;
+	level3.w = 240;
+	level3.h = 6855;
 
 	//set start point camera
 	camera_y = -15063;
@@ -55,10 +67,15 @@ bool ModuleSceneLevels::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
+
+	App->current_level = this;
+
 	on_bg = App->textures->Load("Sprites/Map/MAP LAYER ON.png");
 	lava = App->textures->Load("Sprites/Map/lava.png");
 	sublighttex = App->textures->Load("Sprites/Map/sublights.png");
-	graphics = App->textures->Load("Sprites/Map/Map.png");
+	graphics_l1 = App->textures->Load("Sprites/Map/level1.png");
+	graphics_l2 = App->textures->Load("Sprites/Map/level2.png");
+	graphics_l3 = App->textures->Load("Sprites/Map/level3.png");
 	
 	level1_song = App->audio->LoadMusic("Sounds/Music/level1.ogg");
 	level2_song = App->audio->LoadMusic("Sounds/Music/level2.ogg");
@@ -328,7 +345,9 @@ bool ModuleSceneLevels::CleanUp()
 	LOG("Unloading Levels stage");
 
 	// Unload textures
-	App->textures->Unload(graphics);
+	App->textures->Unload(graphics_l1);
+	App->textures->Unload(graphics_l2);
+	App->textures->Unload(graphics_l3);
 	App->textures->Unload(on_bg);
 	App->textures->Unload(lava);
 	App->textures->Unload(sublighttex);
@@ -366,7 +385,9 @@ update_status ModuleSceneLevels::Update()
 	// Draw everything --------------------------------------
 	App->render->Blit(lava, 0, 0, &lavaanim.GetCurrentFrame());
 	App->render->Blit(sublighttex, 0, 0, &sublightanim.GetCurrentFrame());
-	App->render->Blit(graphics, 0, 0, &map); // Map
+	App->render->Blit(graphics_l3, 0, 0, &level3); // Map
+	App->render->Blit(graphics_l2, 0, 6435, &level2);
+	App->render->Blit(graphics_l1, 0, 11456, &level1);
 	App->render->Blit(on_bg, 0, 0, &lights.GetCurrentFrame());
 
 
