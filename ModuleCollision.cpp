@@ -221,8 +221,8 @@ void ModuleCollision::DebugDraw()
 			App->render->DrawQuad(colliders[i]->rect, 127, 201, 22, alpha);
 			break;
 			case COLLIDER_PLAYER_EBULLETS: // lavander
-				App->render->DrawQuad(colliders[i]->rect, 228, 23, 197, alpha);
-				break;
+			App->render->DrawQuad(colliders[i]->rect, 228, 23, 197, alpha);
+			break;
 		}
 	}
 }
