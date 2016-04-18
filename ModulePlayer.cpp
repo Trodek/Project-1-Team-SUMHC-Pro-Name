@@ -232,6 +232,8 @@ bool ModulePlayer::Start()
 	ResetPosition();
 
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
+	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 29, 33 }, COLLIDER_PLAYER_EBULLETS, this);
+	BombCollider = App->collisions->AddCollider({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }, COLLIDER_BOMB, this);
 
 	return ret;
 }
@@ -255,8 +257,6 @@ update_status ModulePlayer::Update()
 	PreviousPos = position;
 	int speed = 2;
 	now = SDL_GetTicks();
-
-	LOG("Camera.y = %d.", App->render->camera.y);
 
 	if (!dead){
 
@@ -303,8 +303,8 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 			direction = UP;
 			current_animation = SelectAnimation(direction);
-			if ((App->render->camera.y / 3 - 200) + (position.y) < 0){
-				App->render->camera.y += 6; // = to character speed
+			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y<0){
+				App->render->camera.y += 6; 
 				position.y -= speed;
 			}
 			else
@@ -389,14 +389,6 @@ update_status ModulePlayer::Update()
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
 			direction = IDLE;
-			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
-				direction = LEFT_DOWN;
-				current_animation = SelectAnimation(direction);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
-				direction = RIGHT_DOWN;
-				current_animation = SelectAnimation(direction);
-			}
 		}
 
 		if (direction != IDLE){
@@ -409,6 +401,7 @@ update_status ModulePlayer::Update()
 		if (bomb_pressed){
 			if (!bomb.Finished()){
 				App->render->Blit(bomb_tex, 0, -App->render->camera.y / 3, &(bomb.GetCurrentFrame()));
+				BombCollider->SetPos(App->render->camera.x/3, App->render->camera.y/3);
 			}
 			else{
 				bomb_pressed = false;
@@ -420,14 +413,13 @@ update_status ModulePlayer::Update()
 	else{
 		if (fall_hole.Finished()){
 			App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
-			App->render->camera.y = 0;
 		}
 		else
 			App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	}
 
 	PlayerCollider->SetPos(position.x+10, position.y+20);
-
+	PlayerEBulletsCollider->SetPos(position.x , position.y);
 	
 	return UPDATE_CONTINUE;
 }

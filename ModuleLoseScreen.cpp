@@ -33,7 +33,6 @@ bool ModuleLoseScreen::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/Ui/ui_gameover2.png");
 
-	App->player->Disable();
 	born = SDL_GetTicks();
 	// Load and Play gameover audio
 	gameover_song = App->audio->LoadMusic("Sounds/Music/gameover.ogg");
