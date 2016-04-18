@@ -44,10 +44,10 @@ ModuleSceneLevels::ModuleSceneLevels()
 	lights.PushBack({ 256, 0, 256, 15383 });
 	lights.speed = 0.03f;
 	// Lava
-	lavaanim.PushBack({ 0, 0, 256, 15383 });
-	lavaanim.PushBack({ 256, 0, 256, 15383 });
-	lavaanim.PushBack({ 512, 0, 256, 15383 });
-	lavaanim.speed = 0.03f;
+	lavaanim.PushBack({ 0, 0, 256, 830 });
+	lavaanim.PushBack({ 256, 0, 256, 830 });
+	lavaanim.PushBack({ 512, 0, 256, 830 });
+	lavaanim.speed = 0.01f;
 	
 	
 }
@@ -71,7 +71,7 @@ bool ModuleSceneLevels::Start()
 	App->current_level = this;
 
 	on_bg = App->textures->Load("Sprites/Map/MAP LAYER ON.png");
-	lava = App->textures->Load("Sprites/Map/lava.png");
+	lava = App->textures->Load("Sprites/Map/lava_anim.png");
 	sublighttex = App->textures->Load("Sprites/Map/sublights.png");
 	graphics_l1 = App->textures->Load("Sprites/Map/level1.png");
 	graphics_l2 = App->textures->Load("Sprites/Map/level2.png");
@@ -384,6 +384,10 @@ update_status ModuleSceneLevels::Update()
 	}
 	// Draw everything --------------------------------------
 	App->render->Blit(lava, 0, 0, &lavaanim.GetCurrentFrame());
+	App->render->Blit(lava, 0, 830, &lavaanim.GetCurrentFrame());
+	App->render->Blit(lava, 0, 2896, &lavaanim.GetCurrentFrame());
+	App->render->Blit(lava, 0, 5156, &lavaanim.GetCurrentFrame());
+
 	App->render->Blit(sublighttex, 0, 0, &sublightanim.GetCurrentFrame());
 	App->render->Blit(graphics_l3, 0, 0, &level3); // Map
 	App->render->Blit(graphics_l2, 0, 6435, &level2);
