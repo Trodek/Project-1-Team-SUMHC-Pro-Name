@@ -20,6 +20,14 @@ public:
 	bool CleanUp();
 
 	void SetGameStartConditions();
+	void UpdateCreditnum();
+	void UpdateScorenums();
+	void UpdateTopScorenums();
+	SDL_Rect* GetCorrectNum(const int& num);
+	void DrawPlayerScore();
+	void DrawTopScore();
+	void AddCoin();
+	void SubCoin();
 
 public:
 
@@ -29,6 +37,7 @@ public:
 	int energy=0;
 	int max_energy = 36;
 	int bombs=0;
+	int credit=0;
 
 	int top_score = 200000;
 
@@ -76,7 +85,15 @@ public:
 	SDL_Rect* score100000 = nullptr;
 	SDL_Rect* score1000000 = nullptr;
 	SDL_Rect* lives_num = nullptr;
-	SDL_Rect* p2_score;
+	SDL_Rect* p2_score = nullptr;
+
+	SDL_Rect* topscore1 = nullptr;
+	SDL_Rect* topscore10 = nullptr;
+	SDL_Rect* topscore100 = nullptr;
+	SDL_Rect* topscore1000 = nullptr;
+	SDL_Rect* topscore10000 = nullptr;
+	SDL_Rect* topscore100000 = nullptr;
+	SDL_Rect* topscore1000000 = nullptr;
 
 	SDL_Rect credits;
 	SDL_Rect c0;
@@ -90,7 +107,7 @@ public:
 	SDL_Rect c8;
 	SDL_Rect c9;
 
-	SDL_Rect* c_num;
+	SDL_Rect* c_num = nullptr;
 
 };
 

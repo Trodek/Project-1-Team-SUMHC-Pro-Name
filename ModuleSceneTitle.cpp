@@ -10,6 +10,7 @@
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
 #include "ModuleSceneLevels.h"
+#include "ModuleUI.h"
 
 
 ModuleSceneTitle::ModuleSceneTitle()
@@ -54,9 +55,13 @@ update_status ModuleSceneTitle::Update()
 	App->render->Blit(graphics, 0, 0, &title_screen, 0.75f); // background
 	
 	// swap Scene
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
+		//App->ui->game = true;
+		App->ui->SubCoin();
 	}
+	
+
 
 	return UPDATE_CONTINUE;
 }

@@ -127,10 +127,10 @@ ModuleUI::ModuleUI(){
 	top.h = 7;
 
 	//bomb
-	top.x = 213;
-	top.y = 32;
-	top.w = 8;
-	top.h = 16;
+	bomb.x = 213;
+	bomb.y = 32;
+	bomb.w = 8;
+	bomb.h = 16;
 
 	//credits
 	credits.x = 94;
@@ -198,20 +198,41 @@ bool ModuleUI::Start(){
 	score1 = &num0;
 	c_num = &c0;
 	p2_score = &num0;
+	UpdateTopScorenums();
 	return true;
 }
 
 bool ModuleUI::CleanUp(){
+
+	App->textures->Unload(ui_graphics);
+
 	return true;
 }
 
 update_status ModuleUI::Update(){
 
-	if (game){
+	if (App->input->keyboard[SDL_SCANCODE_5] == KEY_STATE::KEY_DOWN){
+		App->ui->AddCoin();
+	}
 
+	if (game){
+		UpdateScorenums();
 	}
 	else{
+		UpdateCreditnum();
 
+		//Draw Stuff
+		App->render->Blit(ui_graphics, 18, (-App->render->camera.y) / SCREEN_SIZE + 1, &player1_static);//player1
+		DrawPlayerScore(); //player score
+
+		App->render->Blit(ui_graphics, 158, (-App->render->camera.y) / SCREEN_SIZE + 1, &player2_title);//player2
+		App->render->Blit(ui_graphics, 206, (-App->render->camera.y) / SCREEN_SIZE + 9, p2_score);//p2 score
+
+		App->render->Blit(ui_graphics, 100, (-App->render->camera.y) / SCREEN_SIZE + 1, &top);//top
+		DrawTopScore(); //top score
+
+		App->render->Blit(ui_graphics, 84, (-App->render->camera.y) / SCREEN_SIZE + 305, &credits);//credits
+		App->render->Blit(ui_graphics, 140, (-App->render->camera.y) / SCREEN_SIZE + 305, c_num);//credit number
 	}
 
 	return UPDATE_CONTINUE;
@@ -228,4 +249,179 @@ void ModuleUI::SetGameStartConditions(){
 	game = true;
 	lives_num = &lives2;
 
+}
+
+void ModuleUI::UpdateScorenums(){
+	int tempscore = score;
+	score1 = GetCorrectNum(tempscore%10);
+	tempscore /= 10;
+	if (tempscore >= 10){
+		score10 = GetCorrectNum(tempscore % 10);
+		tempscore /= 10;
+		if (tempscore >= 100){
+			score100 = GetCorrectNum(tempscore % 10);
+			tempscore /= 10;
+			if (tempscore >= 1000){
+				score1000 = GetCorrectNum(tempscore % 10);
+				tempscore /= 10;
+				if (tempscore >= 10000){
+					score10000 = GetCorrectNum(tempscore % 10);
+					tempscore /= 10;
+					if (tempscore >= 100000){
+						score100000 = GetCorrectNum(tempscore % 10);
+						tempscore /= 10;
+						if (tempscore>=1000000)
+							score1000000 = GetCorrectNum(tempscore % 10);
+					}
+				}
+			}
+		}
+	}
+}
+
+void ModuleUI::UpdateTopScorenums(){
+	int tempscore = top_score;
+	topscore1 = GetCorrectNum(tempscore % 10);
+	tempscore /= 10;
+	topscore10 = GetCorrectNum(tempscore % 10);
+	tempscore /= 10;
+	topscore100 = GetCorrectNum(tempscore % 10);
+	tempscore /= 10;
+	topscore1000 = GetCorrectNum(tempscore % 10);
+	tempscore /= 10;
+	topscore10000 = GetCorrectNum(tempscore % 10);
+	tempscore /= 10;
+	topscore100000 = GetCorrectNum(tempscore % 10);
+	tempscore /= 10;
+	if (tempscore>=100000)
+		topscore1000000 = GetCorrectNum(tempscore % 10);
+}
+
+void ModuleUI::UpdateCreditnum(){
+	switch (credit)
+	{
+	case 0:
+		c_num = &c0;
+		break;
+	case 1:
+		c_num = &c1;
+		break;
+	case 2:
+		c_num = &c2;
+		break;
+	case 3:
+		c_num = &c3;
+		break;
+	case 4:
+		c_num = &c4;
+		break;
+	case 5:
+		c_num = &c5;
+		break;
+	case 6:
+		c_num = &c6;
+		break;
+	case 7:
+		c_num = &c7;
+		break;
+	case 8:
+		c_num = &c8;
+		break;
+	case 9:
+		c_num = &c9;
+		break;
+
+	}
+}
+
+SDL_Rect* ModuleUI::GetCorrectNum(const int& num){
+	switch (num)
+	{
+	case 0:
+		return &num0;
+		break;
+	case 1:
+		return &num1;
+		break;
+	case 2:
+		return &num2;
+		break;
+	case 3:
+		return &num3;
+		break;
+	case 4:
+		return &num4;
+		break;
+	case 5:
+		return &num5;
+		break;
+	case 6:
+		return &num6;
+		break;
+	case 7:
+		return &num7;
+		break;
+	case 8:
+		return &num8;
+		break;
+	case 9:
+		return &num9;
+		break;
+	}
+}
+
+void ModuleUI::DrawPlayerScore(){
+	if (score1 != nullptr){
+		App->render->Blit(ui_graphics, 66, (-App->render->camera.y) / SCREEN_SIZE + 9, score1);
+		if (score10 != nullptr){
+			App->render->Blit(ui_graphics, 58, (-App->render->camera.y) / SCREEN_SIZE + 9, score10);
+			if (score100 != nullptr){
+				App->render->Blit(ui_graphics, 50, (-App->render->camera.y) / SCREEN_SIZE + 9, score100);
+				if (score1000 != nullptr){
+					App->render->Blit(ui_graphics, 42, (-App->render->camera.y) / SCREEN_SIZE + 9, score1000);
+					if (score10000 != nullptr){
+						App->render->Blit(ui_graphics, 36, (-App->render->camera.y) / SCREEN_SIZE + 9, score10000);
+						if (score100000 != nullptr){
+							App->render->Blit(ui_graphics, 28, (-App->render->camera.y) / SCREEN_SIZE + 9, score100000);
+							if (score1000000 != nullptr){
+								App->render->Blit(ui_graphics, 20, (-App->render->camera.y) / SCREEN_SIZE + 9, score1000000);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+void ModuleUI::DrawTopScore(){
+	if (topscore1 != nullptr){
+		App->render->Blit(ui_graphics, 132, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore1);
+		if (topscore10 != nullptr){
+			App->render->Blit(ui_graphics, 124, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore10);
+			if (topscore100 != nullptr){
+				App->render->Blit(ui_graphics, 116, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore100);
+				if (topscore1000 != nullptr){
+					App->render->Blit(ui_graphics, 108, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore1000);
+					if (topscore10000 != nullptr){
+						App->render->Blit(ui_graphics, 100, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore10000);
+						if (topscore100000 != nullptr){
+							App->render->Blit(ui_graphics, 92, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore100000);
+							if (topscore1000000 != nullptr){
+								App->render->Blit(ui_graphics, 84, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore1000000);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+void ModuleUI::AddCoin(){
+	if (credit<9) credit++;
+}
+
+void ModuleUI::SubCoin(){
+	if(credit>0) credit--;
 }
