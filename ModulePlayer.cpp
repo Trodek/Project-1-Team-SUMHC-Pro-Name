@@ -9,6 +9,7 @@
 #include "ModuleCollision.h"
 #include "ModuleSceneLevels.h"
 #include "SDL/include/SDL_timer.h"
+#include "ModuleBomb.h"
 
 #define nullrect {0,0,0,0} 
 #define laserbox_p0 {0,0,4,4}
@@ -296,7 +297,7 @@ update_status ModulePlayer::Update()
 
 		//Special attack key
 		if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN){
-			bomb_pressed = true;
+			App->bomb->pressed = true;
 		}
 
 		// W key
@@ -397,17 +398,6 @@ update_status ModulePlayer::Update()
 			else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 		}
 		else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
-
-		if (bomb_pressed){
-			if (!bomb.Finished()){
-				App->render->Blit(bomb_tex, 0, -App->render->camera.y / 3, &(bomb.GetCurrentFrame()));
-				BombCollider->SetPos(App->render->camera.x/3, App->render->camera.y/3);
-			}
-			else{
-				bomb_pressed = false;
-				bomb.Reset();
-			}
-		}
 
 	}
 	else{

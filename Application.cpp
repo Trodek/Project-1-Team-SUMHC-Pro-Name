@@ -17,6 +17,7 @@
 #include "ModuleParticles.h"
 #include "ModuleContinue.h"
 #include "ModuleCollision.h"
+#include "ModuleBomb.h"
 
 Application::Application()
 {
@@ -37,7 +38,8 @@ Application::Application()
 	modules[14] = particles = new ModuleParticles();
 	modules[15] = levelstop = new ModuleLevelsTop();
 	modules[16] = collisions = new ModuleCollision;
-	modules[17] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
+	modules[17] = bomb = new ModuleBomb();
+	modules[18] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
 	
 }	
 
