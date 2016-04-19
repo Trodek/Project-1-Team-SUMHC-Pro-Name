@@ -28,7 +28,7 @@ bool ModuleNameScreen::Start()
 {
 	LOG("Loading name Screen");
 	bool ret = true;
-	graphics = App->textures->Load("Sprites/Ui/ui_savescore2.png");
+	graphics = App->textures->Load("OutZone/Sprites/Ui/ui_savescore2.png");
 
 
 	return true;

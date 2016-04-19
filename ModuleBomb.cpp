@@ -50,7 +50,7 @@ bool ModuleBomb::Start()
 {
 	LOG("Loading Bomb");
 	bool ret = true;
-	bombtex = App->textures->Load("Sprites/Weapon Shots/bomb.png");
+	bombtex = App->textures->Load("OutZone/Sprites/Weapon Shots/bomb.png");
 
 	return true;
 }

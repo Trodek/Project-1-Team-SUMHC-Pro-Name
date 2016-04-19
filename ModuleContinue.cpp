@@ -33,8 +33,8 @@ bool ModuleContinue::Start()
 
 	born = SDL_GetTicks();
 
-	continue_song = App->audio->LoadMusic("Sounds/Music/continue.ogg");
-	graphics = App->textures->Load("Sprites/UI/ui_continue_small.png");
+	continue_song = App->audio->LoadMusic("OutZone/Sounds/Music/continue.ogg");
+	graphics = App->textures->Load("OutZone/Sprites/UI/ui_continue_small.png");
 	App->audio->PlayMusic(continue_song, ONCE);
 
 	return true;

@@ -72,16 +72,16 @@ bool ModuleSceneLevels::Start()
 
 	App->current_level = this;
 
-	on_bg = App->textures->Load("Sprites/Map/MAP LAYER ON.png");
-	lava = App->textures->Load("Sprites/Map/lava_anim.png");
-	sublighttex = App->textures->Load("Sprites/Map/sublights.png");
-	graphics_l1 = App->textures->Load("Sprites/Map/level1.png");
-	graphics_l2 = App->textures->Load("Sprites/Map/level2.png");
-	graphics_l3 = App->textures->Load("Sprites/Map/level3.png");
+	on_bg = App->textures->Load("OutZone/Sprites/Map/MAP LAYER ON.png");
+	lava = App->textures->Load("OutZone/Sprites/Map/lava_anim.png");
+	sublighttex = App->textures->Load("OutZone/Sprites/Map/sublights.png");
+	graphics_l1 = App->textures->Load("OutZone/Sprites/Map/level1.png");
+	graphics_l2 = App->textures->Load("OutZone/Sprites/Map/level2.png");
+	graphics_l3 = App->textures->Load("OutZone/Sprites/Map/level3.png");
 	
-	level1_song = App->audio->LoadMusic("Sounds/Music/level1.ogg");
-	level2_song = App->audio->LoadMusic("Sounds/Music/level2.ogg");
-	level3_song = App->audio->LoadMusic("Sounds/Music/level3.ogg");
+	level1_song = App->audio->LoadMusic("OutZone/Sounds/Music/level1.ogg");
+	level2_song = App->audio->LoadMusic("OutZone/Sounds/Music/level2.ogg");
+	level3_song = App->audio->LoadMusic("OutZone/Sounds/Music/level3.ogg");
 
 	//Enable Player and Collisions
 	App->player->Enable();

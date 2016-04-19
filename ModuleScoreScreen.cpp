@@ -28,7 +28,7 @@ bool ModuleScoreScreen::Start()
 {
 	LOG("Loading score Screen");
 	bool ret = true;
-	graphics = App->textures->Load("Sprites/Ui/ui_score2.png");
+	graphics = App->textures->Load("OutZone/Sprites/Ui/ui_score2.png");
 
 	return true;
 }

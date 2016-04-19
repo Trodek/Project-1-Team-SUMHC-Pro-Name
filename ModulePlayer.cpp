@@ -220,9 +220,9 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
-	main_char_tex = App->textures->Load("Sprites/Main Char/Main_moves.png");
-	bomb_tex = App->textures->Load("Sprites/Weapon Shots/bomb.png");
-	dead_explo_text = App->textures->Load("Sprites/Main Char/Dead_char_explosion.png"); 
+	main_char_tex = App->textures->Load("OutZone/Sprites/Main Char/Main_moves.png");
+	bomb_tex = App->textures->Load("OutZone/Sprites/Weapon Shots/bomb.png");
+	dead_explo_text = App->textures->Load("OutZone/Sprites/Main Char/Dead_char_explosion.png"); 
 	bomb_pressed = false;
 	current_animation = &up;
 	bool ret = true;

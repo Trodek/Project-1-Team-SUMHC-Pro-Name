@@ -30,7 +30,7 @@ bool ModuleSceneTitle::Start()
 {
 	LOG("Loading Title scene");
 	
-	graphics = App->textures->Load("Sprites/UI/ui_maintitle.png");
+	graphics = App->textures->Load("OutZone/Sprites/UI/ui_maintitle.png");
 	App->player->Disable();
 	App->green_basic_enemy->Disable();
 	

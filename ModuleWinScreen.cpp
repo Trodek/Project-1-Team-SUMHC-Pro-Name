@@ -29,7 +29,7 @@ bool ModuleWinScreen::Start()
 {
 	LOG("Loading Win Screen");
 	bool ret = true;
-	graphics = App->textures->Load("Sprites/UI/ui_endgame2.png");
+	graphics = App->textures->Load("OutZone/Sprites/UI/ui_endgame2.png");
 
 	born = SDL_GetTicks();
 

@@ -31,11 +31,11 @@ bool ModuleLoseScreen::Start()
 {
 	LOG("Loading Lose Screen");
 	bool ret = true;
-	graphics = App->textures->Load("Sprites/Ui/ui_gameover2.png");
+	graphics = App->textures->Load("OutZone/Sprites/Ui/ui_gameover2.png");
 
 	born = SDL_GetTicks();
 	// Load and Play gameover audio
-	gameover_song = App->audio->LoadMusic("Sounds/Music/gameover.ogg");
+	gameover_song = App->audio->LoadMusic("OutZone/Sounds/Music/gameover.ogg");
 	App->audio->PlayMusic(gameover_song, ONCE);
 
 	return true;

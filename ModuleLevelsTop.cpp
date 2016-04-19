@@ -28,9 +28,9 @@ ModuleLevelsTop::~ModuleLevelsTop(){}
 
 bool ModuleLevelsTop::Start(){
 
-	level1_top = App->textures->Load("Sprites/Map/level1_top.png");
-	level2_top = App->textures->Load("Sprites/Map/level2_top.png");
-	level3_top = App->textures->Load("Sprites/Map/level3_top.png");
+	level1_top = App->textures->Load("OutZone/Sprites/Map/level1_top.png");
+	level2_top = App->textures->Load("OutZone/Sprites/Map/level2_top.png");
+	level3_top = App->textures->Load("OutZone/Sprites/Map/level3_top.png");
 
 	return true;
 }
