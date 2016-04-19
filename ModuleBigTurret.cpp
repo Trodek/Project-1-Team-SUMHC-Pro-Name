@@ -15,16 +15,11 @@
 
 ModuleBigTurret::ModuleBigTurret()
 {
-	position.x = 120;
-	position.y = 14000;
+	position.x = 0;
+	position.y = 13704;
 
 	//Turret idle anim
 	idle.PushBack({ 16, 24, 63, 64 });
-	
-	//Shoot Bullet anim
-	bullet.PushBack({ 4, 98, 30, 31 });
-	bullet.PushBack({ 43, 107, 14, 14 });
-	bullet.PushBack({ 66, 106, 14, 14 });
 
 }
 
@@ -38,8 +33,9 @@ bool ModuleBigTurret::Start()
 	big_turret_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/big turret.png");
 	bool ret = true;
 	current_animation = &idle;
-	laser_p0 = &App->particles->basic_laser_p0;
-	shoot_start = &App->particles->shoot_start;
+	turret_bullet = &App->particles->big_turret_bullet;
+	shoot_start = &App->particles->big_turret_bullet_start;
+	//laser_p0 = &App->particles->basic_laser_p0;
 
 	big_turret_collider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, this);
 
@@ -65,6 +61,11 @@ update_status ModuleBigTurret::Update()
 
 	if (!dead){
 		App->render->Blit(big_turret_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
+
+		App->particles->SetParticleSpeed(turret_bullet, 3.53f, 3.53f);
+		App->particles->SetColliderCorrection(turret_bullet, 4, 10);
+		App->particles->AddParticle(*turret_bullet, position.x + 20, position.y + 17, turret_bullet->collider, laserbox_p0, 135);
+		App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);
 	}
 	else{
 		

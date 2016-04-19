@@ -55,6 +55,7 @@ private:
 
 	SDL_Texture* basic_laser_tex = nullptr;
 	SDL_Texture* multi_laser_tex = nullptr;
+	SDL_Texture* big_turret_bullet_tex = nullptr;
 	Particle* active[MAX_ACTIVE_PARTICLES];
 	uint last_particle = 0;
 
@@ -72,6 +73,8 @@ public:
 	Particle multi_start;
 	Particle multi_end;
 	
+	Particle big_turret_bullet;
+	Particle big_turret_bullet_start;
 };
 
 #endif // __MODULEPARTICLES_H__

@@ -35,7 +35,8 @@ public:
 
 	Animation* current_animation = nullptr;
 
-	Particle* laser_p0 = nullptr;
+	Particle* turret_bullet = nullptr;
+	Particle* laser_p0;
 	Particle* shoot_start = nullptr;
 
 	Collider* big_turret_collider;

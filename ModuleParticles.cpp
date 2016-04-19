@@ -26,6 +26,7 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	basic_laser_tex = App->textures->Load("OutZone/Sprites/Main Char/Weapons/basic laser.png");
 	multi_laser_tex = App->textures->Load("OutZone/Sprites/Main Char/Weapons/multi laser.png");
+	big_turret_bullet_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/big turret.png");
 
 	// laser particles and sound
 	
@@ -107,6 +108,22 @@ bool ModuleParticles::Start()
 	multi_end.anim.speed = 0.3f;
 	multi_end.tex = multi_laser_tex;
 	multi_end.collider = COLLIDER_NONE;
+
+	//big turret bullet particles
+	big_turret_bullet.anim.PushBack({ 43, 107, 14, 14 });
+	big_turret_bullet.anim.PushBack({ 66, 106, 14, 14 });
+	big_turret_bullet.anim.loop = true;
+	big_turret_bullet.anim.speed = 0.3f;
+	big_turret_bullet.life = 1000;
+	big_turret_bullet.tex = big_turret_bullet_tex;
+	big_turret_bullet.collider = COLLIDER_ENEMY_SHOT;
+
+	big_turret_bullet_start.anim.PushBack({ 4, 98, 30, 31 });
+	big_turret_bullet_start.anim.loop = false;
+	big_turret_bullet_start.anim.speed = 0.3f;
+	big_turret_bullet_start.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/3-gun shoot.wav");
+	big_turret_bullet_start.tex = big_turret_bullet_tex;
+	big_turret_bullet_start.collider = COLLIDER_NONE;
 
 	return true;
 }
