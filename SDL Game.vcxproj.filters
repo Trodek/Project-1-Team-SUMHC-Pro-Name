@@ -67,6 +67,9 @@
     <ClCompile Include="ModuleBomb.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleUI.cpp">
+      <Filter>Modules\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -147,6 +150,9 @@
     <ClInclude Include="ModuleBomb.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleUI.h">
+      <Filter>Modules\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Containers">
@@ -169,6 +175,9 @@
     </Filter>
     <Filter Include="Modules\Enemies">
       <UniqueIdentifier>{a43ad7a4-d02d-4ccb-98ac-4da46f0746ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\UI">
+      <UniqueIdentifier>{8f4d430e-20fc-4340-8a58-4cb4f15c18da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
