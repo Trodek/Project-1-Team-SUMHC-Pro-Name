@@ -226,6 +226,8 @@ bool ModulePlayer::Start()
 	bomb_pressed = false;
 	current_animation = &up;
 	bool ret = true;
+	dead = false;
+	dead_fall = false;
 	weapon_anim = &laser_360;
 	multi_360.SetInitialFrame(UP);
 	current_weapon = LASER;
@@ -415,11 +417,20 @@ update_status ModulePlayer::Update()
 
 	}
 	else{
-		if (fall_hole.Finished() || dead_explo.Finished()){
-			App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
+		if (dead_fall){
+			if (fall_hole.Finished()){
+				App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
+			}
+			else
+				App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 		}
-		else
-			App->render->Blit(dead_explo_text, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		else{
+			if (dead_explo.Finished()){
+				App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
+			}
+			else
+				App->render->Blit(dead_explo_text, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		}
 	}
 
 	PlayerCollider->SetPos(position.x+10, position.y+20);
@@ -989,6 +1000,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		}
 		if (c2->type == COLLIDER_HOLE){
 			dead = true;
+			dead_fall = true;
 			current_animation = &fall_hole;
 		}
 		if (c2->type == COLLIDER_ENEMY){
