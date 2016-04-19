@@ -7,6 +7,8 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleGreenBasic.h"
+#include "ModuleTruck.h"
+#include "ModuleBigTurret.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleWinScreen.h"
@@ -88,6 +90,8 @@ bool ModuleSceneLevels::Start()
 	App->collisions->Enable();
 	App->levelstop->Enable();
 	App->green_basic_enemy->Enable();
+	App->enemy_truck->Enable();
+	App->enemy_big_turret->Enable();
 
 
 	//Level2 boss

@@ -9,6 +9,8 @@
 #include "ModuleLevelsTop.h"
 #include "ModulePlayer.h"
 #include "ModuleGreenBasic.h"
+#include "ModuleBigTurret.h"
+#include "ModuleTruck.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
 #include "ModuleLoseScreen.h"
@@ -35,11 +37,13 @@ Application::Application()
 	modules[11] = scorescreen = new ModuleScoreScreen();
 	modules[12] = player = new ModulePlayer();
 	modules[13] = green_basic_enemy = new ModuleGreenBasic();
-	modules[14] = particles = new ModuleParticles();
-	modules[15] = levelstop = new ModuleLevelsTop();
-	modules[16] = collisions = new ModuleCollision;
-	modules[17] = bomb = new ModuleBomb();
-	modules[18] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
+	modules[14] = enemy_big_turret = new ModuleBigTurret();
+	modules[15] = enemy_truck = new ModuleTruck();
+	modules[16] = particles = new ModuleParticles();
+	modules[17] = levelstop = new ModuleLevelsTop();
+	modules[18] = collisions = new ModuleCollision;
+	modules[19] = bomb = new ModuleBomb();
+	modules[20] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
 	
 }	
 
@@ -56,6 +60,8 @@ bool Application::Init()
 	// Player will be enabled on the first update of a new scene
 	player->Disable();
 	green_basic_enemy->Disable();
+	enemy_big_turret->Disable();
+	enemy_truck->Disable();
 	// Disable the scenes that you do not start with
 	levels->Disable();
 	levelstop->Disable();
