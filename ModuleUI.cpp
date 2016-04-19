@@ -222,18 +222,28 @@ update_status ModuleUI::Update(){
 		if (score > top_score) top_score = score;
 		UpdateScorenums();
 		UpdateTopScorenums();
+		UpdateLivesnums();
 
 		App->render->Blit(ui_graphics, 18, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player1.GetCurrentFrame()));//player1
 		DrawPlayerScore(); //player score
 
 		App->render->Blit(ui_graphics, 158, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2.GetCurrentFrame()));
-		App->render->Blit(ui_graphics, 100, (-App->render->camera.y) / SCREEN_SIZE + 1, &top);//top
+		App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 1, &top);//top
 		DrawTopScore(); //top score
 
-		for (int i = 0; i < bombs; i++){
-			int pos = 8 * i;
-			App->render->Blit(ui_graphics, pos, (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);
+		for (int i = 0; i < bombs; i++){//bombs
+			App->render->Blit(ui_graphics, 8 * i, (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);
 		}
+
+		App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE, &lives_symbol);// lives icon
+		App->render->Blit(ui_graphics, 8, (-App->render->camera.y) / SCREEN_SIZE + 1, lives_num);//lives num
+
+		App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar);//energy bar
+
+		for (int i = 0; i < energy; i++){
+			App->render->Blit(ui_graphics, 17+(2 * i), (-App->render->camera.y) / SCREEN_SIZE + 18, &energy_pill);
+		}
+
 	}
 	else{
 		UpdateCreditnum();
@@ -245,7 +255,7 @@ update_status ModuleUI::Update(){
 		App->render->Blit(ui_graphics, 158, (-App->render->camera.y) / SCREEN_SIZE + 1, &player2_title);//player2
 		App->render->Blit(ui_graphics, 206, (-App->render->camera.y) / SCREEN_SIZE + 9, p2_score);//p2 score
 
-		App->render->Blit(ui_graphics, 100, (-App->render->camera.y) / SCREEN_SIZE + 1, &top);//top
+		App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 1, &top);//top
 		DrawTopScore(); //top score
 
 		App->render->Blit(ui_graphics, 84, (-App->render->camera.y) / SCREEN_SIZE + 305, &credits);//credits
@@ -413,19 +423,19 @@ void ModuleUI::DrawPlayerScore(){
 }
 void ModuleUI::DrawTopScore(){
 	if (topscore1 != nullptr){
-		App->render->Blit(ui_graphics, 132, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore1);
+		App->render->Blit(ui_graphics, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore1);
 		if (topscore10 != nullptr){
-			App->render->Blit(ui_graphics, 124, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore10);
+			App->render->Blit(ui_graphics, 129, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore10);
 			if (topscore100 != nullptr){
-				App->render->Blit(ui_graphics, 116, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore100);
+				App->render->Blit(ui_graphics, 121, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore100);
 				if (topscore1000 != nullptr){
-					App->render->Blit(ui_graphics, 108, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore1000);
+					App->render->Blit(ui_graphics, 113, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore1000);
 					if (topscore10000 != nullptr){
-						App->render->Blit(ui_graphics, 100, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore10000);
+						App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore10000);
 						if (topscore100000 != nullptr){
-							App->render->Blit(ui_graphics, 92, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore100000);
+							App->render->Blit(ui_graphics, 97, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore100000);
 							if (topscore1000000 != nullptr){
-								App->render->Blit(ui_graphics, 84, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore1000000);
+								App->render->Blit(ui_graphics, 89, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore1000000);
 							}
 						}
 					}
@@ -441,4 +451,15 @@ void ModuleUI::AddCoin(){
 
 void ModuleUI::SubCoin(){
 	if(credit>0) credit--;
+}
+
+void ModuleUI::UpdateLivesnums(){
+	switch (lives){
+	case 0: lives_num = &lives0;
+		break;
+	case 1: lives_num = &lives1;
+		break;
+	case 2: lives_num = &lives2;
+		break;
+	}
 }

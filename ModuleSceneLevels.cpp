@@ -366,7 +366,7 @@ bool ModuleSceneLevels::CleanUp()
 	//Disable player
 	App->player->Disable();
 	App->green_basic_enemy->Disable();
-
+	App->ui->game = false;
 	//Disable Collisions
 	App->collisions->Disable();
 	

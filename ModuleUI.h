@@ -23,6 +23,7 @@ public:
 	void UpdateCreditnum();
 	void UpdateScorenums();
 	void UpdateTopScorenums();
+	void UpdateLivesnums();
 	SDL_Rect* GetCorrectNum(const int& num);
 	void DrawPlayerScore();
 	void DrawTopScore();
@@ -35,7 +36,7 @@ public:
 	dynArray<int> checkpoints;
 	int lives=0;
 	int score=0;
-	int energy=0;
+	int energy=36;
 	int max_energy = 36;
 	int bombs=4;
 	int credit=0;
