@@ -28,17 +28,13 @@ public:
 	iPoint position;
 	bool dead = false;
 
-	SDL_Texture* big_turret_tex = nullptr;
+	SDL_Texture* truck_tex = nullptr;
 
-	Animation idle;
-	Animation bullet;
-
+	Animation run;
+	
 	Animation* current_animation = nullptr;
 
-	Particle* laser_p0 = nullptr;
-	Particle* shoot_start = nullptr;
-
-	Collider* big_turret_collider;
+	Collider* truck_collider;
 
 	uint now;
 

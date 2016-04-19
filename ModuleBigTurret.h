@@ -31,12 +31,10 @@ public:
 	SDL_Texture* big_turret_tex = nullptr;
 
 	Animation idle;
-	Animation bullet;
 
 	Animation* current_animation = nullptr;
 
 	Particle* turret_bullet = nullptr;
-	Particle* laser_p0;
 	Particle* shoot_start = nullptr;
 
 	Collider* big_turret_collider;

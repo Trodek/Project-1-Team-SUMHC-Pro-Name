@@ -37,7 +37,8 @@ bool ModuleBigTurret::Start()
 	shoot_start = &App->particles->big_turret_bullet_start;
 	//laser_p0 = &App->particles->basic_laser_p0;
 
-	big_turret_collider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, this);
+	big_turret_collider = App->collisions->AddCollider({ 0, 0, 63, 64 }, COLLIDER_ENEMY, this);
+	big_turret_collider->SetPos(position.x, position.y);
 
 	return ret;
 }
@@ -62,8 +63,8 @@ update_status ModuleBigTurret::Update()
 	if (!dead){
 		App->render->Blit(big_turret_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
-		App->particles->SetParticleSpeed(turret_bullet, 3.53f, 3.53f);
-		App->particles->SetColliderCorrection(turret_bullet, 4, 10);
+		App->particles->SetParticleSpeed(shoot_start, 3.53f, 3.53f);
+		App->particles->SetColliderCorrection(shoot_start, 4, 10);
 		App->particles->AddParticle(*turret_bullet, position.x + 20, position.y + 17, turret_bullet->collider, laserbox_p0, 135);
 		App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);
 	}

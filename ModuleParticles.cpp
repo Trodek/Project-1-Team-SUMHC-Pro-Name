@@ -116,12 +116,12 @@ bool ModuleParticles::Start()
 	big_turret_bullet.anim.speed = 0.3f;
 	big_turret_bullet.life = 1000;
 	big_turret_bullet.tex = big_turret_bullet_tex;
-	big_turret_bullet.collider = COLLIDER_ENEMY_SHOT;
+	big_turret_bullet.collider = COLLIDER_NONE;
 
 	big_turret_bullet_start.anim.PushBack({ 4, 98, 30, 31 });
 	big_turret_bullet_start.anim.loop = false;
 	big_turret_bullet_start.anim.speed = 0.3f;
-	big_turret_bullet_start.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/3-gun shoot.wav");
+	//big_turret_bullet_start.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/3-gun shoot.wav");
 	big_turret_bullet_start.tex = big_turret_bullet_tex;
 	big_turret_bullet_start.collider = COLLIDER_NONE;
 

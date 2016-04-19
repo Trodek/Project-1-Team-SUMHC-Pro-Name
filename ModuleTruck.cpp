@@ -18,14 +18,13 @@ ModuleTruck::ModuleTruck()
 	position.x = 120;
 	position.y = 14000;
 
-	//Turret idle anim
-	idle.PushBack({ 16, 24, 63, 64 });
-
-	//Shoot Bullet anim
-	bullet.PushBack({ 4, 98, 30, 31 });
-	bullet.PushBack({ 43, 107, 14, 14 });
-	bullet.PushBack({ 66, 106, 14, 14 });
-
+	//run anim
+	run.PushBack({ 13, 39, 80, 124 });
+	run.PushBack({ 107, 39, 80, 123 });
+	run.PushBack({ 206, 39, 80, 124 });
+	run.PushBack({ 305, 39, 80, 125 });
+	run.speed = 0.3f;
+	run.loop = true;
 }
 
 ModuleTruck::~ModuleTruck()
@@ -35,13 +34,11 @@ ModuleTruck::~ModuleTruck()
 bool ModuleTruck::Start()
 {
 	LOG("Loading basic green enemy textures");
-	big_turret_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/big turret.png");
+	truck_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck.png");
 	bool ret = true;
-	current_animation = &idle;
-	laser_p0 = &App->particles->basic_laser_p0;
-	shoot_start = &App->particles->shoot_start;
+	current_animation = &run;
 
-	big_turret_collider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, this);
+	truck_collider = App->collisions->AddCollider({ 0, 0, 80, 124 }, COLLIDER_ENEMY, this);
 
 	return ret;
 }
@@ -52,7 +49,7 @@ bool ModuleTruck::CleanUp(){
 
 	dead = false;
 
-	App->textures->Unload(big_turret_tex);
+	App->textures->Unload(truck_tex);
 
 	return true;
 }
@@ -64,7 +61,7 @@ update_status ModuleTruck::Update()
 	now = SDL_GetTicks();
 
 	if (!dead){
-		App->render->Blit(big_turret_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		App->render->Blit(truck_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	}
 	else{
 
@@ -75,7 +72,7 @@ update_status ModuleTruck::Update()
 }
 
 void ModuleTruck::OnCollision(Collider* c1, Collider* c2) {
-	if (big_turret_collider == c1 && big_turret_collider != nullptr){
+	if (truck_collider == c1 && truck_collider != nullptr){
 		if (c2->type == COLLIDER_PLAYER_SHOT){
 			dead = true;
 		}
