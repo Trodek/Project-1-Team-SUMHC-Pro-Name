@@ -28,6 +28,7 @@ public:
 	void DrawTopScore();
 	void AddCoin();
 	void SubCoin();
+	void DrawBombs();
 
 public:
 
@@ -36,7 +37,7 @@ public:
 	int score=0;
 	int energy=0;
 	int max_energy = 36;
-	int bombs=0;
+	int bombs=4;
 	int credit=0;
 
 	int top_score = 200000;

@@ -13,7 +13,7 @@ ModuleUI::ModuleUI(){
 	//Player 1 
 	player1.PushBack({ 11, 9, 54, 7 });
 	player1.PushBack({ 11, 21, 54, 7 });
-	player1.speed = 0.05f;
+	player1.speed = 0.01f;
 	
 	player1_static.x = 11;
 	player1_static.y = 9;
@@ -25,6 +25,9 @@ ModuleUI::ModuleUI(){
 	player2.PushBack({ 82, 58, 75, 15 });
 	player2.PushBack({ 164, 58, 75, 15 });
 	player2.PushBack({ 3, 78, 75, 15 });
+	player2.PushBack({ 164, 58, 75, 15 });
+	player2.PushBack({ 82, 58, 75, 15 });
+	player2.speed = 0.15f;
 
 	player2_title.x = 89;
 	player2_title.y = 78;
@@ -216,7 +219,21 @@ update_status ModuleUI::Update(){
 	}
 
 	if (game){
+		if (score > top_score) top_score = score;
 		UpdateScorenums();
+		UpdateTopScorenums();
+
+		App->render->Blit(ui_graphics, 18, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player1.GetCurrentFrame()));//player1
+		DrawPlayerScore(); //player score
+
+		App->render->Blit(ui_graphics, 158, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2.GetCurrentFrame()));
+		App->render->Blit(ui_graphics, 100, (-App->render->camera.y) / SCREEN_SIZE + 1, &top);//top
+		DrawTopScore(); //top score
+
+		for (int i = 0; i < bombs; i++){
+			int pos = 8 * i;
+			App->render->Blit(ui_graphics, pos, (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);
+		}
 	}
 	else{
 		UpdateCreditnum();

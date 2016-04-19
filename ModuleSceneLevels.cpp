@@ -15,6 +15,7 @@
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
 #include "ModuleLevelsTop.h"
+#include "ModuleUI.h"
 
 ModuleSceneLevels::ModuleSceneLevels()
 {
@@ -92,6 +93,7 @@ bool ModuleSceneLevels::Start()
 	App->green_basic_enemy->Enable();
 	App->enemy_truck->Enable();
 	App->enemy_big_turret->Enable();
+	App->ui->game = true;
 
 
 	//Level2 boss
