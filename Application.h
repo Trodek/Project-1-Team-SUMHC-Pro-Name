@@ -4,7 +4,7 @@
 #include "Globals.h"
 
 
-#define NUM_MODULES 21
+#define NUM_MODULES 22
 
 
 class ModuleWindow;
@@ -29,6 +29,7 @@ class ModuleGreenBasic;
 class ModuleBomb;
 class ModuleBigTurret;
 class ModuleTruck;
+class ModuleUI;
 
 
 
@@ -58,6 +59,7 @@ public:
 	ModuleBomb* bomb;
 	ModuleBigTurret* enemy_big_turret;
 	ModuleTruck* enemy_truck;
+	ModuleUI* ui;
 
 
 public:

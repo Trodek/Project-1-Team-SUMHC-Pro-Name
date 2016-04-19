@@ -20,6 +20,7 @@
 #include "ModuleContinue.h"
 #include "ModuleCollision.h"
 #include "ModuleBomb.h"
+#include "ModuleUI.h"
 
 Application::Application()
 {
@@ -43,7 +44,8 @@ Application::Application()
 	modules[17] = levelstop = new ModuleLevelsTop();
 	modules[18] = collisions = new ModuleCollision;
 	modules[19] = bomb = new ModuleBomb();
-	modules[20] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
+	modules[20] = ui = new ModuleUI();
+	modules[21] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
 	
 }	
 
