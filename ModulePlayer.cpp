@@ -199,6 +199,18 @@ ModulePlayer::ModulePlayer()
 	bomb.speed = 0.8f;
 	bomb.loop = false;
 
+	dead_explo.PushBack({ 19, 60, 16, 16 });
+	dead_explo.PushBack({ 44, 53, 32, 29 });
+	dead_explo.PushBack({ 90, 34, 64, 69 });
+	dead_explo.PushBack({ 166, 22, 86, 91 });
+	dead_explo.PushBack({ 266, 10, 117, 115 });
+	dead_explo.PushBack({ 9, 145, 113, 113 });
+	dead_explo.PushBack({ 139, 145, 113, 113 });
+	dead_explo.PushBack({ 269, 156, 114, 112 });
+	dead_explo.PushBack({ 139, 279, 113, 111 });
+	dead_explo.speed = 0.2f;
+	dead_explo.loop = false;
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -210,6 +222,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	main_char_tex = App->textures->Load("Sprites/Main Char/Main_moves.png");
 	bomb_tex = App->textures->Load("Sprites/Weapon Shots/bomb.png");
+	dead_explo_text = App->textures->Load("Sprites/Main Char/Dead_char_explosion.png"); 
 	bomb_pressed = false;
 	current_animation = &up;
 	bool ret = true;
@@ -248,6 +261,7 @@ bool ModulePlayer::CleanUp(){
 
 	App->textures->Unload(main_char_tex);
 	App->textures->Unload(bomb_tex);
+	App->textures->Unload(dead_explo_text);
 
 	return true;
 }
@@ -401,11 +415,11 @@ update_status ModulePlayer::Update()
 
 	}
 	else{
-		if (fall_hole.Finished()){
+		if (fall_hole.Finished() || dead_explo.Finished()){
 			App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
 		}
 		else
-			App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
+			App->render->Blit(dead_explo_text, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	}
 
 	PlayerCollider->SetPos(position.x+10, position.y+20);
@@ -976,6 +990,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		if (c2->type == COLLIDER_HOLE){
 			dead = true;
 			current_animation = &fall_hole;
+		}
+		if (c2->type == COLLIDER_ENEMY){
+			dead = true;
+			current_animation = &dead_explo;
 		}
 	}
 }

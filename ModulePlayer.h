@@ -44,6 +44,7 @@ public:
 
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
+	SDL_Texture* dead_explo_text = nullptr;
 
 	Animation up;
 	Animation down;
@@ -56,6 +57,7 @@ public:
 	Animation fall_hole;
 	Animation laser_360;
 	Animation bomb;
+	Animation dead_explo;
 
 	Animation multi_up;
 	Animation multi_down;
