@@ -115,7 +115,7 @@ ModuleGreenBasic::~ModuleGreenBasic()
 bool ModuleGreenBasic::Start()
 {
 	LOG("Loading basic green enemy textures");
-	basic_green_tex = App->textures->Load("Sprites\Enemies\Level 1\Soldier Green.png");
+	basic_green_tex = App->textures->Load("Sprites/Enemies/Level 1/Soldier Green.png");
 	current_animation = &down;
 	bool ret = true;
 	weapon_anim = &move_360;
@@ -148,15 +148,18 @@ update_status ModuleGreenBasic::Update()
 	int speed = 2;
 	now = SDL_GetTicks();
 
-	LOG("Camera.y = %d.", App->render->camera.y);
-
 	if (!dead){
 	}
 	position.y += speed;
 
+	if (direction != IDLE){
+		if (CheckPJAnimPos(weapon_anim, direction))
+			App->render->Blit(basic_green_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		else App->render->Blit(basic_green_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
+	}
+	else App->render->Blit(basic_green_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
+
 	GreenBasicCollider->SetPos(position.x + 10, position.y + 20);
-
-
 	return UPDATE_CONTINUE;
 }
 
