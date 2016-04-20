@@ -7,6 +7,7 @@
 #include "ModuleContinue.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleUI.h"
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
 #include "ModuleSceneLevels.h"
@@ -37,6 +38,8 @@ bool ModuleContinue::Start()
 	graphics = App->textures->Load("OutZone/Sprites/UI/ui_continue_small.png");
 	App->audio->PlayMusic(continue_song, ONCE);
 
+	App->ui->cont = true;
+
 	return true;
 }
 
@@ -46,6 +49,8 @@ bool ModuleContinue::CleanUp()
 	LOG("Unloading Title scene");
 	
 	App->textures->Unload(graphics);
+
+	App->ui->cont = false;
 
 	App->audio->StopAudio();
 	App->audio->UnloadMusic(continue_song);

@@ -8,6 +8,18 @@
 #include "ModuleTextures.h"
 #include "Animation.h"
 
+class CheckPoint{
+public:
+	int camera_y=0;
+	int x=105;
+	int y = ((-camera_y) / 3) + 245;
+
+public:
+	CheckPoint(){}
+	CheckPoint(const int camera) : camera_y(camera), x(105), y(((-camera_y) / 3) + 245){}
+	CheckPoint(const CheckPoint& other) : camera_y(other.camera_y), x(other.x), y(other.y){}
+
+};
 
 
 class ModuleUI :public Module{
@@ -27,26 +39,35 @@ public:
 	SDL_Rect* GetCorrectNum(const int& num);
 	void DrawPlayerScore();
 	void DrawTopScore();
-	void AddCoin();
-	void SubCoin();
 	void DrawBombs();
+	void AddCoin();
+	void AddBomb();
+	void AddEnergy();
+	void SubCoin();
+	void SubBomb();
+	void RestetEnergyBombs();
 
 public:
 
-	dynArray<int> checkpoints;
+	dynArray<CheckPoint> checkpoints;
+	int curr_check = 0;
+
 	int lives=0;
 	int score=0;
-	int energy=36;
+	int energy=0;
 	int max_energy = 36;
-	int bombs=4;
+	int bombs=0;
 	int credit=0;
 
 	int top_score = 200000;
 
 	int now;
-	int born;
+	int e_timer;
 
 	bool game = false;
+	bool title = true;
+	bool cont = false;
+	bool dead = false;
 
 	SDL_Texture* ui_graphics;
 

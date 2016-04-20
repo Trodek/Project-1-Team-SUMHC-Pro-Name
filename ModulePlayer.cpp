@@ -10,6 +10,7 @@
 #include "ModuleSceneLevels.h"
 #include "SDL/include/SDL_timer.h"
 #include "ModuleBomb.h"
+#include "ModuleUI.h"
 
 #define nullrect {0,0,0,0} 
 #define laserbox_p0 {0,0,4,4}
@@ -312,8 +313,9 @@ update_status ModulePlayer::Update()
 		}
 
 		//Special attack key
-		if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN){
+		if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN && App->ui->bombs>0){
 			App->bomb->pressed = true;
+			App->ui->SubBomb();
 		}
 
 		// W key
@@ -419,14 +421,14 @@ update_status ModulePlayer::Update()
 	else{
 		if (dead_fall){
 			if (fall_hole.Finished()){
-				App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
+				App->ui->dead = true;
 			}
 			else
 				App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 		}
 		else{
 			if (dead_explo.Finished()){
-				App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
+				App->ui->dead = true;
 			}
 			else
 				App->render->Blit(dead_explo_text, position.x, position.y, &(current_animation->GetCurrentFrame()));
