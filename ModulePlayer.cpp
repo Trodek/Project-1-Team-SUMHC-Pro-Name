@@ -226,8 +226,6 @@ bool ModulePlayer::Start()
 	bomb_pressed = false;
 	current_animation = &up;
 	bool ret = true;
-	dead = false;
-	dead_fall = false;
 	weapon_anim = &laser_360;
 	multi_360.SetInitialFrame(UP);
 	current_weapon = LASER;
@@ -259,7 +257,9 @@ bool ModulePlayer::CleanUp(){
 	LOG("Player CleanUp--------");
 
 	dead = false;
+	dead_fall = false;
 	fall_hole.Reset();
+	dead_explo.Reset();
 
 	App->textures->Unload(main_char_tex);
 	App->textures->Unload(bomb_tex);

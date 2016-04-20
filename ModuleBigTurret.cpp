@@ -22,11 +22,11 @@ ModuleBigTurret::ModuleBigTurret()
 	idle.PushBack({ 16, 24, 63, 64 });
 
 	//Turret dead fire anim
-	dead_fire.PushBack({ 0, 11, 64, 57 });
-	dead_fire.PushBack({ 66, 3, 64, 60 });
-	dead_fire.PushBack({ 134, 4, 64, 63 });
-	dead_fire.PushBack({ 193, 3, 64, 64 });
-	dead_fire.PushBack({ 256, 8, 64, 59 });
+	dead_fire.PushBack({ 0, 0, 64, 65 });
+	dead_fire.PushBack({ 64, 0, 64, 65 });
+	dead_fire.PushBack({ 128, 0, 64, 65 });
+	dead_fire.PushBack({ 192, 0, 64, 65 });
+	dead_fire.PushBack({ 256, 0, 64, 65 });
 	dead_fire.speed = 0.2f;
 	dead_fire.loop = true;
 
@@ -45,7 +45,6 @@ bool ModuleBigTurret::Start()
 	current_animation = &idle;
 	turret_bullet = &App->particles->big_turret_bullet;
 	shoot_start = &App->particles->big_turret_bullet_start;
-	//laser_p0 = &App->particles->basic_laser_p0;
 
 	big_turret_collider = App->collisions->AddCollider({ 0, 0, 63, 64 }, COLLIDER_ENEMY, this);
 	big_turret_collider->SetPos(position.x, position.y);
@@ -60,6 +59,7 @@ bool ModuleBigTurret::CleanUp(){
 	dead = false;
 
 	App->textures->Unload(big_turret_tex);
+	App->textures->Unload(big_turret_fire_tex);
 
 	return true;
 }
@@ -73,13 +73,13 @@ update_status ModuleBigTurret::Update()
 	if (!dead){
 		App->render->Blit(big_turret_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
-		App->particles->SetParticleSpeed(shoot_start, 3.53f, 3.53f);
+		/*App->particles->SetParticleSpeed(shoot_start, 3.53f, 3.53f);
 		App->particles->SetColliderCorrection(shoot_start, 4, 10);
 		App->particles->AddParticle(*turret_bullet, position.x + 20, position.y + 17, turret_bullet->collider, laserbox_p0, 135);
-		App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);
+		App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);*/
 	}
 	else{
-		App->render->Blit(big_turret_fire_tex, position.x, position.y+10, &(current_animation->GetCurrentFrame()));
+		App->render->Blit(big_turret_fire_tex, position.x, position.y+5, &(current_animation->GetCurrentFrame()));
 	}
 
 

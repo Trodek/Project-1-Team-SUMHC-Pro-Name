@@ -75,15 +75,15 @@ ModuleGreenBasic::ModuleGreenBasic()
 	right_up.speed = 0.2f;
 
 	// char die
-	die.PushBack({ 3, 33, 41, 39 });
-	die.PushBack({ 54, 34, 39, 38 });
-	die.PushBack({ 106, 31, 44, 43 });
-	die.PushBack({ 163, 31, 39, 39 });
-	die.PushBack({ 214, 33, 30, 36 });
-	die.PushBack({ 259, 37, 24, 31 });
-	die.PushBack({ 293, 37, 16, 27 });
-	die.PushBack({ 319, 38, 11, 15 });
-	die.speed = 0.1f;
+	die.PushBack({ 0, 0, 44, 46 });
+	die.PushBack({ 44, 0, 44, 46 });
+	die.PushBack({ 88, 0, 44, 46 });
+	die.PushBack({ 132, 0, 44, 46 });
+	die.PushBack({ 176, 0, 44, 46 });
+	die.PushBack({ 220, 0, 44, 46 });
+	die.PushBack({ 264, 0, 44, 46 });
+	die.PushBack({ 308, 0, 44, 46 });
+	die.speed = 0.2f;
 	die.loop = false;
 
 	//laser 360º
@@ -116,6 +116,7 @@ bool ModuleGreenBasic::Start()
 {
 	LOG("Loading basic green enemy textures");
 	basic_green_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Soldier Green.png");
+	basic_green_dead_tex = App->textures->Load("OutZone/Sprites/Enemies/Enemies Common Dead/common dead sprites.png");
 	current_animation = &down;
 	bool ret = true;
 	weapon_anim = &move_360;
@@ -123,9 +124,9 @@ bool ModuleGreenBasic::Start()
 	laser_p0 = &App->particles->basic_laser_p0;
 	shoot_start = &App->particles->shoot_start;
 	laser_end = &App->particles->laser_end;
-	//ResetPosition();
+	ResetPosition();
 
-	GreenBasicCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, this);
+	GreenBasicCollider = App->collisions->AddCollider({ 0, 0, 30, 34 }, COLLIDER_ENEMY, this);
 
 	return ret;
 }
@@ -135,8 +136,10 @@ bool ModuleGreenBasic::CleanUp(){
 	LOG("Player CleanUp--------");
 
 	dead = false;
+	die.Reset();
 
 	App->textures->Unload(basic_green_tex);
+	App->textures->Unload(basic_green_dead_tex);
 
 	return true;
 }
@@ -149,17 +152,24 @@ update_status ModuleGreenBasic::Update()
 	now = SDL_GetTicks();
 
 	if (!dead){
-	}
-	position.y += speed;
+		position.y += speed;
 
-	if (direction != IDLE){
-		if (CheckPJAnimPos(weapon_anim, direction))
-			App->render->Blit(basic_green_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		if (direction != IDLE){
+			if (CheckPJAnimPos(weapon_anim, direction))
+				App->render->Blit(basic_green_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
+			else App->render->Blit(basic_green_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
+		}
 		else App->render->Blit(basic_green_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 	}
-	else App->render->Blit(basic_green_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
+	else{
+		App->render->Blit(basic_green_dead_tex, position.x-5, position.y-5, &(current_animation->GetCurrentFrame()));
+		if (die.Finished()){
+			this->Disable();
+		}
+	}
+	
 
-	GreenBasicCollider->SetPos(position.x + 10, position.y + 20);
+	GreenBasicCollider->SetPos(position.x, position.y);
 	return UPDATE_CONTINUE;
 }
 
@@ -380,15 +390,19 @@ Animation* ModuleGreenBasic::SelectAnimation(Direction direction){
 	return ret;
 }
 
-/*void ModuleGreenBasic::ResetPosition(){
-	position.x = 105;
+void ModuleGreenBasic::ResetPosition(){
+	position.x = 120;
 	position.y = 14000;
-}*/
+}
 
 void ModuleGreenBasic::OnCollision(Collider* c1, Collider* c2) {
 	if (GreenBasicCollider == c1 && GreenBasicCollider != nullptr){
 		if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_PASS_BULLET){
 			position = PreviousPos;
+		}
+		if (c2->type == COLLIDER_PLAYER_SHOT){
+			dead = true;
+			current_animation = &die;
 		}
 	}
 }

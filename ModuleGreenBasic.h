@@ -34,6 +34,7 @@ public:
 	bool dead = false;
 
 	SDL_Texture* basic_green_tex = nullptr;
+	SDL_Texture* basic_green_dead_tex = nullptr;
 
 	Animation up;
 	Animation down;

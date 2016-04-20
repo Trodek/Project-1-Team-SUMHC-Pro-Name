@@ -40,8 +40,8 @@ public:
 public:
 	iPoint position;
 	iPoint PreviousPos;
-	bool dead;
-	bool dead_fall;
+	bool dead = false;
+	bool dead_fall = false;
 
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;

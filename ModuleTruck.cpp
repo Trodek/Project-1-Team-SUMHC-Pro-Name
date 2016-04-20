@@ -76,6 +76,7 @@ void ModuleTruck::OnCollision(Collider* c1, Collider* c2) {
 	if (truck_collider == c1 && truck_collider != nullptr){
 		if (c2->type == COLLIDER_PLAYER_SHOT){
 			dead = true;
+			
 		}
 	}
 }
