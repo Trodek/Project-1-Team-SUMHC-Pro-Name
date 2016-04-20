@@ -201,15 +201,15 @@ ModulePlayer::ModulePlayer()
 	bomb.speed = 0.8f;
 	bomb.loop = false;
 
-	dead_explo.PushBack({ 19, 60, 16, 16 });
-	dead_explo.PushBack({ 44, 53, 32, 29 });
-	dead_explo.PushBack({ 90, 34, 64, 69 });
-	dead_explo.PushBack({ 166, 22, 86, 91 });
-	dead_explo.PushBack({ 266, 10, 117, 115 });
-	dead_explo.PushBack({ 9, 145, 113, 113 });
-	dead_explo.PushBack({ 139, 145, 113, 113 });
-	dead_explo.PushBack({ 269, 156, 114, 112 });
-	dead_explo.PushBack({ 139, 279, 113, 111 });
+	dead_explo.PushBack({ 0, 0, 117, 115 });
+	dead_explo.PushBack({ 117, 0, 117, 115 });
+	dead_explo.PushBack({ 234, 0, 117, 115 });
+	dead_explo.PushBack({ 351, 0, 117, 115 });
+	dead_explo.PushBack({ 468, 0, 117, 115 });
+	dead_explo.PushBack({ 585, 0, 117, 115 });
+	dead_explo.PushBack({ 702, 0, 117, 115 });
+	dead_explo.PushBack({ 819, 0, 117, 115 });
+	dead_explo.PushBack({ 936, 0, 117, 115 });
 	dead_explo.speed = 0.2f;
 	dead_explo.loop = false;
 
@@ -427,6 +427,7 @@ update_status ModulePlayer::Update()
 		if (dead_fall){
 			if (fall_hole.Finished()){
 				App->ui->dead = true;
+				fall_hole.Finished();
 			}
 			else
 				App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -434,9 +435,10 @@ update_status ModulePlayer::Update()
 		else{
 			if (dead_explo.Finished()){
 				App->ui->dead = true;
+				dead_explo.Reset();
 			}
 			else
-				App->render->Blit(dead_explo_text, position.x, position.y, &(current_animation->GetCurrentFrame()));
+				App->render->Blit(dead_explo_text, position.x-40, position.y-39, &(current_animation->GetCurrentFrame()));
 		}
 	}
 

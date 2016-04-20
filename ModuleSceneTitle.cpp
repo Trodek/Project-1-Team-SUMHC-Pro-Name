@@ -29,7 +29,7 @@ ModuleSceneTitle::ModuleSceneTitle()
 	title_anim.PushBack({ 0, 318, 200, 54 });
 	title_anim.PushBack({ 0, 383, 200, 54 });
 	title_anim.PushBack({ 0, 448, 200, 54 });
-	title_anim.speed = 0.2f;
+	title_anim.speed = 0.1f;
 	title_anim.loop = false;
 }
 
