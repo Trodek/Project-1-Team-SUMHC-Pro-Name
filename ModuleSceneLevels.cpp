@@ -16,6 +16,7 @@
 #include "ModuleScoreScreen.h"
 #include "ModuleLevelsTop.h"
 #include "ModuleUI.h"
+#include "SDL/include/SDL_timer.h"
 
 ModuleSceneLevels::ModuleSceneLevels()
 {
@@ -93,7 +94,11 @@ bool ModuleSceneLevels::Start()
 	App->green_basic_enemy->Enable();
 	App->enemy_truck->Enable();
 	App->enemy_big_turret->Enable();
+
 	App->ui->game = true;
+	App->ui->SetGameStartConditions();
+	App->ui->e_timer = SDL_GetTicks()+1000;
+	App->ui->score = 45031;
 
 
 	//Level2 boss
@@ -395,7 +400,7 @@ update_status ModuleSceneLevels::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
 		App->fade->FadeToBlack(this, (Module*)App->losescreen, 1.0f);
 	}
-	if (App->render->camera.y > 0){
+	if (App->render->camera.y > -1){
 		App->fade->FadeToBlack(this, (Module*)App->winscreen, 0.3f);
 	}
 	// Draw everything --------------------------------------

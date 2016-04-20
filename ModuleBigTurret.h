@@ -27,6 +27,7 @@ public:
 public:
 	iPoint position;
 	bool dead = false;
+	bool start_shooting = false;
 
 	SDL_Texture* big_turret_tex = nullptr;
 	SDL_Texture* big_turret_fire_tex = nullptr;
@@ -37,11 +38,14 @@ public:
 	Animation* current_animation = nullptr;
 
 	Particle* turret_bullet = nullptr;
+	Particle* turret_bullet2 = nullptr;
+	Particle* turret_bullet3 = nullptr;
 	Particle* shoot_start = nullptr;
 
 	Collider* big_turret_collider;
 
 	uint now;
+	uint last_shot;
 
 };
 

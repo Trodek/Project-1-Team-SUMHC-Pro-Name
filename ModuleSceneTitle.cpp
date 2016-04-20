@@ -34,6 +34,7 @@ bool ModuleSceneTitle::Start()
 	graphics = App->textures->Load("OutZone/Sprites/UI/ui_maintitle.png");
 	App->player->Disable();
 	App->green_basic_enemy->Disable();
+	App->ui->title = true;
 	
 	return true;
 }
@@ -43,6 +44,7 @@ bool ModuleSceneTitle::CleanUp()
 {
 	LOG("Unloading Title scene");
 	App->textures->Unload(graphics);
+	App->ui->title = false;
 
 	return true;
 }
@@ -55,7 +57,7 @@ update_status ModuleSceneTitle::Update()
 	App->render->Blit(graphics, 0, 0, &title_screen, 0.75f); // background
 	
 	// swap Scene
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && App->ui->credit>0){
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
 		App->ui->SubCoin();
 	}

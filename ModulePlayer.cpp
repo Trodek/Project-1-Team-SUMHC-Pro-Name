@@ -7,9 +7,11 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
+#include "ModuleBigTurret.h"
 #include "ModuleSceneLevels.h"
 #include "SDL/include/SDL_timer.h"
 #include "ModuleBomb.h"
+#include "ModuleUI.h"
 
 #define nullrect {0,0,0,0} 
 #define laserbox_p0 {0,0,4,4}
@@ -246,7 +248,7 @@ bool ModulePlayer::Start()
 	ResetPosition();
 
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
-	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 29, 33 }, COLLIDER_PLAYER_EBULLETS, this);
+	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
 	BombCollider = App->collisions->AddCollider({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }, COLLIDER_BOMB, this);
 
 	return ret;
@@ -312,8 +314,9 @@ update_status ModulePlayer::Update()
 		}
 
 		//Special attack key
-		if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN){
+		if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN && App->ui->bombs>0){
 			App->bomb->pressed = true;
+			App->ui->SubBomb();
 		}
 
 		// W key
@@ -414,19 +417,23 @@ update_status ModulePlayer::Update()
 			else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 		}
 		else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
-
+		
+		if (position.y < 13900 && !App->enemy_big_turret->start_shooting){
+			App->enemy_big_turret->start_shooting = true;
+			LOG("ewfewfw");
+		}
 	}
 	else{
 		if (dead_fall){
 			if (fall_hole.Finished()){
-				App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
+				App->ui->dead = true;
 			}
 			else
 				App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 		}
 		else{
 			if (dead_explo.Finished()){
-				App->fade->FadeToBlack((Module*)App->current_level, (Module*)App->losescreen);
+				App->ui->dead = true;
 			}
 			else
 				App->render->Blit(dead_explo_text, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -434,7 +441,7 @@ update_status ModulePlayer::Update()
 	}
 
 	PlayerCollider->SetPos(position.x+10, position.y+20);
-	PlayerEBulletsCollider->SetPos(position.x , position.y);
+	PlayerEBulletsCollider->SetPos(position.x+4 , position.y+3);
 	
 	return UPDATE_CONTINUE;
 }
@@ -1003,6 +1010,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			dead_fall = true;
 			current_animation = &fall_hole;
 		}
+	}
+	if (PlayerEBulletsCollider == c1 && PlayerEBulletsCollider != nullptr){
 		if (c2->type == COLLIDER_ENEMY){
 			dead = true;
 			current_animation = &dead_explo;

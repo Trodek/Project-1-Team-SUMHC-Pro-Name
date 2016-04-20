@@ -403,6 +403,7 @@ void ModuleGreenBasic::OnCollision(Collider* c1, Collider* c2) {
 		if (c2->type == COLLIDER_PLAYER_SHOT){
 			dead = true;
 			current_animation = &die;
+			GreenBasicCollider->to_delete = true;
 		}
 	}
 }

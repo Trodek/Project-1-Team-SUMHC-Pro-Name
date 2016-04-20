@@ -191,6 +191,24 @@ ModuleUI::ModuleUI(){
 	c9.w = 7;
 	c9.h = 7;
 	
+	//CheckPoints
+	checkpoints.PushBack(-15063 * SCREEN_SIZE);
+	checkpoints.PushBack(-14000 * SCREEN_SIZE);
+	checkpoints.PushBack(-13050 * SCREEN_SIZE);
+	checkpoints.PushBack(-12200 * SCREEN_SIZE);
+	checkpoints.PushBack(-11917 * SCREEN_SIZE);
+	checkpoints.PushBack(-11205 * SCREEN_SIZE);
+	checkpoints.PushBack(-10519 * SCREEN_SIZE);
+	checkpoints.PushBack(-9135 * SCREEN_SIZE);
+	checkpoints.PushBack(-8133 * SCREEN_SIZE);
+	checkpoints.PushBack(-6481 * SCREEN_SIZE);
+	checkpoints.PushBack(-5965 * SCREEN_SIZE);
+	checkpoints.PushBack(-4900 * SCREEN_SIZE);
+	checkpoints.PushBack(-2775 * SCREEN_SIZE);
+	checkpoints.PushBack(-1347 * SCREEN_SIZE);
+
+
+
 }
 
 ModuleUI::~ModuleUI(){}
@@ -214,12 +232,44 @@ bool ModuleUI::CleanUp(){
 
 update_status ModuleUI::Update(){
 
+	now = SDL_GetTicks();
+
 	if (App->input->keyboard[SDL_SCANCODE_5] == KEY_STATE::KEY_DOWN){
 		App->ui->AddCoin();
 	}
 
+	if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN){
+		App->ui->AddEnergy();
+	}
+
 	if (game){
+
+		if (dead){
+			lives--;
+			if (lives >= 0){
+				App->player->dead = false;
+				App->player->position.x = checkpoints[curr_check].x;
+				App->player->position.y = checkpoints[curr_check].y;
+				App->player->fall_hole.Reset();
+				App->player->direction = IDLE;
+				App->render->camera.y = checkpoints[curr_check].camera_y;
+				RestetEnergyBombs();
+			}
+			else App->fade->FadeToBlack((Module *)App->levels, (Module *)App->losescreen);
+			dead = false;
+		}
+
 		if (score > top_score) top_score = score;
+		if (now - e_timer > 1500 && energy > 0) {
+			energy--;
+			e_timer = SDL_GetTicks();
+		}
+
+		if (curr_check + 1 < checkpoints.size()){
+			if ((-App->render->camera.y) / 3+200 < checkpoints[curr_check + 1].y)
+				curr_check++;
+		}
+
 		UpdateScorenums();
 		UpdateTopScorenums();
 		UpdateLivesnums();
@@ -249,17 +299,19 @@ update_status ModuleUI::Update(){
 		UpdateCreditnum();
 
 		//Draw Stuff
-		App->render->Blit(ui_graphics, 18, (-App->render->camera.y) / SCREEN_SIZE + 1, &player1_static);//player1
+		App->render->Blit(ui_graphics, 18, 1, &player1_static);//player1
 		DrawPlayerScore(); //player score
 
-		App->render->Blit(ui_graphics, 158, (-App->render->camera.y) / SCREEN_SIZE + 1, &player2_title);//player2
-		App->render->Blit(ui_graphics, 206, (-App->render->camera.y) / SCREEN_SIZE + 9, p2_score);//p2 score
+		App->render->Blit(ui_graphics, 158, 1, &player2_title);//player2
+		App->render->Blit(ui_graphics, 206, 9, p2_score);//p2 score
 
-		App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 1, &top);//top
+		App->render->Blit(ui_graphics, 105, 1, &top);//top
 		DrawTopScore(); //top score
 
-		App->render->Blit(ui_graphics, 84, (-App->render->camera.y) / SCREEN_SIZE + 305, &credits);//credits
-		App->render->Blit(ui_graphics, 140, (-App->render->camera.y) / SCREEN_SIZE + 305, c_num);//credit number
+		if (title||cont){
+			App->render->Blit(ui_graphics, 84, 305, &credits);//credits
+			App->render->Blit(ui_graphics, 140, 305, c_num);//credit number
+		}
 	}
 
 	return UPDATE_CONTINUE;
@@ -272,9 +324,9 @@ void ModuleUI::SetGameStartConditions(){
 	energy = 36;
 	max_energy = 36;
 	bombs = 3;
-	born = SDL_GetTicks();
 	game = true;
 	lives_num = &lives2;
+	curr_check = 0;
 
 }
 
@@ -282,22 +334,22 @@ void ModuleUI::UpdateScorenums(){
 	int tempscore = score;
 	score1 = GetCorrectNum(tempscore%10);
 	tempscore /= 10;
-	if (tempscore >= 10){
+	if (score >= 10){
 		score10 = GetCorrectNum(tempscore % 10);
 		tempscore /= 10;
-		if (tempscore >= 100){
+		if (score >= 100){
 			score100 = GetCorrectNum(tempscore % 10);
 			tempscore /= 10;
-			if (tempscore >= 1000){
+			if (score >= 1000){
 				score1000 = GetCorrectNum(tempscore % 10);
 				tempscore /= 10;
-				if (tempscore >= 10000){
+				if (score >= 10000){
 					score10000 = GetCorrectNum(tempscore % 10);
 					tempscore /= 10;
-					if (tempscore >= 100000){
+					if (score >= 100000){
 						score100000 = GetCorrectNum(tempscore % 10);
 						tempscore /= 10;
-						if (tempscore>=1000000)
+						if (score>=1000000)
 							score1000000 = GetCorrectNum(tempscore % 10);
 					}
 				}
@@ -320,7 +372,7 @@ void ModuleUI::UpdateTopScorenums(){
 	tempscore /= 10;
 	topscore100000 = GetCorrectNum(tempscore % 10);
 	tempscore /= 10;
-	if (tempscore>=100000)
+	if (top_score>=1000000)
 		topscore1000000 = GetCorrectNum(tempscore % 10);
 }
 
@@ -407,11 +459,11 @@ void ModuleUI::DrawPlayerScore(){
 				if (score1000 != nullptr){
 					App->render->Blit(ui_graphics, 42, (-App->render->camera.y) / SCREEN_SIZE + 9, score1000);
 					if (score10000 != nullptr){
-						App->render->Blit(ui_graphics, 36, (-App->render->camera.y) / SCREEN_SIZE + 9, score10000);
+						App->render->Blit(ui_graphics, 34, (-App->render->camera.y) / SCREEN_SIZE + 9, score10000);
 						if (score100000 != nullptr){
-							App->render->Blit(ui_graphics, 28, (-App->render->camera.y) / SCREEN_SIZE + 9, score100000);
+							App->render->Blit(ui_graphics, 26, (-App->render->camera.y) / SCREEN_SIZE + 9, score100000);
 							if (score1000000 != nullptr){
-								App->render->Blit(ui_graphics, 20, (-App->render->camera.y) / SCREEN_SIZE + 9, score1000000);
+								App->render->Blit(ui_graphics, 18, (-App->render->camera.y) / SCREEN_SIZE + 9, score1000000);
 							}
 						}
 					}
@@ -421,6 +473,7 @@ void ModuleUI::DrawPlayerScore(){
 	}
 
 }
+
 void ModuleUI::DrawTopScore(){
 	if (topscore1 != nullptr){
 		App->render->Blit(ui_graphics, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, topscore1);
@@ -462,4 +515,22 @@ void ModuleUI::UpdateLivesnums(){
 	case 2: lives_num = &lives2;
 		break;
 	}
+}
+
+void ModuleUI::AddBomb(){
+	if (bombs < 10)bombs++;
+}
+
+void ModuleUI::SubBomb(){
+	if (bombs > 0)bombs--;
+}
+
+void ModuleUI::AddEnergy(){
+	energy += 15;
+	if (energy > max_energy) energy = max_energy;
+}
+
+void ModuleUI::RestetEnergyBombs(){
+	energy = max_energy;
+	bombs = 3;
 }
