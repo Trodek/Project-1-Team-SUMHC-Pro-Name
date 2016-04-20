@@ -366,6 +366,8 @@ bool ModuleSceneLevels::CleanUp()
 	//Disable player
 	App->player->Disable();
 	App->green_basic_enemy->Disable();
+	App->enemy_big_turret->Disable();
+	App->enemy_truck->Disable();
 	App->ui->game = false;
 	//Disable Collisions
 	App->collisions->Disable();

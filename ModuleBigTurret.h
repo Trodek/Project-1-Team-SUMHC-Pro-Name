@@ -29,8 +29,10 @@ public:
 	bool dead = false;
 
 	SDL_Texture* big_turret_tex = nullptr;
+	SDL_Texture* big_turret_fire_tex = nullptr;
 
 	Animation idle;
+	Animation dead_fire;
 
 	Animation* current_animation = nullptr;
 

@@ -21,6 +21,15 @@ ModuleBigTurret::ModuleBigTurret()
 	//Turret idle anim
 	idle.PushBack({ 16, 24, 63, 64 });
 
+	//Turret dead fire anim
+	dead_fire.PushBack({ 0, 11, 64, 57 });
+	dead_fire.PushBack({ 66, 3, 64, 60 });
+	dead_fire.PushBack({ 134, 4, 64, 63 });
+	dead_fire.PushBack({ 193, 3, 64, 64 });
+	dead_fire.PushBack({ 256, 8, 64, 59 });
+	dead_fire.speed = 0.2f;
+	dead_fire.loop = true;
+
 }
 
 ModuleBigTurret::~ModuleBigTurret()
@@ -30,7 +39,8 @@ ModuleBigTurret::~ModuleBigTurret()
 bool ModuleBigTurret::Start()
 {
 	LOG("Loading basic green enemy textures");
-	big_turret_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/big turret.png");
+	big_turret_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret.png");
+	big_turret_fire_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret fire.png");
 	bool ret = true;
 	current_animation = &idle;
 	turret_bullet = &App->particles->big_turret_bullet;
@@ -69,7 +79,7 @@ update_status ModuleBigTurret::Update()
 		App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);
 	}
 	else{
-		
+		App->render->Blit(big_turret_fire_tex, position.x, position.y+10, &(current_animation->GetCurrentFrame()));
 	}
 
 
@@ -80,6 +90,7 @@ void ModuleBigTurret::OnCollision(Collider* c1, Collider* c2) {
 	if (big_turret_collider == c1 && big_turret_collider != nullptr){
 		if (c2->type == COLLIDER_PLAYER_SHOT){
 			dead = true;
+			current_animation = &dead_fire;
 		} 
 	}
 }

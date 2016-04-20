@@ -67,6 +67,7 @@ update_status ModuleTruck::Update()
 
 	}
 
+	truck_collider->SetPos(position.x, position.y);
 
 	return UPDATE_CONTINUE;
 }
