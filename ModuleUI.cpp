@@ -334,22 +334,22 @@ void ModuleUI::UpdateScorenums(){
 	int tempscore = score;
 	score1 = GetCorrectNum(tempscore%10);
 	tempscore /= 10;
-	if (tempscore >= 10){
+	if (score >= 10){
 		score10 = GetCorrectNum(tempscore % 10);
 		tempscore /= 10;
-		if (tempscore >= 100){
+		if (score >= 100){
 			score100 = GetCorrectNum(tempscore % 10);
 			tempscore /= 10;
-			if (tempscore >= 1000){
+			if (score >= 1000){
 				score1000 = GetCorrectNum(tempscore % 10);
 				tempscore /= 10;
-				if (tempscore >= 10000){
+				if (score >= 10000){
 					score10000 = GetCorrectNum(tempscore % 10);
 					tempscore /= 10;
-					if (tempscore >= 100000){
+					if (score >= 100000){
 						score100000 = GetCorrectNum(tempscore % 10);
 						tempscore /= 10;
-						if (tempscore>=1000000)
+						if (score>=1000000)
 							score1000000 = GetCorrectNum(tempscore % 10);
 					}
 				}
@@ -372,7 +372,7 @@ void ModuleUI::UpdateTopScorenums(){
 	tempscore /= 10;
 	topscore100000 = GetCorrectNum(tempscore % 10);
 	tempscore /= 10;
-	if (tempscore>=100000)
+	if (top_score>=1000000)
 		topscore1000000 = GetCorrectNum(tempscore % 10);
 }
 
@@ -459,11 +459,11 @@ void ModuleUI::DrawPlayerScore(){
 				if (score1000 != nullptr){
 					App->render->Blit(ui_graphics, 42, (-App->render->camera.y) / SCREEN_SIZE + 9, score1000);
 					if (score10000 != nullptr){
-						App->render->Blit(ui_graphics, 36, (-App->render->camera.y) / SCREEN_SIZE + 9, score10000);
+						App->render->Blit(ui_graphics, 34, (-App->render->camera.y) / SCREEN_SIZE + 9, score10000);
 						if (score100000 != nullptr){
-							App->render->Blit(ui_graphics, 28, (-App->render->camera.y) / SCREEN_SIZE + 9, score100000);
+							App->render->Blit(ui_graphics, 26, (-App->render->camera.y) / SCREEN_SIZE + 9, score100000);
 							if (score1000000 != nullptr){
-								App->render->Blit(ui_graphics, 20, (-App->render->camera.y) / SCREEN_SIZE + 9, score1000000);
+								App->render->Blit(ui_graphics, 18, (-App->render->camera.y) / SCREEN_SIZE + 9, score1000000);
 							}
 						}
 					}
