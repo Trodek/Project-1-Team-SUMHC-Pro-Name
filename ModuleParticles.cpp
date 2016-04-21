@@ -220,7 +220,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider_box == c1)
 		{
-			AddParticle(*active[i]->end_particle, active[i]->position.x-5, active[i]->position.y, COLLIDER_NONE, nullrect);
+			if (active[i]->end_particle!=nullptr)AddParticle(*active[i]->end_particle, active[i]->position.x - 5, active[i]->position.y, COLLIDER_NONE, nullrect);
 			active[i]->collider_box->to_delete = true;
 			delete active[i];
 			active[i] = nullptr;

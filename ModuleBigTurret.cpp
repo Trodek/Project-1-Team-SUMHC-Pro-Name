@@ -48,8 +48,8 @@ bool ModuleBigTurret::Start()
 	turret_bullet3 = &App->particles->big_turret_bullet;
 	shoot_start = &App->particles->big_turret_bullet_start;
 
-	big_turret_collider = App->collisions->AddCollider({ 0, 0, 63, 64 }, COLLIDER_ENEMY, this);
-	big_turret_collider->SetPos(position.x, position.y);
+	//big_turret_collider = App->collisions->AddCollider({ 0, 0, 63, 64 }, COLLIDER_ENEMY, this);
+	//big_turret_collider->SetPos(position.x, position.y);
 
 	last_shot = SDL_GetTicks();
 

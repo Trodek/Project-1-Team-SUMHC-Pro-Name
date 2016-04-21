@@ -76,6 +76,12 @@
     <ClCompile Include="ModuleTruck.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleEnemies.cpp">
+      <Filter>Modules\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -164,6 +170,15 @@
     </ClInclude>
     <ClInclude Include="ModuleTruck.h">
       <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleEnemies.h">
+      <Filter>Modules\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

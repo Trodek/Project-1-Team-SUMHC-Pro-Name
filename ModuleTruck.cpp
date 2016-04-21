@@ -38,7 +38,7 @@ bool ModuleTruck::Start()
 	bool ret = true;
 	current_animation = &run;
 
-	truck_collider = App->collisions->AddCollider({ 0, 0, 70, 110 }, COLLIDER_ENEMY, this);
+	//truck_collider = App->collisions->AddCollider({ 0, 0, 70, 110 }, COLLIDER_ENEMY, this);
 
 	return ret;
 }
@@ -67,7 +67,7 @@ update_status ModuleTruck::Update()
 
 	}
 
-	truck_collider->SetPos(position.x, position.y);
+	//truck_collider->SetPos(position.x, position.y);
 
 	return UPDATE_CONTINUE;
 }

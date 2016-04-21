@@ -126,7 +126,7 @@ bool ModuleGreenBasic::Start()
 	laser_end = &App->particles->laser_end;
 	ResetPosition();
 
-	GreenBasicCollider = App->collisions->AddCollider({ 0, 0, 20, 30 }, COLLIDER_ENEMY, this);
+	//GreenBasicCollider = App->collisions->AddCollider({ 0, 0, 20, 30 }, COLLIDER_ENEMY, this);
 
 	return ret;
 }
@@ -169,7 +169,7 @@ update_status ModuleGreenBasic::Update()
 	}
 	
 
-	GreenBasicCollider->SetPos(position.x+5, position.y);
+	//GreenBasicCollider->SetPos(position.x+5, position.y);
 	return UPDATE_CONTINUE;
 }
 
