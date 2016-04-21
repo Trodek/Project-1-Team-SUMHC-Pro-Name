@@ -116,7 +116,7 @@ ModulePlayer::ModulePlayer()
 	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
 	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
 	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
-	laser_360.speed = 0.6f;
+	laser_360.speed = 1.0f;
 	laser_360.SetInitialFrame(UP);
 
 	//// MULTI LASER ANIMATIONS
@@ -299,6 +299,7 @@ update_status ModulePlayer::Update()
 	int speed = 2;
 	now = SDL_GetTicks();
 
+
 	if (!dead){
 
 		// change weapon
@@ -328,7 +329,12 @@ update_status ModulePlayer::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_REPEAT){
 			if (current_weapon == LASER){
-				if (now - last_laser > 140){
+				if (pos_changed){
+					CreateShoot(current_weapon, weapon_anim);
+					pos_changed = false;
+					last_laser = SDL_GetTicks();
+				}
+				else if (now - last_laser > 140){
 					CreateShoot(current_weapon, weapon_anim);
 					last_laser = SDL_GetTicks();
 				}
@@ -459,6 +465,7 @@ bool ModulePlayer::CheckPJAnimPos(Animation* anim, Direction dest_anim){
 	uint FrameIndex = (uint)anim->GetFrameIndex();
 	if (FrameIndex == dest_anim) ret = true;
 	else {
+		pos_changed = true;
 		switch (dest_anim){
 		case LEFT: if (FrameIndex > RIGHT) 
 						anim->AnimForward();
