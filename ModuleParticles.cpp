@@ -117,6 +117,7 @@ bool ModuleParticles::Start()
 	big_turret_bullet.life = 1000;
 	big_turret_bullet.tex = big_turret_bullet_tex;
 	big_turret_bullet.collider = COLLIDER_ENEMY_SHOT;
+	big_turret_bullet.end_particle = nullptr;
 
 	big_turret_bullet_start.anim.PushBack({ 4, 98, 30, 31 });
 	big_turret_bullet_start.anim.loop = false;
@@ -124,6 +125,17 @@ bool ModuleParticles::Start()
 	//big_turret_bullet_start.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/3-gun shoot.wav");
 	big_turret_bullet_start.tex = big_turret_bullet_tex;
 	big_turret_bullet_start.collider = COLLIDER_NONE;
+
+	big_turret_dead.anim.PushBack({ 0, 0, 64, 65 });
+	big_turret_dead.anim.PushBack({ 64, 0, 64, 65 });
+	big_turret_dead.anim.PushBack({ 128, 0, 64, 65 });
+	big_turret_dead.anim.PushBack({ 192, 0, 64, 65 });
+	big_turret_dead.anim.PushBack({ 256, 0, 64, 65 });
+	big_turret_dead.anim.speed = 0.2f;
+	big_turret_dead.anim.loop = true;
+	big_turret_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret fire.png");
+	big_turret_dead.collider = COLLIDER_NONE;
+	big_turret_dead.life = 50000;
 
 	return true;
 }

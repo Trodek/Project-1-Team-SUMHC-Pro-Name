@@ -35,11 +35,11 @@ Application::Application()
 	modules[10] = namescreen = new ModuleNameScreen();
 	modules[11] = scorescreen = new ModuleScoreScreen();
 	modules[12] = player = new ModulePlayer();
-	modules[13] = particles = new ModuleParticles();
-	modules[14] = levelstop = new ModuleLevelsTop();
-	modules[15] = collisions = new ModuleCollision;
-	modules[16] = bomb = new ModuleBomb();
-	modules[17] = enemies = new ModuleEnemies();
+	modules[13] = enemies = new ModuleEnemies();
+	modules[14] = particles = new ModuleParticles();
+	modules[15] = levelstop = new ModuleLevelsTop();
+	modules[16] = collisions = new ModuleCollision();
+	modules[17] = bomb = new ModuleBomb();	
 	modules[18] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
 	modules[19] = ui = new ModuleUI();
 	
@@ -75,7 +75,7 @@ bool Application::Init()
 		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
 
 	//Stop audio 
-	audio->StopAudio();
+	//audio->StopAudio();
 
 	return ret;
 }

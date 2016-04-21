@@ -75,6 +75,7 @@ public:
 	
 	Particle big_turret_bullet;
 	Particle big_turret_bullet_start;
+	Particle big_turret_dead;
 };
 
 #endif // __MODULEPARTICLES_H__

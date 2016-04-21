@@ -351,6 +351,7 @@ bool ModuleSceneLevels::Start()
 	CameraReset();
 
 	App->enemies->AddEnemy(BIGTURRET, 0, 13704);
+	App->enemies->AddEnemy(BIGTURRET, 160, 13420);
 
 	return ret;
 }

@@ -17,7 +17,7 @@ protected:
 
 public:
 	iPoint position;
-	Particle dead;
+	Particle* dead;
 	int hp;
 	int points;
 

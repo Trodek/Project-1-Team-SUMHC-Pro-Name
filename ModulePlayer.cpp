@@ -1032,3 +1032,43 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		}
 	}
 }
+
+int ModulePlayer::GetDmg(){
+	switch (current_weapon)
+	{
+	case LASER:
+		switch (current_power)
+		{
+		case P0:
+			return 6;
+			break;
+		case P1:
+			return 10;
+			break;
+		case P2:
+			return 30;
+			break;
+		}
+		break;
+	case MULTI:
+		switch (current_power)
+		{
+		case P0:
+			return 4;
+			break;
+		case P1:
+			return 6;
+			break;
+		case P2:
+			return 12;
+			break;
+		}
+		break;
+	case SUPERBALL:
+		break;
+	case SUPERBURNER:
+		break;
+	default:
+		break;
+	}
+}

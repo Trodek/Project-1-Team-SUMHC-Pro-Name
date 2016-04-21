@@ -38,6 +38,8 @@ public:
 	void ResetPosition();
 	void OnCollision(Collider* c1, Collider* c2);
 
+	int GetDmg();
+
 public:
 	iPoint position;
 	iPoint PreviousPos;

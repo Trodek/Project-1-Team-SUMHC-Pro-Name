@@ -5,11 +5,12 @@
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
 #include "ModuleCollision.h"
+#include "ModulePlayer.h"
 #include "ModuleUI.h"
 #include "Enemy.h"
 #include "EnemyBigTurret.h"
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN 500
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -30,7 +31,7 @@ update_status ModuleEnemies::PreUpdate()
 	{
 		if(queue[i].type != ENEMY_TYPES::NO_TYPE)
 		{
-			if(queue[i].y * SCREEN_SIZE < -App->render->camera.y + SPAWN_MARGIN)
+			if(queue[i].y * SCREEN_SIZE > -App->render->camera.y - SPAWN_MARGIN)
 			{
 				SpawnEnemy(queue[i]);
 				queue[i].type = ENEMY_TYPES::NO_TYPE;
@@ -64,7 +65,7 @@ update_status ModuleEnemies::PostUpdate()
 	{
 		if(enemies[i] != nullptr)
 		{
-			if(enemies[i]->position.y* SCREEN_SIZE < (App->render->camera.h) + SPAWN_MARGIN)
+			if(enemies[i]->position.y* SCREEN_SIZE > (-App->render->camera.y+960) + SPAWN_MARGIN)
 			{
 				LOG("DeSpawning enemy at %d", enemies[i]->position.y * SCREEN_SIZE);
 				delete enemies[i];
@@ -134,12 +135,15 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
-		{
-			App->particles->AddParticle(enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y, COLLIDER_NONE, {0,0,0,0});
+		{	
 			if (enemies[i]->hp < 1){
+				App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
 				App->ui->score += enemies[i]->points;
 				delete enemies[i];
 				enemies[i] = nullptr;
+			}
+			if (c2->type == COLLIDER_PLAYER_SHOT){
+				enemies[i]->hp -= App->player->GetDmg();
 			}
 			break;
 		}

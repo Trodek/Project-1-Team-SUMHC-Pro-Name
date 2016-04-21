@@ -12,6 +12,9 @@ private:
 	int now;
 	int last_shot;
 
+	Particle* turret_bullet;
+	Particle* shoot_start;
+
 public:
 
 	EnemyBigTurret(int x, int y);
