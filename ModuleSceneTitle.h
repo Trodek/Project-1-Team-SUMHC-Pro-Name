@@ -19,7 +19,7 @@ public:
 
 public:
 	
-	SDL_Texture* graphics = nullptr;
+	SDL_Texture* title_tex = nullptr;
 	SDL_Rect title_screen;
 
 	Animation title_anim;

@@ -25,11 +25,13 @@ ModuleSceneTitle::ModuleSceneTitle()
 	title_anim.PushBack({ 0, 65,  200, 54 });
 	title_anim.PushBack({ 0, 123, 200, 54 });
 	title_anim.PushBack({ 0, 188, 200, 54 });
-	title_anim.PushBack({ 0, 253, 200, 54 });
-	title_anim.PushBack({ 0, 318, 200, 54 });
-	title_anim.PushBack({ 0, 383, 200, 54 });
 	title_anim.PushBack({ 0, 448, 200, 54 });
-	title_anim.speed = 0.1f;
+	title_anim.PushBack({ 0, 383, 200, 54 });
+	title_anim.PushBack({ 0, 318, 200, 54 });
+	title_anim.PushBack({ 0, 253, 200, 54 });
+
+
+	title_anim.speed = 0.08f;
 	title_anim.loop = false;
 }
 
@@ -41,7 +43,7 @@ bool ModuleSceneTitle::Start()
 {
 	LOG("Loading Title scene");
 	
-	graphics = App->textures->Load("OutZone/Sprites/Title/title_name_anim.png");
+	title_tex = App->textures->Load("OutZone/Sprites/Title/title_name_anim.png");
 	App->player->Disable();
 	App->green_basic_enemy->Disable();
 	App->ui->title = true;
@@ -53,7 +55,7 @@ bool ModuleSceneTitle::Start()
 bool ModuleSceneTitle::CleanUp()
 {
 	LOG("Unloading Title scene");
-	App->textures->Unload(graphics);
+	App->textures->Unload(title_tex);
 	App->ui->title = false;
 
 	return true;
@@ -64,7 +66,7 @@ update_status ModuleSceneTitle::Update()
 {
 
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, 22, 100, &title_anim.GetCurrentFrame()); // background
+	App->render->Blit(title_tex, 17, 89, &title_anim.GetCurrentFrame()); // background
 	
 	// swap Scene
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && App->ui->credit>0){
