@@ -9,6 +9,7 @@
 #include "ModuleUI.h"
 #include "Enemy.h"
 #include "EnemyBigTurret.h"
+#include "EnemyTruck.h"
 
 #define SPAWN_MARGIN 500
 
@@ -125,6 +126,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		{
 			case ENEMY_TYPES::BIGTURRET:
 			enemies[i] = new EnemyBigTurret(info.x,info.y);
+			break;
+			case ENEMY_TYPES::TRUCK:
+			enemies[i] = new EnemyTruck(info.x, info.y);
 			break;
 		}
 	}

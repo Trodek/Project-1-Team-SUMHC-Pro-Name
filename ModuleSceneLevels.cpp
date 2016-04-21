@@ -352,6 +352,8 @@ bool ModuleSceneLevels::Start()
 	App->enemies->AddEnemy(BIGTURRET, 0, 13704);
 	App->enemies->AddEnemy(BIGTURRET, 160, 13420);
 
+	App->enemies->AddEnemy(TRUCK, 37, 14140);
+
 	return ret;
 }
 

@@ -27,6 +27,7 @@ bool ModuleParticles::Start()
 	basic_laser_tex = App->textures->Load("OutZone/Sprites/Main Char/Weapons/basic laser.png");
 	multi_laser_tex = App->textures->Load("OutZone/Sprites/Main Char/Weapons/multi laser.png");
 	big_turret_bullet_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret.png");
+	truck_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck.png");
 
 	// laser particles and sound
 	
@@ -136,6 +137,11 @@ bool ModuleParticles::Start()
 	big_turret_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret fire.png");
 	big_turret_dead.collider = COLLIDER_NONE;
 	big_turret_dead.life = 50000;
+
+	truck_footprint.anim.PushBack({ 167, 6, 66, 24 });
+	truck_footprint.tex = truck_tex;
+	truck_footprint.collider = COLLIDER_NONE;
+	truck_footprint.life = 50000;
 
 	return true;
 }

@@ -15,6 +15,7 @@ enum ENEMY_TYPES
 {
 	NO_TYPE,
 	BIGTURRET,
+	TRUCK,
 };
 
 class Enemy;
