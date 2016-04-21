@@ -270,6 +270,27 @@ bool ModulePlayer::CleanUp(){
 	return true;
 }
 
+update_status ModulePlayer::PostUpdate(){
+
+	int speed = 2;
+	// W key
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+		direction = UP;
+		current_animation = SelectAnimation(direction);
+		if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y<0){
+			App->render->camera.y += 6;
+			position.y -= speed;
+		}
+		else
+			position.y -= speed; // - is + character speed
+	}
+	else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
+		direction = IDLE;
+	}
+
+	return UPDATE_CONTINUE;
+}
+
 // Update: draw background
 update_status ModulePlayer::Update()
 {
@@ -319,20 +340,7 @@ update_status ModulePlayer::Update()
 			App->ui->SubBomb();
 		}
 
-		// W key
-		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
-			direction = UP;
-			current_animation = SelectAnimation(direction);
-			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y<0){
-				App->render->camera.y += 6; 
-				position.y -= speed;
-			}
-			else
-				position.y -= speed; // - is + character speed
-		}
-		else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
-			direction = IDLE;
-		}
+		
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		// D key
