@@ -96,7 +96,6 @@ bool ModuleSceneLevels::Start()
 	App->ui->game = true;
 	App->ui->SetGameStartConditions();
 	App->ui->e_timer = SDL_GetTicks()+1000;
-	App->ui->score = 45031;
 
 
 	//Level2 boss
