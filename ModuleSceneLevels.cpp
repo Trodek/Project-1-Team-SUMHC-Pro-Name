@@ -41,13 +41,13 @@ ModuleSceneLevels::ModuleSceneLevels()
 	//set start point camera
 	camera_y = -15063;
 	//Sub-Lights
-	sublightanim.PushBack({ 0, 0, 256, 15383 });
-	sublightanim.PushBack({ 256, 0, 256, 15383 });
+	sublightanim.PushBack({ 0, 0, 256, 666 });
+	sublightanim.PushBack({ 256, 0, 256, 666 });
 	sublightanim.speed = 0.06f;
 	//Lights
 
-	lights.PushBack({ 0, 0, 256, 15383 });
-	lights.PushBack({ 256, 0, 256, 15383 });
+	lights.PushBack({ 0, 0, 256, 578 });
+	lights.PushBack({ 256, 0, 256, 578 });
 	lights.speed = 0.03f;
 	// Lava
 	lavaanim.PushBack({ 0, 0, 256, 830 });
@@ -76,7 +76,7 @@ bool ModuleSceneLevels::Start()
 
 	App->current_level = this;
 
-	on_bg = App->textures->Load("OutZone/Sprites/Map/MAP LAYER ON.png");
+	on_bg = App->textures->Load("OutZone/Sprites/Map/OnLightsAnim.png");
 	lava = App->textures->Load("OutZone/Sprites/Map/lava_anim.png");
 	sublighttex = App->textures->Load("OutZone/Sprites/Map/sublights.png");
 	graphics_l1 = App->textures->Load("OutZone/Sprites/Map/level1.png");
@@ -409,11 +409,11 @@ update_status ModuleSceneLevels::Update()
 	App->render->Blit(lava, 0, 2896, &lavaanim.GetCurrentFrame());
 	App->render->Blit(lava, 0, 5156, &lavaanim.GetCurrentFrame());
 
-	App->render->Blit(sublighttex, 0, 0, &sublightanim.GetCurrentFrame());
+	App->render->Blit(sublighttex, 0, 6781, &sublightanim.GetCurrentFrame());
 	App->render->Blit(graphics_l3, 0, 0, &level3); // Map
 	App->render->Blit(graphics_l2, 0, 6435, &level2);
 	App->render->Blit(graphics_l1, 0, 11456, &level1);
-	App->render->Blit(on_bg, 0, 0, &lights.GetCurrentFrame());
+	App->render->Blit(on_bg, 0, 8445, &lights.GetCurrentFrame());
 
 
 
