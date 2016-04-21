@@ -14,7 +14,7 @@
 enum ENEMY_TYPES
 {
 	NO_TYPE,
-	REDBIRD,
+	BIGTURRET,
 };
 
 class Enemy;
@@ -32,7 +32,6 @@ public:
 	ModuleEnemies();
 	~ModuleEnemies();
 
-	bool Start();
 	update_status PreUpdate();
 	update_status Update();
 	update_status PostUpdate();
@@ -49,7 +48,6 @@ private:
 
 	EnemyInfo queue[MAX_ENEMIES];
 	Enemy* enemies[MAX_ENEMIES];
-	SDL_Texture* sprites;
 };
 
 #endif // __ModuleEnemies_H__

@@ -45,7 +45,6 @@ bool ModuleSceneTitle::Start()
 	
 	title_tex = App->textures->Load("OutZone/Sprites/Title/title_name_anim.png");
 	App->player->Disable();
-	App->green_basic_enemy->Disable();
 	App->ui->title = true;
 	
 	return true;

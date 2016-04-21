@@ -3,6 +3,7 @@
 #include "ModuleSceneLevels.h"
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
+#include "ModuleEnemies.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
@@ -91,9 +92,6 @@ bool ModuleSceneLevels::Start()
 	App->player->Enable();
 	App->collisions->Enable();
 	App->levelstop->Enable();
-	App->green_basic_enemy->Enable();
-	App->enemy_truck->Enable();
-	App->enemy_big_turret->Enable();
 
 	App->ui->game = true;
 	App->ui->SetGameStartConditions();
@@ -352,6 +350,8 @@ bool ModuleSceneLevels::Start()
 
 	CameraReset();
 
+	App->enemies->AddEnemy(BIGTURRET, 0, 13704);
+
 	return ret;
 }
 
@@ -370,9 +370,6 @@ bool ModuleSceneLevels::CleanUp()
 
 	//Disable player
 	App->player->Disable();
-	App->green_basic_enemy->Disable();
-	App->enemy_big_turret->Disable();
-	App->enemy_truck->Disable();
 	App->ui->game = false;
 	//Disable Collisions
 	App->collisions->Disable();

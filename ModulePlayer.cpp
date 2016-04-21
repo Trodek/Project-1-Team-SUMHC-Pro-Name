@@ -427,10 +427,6 @@ update_status ModulePlayer::Update()
 		}
 		else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 		
-		if (position.y < 13900 && !App->enemy_big_turret->start_shooting){
-			App->enemy_big_turret->start_shooting = true;
-			LOG("ewfewfw");
-		}
 	}
 	else{
 		if (dead_fall){

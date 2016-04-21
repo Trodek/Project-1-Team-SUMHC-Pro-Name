@@ -4,7 +4,10 @@
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
+#include "ModuleCollision.h"
+#include "ModuleUI.h"
 #include "Enemy.h"
+#include "EnemyBigTurret.h"
 
 #define SPAWN_MARGIN 50
 
@@ -19,13 +22,6 @@ ModuleEnemies::~ModuleEnemies()
 {
 }
 
-bool ModuleEnemies::Start()
-{
-	// Create a prototype for each enemy available so we can copy them around
-	sprites = App->textures->Load("rtype/enemies.png");
-
-	return true;
-}
 
 update_status ModuleEnemies::PreUpdate()
 {
@@ -34,11 +30,11 @@ update_status ModuleEnemies::PreUpdate()
 	{
 		if(queue[i].type != ENEMY_TYPES::NO_TYPE)
 		{
-			if(queue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN)
+			if(queue[i].y * SCREEN_SIZE < -App->render->camera.y + SPAWN_MARGIN)
 			{
 				SpawnEnemy(queue[i]);
 				queue[i].type = ENEMY_TYPES::NO_TYPE;
-				LOG("Spawning enemy at %d", queue[i].x * SCREEN_SIZE);
+				LOG("Spawning enemy at %d", queue[i].y * SCREEN_SIZE);
 			}
 		}
 	}
@@ -51,9 +47,12 @@ update_status ModuleEnemies::Update()
 {
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 		if(enemies[i] != nullptr) enemies[i]->Move();
-
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr) enemies[i]->Shot();
+		for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr) enemies[i]->UpdateAnim();
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
-		if(enemies[i] != nullptr) enemies[i]->Draw(sprites);
+		if(enemies[i] != nullptr) enemies[i]->Draw();
 
 	return UPDATE_CONTINUE;
 }
@@ -65,9 +64,9 @@ update_status ModuleEnemies::PostUpdate()
 	{
 		if(enemies[i] != nullptr)
 		{
-			if(enemies[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN)
+			if(enemies[i]->position.y* SCREEN_SIZE < (App->render->camera.h) + SPAWN_MARGIN)
 			{
-				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
+				LOG("DeSpawning enemy at %d", enemies[i]->position.y * SCREEN_SIZE);
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
@@ -81,8 +80,6 @@ update_status ModuleEnemies::PostUpdate()
 bool ModuleEnemies::CleanUp()
 {
 	LOG("Freeing all enemies");
-
-	App->textures->Unload(sprites);
 
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	{
@@ -125,8 +122,8 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 	{
 		switch(info.type)
 		{
-			case ENEMY_TYPES::REDBIRD:
-			//enemies[i] = new Enemy_RedBird(info.x,info.y);
+			case ENEMY_TYPES::BIGTURRET:
+			enemies[i] = new EnemyBigTurret(info.x,info.y);
 			break;
 		}
 	}
@@ -138,9 +135,12 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			//App->particles->AddParticle(App->particles->*end_particle, enemies[i]->position.x, enemies[i]->position.y);
-			delete enemies[i];
-			enemies[i] = nullptr;
+			App->particles->AddParticle(enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y, COLLIDER_NONE, {0,0,0,0});
+			if (enemies[i]->hp < 1){
+				App->ui->score += enemies[i]->points;
+				delete enemies[i];
+				enemies[i] = nullptr;
+			}
 			break;
 		}
 	}
