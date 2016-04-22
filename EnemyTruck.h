@@ -9,7 +9,6 @@ class EnemyTruck : public Enemy
 private:
 	iPoint original_pos;
 	Animation run;
-	Animation damaged;
 	int now;
 	int last_footprint;
 

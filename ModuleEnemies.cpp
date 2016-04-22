@@ -51,7 +51,7 @@ update_status ModuleEnemies::Update()
 		if(enemies[i] != nullptr) enemies[i]->Move();
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		if (enemies[i] != nullptr) enemies[i]->Shot();
-		for (uint i = 0; i < MAX_ENEMIES; ++i)
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		if (enemies[i] != nullptr) enemies[i]->UpdateAnim();
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 		if(enemies[i] != nullptr) enemies[i]->Draw();
@@ -146,7 +146,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
-			else if (c2->type == COLLIDER_PLAYER_SHOT){
+			else if (c2->type == COLLIDER_PLAYER_SHOT && enemies[i]->hp>0){
 				enemies[i]->hp -= App->player->GetDmg();
 			}
 			break;

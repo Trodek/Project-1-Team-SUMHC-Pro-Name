@@ -30,8 +30,9 @@ EnemyTruck::EnemyTruck(int x, int y) : Enemy(x, y)
 
 	dead = &App->particles->big_turret_dead; //truck destroy anim not yet made
 
-	mov.PushBack({ 0, 1.0f }, 50, &run);
+	mov.PushBack({ 0, 1.0f }, 70, &run);
 	mov.loop = false;
+
 }
 
 void EnemyTruck::UpdateAnim()

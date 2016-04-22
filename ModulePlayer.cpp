@@ -249,7 +249,7 @@ bool ModulePlayer::Start()
 
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
 	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
-	BombCollider = App->collisions->AddCollider({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }, COLLIDER_BOMB, this);
+	//BombCollider = App->collisions->AddCollider({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }, COLLIDER_BOMB, this);
 
 	return ret;
 }
