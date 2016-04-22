@@ -51,7 +51,7 @@ public:
 			}
 		}
 
-		if(need_loop)
+		if(need_loop && loop)
 			current_frame = 0;
 
 		return iPoint((int)accumulated_speed.x, (int)accumulated_speed.y);

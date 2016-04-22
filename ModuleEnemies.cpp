@@ -146,7 +146,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
-			if (c2->type == COLLIDER_PLAYER_SHOT){
+			else if (c2->type == COLLIDER_PLAYER_SHOT){
 				enemies[i]->hp -= App->player->GetDmg();
 			}
 			break;

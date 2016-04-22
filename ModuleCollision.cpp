@@ -159,7 +159,7 @@ update_status ModuleCollision::PreUpdate()
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
 		// skip empty colliders
-		if (colliders[i] == nullptr)
+		if (colliders[i] == nullptr) // true == true? hello?
 			continue;
 
 		c1 = colliders[i];
