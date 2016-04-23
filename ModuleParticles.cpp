@@ -143,6 +143,36 @@ bool ModuleParticles::Start()
 	truck_footprint.collider = COLLIDER_NONE;
 	truck_footprint.life = 50000;
 
+	truck_dead.anim.PushBack({ 0, 0, 112, 168 });
+	truck_dead.anim.PushBack({ 112, 0, 112, 168 });
+	truck_dead.anim.PushBack({ 224, 0, 112, 168 });
+	truck_dead.anim.PushBack({ 336, 0, 112, 168 });
+	truck_dead.anim.PushBack({ 448, 0, 112, 168 });
+	truck_dead.anim.PushBack({ 0, 168, 112, 168 });
+	truck_dead.anim.PushBack({ 112, 168, 112, 168 });
+	truck_dead.anim.PushBack({ 224, 168, 112, 168 });
+	truck_dead.anim.PushBack({ 336, 168, 112, 168 });
+	truck_dead.anim.PushBack({ 448, 168, 112, 168 });
+	truck_dead.anim.PushBack({ 0, 336, 112, 168 });
+	truck_dead.anim.PushBack({ 112, 336, 112, 168 });
+	truck_dead.anim.PushBack({ 224, 336, 112, 168 });
+	truck_dead.anim.PushBack({ 336, 336, 112, 168 });
+	truck_dead.anim.PushBack({ 448, 336, 112, 168 });
+	truck_dead.anim.PushBack({ 0, 504, 112, 168 });
+	truck_dead.anim.PushBack({ 112, 504, 112, 168 });
+	truck_dead.anim.PushBack({ 224, 504, 112, 168 });
+	truck_dead.anim.PushBack({ 336, 504, 112, 168 });
+	truck_dead.anim.PushBack({ 448, 504, 112, 168 });
+	truck_dead.anim.PushBack({ 0, 672, 112, 168 });
+	truck_dead.anim.PushBack({ 112, 672, 112, 168 });
+	truck_dead.anim.PushBack({ 224, 672, 112, 168 });
+	truck_dead.anim.PushBack({ 336, 672, 112, 168 });
+	truck_dead.anim.PushBack({ 448, 672, 112, 168 });
+	truck_dead.anim.speed = 0.2f;
+	truck_dead.anim.loop = false;
+	truck_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck Explosion.png");
+	truck_dead.collider = COLLIDER_NONE;
+
 	return true;
 }
 

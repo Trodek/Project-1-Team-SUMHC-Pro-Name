@@ -28,7 +28,7 @@ EnemyTruck::EnemyTruck(int x, int y) : Enemy(x, y)
 
 	footprint = &App->particles->truck_footprint;
 
-	dead = &App->particles->big_turret_dead; //truck destroy anim not yet made
+	dead = &App->particles->truck_dead;
 
 	mov.PushBack({ 0, 1.0f }, 70, &run);
 	mov.loop = false;
