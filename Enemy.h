@@ -3,6 +3,7 @@
 
 #include "p2Point.h"
 #include "Animation.h"
+#include "Path.h"
 #include "ModuleParticles.h"
 
 struct SDL_Texture;
@@ -14,6 +15,7 @@ protected:
 	Animation* animation;
 	Collider* collider;
 	SDL_Texture* tex;
+	Path* path;
 
 public:
 	iPoint position;
@@ -31,6 +33,7 @@ public:
 	virtual void Draw();
 	virtual void Shot(){};
 	virtual void UpdateAnim(){};
+	void SetPath(Path* mov);
 };
 
 #endif // __ENEMY_H__

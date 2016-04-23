@@ -24,3 +24,7 @@ void Enemy::Draw()
 
 	App->render->Blit(tex, position.x, position.y, &(animation->GetCurrentFrame()));
 }
+
+void Enemy::SetPath(Path* mov){
+	path = mov;
+}

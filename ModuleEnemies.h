@@ -2,14 +2,10 @@
 #define __ModuleEnemies_H__
 
 #include "Module.h"
+#include "Animation.h"
+#include "Path.h"
 
 #define MAX_ENEMIES 100
-
-// TODO 2: Add a new enemy: Brown Cookies!
-
-// TODO 3: Have the Brown Cookies describe a path in the screen
-
-// TODO 4: Create a new enemy type: the Mech
 
 enum ENEMY_TYPES
 {
@@ -24,6 +20,7 @@ struct EnemyInfo
 {
 	ENEMY_TYPES type = ENEMY_TYPES::NO_TYPE;
 	int x, y;
+	Path* path;
 };
 
 class ModuleEnemies : public Module
@@ -39,7 +36,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	bool AddEnemy(ENEMY_TYPES type, int x, int y);
+	bool AddEnemy(ENEMY_TYPES type, int x, int y, Path* path = nullptr);
 
 private:
 
