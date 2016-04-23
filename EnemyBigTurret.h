@@ -9,11 +9,16 @@ private:
 	
 	Animation idle;
 	Animation damaged;
+	Animation damaged2;
+
 	int now;
 	int last_shot;
 
 	Particle* turret_bullet;
 	Particle* shoot_start;
+
+	int count = 0;
+	bool increase = true;
 
 public:
 
