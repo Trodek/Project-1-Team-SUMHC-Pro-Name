@@ -175,8 +175,10 @@ update_status ModuleCollision::PreUpdate()
 
 			if (c1->CheckCollision(c2->rect) == true)
 			{
+				COLLIDER_TYPE c1_type = c1->type;
 				if (matrix[c1->type][c2->type] && c1->callback)
 					c1->callback->OnCollision(c1, c2);
+				if (c1->type != c1_type) continue;
 
 				if (matrix[c2->type][c1->type] && c2->callback)
 					c2->callback->OnCollision(c2, c1);
