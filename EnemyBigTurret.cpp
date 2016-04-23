@@ -87,9 +87,13 @@ void EnemyBigTurret::Shot(){
 			else count--;
 		}
 		if (hp < 35){
-			App->render->Blit(tex, position.x + 35, position.y - 18, &(damaged.GetCurrentFrame()));
+			if (position.x<120)
+				App->render->Blit(tex, position.x + 35, position.y - 18, &(damaged.GetCurrentFrame()));
+			else App->render->Blit(tex, position.x + 15, position.y - 18, &(damaged.GetCurrentFrame()));
 			if (hp < 15){
-				App->render->Blit(tex, position.x + 10, position.y -5, &(damaged2.GetCurrentFrame()));
+				if (position.x<120)
+					App->render->Blit(tex, position.x + 15, position.y , &(damaged2.GetCurrentFrame()));
+				else  App->render->Blit(tex, position.x + 35, position.y, &(damaged2.GetCurrentFrame()));
 			}
 
 		}
