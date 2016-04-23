@@ -18,6 +18,8 @@ EnemyTruck::EnemyTruck(int x, int y) : Enemy(x, y)
 	run.speed = 0.3f;
 	run.loop = true;
 
+	
+
 	tex = App->particles->truck_footprint.tex;
 
 	collider = App->collisions->AddCollider({ 0, 0, 70, 110 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
@@ -27,6 +29,8 @@ EnemyTruck::EnemyTruck(int x, int y) : Enemy(x, y)
 	points = 1200;
 
 	footprint = &App->particles->truck_footprint;
+
+	dead_hole = &App->particles->truck_dead_hole;
 
 	dead = &App->particles->truck_dead;
 
@@ -40,15 +44,17 @@ void EnemyTruck::UpdateAnim()
 }
 
 void EnemyTruck::Move(){
-
+	
 	now = SDL_GetTicks();
 
-	position = original_pos+ mov.GetCurrentSpeed(&animation);
-
 	if (hp>0){
+		position = original_pos + mov.GetCurrentSpeed(&animation);
 		if (now - last_footprint > 380){
 				App->particles->AddParticle(*footprint, position.x+1, position.y-22, footprint->collider, nullrect, 0);
 				last_footprint = SDL_GetTicks();
 		}
+	}
+	else{
+		App->particles->AddParticle(*dead_hole, position.x + 1, position.y, footprint->collider, nullrect, 0);
 	}
 }

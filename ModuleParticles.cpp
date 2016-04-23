@@ -168,10 +168,15 @@ bool ModuleParticles::Start()
 	truck_dead.anim.PushBack({ 224, 672, 112, 168 });
 	truck_dead.anim.PushBack({ 336, 672, 112, 168 });
 	truck_dead.anim.PushBack({ 448, 672, 112, 168 });
-	truck_dead.anim.speed = 0.2f;
+	truck_dead.anim.speed = 0.3f;
 	truck_dead.anim.loop = false;
 	truck_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck Explosion.png");
 	truck_dead.collider = COLLIDER_NONE;
+
+	truck_dead_hole.anim.PushBack({ 398, 30, 96, 120 });
+	truck_dead_hole.tex = truck_tex;
+	truck_dead_hole.collider = COLLIDER_NONE;
+	truck_dead_hole.life = 50000;
 
 	return true;
 }

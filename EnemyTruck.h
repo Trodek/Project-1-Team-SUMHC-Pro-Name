@@ -9,10 +9,12 @@ class EnemyTruck : public Enemy
 private:
 	iPoint original_pos;
 	Animation run;
+	
 	int now;
 	int last_footprint;
 
 	Particle* footprint;
+	Particle* dead_hole;
 	Path mov;
 
 public:

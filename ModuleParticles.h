@@ -80,6 +80,7 @@ public:
 
 	Particle truck_footprint;
 	Particle truck_dead;
+	Particle truck_dead_hole;
 };
 
 #endif // __MODULEPARTICLES_H__
