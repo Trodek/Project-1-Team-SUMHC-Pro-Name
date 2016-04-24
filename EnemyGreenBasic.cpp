@@ -98,7 +98,7 @@ EnemyGreenBasic::EnemyGreenBasic(int x, int y, ENEMY_TYPES type) : Enemy(x, y, t
 	hp = 6;
 	points = 390;
 	collider = App->collisions->AddCollider({ 0, 0, 23, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-
+	collider->SetPos(position.x, position.y);
 	bullet = &App->particles->green_basic_bullet;
 	shoot_start = &App->particles->green_basic_bullet_start;
 }

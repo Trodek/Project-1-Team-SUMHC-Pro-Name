@@ -45,6 +45,9 @@ public:
 
 	Path gb1;
 	Path gb2;
+	Path gb3;
+	Path gb4;
+	Path gb5;
 
 };
 

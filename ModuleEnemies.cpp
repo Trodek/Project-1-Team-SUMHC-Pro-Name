@@ -12,7 +12,7 @@
 #include "EnemyTruck.h"
 #include "EnemyGreenBasic.h"
 
-#define SPAWN_MARGIN 500
+#define SPAWN_MARGIN 50
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -68,7 +68,7 @@ update_status ModuleEnemies::PostUpdate()
 	{
 		if(enemies[i] != nullptr)
 		{
-			if(enemies[i]->position.y* SCREEN_SIZE > (-App->render->camera.y+960) + SPAWN_MARGIN)
+			if (enemies[i]->position.y* SCREEN_SIZE >(-App->render->camera.y + 960) + SPAWN_MARGIN || enemies[i]->position.x > 240 || enemies[i]->position.x < 0)
 			{
 				LOG("DeSpawning enemy at %d", enemies[i]->position.y * SCREEN_SIZE);
 				delete enemies[i];
