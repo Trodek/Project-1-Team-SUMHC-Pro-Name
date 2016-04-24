@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "ModuleCollision.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
@@ -256,6 +257,8 @@ update_status ModuleUI::Update(){
 				dead = false;
 				App->player->position.x = checkpoints[curr_check].x;
 				App->player->position.y = checkpoints[curr_check].y;
+				App->player->PlayerCollider->SetPos(App->player->position.x + 10, App->player->position.y + 20);
+				App->player->PlayerEBulletsCollider->SetPos(App->player->position.x + 4, App->player->position.y + 3);
 				App->player->dead = false;
 				App->player->fall_hole.Reset();
 				App->player->direction = IDLE;

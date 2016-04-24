@@ -445,7 +445,6 @@ update_status ModulePlayer::Update()
 		else{
 			if (dead_explo.Finished()){
 				App->ui->dead = true;
-				dead_explo.Reset();
 			}
 			else
 				App->render->Blit(dead_explo_text, position.x-40, position.y-39, &(current_animation->GetCurrentFrame()));
