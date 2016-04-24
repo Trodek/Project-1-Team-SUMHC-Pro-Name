@@ -5,6 +5,7 @@
 #include "ModuleTextures.h"
 #include "SDL/include/SDL_timer.h"
 #include "ModuleEnemies.h"
+#include "ModuleRender.h"
 
 #define nullrect {0,0,0,0} 
 
@@ -26,6 +27,7 @@ EnemyTruck::EnemyTruck(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 	collider = App->collisions->AddCollider({ 0, 0, 70, 119 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	x_collider_correction = 10;
+	y_collider_correction = -126;
 
 	last_footprint = SDL_GetTicks();
 	hp = 120;
@@ -59,6 +61,14 @@ void EnemyTruck::Move(){
 		}
 	}
 	else{
-		App->particles->AddParticle(*dead_hole, position.x, position.y, dead_hole->collider, nullrect, 0);
+		App->particles->AddParticle(*dead_hole, position.x, position.y-126, dead_hole->collider, nullrect, 0);
 	}
+}
+
+void EnemyTruck::Draw()
+{
+	if (collider != nullptr)
+		collider->SetPos(position.x + x_collider_correction, position.y + y_collider_correction);
+
+	App->render->Blit(tex, position.x, position.y-126, &(animation->GetCurrentFrame()));
 }

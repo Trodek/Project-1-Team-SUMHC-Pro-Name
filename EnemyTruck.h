@@ -24,6 +24,7 @@ public:
 
 	void UpdateAnim();
 	void Move();
+	void Draw();
 };
 
 #endif // 
