@@ -7,7 +7,6 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
-#include "ModuleGreenBasic.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleWinScreen.h"
@@ -90,6 +89,7 @@ bool ModuleSceneLevels::Start()
 	App->player->Enable();
 	App->collisions->Enable();
 	App->levelstop->Enable();
+	App->enemies->Enable();
 
 	App->ui->game = true;
 	App->ui->SetGameStartConditions();
@@ -352,6 +352,9 @@ bool ModuleSceneLevels::Start()
 
 	App->enemies->AddEnemy(TRUCK, 37, 14140);
 
+	test.PushBack({ 0, 1.0f }, 100);
+	test.loop = false;
+	App->enemies->AddEnemy(GREENBASIC, 120, 14700, &test);
 	return ret;
 }
 
@@ -375,6 +378,7 @@ bool ModuleSceneLevels::CleanUp()
 	App->collisions->Disable();
 	
 	App->levelstop->Disable();
+	App->enemies->Disable();
 
 	//Stop audio
 	App->audio->StopAudio();

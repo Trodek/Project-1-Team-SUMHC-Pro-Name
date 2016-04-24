@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "ModuleParticles.h"
 #include "Globals.h"
+#include "Path.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 
 struct SDL_Texture;
@@ -41,6 +42,8 @@ public:
 	Mix_Music* level1_song;
 	Mix_Music* level2_song;
 	Mix_Music* level3_song;
+
+	Path test;
 
 };
 

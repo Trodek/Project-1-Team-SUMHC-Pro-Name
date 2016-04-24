@@ -106,12 +106,12 @@ public:
 	}
 
 	// Distances ---------------------------------------------
-	TYPE DistanceTo(const p2Point& v) const
+	float DistanceTo(const p2Point& v) const
 	{
 		TYPE fx = x - v.x;
 		TYPE fy = y - v.y;
 
-		return (TYPE)sqrtf(float(fx*fx) + float(fy*fy));
+		return sqrtf(float(fx*fx) + float(fy*fy));
 	}
 
 	TYPE DistanceNoSqrt(const p2Point& v) const

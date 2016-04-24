@@ -63,6 +63,7 @@ bool Application::Init()
 	winscreen->Disable();
 	losescreen->Disable();
 	namescreen->Disable();
+	enemies->Disable();
 	scorescreen->Disable();
 	continuescreen->Disable();
 	//Disable collision system

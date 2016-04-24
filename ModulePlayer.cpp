@@ -1026,8 +1026,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	}
 	if (PlayerEBulletsCollider == c1 && PlayerEBulletsCollider != nullptr){
 		if (c2->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY_SHOT){
-			dead = true;
-			current_animation = &dead_explo;
+			if (!dead){
+				dead = true;
+				current_animation = &dead_explo;
+			}
 		}
 	}
 }

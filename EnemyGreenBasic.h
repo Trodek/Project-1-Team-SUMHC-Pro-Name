@@ -10,6 +10,7 @@ class EnemyGreenBasic : public Enemy
 private:
 
 	iPoint original;
+	iPoint prev_pos;
 
 	Animation up;
 	Animation down;
@@ -21,13 +22,15 @@ private:
 	Animation right_down;
 	Animation move_360;
 
+	Animation* current_anim;
+
 	int now;
 	int last_shot;
 
 	Particle* bullet;
 	Particle* shoot_start;
 
-	Direction dir;
+	Direction dir = IDLE;
 
 public:
 

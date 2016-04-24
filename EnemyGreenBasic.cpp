@@ -1,7 +1,9 @@
 #include "Application.h"
 #include "Globals.h"
 #include "ModuleEnemies.h"
+#include "ModuleCollision.h"
 #include "EnemyGreenBasic.h"
+#include "ModuleRender.h"
 #include "SDL/include/SDL_timer.h"
 #include "ModulePlayer.h"
 
@@ -90,25 +92,227 @@ EnemyGreenBasic::EnemyGreenBasic(int x, int y, ENEMY_TYPES type) : Enemy(x, y, t
 	tex = App->particles->green_basic;
 
 	last_shot = SDL_GetTicks();
+
+	dead = &App->particles->green_basic_dead;
+
+	hp = 6;
+	points = 390;
+	collider = App->collisions->AddCollider({ 0, 0, 23, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+
+	bullet = &App->particles->green_basic_bullet;
+	shoot_start = &App->particles->green_basic_bullet_start;
 }
 
 void EnemyGreenBasic::Move(){
 
-	//Face Player
-	float enemy_player_r = position.DistanceTo(App->player->position);
-	
+	//-----------Face Player---------------
 
-	if (path->Moving()){
+	float enemy_player_radius = position.DistanceTo(App->player->position);
+	float delta_y = position.y - App->player->position.y;
+	float delta_x = position.x - App->player->position.x;
+	float radius_deltax = enemy_player_radius - delta_x;
 
+	if (radius_deltax < enemy_player_radius / 5){
+		move_360.SetInitialFrame(LEFT);
+		current_anim = &left;
+		dir = LEFT;
 	}
-	else dir = IDLE;
+	else if (radius_deltax > 4 * enemy_player_radius / 5 && radius_deltax <= 6*enemy_player_radius/5){
+		if (delta_y>0){
+			move_360.SetInitialFrame(UP);
+			current_anim = &up;
+			dir = UP;
+		}
+		else { 
+			move_360.SetInitialFrame(DOWN);
+			current_anim = &down;
+			dir = DOWN;
+		}
+	}
+	else if (radius_deltax > enemy_player_radius / 5 && radius_deltax < 2 * enemy_player_radius / 5){
+		if (delta_y>0){
+			move_360.SetInitialFrame(ANGLE_60);
+			current_anim = &left_up;
+			dir = ANGLE_60;
+		}
+		else {
+			move_360.SetInitialFrame(ANGLE_120);
+			current_anim = &left_down;
+			dir = ANGLE_120;
+		}
+	}
+	else if (radius_deltax > 2 * enemy_player_radius / 5 && radius_deltax < 3 * enemy_player_radius / 5){
+		if (delta_y>0){
+			move_360.SetInitialFrame(LEFT_UP);
+			current_anim = &left_up;
+			dir = LEFT_UP;
+		}
+		else {
+			move_360.SetInitialFrame(LEFT_DOWN);
+			current_anim = &left_down;
+			dir = LEFT_DOWN;
+		}
+	}
+	else if (radius_deltax > 3 * enemy_player_radius / 5 && radius_deltax < 4 * enemy_player_radius / 5){
+		if (delta_y>0){
+			move_360.SetInitialFrame(ANGLE_30);
+			current_anim = &left_up;
+			dir = ANGLE_30;
+		}
+		else {
+			move_360.SetInitialFrame(ANGLE_150);
+			current_anim = &left_down;
+			dir = ANGLE_150;
+		}
+	}
+	else if (radius_deltax > 6 * enemy_player_radius / 5 && radius_deltax < 7 * enemy_player_radius / 5){
+		if (delta_y>0){
+			move_360.SetInitialFrame(ANGLE_330);
+			current_anim = &right_up;
+			dir = ANGLE_330;
+		}
+		else {
+			move_360.SetInitialFrame(ANGLE_210);
+			current_anim = &right_down;
+			dir = ANGLE_210;
+		}
+	}
+	else if (radius_deltax > 7 * enemy_player_radius / 5 && radius_deltax < 8 * enemy_player_radius / 5){
+		if (delta_y>0){
+			move_360.SetInitialFrame(RIGHT_UP);
+			current_anim = &right_up;
+			dir = RIGHT_UP;
+		}
+		else {
+			move_360.SetInitialFrame(RIGHT_DOWN);
+			current_anim = &right_down;
+			dir = RIGHT_DOWN;
+		}
+	}
+	else if (radius_deltax > 8 * enemy_player_radius / 5 && radius_deltax < 9 * enemy_player_radius / 5){
+		if (delta_y>0){
+			move_360.SetInitialFrame(ANGLE_300);
+			current_anim = &right_up;
+			dir = ANGLE_300;
+		}
+		else {
+			move_360.SetInitialFrame(ANGLE_240);
+			current_anim = &right_down;
+			dir = ANGLE_240;
+		}
+	}
+	else if (radius_deltax > 9 * enemy_player_radius / 5 && radius_deltax < 2 * enemy_player_radius){
+		move_360.SetInitialFrame(RIGHT);
+		current_anim = &right;
+		dir = RIGHT;
+	}
+	
+	//-----------------------------------------------
+
+	prev_pos = position;
+	position = original + path->GetCurrentSpeed();
 
 }
 
 void EnemyGreenBasic::Draw(){
+	
+	if (collider != nullptr)
+		collider->SetPos(position.x, position.y);
 
+	if (position != prev_pos){
+		App->render->Blit(tex, position.x, position.y, &(current_anim->GetCurrentFrame()));
+	}
+	else App->render->Blit(tex, position.x, position.y, &move_360.GetActualFrame());
 }
 
 void EnemyGreenBasic::Shot(){
 
+	now = SDL_GetTicks();
+
+	if (now - last_shot > 2000 && (position.y - App->player->position.y >-500 && position.y - App->player->position.y < 500)){
+		switch (dir)
+		{
+		case LEFT:
+			App->particles->SetParticleSpeed(bullet, -3, 0);
+			App->particles->AddParticle(*bullet, position.x, position.y+10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x-8, position.y+5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case ANGLE_60:
+			App->particles->SetParticleSpeed(bullet, -2, -1);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case LEFT_UP:
+			App->particles->SetParticleSpeed(bullet, -2, -2);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case ANGLE_30:
+			App->particles->SetParticleSpeed(bullet, -1, -2);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case UP:
+			App->particles->SetParticleSpeed(bullet, 0, -3);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case ANGLE_330:
+			App->particles->SetParticleSpeed(bullet, 1, -2);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case RIGHT_UP:
+			App->particles->SetParticleSpeed(bullet, 2, -2);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case ANGLE_300:
+			App->particles->SetParticleSpeed(bullet, 2, -1);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case RIGHT:
+			App->particles->SetParticleSpeed(bullet, 3, 0);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case ANGLE_240:
+			App->particles->SetParticleSpeed(bullet, 2, 1);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case RIGHT_DOWN:
+			App->particles->SetParticleSpeed(bullet, 2, 2);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case ANGLE_210:
+			App->particles->SetParticleSpeed(bullet, 1, 2);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case DOWN:
+			App->particles->SetParticleSpeed(bullet, 0, 3);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case ANGLE_150:
+			App->particles->SetParticleSpeed(bullet, -1, 2);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case LEFT_DOWN:
+			App->particles->SetParticleSpeed(bullet, -2, 2);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		case ANGLE_120:
+			App->particles->SetParticleSpeed(bullet, -2, 1);
+			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 8, 8 });
+			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			break;
+		}
+		last_shot = SDL_GetTicks();
+	}
 }

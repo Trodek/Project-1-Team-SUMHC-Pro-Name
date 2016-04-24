@@ -85,6 +85,9 @@ public:
 	Particle truck_dead_hole;
 
 	Particle green_basic_dead;
+	Particle green_basic_bullet;
+	Particle green_basic_bullet_end;
+	Particle green_basic_bullet_start;
 };
 
 #endif // __MODULEPARTICLES_H__

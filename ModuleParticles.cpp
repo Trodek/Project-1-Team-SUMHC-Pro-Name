@@ -192,6 +192,28 @@ bool ModuleParticles::Start()
 	green_basic_dead.anim.loop = false;
 	green_basic_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Enemies Common Dead/common dead sprites.png");
 
+	green_basic_bullet.anim.PushBack({ 45, 13, 6, 6 });
+	green_basic_bullet.anim.PushBack({ 61, 13, 6, 6 });
+	green_basic_bullet.anim.speed = 0.3f;
+	green_basic_bullet.end_particle = &green_basic_bullet_end;
+	green_basic_bullet.life = 1500;
+	green_basic_bullet.tex = green_basic;
+	green_basic_bullet.collider = COLLIDER_ENEMY_SHOT;
+
+	green_basic_bullet_end.anim.PushBack({ 113, 11, 8, 8 });
+	green_basic_bullet_end.anim.PushBack({ 128, 11, 8, 8 });
+	green_basic_bullet_end.anim.PushBack({ 142, 13, 6, 5 });
+	green_basic_bullet_end.anim.speed = 0.3f;
+	green_basic_bullet_end.anim.loop = false;
+	green_basic_bullet_end.collider = COLLIDER_NONE;
+	green_basic_bullet_end.tex = green_basic;
+
+	green_basic_bullet_start.anim.PushBack({ 19, 8, 16, 16 });
+	green_basic_bullet_start.anim.loop = false;
+	green_basic_bullet_start.anim.speed = 0.3f;
+	green_basic_bullet_start.tex = green_basic;
+	green_basic_bullet_start.collider = COLLIDER_NONE;
+
 	return true;
 }
 

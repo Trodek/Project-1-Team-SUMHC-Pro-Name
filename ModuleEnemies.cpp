@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include "EnemyBigTurret.h"
 #include "EnemyTruck.h"
+#include "EnemyGreenBasic.h"
 
 #define SPAWN_MARGIN 500
 
@@ -127,11 +128,15 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		switch(info.type)
 		{
 			case ENEMY_TYPES::BIGTURRET:
-			enemies[i] = new EnemyBigTurret(info.x,info.y,info.type);
-			break;
+				enemies[i] = new EnemyBigTurret(info.x,info.y,info.type);
+				break;
 			case ENEMY_TYPES::TRUCK:
-			enemies[i] = new EnemyTruck(info.x, info.y,info.type);
-			break;
+				enemies[i] = new EnemyTruck(info.x, info.y,info.type);
+				break;
+			case ENEMY_TYPES::GREENBASIC:
+				enemies[i] = new EnemyGreenBasic(info.x, info.y, info.type);
+				enemies[i]->SetPath(info.path);
+				break;
 		}
 	}
 }

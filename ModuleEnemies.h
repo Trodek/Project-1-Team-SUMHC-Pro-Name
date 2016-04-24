@@ -12,6 +12,7 @@ enum ENEMY_TYPES
 	NO_TYPE,
 	BIGTURRET,
 	TRUCK,
+	GREENBASIC,
 };
 
 struct SDL_Texture;

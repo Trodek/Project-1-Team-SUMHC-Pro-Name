@@ -21,7 +21,6 @@ public:
 private:
 	uint current_frame = 0;
 	uint last_step = 0;
-	fPoint prev_speed;
 	bool moving;
 
 public:
@@ -37,7 +36,7 @@ public:
 	{
 		current_frame += 1;
 
-		prev_speed = accumulated_speed;
+
 
 		uint count = 0;
 		uint i = 0;
@@ -50,11 +49,10 @@ public:
 			if(count >= current_frame)
 			{
 				accumulated_speed += steps[i].speed;
-				if (accumulated_speed != prev_speed){
-					moving = true;
-					prev_speed = accumulated_speed;
+				if (steps[i].speed.IsZero()){
+					moving = false;
 				}
-				else moving = false;
+				else moving = true;
 				need_loop = false;
 				break;
 			}
