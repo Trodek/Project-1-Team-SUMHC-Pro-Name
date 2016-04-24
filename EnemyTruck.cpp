@@ -61,7 +61,7 @@ void EnemyTruck::Move(){
 		}
 	}
 	else{
-		App->particles->AddParticle(*dead_hole, position.x, position.y-126, dead_hole->collider, nullrect, 0);
+		App->particles->AddParticle(*dead_hole, position.x, position.y, dead_hole->collider, nullrect, 0);
 	}
 }
 
