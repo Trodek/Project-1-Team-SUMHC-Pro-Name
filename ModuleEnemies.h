@@ -14,6 +14,7 @@ enum ENEMY_TYPES
 	TRUCK,
 };
 
+struct SDL_Texture;
 class Enemy;
 
 struct EnemyInfo

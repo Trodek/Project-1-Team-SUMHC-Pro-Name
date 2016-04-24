@@ -62,6 +62,8 @@ private:
 
 public:
 
+	SDL_Texture* green_basic;
+
 	Particle basic_laser_p0;
 	Particle basic_laser_p1;
 	Particle basic_laser_p2;
@@ -81,6 +83,8 @@ public:
 	Particle truck_footprint;
 	Particle truck_dead;
 	Particle truck_dead_hole;
+
+	Particle green_basic_dead;
 };
 
 #endif // __MODULEPARTICLES_H__

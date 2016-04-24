@@ -2,6 +2,7 @@
 #define __Enemy_Big_Turret__
 
 #include "Enemy.h"
+#include "ModuleEnemies.h"
 
 class EnemyBigTurret : public Enemy
 {
@@ -22,7 +23,7 @@ private:
 
 public:
 
-	EnemyBigTurret(int x, int y);
+	EnemyBigTurret(int x, int y, ENEMY_TYPES type);
 
 	void UpdateAnim();
 	void Shot();

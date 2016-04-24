@@ -15,8 +15,9 @@
 
 ModuleEnemies::ModuleEnemies()
 {
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		enemies[i] = nullptr;
+
 }
 
 // Destructor
@@ -126,10 +127,10 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		switch(info.type)
 		{
 			case ENEMY_TYPES::BIGTURRET:
-			enemies[i] = new EnemyBigTurret(info.x,info.y);
+			enemies[i] = new EnemyBigTurret(info.x,info.y,info.type);
 			break;
 			case ENEMY_TYPES::TRUCK:
-			enemies[i] = new EnemyTruck(info.x, info.y);
+			enemies[i] = new EnemyTruck(info.x, info.y,info.type);
 			break;
 		}
 	}
@@ -141,14 +142,15 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{	
-			if (enemies[i]->hp < 1){
-				App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
-				App->ui->score += enemies[i]->points;
-				delete enemies[i];
-				enemies[i] = nullptr;
-			}
-			else if (c2->type == COLLIDER_PLAYER_SHOT && enemies[i]->hp>0){
+			if (c2->type == COLLIDER_PLAYER_SHOT && enemies[i]->hp>0){
 				enemies[i]->hp -= App->player->GetDmg();
+				if (enemies[i]->hp < 1){
+					if (enemies[i]->type == TRUCK) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
+					App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
+					App->ui->score += enemies[i]->points;
+					delete enemies[i];
+					enemies[i] = nullptr;
+				}
 			}
 			break;
 		}

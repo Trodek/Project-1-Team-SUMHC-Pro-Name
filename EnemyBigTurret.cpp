@@ -5,11 +5,12 @@
 #include "ModuleCollision.h"
 #include "ModuleTextures.h"
 #include "SDL/include/SDL_timer.h"
+#include "ModuleEnemies.h"
 
 #define nullrect {0,0,0,0} 
 #define shot_box {0,0,14,14}
 
-EnemyBigTurret::EnemyBigTurret(int x, int y) : Enemy(x, y)
+EnemyBigTurret::EnemyBigTurret(int x, int y,ENEMY_TYPES types) : Enemy(x, y,types)
 {
 	idle.PushBack({ 16, 24, 63, 64 });
 

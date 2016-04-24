@@ -2,8 +2,9 @@
 #include "Enemy.h"
 #include "ModuleCollision.h"
 #include "ModuleRender.h"
+#include "ModuleEnemies.h"
 
-Enemy::Enemy(int x, int y) : position(x, y), collider(nullptr)
+Enemy::Enemy(int x, int y, ENEMY_TYPES type) : position(x, y), collider(nullptr), type(type)
 {}
 
 Enemy::~Enemy()

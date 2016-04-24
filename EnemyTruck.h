@@ -2,7 +2,7 @@
 #define __ENEMYTRUCK_H__
 
 #include "Enemy.h"
-#include "Path.h"
+#include "ModuleEnemies.h"
 
 class EnemyTruck : public Enemy
 {
@@ -19,7 +19,7 @@ private:
 
 public:
 
-	EnemyTruck(int x, int y);
+	EnemyTruck(int x, int y, ENEMY_TYPES type);
 
 	void UpdateAnim();
 	void Move();

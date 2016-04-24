@@ -328,7 +328,7 @@ update_status ModulePlayer::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_REPEAT){
 			if (current_weapon == LASER){
-				if (pos_changed){
+				if (pos_changed&&now - last_laser > 30){
 					CreateShoot(current_weapon, weapon_anim);
 					pos_changed = false;
 					last_laser = SDL_GetTicks();

@@ -4,10 +4,11 @@
 #include "ModuleCollision.h"
 #include "ModuleTextures.h"
 #include "SDL/include/SDL_timer.h"
+#include "ModuleEnemies.h"
 
 #define nullrect {0,0,0,0} 
 
-EnemyTruck::EnemyTruck(int x, int y) : Enemy(x, y)
+EnemyTruck::EnemyTruck(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 {
 	original_pos = position;
 

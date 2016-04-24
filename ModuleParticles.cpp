@@ -28,6 +28,7 @@ bool ModuleParticles::Start()
 	multi_laser_tex = App->textures->Load("OutZone/Sprites/Main Char/Weapons/multi laser.png");
 	big_turret_bullet_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret.png");
 	truck_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck.png");
+	green_basic = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Soldier Green.png");
 
 	// laser particles and sound
 	
@@ -177,6 +178,19 @@ bool ModuleParticles::Start()
 	truck_dead_hole.tex = truck_tex;
 	truck_dead_hole.collider = COLLIDER_NONE;
 	truck_dead_hole.life = 50000;
+
+	// green basic die
+	green_basic_dead.anim.PushBack({ 0, 0, 44, 46 });
+	green_basic_dead.anim.PushBack({ 44, 0, 44, 46 });
+	green_basic_dead.anim.PushBack({ 88, 0, 44, 46 });
+	green_basic_dead.anim.PushBack({ 132, 0, 44, 46 });
+	green_basic_dead.anim.PushBack({ 176, 0, 44, 46 });
+	green_basic_dead.anim.PushBack({ 220, 0, 44, 46 });
+	green_basic_dead.anim.PushBack({ 264, 0, 44, 46 });
+	green_basic_dead.anim.PushBack({ 308, 0, 44, 46 });
+	green_basic_dead.anim.speed = 0.2f;
+	green_basic_dead.anim.loop = false;
+	green_basic_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Enemies Common Dead/common dead sprites.png");
 
 	return true;
 }

@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Path.h"
 #include "ModuleParticles.h"
+#include "ModuleEnemies.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -16,15 +17,17 @@ protected:
 	Collider* collider;
 	SDL_Texture* tex;
 	Path* path;
+	
 
 public:
+	ENEMY_TYPES type;
 	iPoint position;
 	Particle* dead;
 	int hp;
 	int points;
 
 public:
-	Enemy(int x, int y);
+	Enemy(int x, int y, ENEMY_TYPES type);
 	virtual ~Enemy();
 
 	const Collider* GetCollider() const;
