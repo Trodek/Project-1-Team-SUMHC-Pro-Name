@@ -350,11 +350,12 @@ bool ModuleSceneLevels::Start()
 	App->enemies->AddEnemy(BIGTURRET, 0, 13704);
 	App->enemies->AddEnemy(BIGTURRET, 160, 13420);
 
-	App->enemies->AddEnemy(TRUCK, 37, 14140);
+	App->enemies->AddEnemy(TRUCK, 24, 14140);
 
-	test.PushBack({ 0, 1.0f }, 100);
-	test.loop = false;
-	App->enemies->AddEnemy(GREENBASIC, 120, 14700, &test);
+	gb1.PushBack({ 0, 1.0f }, 150);
+	gb1.PushBack({ 1, 1 }, 300);
+	gb1.loop = false;
+	App->enemies->AddEnemy(GREENBASIC, 130, 14900, &gb1);
 	return ret;
 }
 

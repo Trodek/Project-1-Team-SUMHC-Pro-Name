@@ -43,7 +43,8 @@ public:
 	Mix_Music* level2_song;
 	Mix_Music* level3_song;
 
-	Path test;
+	Path gb1;
+	Path gb2;
 
 };
 
