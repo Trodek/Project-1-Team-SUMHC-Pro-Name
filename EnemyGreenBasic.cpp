@@ -94,6 +94,15 @@ EnemyGreenBasic::EnemyGreenBasic(int x, int y, ENEMY_TYPES type) : Enemy(x, y, t
 
 void EnemyGreenBasic::Move(){
 
+	//Face Player
+	float enemy_player_r = position.DistanceTo(App->player->position);
+	
+
+	if (path->Moving()){
+
+	}
+	else dir = IDLE;
+
 }
 
 void EnemyGreenBasic::Draw(){
