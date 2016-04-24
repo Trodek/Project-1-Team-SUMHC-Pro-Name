@@ -17,6 +17,8 @@ protected:
 	Collider* collider;
 	SDL_Texture* tex;
 	Path* path;
+	int x_collider_correction = 0;
+	int y_collider_correction = 0;
 	
 
 public:

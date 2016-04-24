@@ -21,7 +21,7 @@ const Collider* Enemy::GetCollider() const
 void Enemy::Draw()
 {
 	if(collider != nullptr)
-		collider->SetPos(position.x, position.y);
+		collider->SetPos(position.x + x_collider_correction, position.y + y_collider_correction);
 
 	App->render->Blit(tex, position.x, position.y, &(animation->GetCurrentFrame()));
 }

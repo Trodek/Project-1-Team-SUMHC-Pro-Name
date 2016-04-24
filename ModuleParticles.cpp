@@ -174,7 +174,7 @@ bool ModuleParticles::Start()
 	truck_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck Explosion.png");
 	truck_dead.collider = COLLIDER_NONE;
 
-	truck_dead_hole.anim.PushBack({ 398, 30, 96, 120 });
+	truck_dead_hole.anim.PushBack({ 480, 56, 96, 135 });
 	truck_dead_hole.tex = truck_tex;
 	truck_dead_hole.collider = COLLIDER_NONE;
 	truck_dead_hole.life = 50000;

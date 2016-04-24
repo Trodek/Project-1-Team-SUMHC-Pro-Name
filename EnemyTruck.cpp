@@ -12,18 +12,20 @@ EnemyTruck::EnemyTruck(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 {
 	original_pos = position;
 
-	run.PushBack({ 13, 39, 80, 124 });
-	run.PushBack({ 107, 39, 80, 123 });
-	run.PushBack({ 206, 39, 80, 124 });
-	run.PushBack({ 305, 39, 80, 125 });
+	idle.PushBack({ 0, 65, 96, 135 });
+
+	run.PushBack({ 96, 65, 96, 126 });
+	run.PushBack({ 192, 65, 96, 126 });
+	run.PushBack({ 288, 65, 96, 126 });
+	run.PushBack({ 384, 65, 96, 126 });
 	run.speed = 0.3f;
 	run.loop = true;
 
-	
-
 	tex = App->particles->truck_footprint.tex;
 
-	collider = App->collisions->AddCollider({ 0, 0, 70, 110 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 70, 119 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+
+	x_collider_correction = 10;
 
 	last_footprint = SDL_GetTicks();
 	hp = 120;
@@ -35,8 +37,9 @@ EnemyTruck::EnemyTruck(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 
 	dead = &App->particles->truck_dead;
 
-	mov.PushBack({ 0, 1.0f }, 70, &run);
-	mov.loop = false;
+	mov.PushBack({ 0, 1.0f }, 114, &run);
+	mov.PushBack({ 0, 0 }, 180, &idle);
+	mov.PushBack({ 0, 1.0f }, 300, &run);
 
 }
 
@@ -51,11 +54,11 @@ void EnemyTruck::Move(){
 	if (hp>0){
 		position = original_pos + mov.GetCurrentSpeed(&animation);
 		if (now - last_footprint > 380){
-				App->particles->AddParticle(*footprint, position.x+1, position.y-22, footprint->collider, nullrect, 0);
+				//App->particles->AddParticle(*footprint, position.x+14, position.y-24, footprint->collider, nullrect, 0);
 				last_footprint = SDL_GetTicks();
 		}
 	}
 	else{
-		App->particles->AddParticle(*dead_hole, position.x + 1, position.y, footprint->collider, nullrect, 0);
+		App->particles->AddParticle(*dead_hole, position.x, position.y, dead_hole->collider, nullrect, 0);
 	}
 }
