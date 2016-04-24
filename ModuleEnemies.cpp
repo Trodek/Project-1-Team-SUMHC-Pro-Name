@@ -12,7 +12,7 @@
 #include "EnemyTruck.h"
 #include "EnemyGreenBasic.h"
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN 130
 
 ModuleEnemies::ModuleEnemies()
 {

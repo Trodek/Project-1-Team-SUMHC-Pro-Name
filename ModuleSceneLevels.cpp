@@ -352,10 +352,10 @@ bool ModuleSceneLevels::Start()
 
 	App->enemies->AddEnemy(TRUCK, 24, 14140);
 
-	gb1.PushBack({ 0, 1 }, 90);
+	gb1.PushBack({ 0, 1 }, 95);
 	gb1.PushBack({ 1, 1 }, 300);
 	gb1.loop = false;
-	gb2.PushBack({ 0, 1 }, 90);
+	gb2.PushBack({ 0, 1 }, 95);
 	gb2.PushBack({ 1, 1 }, 300);
 	gb2.loop = false;
 	gb3.PushBack({ 0, 1 }, 100);
