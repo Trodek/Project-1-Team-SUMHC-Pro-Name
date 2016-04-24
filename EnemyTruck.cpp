@@ -39,7 +39,7 @@ EnemyTruck::EnemyTruck(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 
 	dead = &App->particles->truck_dead;
 
-	mov.PushBack({ 0, 1.0f }, 114, &run);
+	mov.PushBack({ 0, 1.0f }, 191, &run);
 	mov.PushBack({ 0, 0 }, 180, &idle);
 	mov.PushBack({ 0, 1.0f }, 300, &run);
 
@@ -59,9 +59,6 @@ void EnemyTruck::Move(){
 				//App->particles->AddParticle(*footprint, position.x+14, position.y-24, footprint->collider, nullrect, 0);
 				last_footprint = SDL_GetTicks();
 		}
-	}
-	else{
-		App->particles->AddParticle(*dead_hole, position.x, position.y, dead_hole->collider, nullrect, 0);
 	}
 }
 

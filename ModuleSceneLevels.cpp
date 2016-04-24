@@ -350,7 +350,7 @@ bool ModuleSceneLevels::Start()
 	App->enemies->AddEnemy(BIGTURRET, 0, 13704);
 	App->enemies->AddEnemy(BIGTURRET, 160, 13420);
 
-	App->enemies->AddEnemy(TRUCK, 24, 14140);
+	App->enemies->AddEnemy(TRUCK, 24, 14188);
 
 	gb1.PushBack({ 0, 1 }, 95);
 	gb1.PushBack({ 1, 1 }, 300);
