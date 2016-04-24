@@ -27,6 +27,7 @@ public:
 
 	void UpdateAnim();
 	void Shot();
+	void Draw();
 };
 
 #endif // 

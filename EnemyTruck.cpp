@@ -5,6 +5,7 @@
 #include "ModuleTextures.h"
 #include "SDL/include/SDL_timer.h"
 #include "ModuleEnemies.h"
+#include "ModuleRender.h"
 
 #define nullrect {0,0,0,0} 
 
@@ -12,7 +13,7 @@ EnemyTruck::EnemyTruck(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 {
 	original_pos = position;
 
-	idle.PushBack({ 0, 65, 96, 135 });
+	idle.PushBack({ 0, 65, 96, 126 });
 
 	run.PushBack({ 96, 65, 96, 126 });
 	run.PushBack({ 192, 65, 96, 126 });
@@ -26,6 +27,7 @@ EnemyTruck::EnemyTruck(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 	collider = App->collisions->AddCollider({ 0, 0, 70, 119 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	x_collider_correction = 10;
+	y_collider_correction = -126;
 
 	last_footprint = SDL_GetTicks();
 	hp = 120;
@@ -37,7 +39,7 @@ EnemyTruck::EnemyTruck(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 
 	dead = &App->particles->truck_dead;
 
-	mov.PushBack({ 0, 1.0f }, 114, &run);
+	mov.PushBack({ 0, 1.0f }, 191, &run);
 	mov.PushBack({ 0, 0 }, 180, &idle);
 	mov.PushBack({ 0, 1.0f }, 300, &run);
 
@@ -58,7 +60,12 @@ void EnemyTruck::Move(){
 				last_footprint = SDL_GetTicks();
 		}
 	}
-	else{
-		App->particles->AddParticle(*dead_hole, position.x, position.y, dead_hole->collider, nullrect, 0);
-	}
+}
+
+void EnemyTruck::Draw()
+{
+	if (collider != nullptr)
+		collider->SetPos(position.x + x_collider_correction, position.y + y_collider_correction);
+
+	App->render->Blit(tex, position.x, position.y-126, &(animation->GetCurrentFrame()));
 }

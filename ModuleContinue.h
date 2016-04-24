@@ -20,7 +20,13 @@ public:
 
 public:
 
-	SDL_Texture* graphics = nullptr;
+	SDL_Texture* background = nullptr;
+
+	SDL_Rect cont; //positions on psd
+	SDL_Rect number;
+
+	int x, y, actual, time_elapsed;
+
 	SDL_Rect continue_screen;
 
 	Mix_Music* continue_song;

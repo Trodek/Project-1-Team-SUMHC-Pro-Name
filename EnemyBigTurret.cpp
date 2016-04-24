@@ -26,6 +26,8 @@ EnemyBigTurret::EnemyBigTurret(int x, int y,ENEMY_TYPES types) : Enemy(x, y,type
 	damaged2.PushBack({ 74, 137, 16, 38 });
 	damaged2.speed = 0.6f;
 
+	y_collider_correction = -38;
+
 	tex = App->particles->big_turret_bullet.tex;
 
 	if (x > 120)
@@ -62,8 +64,8 @@ void EnemyBigTurret::Shot(){
 					App->particles->SetParticleSpeed(turret_bullet, 3.53f, 3.5f);
 				if (count == 2)
 					App->particles->SetParticleSpeed(turret_bullet, 3.53f, 4.5f);
-				App->particles->AddParticle(*turret_bullet, position.x + 35, position.y + 37, turret_bullet->collider, shot_box, 135);
-				App->particles->AddParticle(*shoot_start, position.x + 24, position.y + 30, shoot_start->collider, nullrect, 135);
+				App->particles->AddParticle(*turret_bullet, position.x + 35, position.y + 37+y_collider_correction, turret_bullet->collider, shot_box, 135);
+				App->particles->AddParticle(*shoot_start, position.x + 24, position.y + 30+y_collider_correction, shoot_start->collider, nullrect, 135);
 				last_shot = SDL_GetTicks();
 			}
 			else{
@@ -73,8 +75,8 @@ void EnemyBigTurret::Shot(){
 					App->particles->SetParticleSpeed(turret_bullet, -3.53f, 3.5f);
 				if (count == 2)
 					App->particles->SetParticleSpeed(turret_bullet, -3.53f, 4.5f);
-				App->particles->AddParticle(*turret_bullet, position.x + 16, position.y + 42, turret_bullet->collider, shot_box, 135);
-				App->particles->AddParticle(*shoot_start, position.x + 5, position.y + 35, shoot_start->collider, nullrect, 135);
+				App->particles->AddParticle(*turret_bullet, position.x + 16, position.y + 42+y_collider_correction, turret_bullet->collider, shot_box, 135);
+				App->particles->AddParticle(*shoot_start, position.x + 5, position.y + 35+y_collider_correction, shoot_start->collider, nullrect, 135);
 				last_shot = SDL_GetTicks();
 
 			}
@@ -89,14 +91,22 @@ void EnemyBigTurret::Shot(){
 		}
 		if (hp < 35){
 			if (position.x<120)
-				App->render->Blit(tex, position.x + 35, position.y - 18, &(damaged.GetCurrentFrame()));
-			else App->render->Blit(tex, position.x + 15, position.y - 18, &(damaged.GetCurrentFrame()));
+				App->render->Blit(tex, position.x + 35, position.y - 18+y_collider_correction, &(damaged.GetCurrentFrame()));
+			else App->render->Blit(tex, position.x + 15, position.y - 18+y_collider_correction, &(damaged.GetCurrentFrame()));
 			if (hp < 15){
 				if (position.x<120)
-					App->render->Blit(tex, position.x + 15, position.y , &(damaged2.GetCurrentFrame()));
-				else  App->render->Blit(tex, position.x + 35, position.y, &(damaged2.GetCurrentFrame()));
+					App->render->Blit(tex, position.x + 15, position.y+y_collider_correction , &(damaged2.GetCurrentFrame()));
+				else  App->render->Blit(tex, position.x + 35, position.y+y_collider_correction, &(damaged2.GetCurrentFrame()));
 			}
 
 		}
 	}
+}
+
+void EnemyBigTurret::Draw()
+{
+	if (collider != nullptr)
+		collider->SetPos(position.x + x_collider_correction, position.y + y_collider_correction);
+
+	App->render->Blit(tex, position.x, position.y + y_collider_correction, &(animation->GetCurrentFrame()));
 }

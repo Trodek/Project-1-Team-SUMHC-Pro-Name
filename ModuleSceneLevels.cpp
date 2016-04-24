@@ -347,30 +347,30 @@ bool ModuleSceneLevels::Start()
 
 	CameraReset();
 
-	App->enemies->AddEnemy(BIGTURRET, 0, 13704);
-	App->enemies->AddEnemy(BIGTURRET, 160, 13420);
+	App->enemies->AddEnemy(BIGTURRET, 0, 13742);
+	App->enemies->AddEnemy(BIGTURRET, 160, 13458);
 
-	App->enemies->AddEnemy(TRUCK, 24, 14140);
+	App->enemies->AddEnemy(TRUCK, 24, 14188);
 
-	gb1.PushBack({ 0, 1 }, 200);
+	gb1.PushBack({ 0, 1 }, 140);
 	gb1.PushBack({ 1, 1 }, 300);
 	gb1.loop = false;
-	gb2.PushBack({ 0, 1 }, 200);
-	gb2.PushBack({ 1, 1 }, 300);
+	gb2.PushBack({ 0, 1 }, 150);
+	gb2.PushBack({ 1, 1 }, 110);
+	gb2.PushBack({ 1, 0 }, 60);
 	gb2.loop = false;
-	gb3.PushBack({ 0, 1 }, 200);
+	gb3.PushBack({ 0, 1 }, 140);
 	gb3.PushBack({ 1, 1 }, 300);
 	gb3.loop = false;
-	gb3.PushBack({ 0, 1 }, 200);
-	gb3.PushBack({ 1, 1 }, 300);
-	gb3.loop = false;
-	gb3.PushBack({ 0, 1 }, 200);
-	gb3.PushBack({ 1, 1 }, 300);
-	gb3.loop = false;
+	gb4.PushBack({ 0, 1 }, 200);
+	gb5.PushBack({ 0, 1 }, 200);
 
-	App->enemies->AddEnemy(GREENBASIC, 140, 15010, &gb1);
-	App->enemies->AddEnemy(GREENBASIC, 110, 14950, &gb2);
-	App->enemies->AddEnemy(GREENBASIC, 140, 14890, &gb3);
+	App->enemies->AddEnemy(GREENBASIC, 140, 14980, &gb1);
+	App->enemies->AddEnemy(GREENBASIC, 100, 14922, &gb2);
+	App->enemies->AddEnemy(GREENBASIC, 140, 14876, &gb3);
+	App->enemies->AddEnemy(GREENBASIC, 100, 14850, &gb4);
+	App->enemies->AddEnemy(GREENBASIC, 140, 14800, &gb5);
+
 	return ret;
 }
 
