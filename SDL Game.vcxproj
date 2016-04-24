@@ -75,6 +75,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBigTurret.h" />
     <ClInclude Include="EnemyGreenBasic.h" />
+    <ClInclude Include="EnemySmallTurret.h" />
     <ClInclude Include="EnemyTruck.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
@@ -107,6 +108,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBigTurret.cpp" />
     <ClCompile Include="EnemyGreenBasic.cpp" />
+    <ClCompile Include="EnemySmallTurret.cpp" />
     <ClCompile Include="EnemyTruck.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />

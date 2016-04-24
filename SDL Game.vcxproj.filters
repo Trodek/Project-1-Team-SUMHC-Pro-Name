@@ -82,6 +82,9 @@
     <ClCompile Include="EnemyGreenBasic.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="EnemySmallTurret.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -178,6 +181,9 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="EnemyGreenBasic.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySmallTurret.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
