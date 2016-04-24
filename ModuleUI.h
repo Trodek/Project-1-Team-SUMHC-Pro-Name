@@ -96,6 +96,8 @@ public:
 	SDL_Rect energy_bar_ext;
 	SDL_Rect energy_pill;
 
+	SDL_Rect gameover;
+
 	SDL_Rect top;
 
 	SDL_Rect bomb;

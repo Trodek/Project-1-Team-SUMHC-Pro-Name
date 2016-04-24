@@ -135,6 +135,12 @@ ModuleUI::ModuleUI(){
 	bomb.w = 8;
 	bomb.h = 16;
 
+	//gameover
+	gameover.x = 1;
+	gameover.y = 216;
+	gameover.w = 194;
+	gameover.h = 33;
+
 	//credits
 	credits.x = 94;
 	credits.y = 90;
@@ -247,16 +253,20 @@ update_status ModuleUI::Update(){
 		if (dead){
 			lives--;
 			if (lives >= 0){
-				App->player->dead = false;
+				dead = false;
 				App->player->position.x = checkpoints[curr_check].x;
 				App->player->position.y = checkpoints[curr_check].y;
+				App->player->dead = false;
 				App->player->fall_hole.Reset();
 				App->player->direction = IDLE;
 				App->render->camera.y = checkpoints[curr_check].camera_y;
 				RestetEnergyBombs();
 			}
-			else App->fade->FadeToBlack((Module *)App->levels, (Module *)App->losescreen);
-			dead = false;
+			else {
+				App->render->Blit(ui_graphics, 23, (-App->render->camera.y) / SCREEN_SIZE + 136, &gameover);
+				App->fade->FadeToBlack((Module *)App->levels, (Module *)App->losescreen, 1.0f);
+				App->player->dead_explo.Reset();
+			}
 		}
 
 		if (score > top_score) top_score = score;
