@@ -12,7 +12,7 @@ EnemyTruck::EnemyTruck(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 {
 	original_pos = position;
 
-	idle.PushBack({ 0, 65, 96, 135 });
+	idle.PushBack({ 0, 65, 96, 126 });
 
 	run.PushBack({ 96, 65, 96, 126 });
 	run.PushBack({ 192, 65, 96, 126 });
