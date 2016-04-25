@@ -7,6 +7,7 @@
 #include "dynArray.h"
 #include "ModuleTextures.h"
 #include "Animation.h"
+#include "dynArray.h"
 
 class CheckPoint{
 public:
@@ -21,6 +22,10 @@ public:
 
 };
 
+struct Ranking {
+	char* name;
+	int area, Tscore;
+};
 
 class ModuleUI :public Module{
 public:
@@ -46,11 +51,19 @@ public:
 	void SubCoin();
 	void SubBomb();
 	void RestetEnergyBombs();
+	bool TopScore();
 
 public:
 
 	dynArray<CheckPoint> checkpoints;
 	int curr_check = 0;
+
+	dynArray<Ranking> TopScores;
+	char* rank1;
+	char* rank2;
+	char* rank3;
+	char* rank4;
+	char* rank5;
 
 	int lives=0;
 	int score=0;

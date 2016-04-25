@@ -62,7 +62,7 @@ bool ModuleContinue::Start()
 // UnLoad assets
 bool ModuleContinue::CleanUp()
 {
-	LOG("Unloading Title scene");
+	LOG("Unloading NameScreen scene");
 	
 	App->textures->Unload(background);
 
@@ -98,7 +98,7 @@ update_status ModuleContinue::Update()
 
 	// swap Scene
 	if (now-born>9000){
-		App->fade->FadeToBlack(this, (Module*)App->namescreen, 1.0f);
+		App->fade->FadeToBlack(this, (Module*)App->scorescreen, 1.0f);
 	}
 	if (now - born > 9499) {
 		actual = 9;

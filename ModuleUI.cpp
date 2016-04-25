@@ -214,7 +214,16 @@ ModuleUI::ModuleUI(){
 	checkpoints.PushBack(-2775 * SCREEN_SIZE);
 	checkpoints.PushBack(-1347 * SCREEN_SIZE);
 
-
+	rank1 = new char[3] { ' ', ' ', ' ' };
+	rank2 = new char[3] { ' ', ' ', ' ' };
+	rank3 = new char[3] { ' ', ' ', ' ' };
+	rank4 = new char[3] { ' ', ' ', ' ' };
+	rank5 = new char[3] { ' ', ' ', ' ' };
+	TopScores.PushBack({ rank1, 0, 200000 });
+	TopScores.PushBack({ rank2, 0, 100000 });
+	TopScores.PushBack({ rank3, 0, 50000 });
+	TopScores.PushBack({ rank4, 0, 20000 });
+	TopScores.PushBack({ rank5, 0, 10000 });
 
 }
 
@@ -233,7 +242,12 @@ bool ModuleUI::Start(){
 bool ModuleUI::CleanUp(){
 
 	App->textures->Unload(ui_graphics);
-
+	for (int i = 0; i < 5; i++) {
+		if (TopScores[i].name != nullptr) {
+			delete[] TopScores[i].name;
+			TopScores[i].name = nullptr;
+		}
+	}
 	return true;
 }
 
@@ -268,7 +282,10 @@ update_status ModuleUI::Update(){
 			}
 			else {
 				App->render->Blit(ui_graphics, 23, (-App->render->camera.y) / SCREEN_SIZE + 136, &gameover);
-				App->fade->FadeToBlack((Module *)App->levels, (Module *)App->losescreen, 1.0f);
+				if (TopScore())
+					App->fade->FadeToBlack((Module *)App->levels, (Module *)App->namescreen, 1.0f);
+				else
+					App->fade->FadeToBlack((Module *)App->levels, (Module *)App->losescreen, 1.0f);
 				App->player->dead_explo.Reset();
 			}
 			
@@ -335,13 +352,14 @@ update_status ModuleUI::Update(){
 void ModuleUI::SetGameStartConditions(){
 
 	lives = 2;
-	score = 0;
+	score = 10001;
 	energy = 36;
 	max_energy = 36;
 	bombs = 3;
 	game = true;
 	lives_num = &lives2;
 	curr_check = 0;
+	dead = false;
 
 }
 
@@ -548,4 +566,11 @@ void ModuleUI::AddEnergy(){
 void ModuleUI::RestetEnergyBombs(){
 	energy = max_energy;
 	bombs = 3;
+}
+
+bool ModuleUI::TopScore() {
+	for (int i = 0; i < 5; i++)
+		if (score > TopScores[i].Tscore)
+			return true;
+	return false;
 }

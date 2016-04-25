@@ -4,16 +4,12 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
-#include "dynArray.h"
 #include "ModuleUI.h"
 #include "ModuleAudio.h"
 
 struct SDL_Texture;
 
-struct Ranking {
-	char* name;
-	int area, Tscore;
-};
+
 
 class ModuleNameScreen : public Module
 {
@@ -26,18 +22,18 @@ public:
 	bool CleanUp();
 	void UpdateScores();
 	void InputName();
-	bool TopScore();
+
 
 public:
 
 	char* keyboard;
-	int x = 0, y = 0;
-	int letter = 0;
+
+	int x, y;
+	int letter;
 	int square_x;
 	int square_y;
 	int rank;
 	Animation square;
-	dynArray<Ranking> TopScores;
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* layout_graphic = nullptr;
 	SDL_Rect layout;

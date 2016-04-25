@@ -32,14 +32,7 @@ ModuleNameScreen::ModuleNameScreen()
 	layout.w = 209;
 	layout.h = 168;
 
-	//TopScores
-	TopScores.PushBack({ "   ", 0, 200000 });
-	TopScores.PushBack({ "   ", 0, 100000 });
-	TopScores.PushBack({ "   ", 0, 50000 });
-	TopScores.PushBack({ "   ", 0, 20000 });
-	TopScores.PushBack({ "   ", 0, 10000 });
-
-
+	
 }
 
 ModuleNameScreen::~ModuleNameScreen()
@@ -53,16 +46,26 @@ bool ModuleNameScreen::Start()
 	graphics = App->textures->Load("OutZone/Sprites/Scores/EnterNameBackground.png");
 	layout_graphic = App->textures->Load("Outzone/Sprites/Scores/Keyboard.png");
 	music = App->audio->LoadMusic("OutZone/Sounds/Music/namescene.ogg");
+
+	for (rank = 0; App->ui->TopScores[rank].Tscore > App->ui->score; rank++);
+
+	UpdateScores();
+
 	for (int i = 0; i < 5; i++) {
-		if (TopScores[i].Tscore < App->ui->score) {
-			rank = i;
-			break;
-		}
+		LOG("%c%c%c %d %d", App->ui->TopScores[i].name[0], App->ui->TopScores[i].name[1], App->ui->TopScores[i].name[2], App->ui->TopScores[i].area, App->ui->TopScores[i].Tscore);
 	}
+
 	App->audio->PlayMusic(music,LOOP);
 	//Square Position
 	square_x = 28;
 	square_y = 165;
+
+	//Keyboard starting point
+	x = 0;
+	y = 0;
+
+	//InputName()
+	letter = 0;
 
 	//Keyboard
 	keyboard = new char[44]
@@ -77,7 +80,11 @@ bool ModuleNameScreen::Start()
 bool ModuleNameScreen::CleanUp()
 {
 	LOG("Unloading name scene");
-	//delete[] keyboard;
+	if (keyboard != nullptr) {
+		delete[] keyboard;
+		keyboard = nullptr;
+	}
+	
 	App->textures->Unload(graphics);
 	App->audio->StopAudio();
 	App->audio->UnloadMusic(music);
@@ -88,7 +95,6 @@ bool ModuleNameScreen::CleanUp()
 // Update: draw background
 update_status ModuleNameScreen::Update()
 {
-
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &name_screen, 0.75f); // background
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_DOWN) {
@@ -106,38 +112,33 @@ update_status ModuleNameScreen::Update()
 	else if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
 		App->fade->FadeToBlack(this, (Module*)App->scorescreen);
 	}
-	/*else if (App->input->keyboard[SDL_SCANCODE_F] == 1) {
+	else if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN) {
 		InputName();
-	}*/	
+	}
 
 	App->render->Blit(App->ui->ui_graphics, square_x, square_y, &(square.GetCurrentFrame()));
 	App->render->Blit(layout_graphic, 16, 88, &layout);
-	
-
-
-
 
 	return UPDATE_CONTINUE;
 }
 
 void ModuleNameScreen::InputName() {
-	if (keyboard[x + x*y] == '<')
-		TopScores[rank].name[letter--] = ' ';
-	else if (keyboard[x + x*y] == '/')
+	if (keyboard[x + 11*y] == '<')
+		App->ui->TopScores[rank].name[letter--] = ' ';
+	else if (keyboard[x + 11*y] == '/' || letter == 3) {
 		App->fade->FadeToBlack(this, (Module*)App->title, 0.5f);
-	else
-		TopScores[rank].name[letter] = keyboard[x + x*y];
-	LOG("%c", TopScores[rank].name[letter])
-}
-
-bool TopScore() {
-	return false;
+		letter = 0;
+	}
+	else {
+		App->ui->TopScores[rank].name[letter] = keyboard[x + 11*y];
+		letter++;
+	}
 }
 
 void ModuleNameScreen::UpdateScores() {
 	for (int i = 4; i > rank; i++) {
-		TopScores[i].name = TopScores[i - 1].name;
-		TopScores[i].area = TopScores[i - 1].area;
-		TopScores[i].Tscore = TopScores[i - 1].Tscore;
+		App->ui->TopScores[i].name = App->ui->TopScores[i - 1].name;
+		App->ui->TopScores[i].area = App->ui->TopScores[i - 1].area;
+		App->ui->TopScores[i].Tscore = App->ui->TopScores[i - 1].Tscore;
 	}
 }
