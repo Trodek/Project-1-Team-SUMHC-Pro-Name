@@ -282,7 +282,7 @@ update_status ModuleUI::Update(){
 				App->player->dead_explo.Reset();
 			}
 			else {
-				App->render->Blit(ui_graphics, 23, (-App->render->camera.y) / SCREEN_SIZE + 136, &gameover);
+				//App->render->Blit(ui_graphics, 23, (-App->render->camera.y) / SCREEN_SIZE + 136, &gameover);
 				if (TopScore())
 					App->fade->FadeToBlack((Module *)App->levels, (Module *)App->namescreen, 1.0f);
 				else

@@ -171,7 +171,7 @@ void ModuleNameScreen::InputName() {
 		}
 	}
 	else if (keyboard[x + 11 * y] == '/') {
-		App->fade->FadeToBlack(this, (Module*)App->continuescreen, 0.5f);
+		App->fade->FadeToBlack(this, (Module*)App->scorescreen, 0.5f);
 		letter = 0;
 	}
 	else {
@@ -193,7 +193,7 @@ void ModuleNameScreen::InputName() {
 		letter++;
 	}
 	if (letter == 3) 
-		App->fade->FadeToBlack(this, (Module*)App->continuescreen, 0.5f);
+		App->fade->FadeToBlack(this, (Module*)App->scorescreen, 0.5f);
 }
 
 void ModuleNameScreen::UpdateScores() {

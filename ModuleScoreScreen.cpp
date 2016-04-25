@@ -7,6 +7,7 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleScoreScreen.h"
+#include "ModuleUI.h"
 
 
 
@@ -54,7 +55,10 @@ update_status ModuleScoreScreen::Update()
 
 	App->render->Blit(graphics, 0, 0, &score_screen, 0.75f); // background
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
-		App->fade->FadeToBlack(this, (Module*)App->title, 0.5f);
+		if (App->ui->TopScore()) 
+			App->fade->FadeToBlack(this, (Module*)App->continuescreen, 0.5f);
+		else 
+			App->fade->FadeToBlack(this, (Module*)App->title, 0.5f);
 	}
 
 
