@@ -225,6 +225,7 @@ ModuleUI::ModuleUI(){
 	TopScores.PushBack({ rank4, 0, 20000 });
 	TopScores.PushBack({ rank5, 0, 10000 });
 
+	top_score = TopScores[0].Tscore;
 }
 
 ModuleUI::~ModuleUI(){}
@@ -352,7 +353,7 @@ update_status ModuleUI::Update(){
 void ModuleUI::SetGameStartConditions(){
 
 	lives = 2;
-	score = 10001;
+	score = 150001;
 	energy = 36;
 	max_energy = 36;
 	bombs = 3;

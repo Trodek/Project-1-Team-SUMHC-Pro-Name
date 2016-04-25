@@ -31,8 +31,6 @@ ModuleNameScreen::ModuleNameScreen()
 	layout.y = 88;
 	layout.w = 209;
 	layout.h = 168;
-
-	
 }
 
 ModuleNameScreen::~ModuleNameScreen()
@@ -48,12 +46,16 @@ bool ModuleNameScreen::Start()
 	music = App->audio->LoadMusic("OutZone/Sounds/Music/namescene.ogg");
 
 	for (rank = 0; App->ui->TopScores[rank].Tscore > App->ui->score; rank++);
-
-	UpdateScores();
-
 	for (int i = 0; i < 5; i++) {
-		LOG("%c%c%c %d %d", App->ui->TopScores[i].name[0], App->ui->TopScores[i].name[1], App->ui->TopScores[i].name[2], App->ui->TopScores[i].area, App->ui->TopScores[i].Tscore);
+		LOG("BEFORE UPDATE %d %c%c%c %d %d", i, App->ui->TopScores[i].name[0], App->ui->TopScores[i].name[1], App->ui->TopScores[i].name[2], App->ui->TopScores[i].area, App->ui->TopScores[i].Tscore);
 	}
+	UpdateScores();
+	App->ui->TopScores[rank].Tscore = App->ui->score;
+	App->ui->TopScores[rank].area = (App->ui->curr_check / 14) * 100;
+	for (int i = 0; i < 5; i++) {
+		LOG("AFTER UPDATE %d %c%c%c %d %d", i, App->ui->TopScores[i].name[0], App->ui->TopScores[i].name[1], App->ui->TopScores[i].name[2], App->ui->TopScores[i].area, App->ui->TopScores[i].Tscore);
+	}
+
 
 	App->audio->PlayMusic(music,LOOP);
 	//Square Position
@@ -123,22 +125,30 @@ update_status ModuleNameScreen::Update()
 }
 
 void ModuleNameScreen::InputName() {
-	if (keyboard[x + 11*y] == '<')
+	if (keyboard[x + 11 * y] == '<')
 		App->ui->TopScores[rank].name[letter--] = ' ';
-	else if (keyboard[x + 11*y] == '/' || letter == 3) {
+	else if (keyboard[x + 11 * y] == '/' || letter == 3) {
 		App->fade->FadeToBlack(this, (Module*)App->title, 0.5f);
 		letter = 0;
 	}
 	else {
-		App->ui->TopScores[rank].name[letter] = keyboard[x + 11*y];
+		App->ui->TopScores[rank].name[letter] = keyboard[x + 11 * y];
+		LOG("RANK: %d NAME LETTER: %d", rank, letter);
 		letter++;
+	}
+	for (int i = 0; i < 5; i++) {
+		LOG("INPUT %d %c%c%c %d %d", i, App->ui->TopScores[i].name[0], App->ui->TopScores[i].name[1], App->ui->TopScores[i].name[2], App->ui->TopScores[i].area, App->ui->TopScores[i].Tscore);
 	}
 }
 
 void ModuleNameScreen::UpdateScores() {
-	for (int i = 4; i > rank; i++) {
-		App->ui->TopScores[i].name = App->ui->TopScores[i - 1].name;
+	for (int i = 4; i > rank; i--) {
+		for (int j = 0; j < 3; j++) {
+			App->ui->TopScores[i].name[j] = App->ui->TopScores[i - 1].name[j];
+		}
 		App->ui->TopScores[i].area = App->ui->TopScores[i - 1].area;
 		App->ui->TopScores[i].Tscore = App->ui->TopScores[i - 1].Tscore;
+		LOG("UPDATING %d %c%c%c %d %d", i, App->ui->TopScores[i].name[0], App->ui->TopScores[i].name[1], App->ui->TopScores[i].name[2], App->ui->TopScores[i].area, App->ui->TopScores[i].Tscore);
+
 	}
 }

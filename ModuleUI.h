@@ -72,7 +72,7 @@ public:
 	int bombs=0;
 	int credit=0;
 
-	int top_score = 200000;
+	int top_score;
 
 	int now;
 	int e_timer;
