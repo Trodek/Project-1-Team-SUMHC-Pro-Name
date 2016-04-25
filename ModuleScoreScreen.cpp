@@ -53,7 +53,7 @@ update_status ModuleScoreScreen::Update()
 	// Draw everything --------------------------------------
 
 	App->render->Blit(graphics, 0, 0, &score_screen, 0.75f); // background
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
 		App->fade->FadeToBlack(this, (Module*)App->title, 0.5f);
 	}
 
