@@ -30,6 +30,12 @@ EnemySmallTurret::EnemySmallTurret(int x, int y, ENEMY_TYPES type): Enemy(x,y,ty
 	tex = App->particles->small_turret;
 
 	collider = App->collisions->AddCollider({ 0, 0, 30, 47 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	collider->SetPos(position.x, position.y);
+
+	hp = 12;
+	points = 410;
+
+	dead = &App->particles->green_basic_dead;
 
 	bullet = &App->particles->green_basic_bullet;
 	shoot_start = &App->particles->green_basic_bullet_start;
