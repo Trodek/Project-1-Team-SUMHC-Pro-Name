@@ -79,6 +79,8 @@ bool ModuleNameScreen::CleanUp()
 	LOG("Unloading name scene");
 	//delete[] keyboard;
 	App->textures->Unload(graphics);
+	App->audio->StopAudio();
+	App->audio->UnloadMusic(music);
 
 	return true;
 }

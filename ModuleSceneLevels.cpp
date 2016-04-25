@@ -367,6 +367,8 @@ bool ModuleSceneLevels::Start()
 	App->enemies->AddEnemy(SMALLTURRET, 74, 12904);
 	App->enemies->AddEnemy(SMALLTURRET, 138, 12895);
 	App->enemies->AddEnemy(SMALLTURRET, 200, 12918);
+	App->enemies->AddEnemy(SMALLTURRET, 7, 14480);
+	App->enemies->AddEnemy(SMALLTURRET, 134, 14064);
 
 	App->enemies->AddEnemy(TRUCK, 24, 14188);
 
