@@ -23,9 +23,18 @@ public:
 	SDL_Rect title_screen;
 	Animation title_anim;
 
+	SDL_Texture* player_blue = nullptr;
+	SDL_Rect player_blue_rec;
+	SDL_Texture* copyr = nullptr;
+	SDL_Rect copyr_rec;
+
+	SDL_Texture* chars_tex = nullptr;
+
+	SDL_Rect chars_rec_e;
+	Animation e_anim;
 
 	
-	SDL_Texture* chars_tex = nullptr;
+	
 	//Char o
 	int ox, oy;
 	SDL_Rect chars_rec_o;
@@ -49,10 +58,6 @@ public:
 	//Char n
 	int nx, ny;
 	SDL_Rect chars_rec_n;
-	//
-	//Char e
-	int ex, ey;
-	SDL_Rect chars_rec_e;
 	//
 	//THIS WILL BE THE BRIGHT ONES
 	//Char ob
@@ -78,10 +83,6 @@ public:
 	//Char nb
 	int nbx, nby;
 	SDL_Rect chars_rec_nb;
-	//
-	//Char eb
-	int ebx, eby;
-	SDL_Rect chars_rec_eb;
 	//
 
 
