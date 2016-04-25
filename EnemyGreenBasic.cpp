@@ -69,7 +69,7 @@ EnemyGreenBasic::EnemyGreenBasic(int x, int y, ENEMY_TYPES type) : Enemy(x, y, t
 	right_up.PushBack({ 131, 171, 25, 36 });
 	right_up.speed = 0.2f;
 
-	//laser 360º
+	//move 360º
 	move_360.PushBack({ 125, 81, 23, 33 });  //-- left
 	move_360.PushBack({ 185, 79, 24, 35 }); //-- left-up
 	move_360.PushBack({ 224, 77, 27, 35 }); //-- left-up

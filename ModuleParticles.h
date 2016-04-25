@@ -63,6 +63,7 @@ private:
 public:
 
 	SDL_Texture* green_basic;
+	SDL_Texture* small_turret;
 
 	Particle basic_laser_p0;
 	Particle basic_laser_p1;

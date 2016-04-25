@@ -4,26 +4,34 @@
 #include "Enemy.h"
 #include "ModuleEnemies.h"
 
-class EnemyBigTurret : public Enemy
+class EnemySmallTurret : public Enemy
 {
 private:
 
-	Animation idle;
+	Animation move_360;
 
 	int now;
 	int last_shot;
 
-	Particle* turret_bullet;
+	Particle* bullet;
 	Particle* shoot_start;
 
 	int count = 0;
 	bool increase = true;
 
+	float enemy_player_radius;
+	float delta_y;
+	float delta_x;
+	float radius_deltax;
+
+	Direction dir;
+
 public:
 
-	EnemyBigTurret(int x, int y, ENEMY_TYPES type);
+	EnemySmallTurret(int x, int y, ENEMY_TYPES type);
 
-	void UpdateAnim();
+	void Draw();
+	void Move();
 	void Shot();
 };
 

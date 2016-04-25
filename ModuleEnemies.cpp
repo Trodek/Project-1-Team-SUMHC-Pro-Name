@@ -4,6 +4,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
+#include "EnemySmallTurret.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModuleUI.h"
@@ -136,6 +137,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			case ENEMY_TYPES::GREENBASIC:
 				enemies[i] = new EnemyGreenBasic(info.x, info.y, info.type);
 				enemies[i]->SetPath(info.path);
+				break;
+			case ENEMY_TYPES::SMALLTURRET:
+				enemies[i] = new EnemySmallTurret(info.x, info.y, info.type);
 				break;
 		}
 	}

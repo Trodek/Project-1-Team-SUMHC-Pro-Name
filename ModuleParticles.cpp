@@ -29,6 +29,7 @@ bool ModuleParticles::Start()
 	big_turret_bullet_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret.png");
 	truck_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck.png");
 	green_basic = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Soldier Green.png");
+	small_turret = App->textures->Load("Outzone/Sprites/Enemies/Level 1/Small Turret/Small Turret.png");
 
 	// laser particles and sound
 	
