@@ -31,8 +31,6 @@ ModuleNameScreen::ModuleNameScreen()
 	layout.y = 88;
 	layout.w = 209;
 	layout.h = 168;
-
-	
 }
 
 ModuleNameScreen::~ModuleNameScreen()
@@ -47,13 +45,35 @@ bool ModuleNameScreen::Start()
 	layout_graphic = App->textures->Load("Outzone/Sprites/Scores/Keyboard.png");
 	music = App->audio->LoadMusic("OutZone/Sounds/Music/namescene.ogg");
 
+	//Name position 6 258
+	name_input_1.x = 6;
+	name_input_1.y = 248;
+	name_input_1.w = 8;
+	name_input_1.h = 8;
+	
+	name_input_2.x = 6;
+	name_input_2.y = 248;
+	name_input_2.w = 8;
+	name_input_2.h = 8;
+
+	name_input_3.x = 6;
+	name_input_3.y = 248;
+	name_input_3.w = 8;
+	name_input_3.h = 8;
+
 	for (rank = 0; App->ui->TopScores[rank].Tscore > App->ui->score; rank++);
 
 	UpdateScores();
 
-	for (int i = 0; i < 5; i++) {
-		LOG("%c%c%c %d %d", App->ui->TopScores[i].name[0], App->ui->TopScores[i].name[1], App->ui->TopScores[i].name[2], App->ui->TopScores[i].area, App->ui->TopScores[i].Tscore);
-	}
+	App->ui->TopScores[rank].Tscore = App->ui->score;
+	App->ui->TopScores[rank].area = (App->ui->curr_check / 14) * 100;
+
+
+	//Ranking position
+	pos_ranking.x = 151;
+	pos_ranking.y = 155 + (8 * rank);
+	pos_ranking.w = 24;
+	pos_ranking.h = 8;
 
 	App->audio->PlayMusic(music,LOOP);
 	//Square Position
@@ -73,6 +93,7 @@ bool ModuleNameScreen::Start()
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
 	'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6',
 	'7', '8', '9', '.', '!', '$', '&', '?', '#', '<', '/' };
+
 	return true;
 }
 
@@ -118,26 +139,64 @@ update_status ModuleNameScreen::Update()
 
 	App->render->Blit(App->ui->ui_graphics, square_x, square_y, &(square.GetCurrentFrame()));
 	App->render->Blit(layout_graphic, 16, 88, &layout);
+	App->render->Blit(App->ui->ui_graphics, 32, 265, &pos_ranking);
+	App->render->Blit(App->ui->ui_graphics, 64, 264, &name_input_1);
+	App->render->Blit(App->ui->ui_graphics, 80, 264, &name_input_2);
+	App->render->Blit(App->ui->ui_graphics, 96, 264, &name_input_3);
+	App->ui->DrawPlayerScore(219, 265);
 
 	return UPDATE_CONTINUE;
 }
 
 void ModuleNameScreen::InputName() {
-	if (keyboard[x + 11*y] == '<')
-		App->ui->TopScores[rank].name[letter--] = ' ';
-	else if (keyboard[x + 11*y] == '/' || letter == 3) {
-		App->fade->FadeToBlack(this, (Module*)App->title, 0.5f);
+	if (keyboard[x + 11 * y] == '<' && letter > 0) {
+		App->ui->TopScores[rank].name[letter--] = '?';
+		switch (letter) {
+		case 0:
+			name_input_1.x = 6;
+			name_input_1.y = 248;
+			break;
+		case 1:
+			name_input_2.x = 6;
+			name_input_2.y = 248;
+			break;
+		case 2:
+			name_input_3.x = 6;
+			name_input_3.y = 248;
+			break;
+		}
+	}
+	else if (keyboard[x + 11 * y] == '/') {
+		App->fade->FadeToBlack(this, (Module*)App->scorescreen, 0.5f);
 		letter = 0;
 	}
 	else {
-		App->ui->TopScores[rank].name[letter] = keyboard[x + 11*y];
+		App->ui->TopScores[rank].name[letter] = keyboard[x + 11 * y];
+		switch (letter) {
+		case 0:
+			name_input_1.x = 6 + 16 * x;
+			name_input_1.y = 258 + 16 * y;
+			break;
+		case 1:
+			name_input_2.x = 6 + 16 * x;
+			name_input_2.y = 258 + 16 * y;
+			break;
+		case 2:
+			name_input_3.x = 6 + 16 * x;
+			name_input_3.y = 258 + 16 * y;
+			break;
+		}
 		letter++;
 	}
+	if (letter == 3) 
+		App->fade->FadeToBlack(this, (Module*)App->scorescreen, 0.5f);
 }
 
 void ModuleNameScreen::UpdateScores() {
-	for (int i = 4; i > rank; i++) {
-		App->ui->TopScores[i].name = App->ui->TopScores[i - 1].name;
+	for (int i = 4; i > rank; i--) {
+		for (int j = 0; j < 3; j++) {
+			App->ui->TopScores[i].name[j] = App->ui->TopScores[i - 1].name[j];
+		}
 		App->ui->TopScores[i].area = App->ui->TopScores[i - 1].area;
 		App->ui->TopScores[i].Tscore = App->ui->TopScores[i - 1].Tscore;
 	}

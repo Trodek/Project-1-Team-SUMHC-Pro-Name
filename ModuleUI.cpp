@@ -198,6 +198,11 @@ ModuleUI::ModuleUI(){
 	c9.w = 7;
 	c9.h = 7;
 	
+	Points.x = 124;
+	Points.y = 205;
+	Points.w = 7;
+	Points.h = 7;
+
 	//CheckPoints
 	checkpoints.PushBack(-15063 * SCREEN_SIZE);
 	checkpoints.PushBack(-14000 * SCREEN_SIZE);
@@ -214,17 +219,18 @@ ModuleUI::ModuleUI(){
 	checkpoints.PushBack(-2775 * SCREEN_SIZE);
 	checkpoints.PushBack(-1347 * SCREEN_SIZE);
 
-	rank1 = new char[3] { ' ', ' ', ' ' };
-	rank2 = new char[3] { ' ', ' ', ' ' };
-	rank3 = new char[3] { ' ', ' ', ' ' };
-	rank4 = new char[3] { ' ', ' ', ' ' };
-	rank5 = new char[3] { ' ', ' ', ' ' };
+	rank1 = new char[3] { '?', '?', '?' };
+	rank2 = new char[3] { '?', '?', '?' };
+	rank3 = new char[3] { '?', '?', '?' };
+	rank4 = new char[3] { '?', '?', '?' };
+	rank5 = new char[3] { '?', '?', '?' };
 	TopScores.PushBack({ rank1, 0, 200000 });
 	TopScores.PushBack({ rank2, 0, 100000 });
 	TopScores.PushBack({ rank3, 0, 50000 });
 	TopScores.PushBack({ rank4, 0, 20000 });
 	TopScores.PushBack({ rank5, 0, 10000 });
 
+	top_score = TopScores[0].Tscore;
 }
 
 ModuleUI::~ModuleUI(){}
@@ -281,7 +287,7 @@ update_status ModuleUI::Update(){
 				App->player->dead_explo.Reset();
 			}
 			else {
-				App->render->Blit(ui_graphics, 23, (-App->render->camera.y) / SCREEN_SIZE + 136, &gameover);
+				//App->render->Blit(ui_graphics, 23, (-App->render->camera.y) / SCREEN_SIZE + 136, &gameover);
 				if (TopScore())
 					App->fade->FadeToBlack((Module *)App->levels, (Module *)App->namescreen, 1.0f);
 				else
@@ -352,7 +358,7 @@ update_status ModuleUI::Update(){
 void ModuleUI::SetGameStartConditions(){
 
 	lives = 2;
-	score = 10001;
+	score = 111111;
 	energy = 36;
 	max_energy = 36;
 	bombs = 3;
@@ -504,7 +510,16 @@ void ModuleUI::DrawPlayerScore(){
 			}
 		}
 	}
+}
 
+void ModuleUI::DrawPlayerScore(int x, int y) {
+	int aux;
+	for (int j = 0, temp_score = score; j <= 7 && temp_score > 0; j++, temp_score /= 10) {
+		aux = temp_score % 10;
+		Points.x += aux * 12;
+		App->render->Blit(App->ui->ui_graphics, x - 8 * j, y, &Points);
+		Points.x -= aux * 12;
+	}
 }
 
 void ModuleUI::DrawTopScore(){

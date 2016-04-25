@@ -40,6 +40,11 @@ public:
 	SDL_Rect name_screen;
 	Mix_Music* music;
 
+	SDL_Rect pos_ranking;
+	SDL_Rect name_input_1;
+	SDL_Rect name_input_2;
+	SDL_Rect name_input_3;
+
 };
 
 #endif // __MODULE_SCENE_NAME

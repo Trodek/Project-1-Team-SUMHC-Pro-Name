@@ -23,7 +23,15 @@ public:
 
 public:
 
+	SDL_Rect position;
+	SDL_Rect name;
+	SDL_Rect score;
 
+	int x, y;
+	int aux;
+	int temp_score;
+	char* keyboard;
+	
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect score_screen;
 

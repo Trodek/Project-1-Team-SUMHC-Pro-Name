@@ -97,9 +97,11 @@ update_status ModuleContinue::Update()
 	}
 
 	// swap Scene
-	if (now-born>9000){
-		App->fade->FadeToBlack(this, (Module*)App->scorescreen, 1.0f);
-	}
+	if (now - born > 9000)
+		if (App->ui->TopScore())
+			App->fade->FadeToBlack(this, (Module*)App->title, 1.0f);
+		else
+			App->fade->FadeToBlack(this, (Module*)App->scorescreen, 1.0f);
 	if (now - born > 9499) {
 		actual = 9;
 		y = 155;

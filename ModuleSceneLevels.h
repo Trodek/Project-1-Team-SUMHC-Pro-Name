@@ -56,6 +56,14 @@ public:
 	Path gb11;
 	Path gb12;
 	Path gb13;
+	Path gb14;
+	Path gb15;
+	Path gb16;
+	Path gb17;
+	Path gb18;
+	Path gb19;
+	Path gb20;
+
 
 };
 
