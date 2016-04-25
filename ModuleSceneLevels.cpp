@@ -462,9 +462,9 @@ bool ModuleSceneLevels::Start()
 	App->enemies->AddEnemy(GREENBASIC, 60, 14570, &gb15);
 	App->enemies->AddEnemy(GREENBASIC, 90, 14570, &gb16);
 	App->enemies->AddEnemy(GREENBASIC, 90, 14555, &gb17);
-	App->enemies->AddEnemy(GREENBASIC, 90, 14540, &gb18);
-	App->enemies->AddEnemy(GREENBASIC, 120, 14540, &gb19);
-	App->enemies->AddEnemy(GREENBASIC, 120, 14525, &gb20);
+	App->enemies->AddEnemy(GREENBASIC, 90, 14520, &gb18);
+	App->enemies->AddEnemy(GREENBASIC, 120, 14520, &gb19);
+	App->enemies->AddEnemy(GREENBASIC, 120, 14505, &gb20);
 
 	return ret;
 }
