@@ -14,78 +14,78 @@ EnemyGreenBasic::EnemyGreenBasic(int x, int y, ENEMY_TYPES type) : Enemy(x, y, t
 	dir = IDLE;
 
 	//Char Up anim
-	up.PushBack({ 186, 311, 26, 36 });
-	up.PushBack({ 220, 310, 27, 37 });
-	up.PushBack({ 255, 312, 26, 35 });
-	up.PushBack({ 289, 312, 26, 35 });
-	up.speed = 0.2f;
+	up.PushBack({ 0, 74, 31, 37 });
+	up.PushBack({ 31, 74, 31, 37 });
+	up.PushBack({ 62, 74, 31, 37 });
+	up.PushBack({ 93, 74, 31, 37 });
+	up.speed = 0.05f;
 
 	//char right
-	right.PushBack({ 19, 221, 28, 32 });
-	right.PushBack({ 58, 219, 25, 32 });
-	right.PushBack({ 95, 220, 27, 32 });
-	right.PushBack({ 135, 219, 25, 33 });
-	right.speed = 0.25f;
+	right.PushBack({ 0, 111, 31, 37 });
+	right.PushBack({ 31, 111, 31, 37 });
+	right.PushBack({ 62, 111, 31, 37 });
+	right.PushBack({ 93, 111, 31, 37 });
+	right.speed = 0.07f;
 
 	//char left
-	left.PushBack({ 186, 221, 25, 32 });
-	left.PushBack({ 223, 221, 28, 32 });
-	left.PushBack({ 260, 220, 25, 33 });
-	left.PushBack({ 297, 221, 25, 33 });
-	left.speed = 0.25f;
+	left.PushBack({ 0, 37, 31, 37 });
+	left.PushBack({ 31, 37, 31, 37 });
+	left.PushBack({ 62, 37, 31, 37 });
+	left.PushBack({ 93, 37, 31, 37 });
+	left.speed = 0.07f;
 
 	//char down
-	down.PushBack({ 19, 311, 27, 35 });
-	down.PushBack({ 57, 314, 27, 32 });
-	down.PushBack({ 95, 313, 32, 33 });
-	down.PushBack({ 134, 315, 27, 31 });
-	down.speed = 0.2f;
+	down.PushBack({ 0, 0, 31, 37 });
+	down.PushBack({ 31, 0, 31, 37 });
+	down.PushBack({ 62, 0, 31, 37 });
+	down.PushBack({ 93, 0, 31, 37 });
+	down.speed = 0.07f;
 
 	//char left-up
-	left_up.PushBack({ 188, 172, 26, 35 });
-	left_up.PushBack({ 222, 172, 28, 35 });
-	left_up.PushBack({ 258, 170, 28, 34 });
-	left_up.PushBack({ 297, 170, 27, 33 });
-	left_up.speed = 0.2f;
+	left_up.PushBack({ 124, 37, 31, 37 });
+	left_up.PushBack({ 155, 37, 31, 37 });
+	left_up.PushBack({ 186, 37, 31, 37 });
+	left_up.PushBack({ 217, 37, 31, 37 });
+	left_up.speed = 0.05f;
 
 	// char left-down
-	left_down.PushBack({ 186, 265, 27, 33 });
-	left_down.PushBack({ 224, 265, 27, 34 });
-	left_down.PushBack({ 260, 264, 25, 34 });
-	left_down.PushBack({ 291, 265, 28, 34 });
-	left_down.speed = 0.2f;
+	left_down.PushBack({ 124, 0, 31, 37 });
+	left_down.PushBack({ 155, 0, 31, 37 });
+	left_down.PushBack({ 186, 0, 31, 37 });
+	left_down.PushBack({ 217, 0, 31, 37 });
+	left_down.speed = 0.05f;
 
 	// char right-down
-	right_down.PushBack({ 19, 265, 27, 34 });
-	right_down.PushBack({ 54, 266, 26, 33 });
-	right_down.PushBack({ 91, 266, 27, 33 });
-	right_down.PushBack({ 129, 266, 26, 35 });
-	right_down.speed = 0.2f;
+	right_down.PushBack({ 124, 111, 31, 37 });
+	right_down.PushBack({ 155, 111, 31, 37 });
+	right_down.PushBack({ 186, 111, 31, 37 });
+	right_down.PushBack({ 217, 111, 31, 37 });
+	right_down.speed = 0.05f;
 
 	// char right-up
-	right_up.PushBack({ 16, 173, 29, 34 });
-	right_up.PushBack({ 57, 173, 26, 34 });
-	right_up.PushBack({ 96, 173, 24, 33 });
-	right_up.PushBack({ 131, 171, 25, 36 });
-	right_up.speed = 0.2f;
+	right_up.PushBack({ 124, 74, 31, 37 });
+	right_up.PushBack({ 155, 74, 31, 37 });
+	right_up.PushBack({ 186, 74, 31, 37 });
+	right_up.PushBack({ 217, 74, 31, 37 });
+	right_up.speed = 0.05f;
 
 	//move 360º
-	move_360.PushBack({ 125, 81, 23, 33 });  //-- left
-	move_360.PushBack({ 185, 79, 24, 35 }); //-- left-up
-	move_360.PushBack({ 224, 77, 27, 35 }); //-- left-up
-	move_360.PushBack({ 263, 77, 26, 35 }); //-- left-up
-	move_360.PushBack({ 298, 76, 28, 35 });  //-- up
-	move_360.PushBack({ 300, 122, 28, 36 });  //-- right-up
-	move_360.PushBack({ 265, 123, 25, 35 });  //-- right-up
-	move_360.PushBack({ 229, 123, 21, 36 });  //-- right-up
-	move_360.PushBack({ 188, 124, 24, 35 });  //-- right
-	move_360.PushBack({ 125, 124, 26, 35 });  //-- right-down
-	move_360.PushBack({ 89, 126, 27, 35 });  //-- right-down
-	move_360.PushBack({ 52, 126, 29, 34 });  //-- right-down
-	move_360.PushBack({ 17, 125, 28, 35 });  //-- down
-	move_360.PushBack({ 19, 81, 26, 35 });  //-- left-down
-	move_360.PushBack({ 54, 80, 27, 36 });  //-- left-down
-	move_360.PushBack({ 90, 81, 26, 35 });  //-- left-down
+	move_360.PushBack({ 128, 148, 32, 37 });  //-- left
+	move_360.PushBack({ 96, 148, 32, 37 }); //-- left-up
+	move_360.PushBack({ 64, 148, 32, 37 }); //-- left-up
+	move_360.PushBack({ 32, 148, 32, 37 }); //-- left-up
+	move_360.PushBack({ 0, 148, 32, 37 });  //-- up
+	move_360.PushBack({ 224, 185, 32, 37 });  //-- right-up
+	move_360.PushBack({ 192, 185, 32, 37 });  //-- right-up
+	move_360.PushBack({ 160, 185, 32, 37 });  //-- right-up
+	move_360.PushBack({ 128, 185, 32, 37 });  //-- right
+	move_360.PushBack({ 96, 185, 32, 37 });  //-- right-down
+	move_360.PushBack({ 64, 185, 32, 37 });  //-- right-down
+	move_360.PushBack({ 32, 185, 32, 37 });  //-- right-down
+	move_360.PushBack({ 0, 185, 32, 37 });  //-- down
+	move_360.PushBack({ 224, 148, 32, 37 });  //-- left-down
+	move_360.PushBack({ 192, 148, 32, 37 });  //-- left-down
+	move_360.PushBack({ 160, 148, 32, 37 });  //-- left-down
 	move_360.speed = 0.6f;
 	move_360.SetInitialFrame(DOWN);
 
@@ -229,7 +229,7 @@ void EnemyGreenBasic::Shot(){
 
 	now = SDL_GetTicks();
 
-	if (now - last_shot > 2000 && (position.y - App->player->position.y >-200 && position.y - App->player->position.y < 200)){
+	if (now - last_shot > 3000 && (position.y - App->player->position.y >-200 && position.y - App->player->position.y < 200)){
 		float x_speed = (-delta_x / enemy_player_radius)*3;
 		float y_speed = (-delta_y / enemy_player_radius)*3;
 		App->particles->SetParticleSpeed(bullet, x_speed, y_speed);
