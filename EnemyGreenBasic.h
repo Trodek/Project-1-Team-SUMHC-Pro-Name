@@ -32,6 +32,11 @@ private:
 
 	Direction dir = IDLE;
 
+	float enemy_player_radius;
+	float delta_y;
+	float delta_x;
+	float radius_deltax;
+
 public:
 
 	EnemyGreenBasic(int x, int y, ENEMY_TYPES type);
