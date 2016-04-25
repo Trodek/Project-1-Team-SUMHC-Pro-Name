@@ -350,7 +350,23 @@ bool ModuleSceneLevels::Start()
 
 	App->enemies->AddEnemy(BIGTURRET, 0, 13742);
 	App->enemies->AddEnemy(BIGTURRET, 160, 13458);
-	App->enemies->AddEnemy(SMALLTURRET, 15, 15100);
+
+	App->enemies->AddEnemy(SMALLTURRET, 132, 14444);
+	App->enemies->AddEnemy(SMALLTURRET, 194, 14379);
+	App->enemies->AddEnemy(SMALLTURRET, 11, 13038);
+	App->enemies->AddEnemy(SMALLTURRET, 77, 13027);
+	App->enemies->AddEnemy(SMALLTURRET, 149, 13023);
+	App->enemies->AddEnemy(SMALLTURRET, 206, 13049);
+	App->enemies->AddEnemy(SMALLTURRET, 45, 12992);
+	App->enemies->AddEnemy(SMALLTURRET, 111, 12994);
+	App->enemies->AddEnemy(SMALLTURRET, 182, 13003);
+	App->enemies->AddEnemy(SMALLTURRET, 22, 12952);
+	App->enemies->AddEnemy(SMALLTURRET, 100, 12946);
+	App->enemies->AddEnemy(SMALLTURRET, 158, 12953);
+	App->enemies->AddEnemy(SMALLTURRET, 4, 12909);
+	App->enemies->AddEnemy(SMALLTURRET, 74, 12904);
+	App->enemies->AddEnemy(SMALLTURRET, 138, 12895);
+	App->enemies->AddEnemy(SMALLTURRET, 200, 12918);
 
 	App->enemies->AddEnemy(TRUCK, 24, 14188);
 
