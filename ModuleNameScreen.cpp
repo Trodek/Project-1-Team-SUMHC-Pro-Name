@@ -103,7 +103,7 @@ update_status ModuleNameScreen::Update()
 	else if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN) {
 		if (y < 3) { y += 1; square_y += 16; }
 	}
-	else if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
+	else if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
 		App->fade->FadeToBlack(this, (Module*)App->scorescreen);
 	}
 	/*else if (App->input->keyboard[SDL_SCANCODE_F] == 1) {
