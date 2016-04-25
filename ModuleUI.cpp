@@ -353,7 +353,7 @@ update_status ModuleUI::Update(){
 void ModuleUI::SetGameStartConditions(){
 
 	lives = 2;
-	score = 150001;
+	score = 0;
 	energy = 36;
 	max_energy = 36;
 	bombs = 3;
@@ -505,7 +505,36 @@ void ModuleUI::DrawPlayerScore(){
 			}
 		}
 	}
+}
 
+void ModuleUI::DrawPlayerScore(int x, int y) {
+	if (score1 != nullptr){
+		App->render->Blit(ui_graphics, x, y, score1);
+		x -= 8;
+		if (score10 != nullptr){
+			App->render->Blit(ui_graphics, x, y, score10);
+			x -= 8;
+			if (score100 != nullptr){
+				App->render->Blit(ui_graphics, x, y, score100);
+				x -= 8;
+				if (score1000 != nullptr){
+					App->render->Blit(ui_graphics, x, y, score1000);
+					x -= 8;
+					if (score10000 != nullptr){
+						App->render->Blit(ui_graphics, x, y, score10000);
+						x -= 8;
+						if (score100000 != nullptr){
+							App->render->Blit(ui_graphics, x, y, score100000);
+							x -= 8;
+							if (score1000000 != nullptr){
+								App->render->Blit(ui_graphics, x, y, score1000000);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 void ModuleUI::DrawTopScore(){

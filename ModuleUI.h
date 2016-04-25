@@ -43,6 +43,7 @@ public:
 	void UpdateLivesnums();
 	SDL_Rect* GetCorrectNum(const int& num);
 	void DrawPlayerScore();
+	void DrawPlayerScore(int x, int y);
 	void DrawTopScore();
 	void DrawBombs();
 	void AddCoin();
