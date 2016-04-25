@@ -69,6 +69,11 @@ public:
 		current_frame = 0;
 	}
 
+	void Restart(){
+		current_frame = 0;
+		accumulated_speed = { 0, 0 };
+	}
+
 	bool Moving() const{
 		return moving;
 	}

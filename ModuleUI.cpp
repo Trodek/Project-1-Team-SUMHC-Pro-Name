@@ -264,12 +264,14 @@ update_status ModuleUI::Update(){
 				App->player->direction = IDLE;
 				App->render->camera.y = checkpoints[curr_check].camera_y;
 				RestetEnergyBombs();
+				App->player->dead_explo.Reset();
 			}
 			else {
 				App->render->Blit(ui_graphics, 23, (-App->render->camera.y) / SCREEN_SIZE + 136, &gameover);
 				App->fade->FadeToBlack((Module *)App->levels, (Module *)App->losescreen, 1.0f);
+				App->player->dead_explo.Reset();
 			}
-			App->player->dead_explo.Reset();
+			
 		}
 
 		if (score > top_score) top_score = score;
