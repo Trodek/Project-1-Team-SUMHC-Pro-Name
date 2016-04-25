@@ -104,7 +104,7 @@ update_status ModuleNameScreen::Update()
 		if (y < 3) { y += 1; square_y += 16; }
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
-		App->fade->FadeToBlack(this, (Module*)App->title, 0.5f);
+		App->fade->FadeToBlack(this, (Module*)App->scorescreen);
 	}
 	/*else if (App->input->keyboard[SDL_SCANCODE_F] == 1) {
 		InputName();
@@ -113,9 +113,7 @@ update_status ModuleNameScreen::Update()
 	App->render->Blit(App->ui->ui_graphics, square_x, square_y, &(square.GetCurrentFrame()));
 	App->render->Blit(layout_graphic, 16, 88, &layout);
 	
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
-		App->fade->FadeToBlack(this, (Module*)App->scorescreen);
-	}
+
 
 
 
