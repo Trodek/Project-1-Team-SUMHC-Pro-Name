@@ -198,6 +198,11 @@ ModuleUI::ModuleUI(){
 	c9.w = 7;
 	c9.h = 7;
 	
+	Points.x = 124;
+	Points.y = 205;
+	Points.w = 7;
+	Points.h = 7;
+
 	//CheckPoints
 	checkpoints.PushBack(-15063 * SCREEN_SIZE);
 	checkpoints.PushBack(-14000 * SCREEN_SIZE);
@@ -214,11 +219,11 @@ ModuleUI::ModuleUI(){
 	checkpoints.PushBack(-2775 * SCREEN_SIZE);
 	checkpoints.PushBack(-1347 * SCREEN_SIZE);
 
-	rank1 = new char[3] { ' ', ' ', ' ' };
-	rank2 = new char[3] { ' ', ' ', ' ' };
-	rank3 = new char[3] { ' ', ' ', ' ' };
-	rank4 = new char[3] { ' ', ' ', ' ' };
-	rank5 = new char[3] { ' ', ' ', ' ' };
+	rank1 = new char[3] { '?', '?', '?' };
+	rank2 = new char[3] { '?', '?', '?' };
+	rank3 = new char[3] { '?', '?', '?' };
+	rank4 = new char[3] { '?', '?', '?' };
+	rank5 = new char[3] { '?', '?', '?' };
 	TopScores.PushBack({ rank1, 0, 200000 });
 	TopScores.PushBack({ rank2, 0, 100000 });
 	TopScores.PushBack({ rank3, 0, 50000 });
@@ -353,7 +358,7 @@ update_status ModuleUI::Update(){
 void ModuleUI::SetGameStartConditions(){
 
 	lives = 2;
-	score = 0;
+	score = 111111;
 	energy = 36;
 	max_energy = 36;
 	bombs = 3;
@@ -508,32 +513,12 @@ void ModuleUI::DrawPlayerScore(){
 }
 
 void ModuleUI::DrawPlayerScore(int x, int y) {
-	if (score1 != nullptr){
-		App->render->Blit(ui_graphics, x, y, score1);
-		x -= 8;
-		if (score10 != nullptr){
-			App->render->Blit(ui_graphics, x, y, score10);
-			x -= 8;
-			if (score100 != nullptr){
-				App->render->Blit(ui_graphics, x, y, score100);
-				x -= 8;
-				if (score1000 != nullptr){
-					App->render->Blit(ui_graphics, x, y, score1000);
-					x -= 8;
-					if (score10000 != nullptr){
-						App->render->Blit(ui_graphics, x, y, score10000);
-						x -= 8;
-						if (score100000 != nullptr){
-							App->render->Blit(ui_graphics, x, y, score100000);
-							x -= 8;
-							if (score1000000 != nullptr){
-								App->render->Blit(ui_graphics, x, y, score1000000);
-							}
-						}
-					}
-				}
-			}
-		}
+	int aux;
+	for (int j = 0, temp_score = score; j <= 7 && temp_score > 0; j++, temp_score /= 10) {
+		aux = temp_score % 10;
+		Points.x += aux * 12;
+		App->render->Blit(App->ui->ui_graphics, x - 8 * j, y, &Points);
+		Points.x -= aux * 12;
 	}
 }
 

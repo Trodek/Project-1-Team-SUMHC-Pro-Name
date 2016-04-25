@@ -116,6 +116,8 @@ public:
 
 	SDL_Rect bomb;
 
+	SDL_Rect Points;
+
 	SDL_Rect* score1=nullptr;
 	SDL_Rect* score10 = nullptr;
 	SDL_Rect* score100 = nullptr;

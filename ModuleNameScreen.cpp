@@ -31,8 +31,6 @@ ModuleNameScreen::ModuleNameScreen()
 	layout.y = 88;
 	layout.w = 209;
 	layout.h = 168;
-
-
 }
 
 ModuleNameScreen::~ModuleNameScreen()
@@ -64,19 +62,16 @@ bool ModuleNameScreen::Start()
 	name_input_3.h = 8;
 
 	for (rank = 0; App->ui->TopScores[rank].Tscore > App->ui->score; rank++);
-	for (int i = 0; i < 5; i++) {
-		LOG("BEFORE UPDATE %d %c%c%c %d %d", i, App->ui->TopScores[i].name[0], App->ui->TopScores[i].name[1], App->ui->TopScores[i].name[2], App->ui->TopScores[i].area, App->ui->TopScores[i].Tscore);
-	}
+
 	UpdateScores();
+
 	App->ui->TopScores[rank].Tscore = App->ui->score;
 	App->ui->TopScores[rank].area = (App->ui->curr_check / 14) * 100;
-	for (int i = 0; i < 5; i++) {
-		LOG("AFTER UPDATE %d %c%c%c %d %d", i, App->ui->TopScores[i].name[0], App->ui->TopScores[i].name[1], App->ui->TopScores[i].name[2], App->ui->TopScores[i].area, App->ui->TopScores[i].Tscore);
-	}
+
 
 	//Ranking position
 	pos_ranking.x = 151;
-	pos_ranking.y = 155 + (8 * rank);;
+	pos_ranking.y = 155 + (8 * rank);
 	pos_ranking.w = 24;
 	pos_ranking.h = 8;
 
@@ -98,6 +93,7 @@ bool ModuleNameScreen::Start()
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
 	'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6',
 	'7', '8', '9', '.', '!', '$', '&', '?', '#', '<', '/' };
+
 	return true;
 }
 
@@ -154,7 +150,7 @@ update_status ModuleNameScreen::Update()
 
 void ModuleNameScreen::InputName() {
 	if (keyboard[x + 11 * y] == '<' && letter > 0) {
-		App->ui->TopScores[rank].name[letter--] = ' ';
+		App->ui->TopScores[rank].name[letter--] = '?';
 		switch (letter) {
 		case 0:
 			name_input_1.x = 6;
