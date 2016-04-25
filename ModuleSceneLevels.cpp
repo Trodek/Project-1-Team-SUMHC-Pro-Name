@@ -384,12 +384,40 @@ bool ModuleSceneLevels::Start()
 	gb3.loop = false;
 	gb4.PushBack({ 0, 1 }, 200);
 	gb5.PushBack({ 0, 1 }, 200);
+	gb6.PushBack({ 0, 1 }, 200);
+	gb7.PushBack({ 0, 1 }, 200);
+	gb8.PushBack({ 0, 1 }, 90);
+	gb8.PushBack({ 1, 1 }, 90);
+	gb8.PushBack({ 1, 0 }, 90);
+	gb9.PushBack({ 0, 1 }, 90);
+	gb9.PushBack({ 1, 1 }, 90);
+	gb9.PushBack({ 1, 0 }, 90);
+	gb10.PushBack({ 0, 1 }, 90);
+	gb10.PushBack({ 1, 1 }, 90);
+	gb10.PushBack({ 1, 0 }, 90);
+	gb11.PushBack({ 0, 1 }, 90);
+	gb11.PushBack({ 1, 1 }, 90);
+	gb11.PushBack({ 1, 0 }, 110);
+	gb12.PushBack({ 0, 1 }, 90);
+	gb12.PushBack({ 1, 1 }, 90);
+	gb12.PushBack({ 1, 0 }, 110);
+	gb13.PushBack({ 0, 1 }, 90);
+	gb13.PushBack({ 1, 1 }, 90);
+	gb13.PushBack({ 1, 0 }, 110);
 
 	App->enemies->AddEnemy(GREENBASIC, 140, 14980, &gb1);
 	App->enemies->AddEnemy(GREENBASIC, 100, 14922, &gb2);
 	App->enemies->AddEnemy(GREENBASIC, 140, 14876, &gb3);
 	App->enemies->AddEnemy(GREENBASIC, 100, 14850, &gb4);
 	App->enemies->AddEnemy(GREENBASIC, 140, 14800, &gb5);
+	App->enemies->AddEnemy(GREENBASIC, 120, 14760, &gb6);
+	App->enemies->AddEnemy(GREENBASIC, 100, 14710, &gb7);
+	App->enemies->AddEnemy(GREENBASIC, 100, 14660, &gb8);
+	App->enemies->AddEnemy(GREENBASIC, 100, 14645, &gb9);
+	App->enemies->AddEnemy(GREENBASIC, 130, 14660, &gb10);
+	App->enemies->AddEnemy(GREENBASIC, 50, 14610, &gb11);
+	App->enemies->AddEnemy(GREENBASIC, 50, 14595, &gb12);
+	App->enemies->AddEnemy(GREENBASIC, 80, 14610, &gb13);
 
 	return ret;
 }
