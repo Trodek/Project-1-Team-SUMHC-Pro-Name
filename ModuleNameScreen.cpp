@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleNameScreen.h"
 #include "ModulePlayer.h"
+#include "ModuleAudio.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleNameScreen.h"
 #include "ModuleScoreScreen.h"
@@ -23,7 +24,7 @@ ModuleNameScreen::ModuleNameScreen()
 	//Square
 	square.PushBack({ 147, 116, 16, 16 });
 	square.PushBack({ 147, 134, 16, 16 });
-	square.speed = 0.5f;
+	square.speed = 0.2f;
 
 	//layout
 	layout.x = 16;
@@ -51,13 +52,14 @@ bool ModuleNameScreen::Start()
 	//bool ret = true;
 	graphics = App->textures->Load("OutZone/Sprites/Scores/EnterNameBackground.png");
 	layout_graphic = App->textures->Load("Outzone/Sprites/Scores/Keyboard.png");
+	music = App->audio->LoadMusic("OutZone/Sounds/Music/namescene.ogg");
 	for (int i = 0; i < 5; i++) {
 		if (TopScores[i].Tscore < App->ui->score) {
 			rank = i;
 			break;
 		}
 	}
-
+	App->audio->PlayMusic(music,LOOP);
 	//Square Position
 	square_x = 28;
 	square_y = 165;

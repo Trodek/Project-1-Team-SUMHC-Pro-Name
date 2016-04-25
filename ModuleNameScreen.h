@@ -6,6 +6,7 @@
 #include "Globals.h"
 #include "dynArray.h"
 #include "ModuleUI.h"
+#include "ModuleAudio.h"
 
 struct SDL_Texture;
 
@@ -41,6 +42,7 @@ public:
 	SDL_Texture* layout_graphic = nullptr;
 	SDL_Rect layout;
 	SDL_Rect name_screen;
+	Mix_Music* music;
 
 };
 
