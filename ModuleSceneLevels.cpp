@@ -372,38 +372,78 @@ bool ModuleSceneLevels::Start()
 
 	App->enemies->AddEnemy(TRUCK, 24, 14188);
 
+	//ENEMIES PATHS
+
 	gb1.PushBack({ 0, 1 }, 140);
 	gb1.PushBack({ 1, 1 }, 300);
 	gb1.loop = false;
+
 	gb2.PushBack({ 0, 1 }, 150);
 	gb2.PushBack({ 1, 1 }, 110);
 	gb2.PushBack({ 1, 0 }, 60);
 	gb2.loop = false;
+
 	gb3.PushBack({ 0, 1 }, 140);
 	gb3.PushBack({ 1, 1 }, 300);
 	gb3.loop = false;
+
 	gb4.PushBack({ 0, 1 }, 200);
+
 	gb5.PushBack({ 0, 1 }, 200);
+
 	gb6.PushBack({ 0, 1 }, 200);
+
 	gb7.PushBack({ 0, 1 }, 200);
+
 	gb8.PushBack({ 0, 1 }, 90);
 	gb8.PushBack({ 1, 1 }, 90);
 	gb8.PushBack({ 1, 0 }, 90);
+
 	gb9.PushBack({ 0, 1 }, 90);
 	gb9.PushBack({ 1, 1 }, 90);
 	gb9.PushBack({ 1, 0 }, 90);
+
 	gb10.PushBack({ 0, 1 }, 90);
 	gb10.PushBack({ 1, 1 }, 90);
 	gb10.PushBack({ 1, 0 }, 90);
+
 	gb11.PushBack({ 0, 1 }, 90);
 	gb11.PushBack({ 1, 1 }, 90);
 	gb11.PushBack({ 1, 0 }, 110);
+
 	gb12.PushBack({ 0, 1 }, 90);
 	gb12.PushBack({ 1, 1 }, 90);
 	gb12.PushBack({ 1, 0 }, 110);
+
 	gb13.PushBack({ 0, 1 }, 90);
 	gb13.PushBack({ 1, 1 }, 90);
 	gb13.PushBack({ 1, 0 }, 110);
+
+	gb14.PushBack({ 0, 0 }, 500000);
+
+	gb15.PushBack({ 0, 1 }, 90);
+	gb15.PushBack({ -1, 1 }, 90);
+	gb15.PushBack({ -1, 0 }, 110);
+
+	gb16.PushBack({ 0, 1 }, 90);
+	gb16.PushBack({ -1, 1 }, 90);
+	gb16.PushBack({ -1, 0 }, 110);
+
+	gb17.PushBack({ 0, 1 }, 90);
+	gb17.PushBack({ -1, 1 }, 90);
+	gb17.PushBack({ -1, 0 }, 110);
+
+	gb18.PushBack({ 0, 1 }, 90);
+	gb18.PushBack({ -1, 1 }, 90);
+	gb18.PushBack({ -1, 0 }, 110);
+
+	gb19.PushBack({ 0, 1 }, 90);
+	gb19.PushBack({ -1, 1 }, 90);
+	gb19.PushBack({ -1, 0 }, 110);
+
+	gb20.PushBack({ 0, 1 }, 90);
+	gb20.PushBack({ -1, 1 }, 90);
+	gb20.PushBack({ -1, 0 }, 110);
 
 	App->enemies->AddEnemy(GREENBASIC, 140, 14980, &gb1);
 	App->enemies->AddEnemy(GREENBASIC, 100, 14922, &gb2);
@@ -418,6 +458,13 @@ bool ModuleSceneLevels::Start()
 	App->enemies->AddEnemy(GREENBASIC, 50, 14610, &gb11);
 	App->enemies->AddEnemy(GREENBASIC, 50, 14595, &gb12);
 	App->enemies->AddEnemy(GREENBASIC, 80, 14610, &gb13);
+	App->enemies->AddEnemy(GREENBASIC, 30, 14610, &gb14);
+	App->enemies->AddEnemy(GREENBASIC, 60, 14570, &gb15);
+	App->enemies->AddEnemy(GREENBASIC, 90, 14570, &gb16);
+	App->enemies->AddEnemy(GREENBASIC, 90, 14555, &gb17);
+	App->enemies->AddEnemy(GREENBASIC, 90, 14540, &gb18);
+	App->enemies->AddEnemy(GREENBASIC, 120, 14540, &gb19);
+	App->enemies->AddEnemy(GREENBASIC, 120, 14525, &gb20);
 
 	return ret;
 }

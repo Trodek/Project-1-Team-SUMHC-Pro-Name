@@ -69,7 +69,7 @@ update_status ModuleEnemies::PostUpdate()
 	{
 		if(enemies[i] != nullptr)
 		{
-			if (enemies[i]->position.y* SCREEN_SIZE >(-App->render->camera.y + 960) + SPAWN_MARGIN || enemies[i]->position.x > 240 || enemies[i]->position.x < 0)
+			if (enemies[i]->position.y* SCREEN_SIZE >(-App->render->camera.y + 960) + SPAWN_MARGIN || enemies[i]->position.x > 240 || enemies[i]->position.x < -SPAWN_MARGIN)
 			{
 				LOG("DeSpawning enemy at %d", enemies[i]->position.y * SCREEN_SIZE);
 				delete enemies[i];
