@@ -90,6 +90,7 @@ bool ModuleSceneLevels::Start()
 	App->collisions->Enable();
 	App->levelstop->Enable();
 	App->enemies->Enable();
+	App->particles->Enable();
 
 	App->ui->game = true;
 	App->ui->SetGameStartConditions();
@@ -394,6 +395,7 @@ bool ModuleSceneLevels::CleanUp()
 	//Disable Collisions
 	App->collisions->Disable();
 	
+	App->particles->Disable();
 	App->levelstop->Disable();
 	App->enemies->Disable();
 
@@ -404,6 +406,13 @@ bool ModuleSceneLevels::CleanUp()
 	App->audio->UnloadMusic(level3_song);
 
 	App->render->camera.y = 0;
+
+	//restart paths
+	gb1.Restart();
+	gb2.Restart();
+	gb3.Restart();
+	gb4.Restart();
+	gb5.Restart();
 
 	return true;
 }
@@ -422,17 +431,18 @@ update_status ModuleSceneLevels::Update()
 		App->fade->FadeToBlack(this, (Module*)App->winscreen, 0.3f);
 	}
 	// Draw everything --------------------------------------
-	App->render->Blit(lava, 0, 0, &lavaanim.GetCurrentFrame());
-	App->render->Blit(lava, 0, 830, &lavaanim.GetCurrentFrame());
-	App->render->Blit(lava, 0, 2896, &lavaanim.GetCurrentFrame());
-	App->render->Blit(lava, 0, 5156, &lavaanim.GetCurrentFrame());
+	if (App->ui->game){
+		App->render->Blit(lava, 0, 0, &lavaanim.GetCurrentFrame());
+		App->render->Blit(lava, 0, 830, &lavaanim.GetCurrentFrame());
+		App->render->Blit(lava, 0, 2896, &lavaanim.GetCurrentFrame());
+		App->render->Blit(lava, 0, 5156, &lavaanim.GetCurrentFrame());
 
-	App->render->Blit(sublighttex, 0, 6781, &sublightanim.GetCurrentFrame());
-	App->render->Blit(graphics_l3, 0, 0, &level3); // Map
-	App->render->Blit(graphics_l2, 0, 6435, &level2);
-	App->render->Blit(graphics_l1, 0, 11456, &level1);
-	App->render->Blit(on_bg, 0, 8445, &lights.GetCurrentFrame());
-
+		App->render->Blit(sublighttex, 0, 6781, &sublightanim.GetCurrentFrame());
+		App->render->Blit(graphics_l3, 0, 0, &level3); // Map
+		App->render->Blit(graphics_l2, 0, 6435, &level2);
+		App->render->Blit(graphics_l1, 0, 11456, &level1);
+		App->render->Blit(on_bg, 0, 8445, &lights.GetCurrentFrame());
+	}
 
 
 	
