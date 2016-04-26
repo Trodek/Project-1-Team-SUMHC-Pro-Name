@@ -443,10 +443,18 @@ update_status ModulePlayer::Update()
 		}
 		else{
 			if (dead_explo.Finished()){
+				Player_explosion->to_delete = true;
+				collider_create = false;
 				App->ui->dead = true;
 			}
-			else
-				App->render->Blit(dead_explo_text, position.x-40, position.y-39, &(current_animation->GetCurrentFrame()));
+			else{
+				App->render->Blit(dead_explo_text, position.x - 40, position.y - 39, &(current_animation->GetCurrentFrame()));
+				if (!collider_create){
+					Player_explosion = App->collisions->AddCollider({ position.x - 60, position.y - 60, 117, 115 }, COLLIDER_DEAD_EXPLO, this);
+					collider_create = true;
+				}
+			}
+				
 		}
 	}
 

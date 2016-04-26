@@ -92,8 +92,10 @@ public:
 
 	Collider* PlayerCollider;
 	Collider* PlayerEBulletsCollider;
+	Collider* Player_explosion;
 
 	bool bomb_pressed;
+	bool collider_create = false;
 	uint last_laser;
 	uint now;
 
