@@ -33,6 +33,16 @@ ModuleSceneTitle::ModuleSceneTitle()
 
 	title_anim.speed = 0.08f;
 	title_anim.loop = false;
+	//Blue
+	player_blue_rec.x = 0;
+	player_blue_rec.y = 0;
+	player_blue_rec.w = 240;
+	player_blue_rec.h = 320;
+	//Copy
+	copyr_rec.x = 0;
+	copyr_rec.y = 0;
+	copyr_rec.w = 240;
+	copyr_rec.h = 320;
 	//char O
 	chars_rec_o.x = 1;
 	chars_rec_o.y = 60;
@@ -74,6 +84,9 @@ ModuleSceneTitle::ModuleSceneTitle()
 	chars_rec_e.y = 66;
 	chars_rec_e.w = 31;
 	chars_rec_e.h = 34;
+	e_anim.PushBack({ 241, 15, 31, 34 });
+	e_anim.PushBack({ 240, 66, 31, 34 });
+	e_anim.speed = 0.08f;
 	//
 	// Here will be the bright chars
 
@@ -113,12 +126,6 @@ ModuleSceneTitle::ModuleSceneTitle()
 	chars_rec_nb.w = 32;
 	chars_rec_nb.h = 33;
 	//
-	//char eb
-	chars_rec_eb.x = 240;
-	chars_rec_eb.y = 15;
-	chars_rec_eb.w = 30;
-	chars_rec_eb.h = 33;
-	//
 
 }
 
@@ -129,17 +136,37 @@ ModuleSceneTitle::~ModuleSceneTitle()
 bool ModuleSceneTitle::Start()
 {
 	LOG("Loading Title scene");
+	starttime = SDL_GetTicks();
 	chars_tex = App->textures->Load("Outzone/Sprites/Title/title_letters.png");
 	title_tex = App->textures->Load("OutZone/Sprites/Title/title_name_anim.png");
+	player_blue = App->textures->Load("OutZone/Sprites/Title/BluePlayer.png");
+	copyr = App->textures->Load("OutZone/Sprites/Title/OnMenu.png");
 	App->player->Disable();
 	App->ui->title = true;
-	starttime = SDL_GetTicks();
+	
 	//Char ob
-	obx = 147;
-	oby = 358;
+	obx = 177;
+	oby = 365;
 	//
 	//Char ub
-	
+	ubx = 141;
+	uby = 362;
+	//
+	//Char tb
+	tbx = 230;
+	tby = 374;
+	//
+	//Char zb
+	zbx = -12;
+	zby = 370 + 5;
+	//
+	//Char o2b
+	o2bx = 66;
+	o2by = 332+5;
+	//
+	//Char o2b
+	nbx = 65;
+	nby = 386 + 5;
 	//
 	return true;
 }
@@ -158,21 +185,57 @@ bool ModuleSceneTitle::CleanUp()
 // Update: draw background
 update_status ModuleSceneTitle::Update()
 {
+	App->render->Blit(player_blue, 0, 0, &player_blue_rec);
 	int currenttime = SDL_GetTicks();
 
 		//Char o
-	if (currenttime<(starttime + 5500)){
+	if (currenttime<(starttime + 5000)){
 
-		if (currenttime > starttime + 0 && currenttime < starttime + 765){// 30 ticks per sec
-			oby -= 6;
+		App->render->Blit(chars_tex, 193, 92, &e_anim.GetCurrentFrame());
+
+		if (currenttime > starttime + 0 && currenttime < starttime + 916){// 30 ticks per sec
+			oby -= 5;
 			obx -= 3;
-			currenttime = SDL_GetTicks();
 		}
-
 		App->render->Blit(chars_tex, obx, oby, &chars_rec_ob);
+
+		if (currenttime > starttime + 916 && currenttime < starttime + 1832){// 30 ticks per sec
+			zby -= 5;
+			zbx += 2;
+		}
+		App->render->Blit(chars_tex, zbx, zby, &chars_rec_zb);
+
+		if (currenttime > starttime + 1832 && currenttime < starttime + 2355){// 30 ticks per sec
+			uby -= 8;
+			ubx -= 3;
+		}
+		App->render->Blit(chars_tex, ubx, uby, &chars_rec_ub);
+
+		if (currenttime > starttime + 2355 && currenttime < starttime + 2748){// 30 ticks per sec
+			o2by -= 10;
+			o2bx += 3;
+		}
+		App->render->Blit(chars_tex, o2bx, o2by, &chars_rec_o2b);
+
+		if (currenttime > starttime + 2748 && currenttime < starttime + 3664){// 30 ticks per sec
+			tby -= 5;
+			tbx -= 3;
+		}
+		App->render->Blit(chars_tex, tbx, tby, &chars_rec_tb);
+
+		if (currenttime > starttime + 3664 && currenttime < starttime + 4449){// 30 ticks per sec
+			nby -= 6;
+			nbx += 2;
+
+		}
+		App->render->Blit(chars_tex, nbx, nby, &chars_rec_nb);
+
 	}
 	
-	else App->render->Blit(title_tex, 15, 87, &title_anim.GetCurrentFrame());
+	else App->render->Blit(title_tex, 15, 88, &title_anim.GetCurrentFrame());
+
+	//App->render->Blit(copyr, 0, 0, &copyr_rec); Copyright thing
+
 	// swap Scene
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && App->ui->credit>0){
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
