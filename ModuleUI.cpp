@@ -197,11 +197,6 @@ ModuleUI::ModuleUI(){
 	c9.y = 102;
 	c9.w = 7;
 	c9.h = 7;
-	
-	Points.x = 124;
-	Points.y = 205;
-	Points.w = 7;
-	Points.h = 7;
 
 	//CheckPoints
 	checkpoints.PushBack(-15063 * SCREEN_SIZE);
@@ -512,7 +507,7 @@ void ModuleUI::DrawPlayerScore(){
 	}
 }
 
-void ModuleUI::DrawPlayerScore(int x, int y) {
+void ModuleUI::DrawPlayerScore(int x, int y, SDL_Rect Points) {
 	int aux;
 	for (int j = 0, temp_score = score; j <= 7 && temp_score > 0; j++, temp_score /= 10) {
 		aux = temp_score % 10;

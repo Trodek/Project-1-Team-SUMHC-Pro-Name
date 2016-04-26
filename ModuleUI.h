@@ -43,7 +43,7 @@ public:
 	void UpdateLivesnums();
 	SDL_Rect* GetCorrectNum(const int& num);
 	void DrawPlayerScore();
-	void DrawPlayerScore(int x, int y);
+	void DrawPlayerScore(int x, int y, SDL_Rect Points);
 	void DrawTopScore();
 	void DrawBombs();
 	void AddCoin();
@@ -115,8 +115,6 @@ public:
 	SDL_Rect top;
 
 	SDL_Rect bomb;
-
-	SDL_Rect Points;
 
 	SDL_Rect* score1=nullptr;
 	SDL_Rect* score10 = nullptr;

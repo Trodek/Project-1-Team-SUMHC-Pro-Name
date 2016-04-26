@@ -61,6 +61,12 @@ bool ModuleNameScreen::Start()
 	name_input_3.w = 8;
 	name_input_3.h = 8;
 
+	//Score position
+	Points.x = 124;
+	Points.y = 205;
+	Points.w = 7;
+	Points.h = 7;
+
 	for (rank = 0; App->ui->TopScores[rank].Tscore > App->ui->score; rank++);
 
 	UpdateScores();
@@ -143,7 +149,7 @@ update_status ModuleNameScreen::Update()
 	App->render->Blit(App->ui->ui_graphics, 64, 264, &name_input_1);
 	App->render->Blit(App->ui->ui_graphics, 80, 264, &name_input_2);
 	App->render->Blit(App->ui->ui_graphics, 96, 264, &name_input_3);
-	App->ui->DrawPlayerScore(219, 265);
+	App->ui->DrawPlayerScore(219, 265, Points);
 
 	return UPDATE_CONTINUE;
 }

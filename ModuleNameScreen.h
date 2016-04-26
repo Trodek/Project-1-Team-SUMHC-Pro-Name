@@ -40,6 +40,7 @@ public:
 	SDL_Rect name_screen;
 	Mix_Music* music;
 
+	SDL_Rect Points;
 	SDL_Rect pos_ranking;
 	SDL_Rect name_input_1;
 	SDL_Rect name_input_2;
