@@ -3,6 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleCollision.h"
 #include "ModuleInput.h"
+#include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
@@ -237,6 +238,7 @@ bool ModuleUI::Start(){
 	c_num = &c0;
 	p2_score = &num0;
 	UpdateTopScorenums();
+	coin_sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/insert coin.wav");
 	return true;
 }
 
@@ -258,6 +260,7 @@ update_status ModuleUI::Update(){
 
 	if (App->input->keyboard[SDL_SCANCODE_5] == KEY_STATE::KEY_DOWN){
 		App->ui->AddCoin();
+		App->audio->PlaySoundEffect(coin_sound);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN){

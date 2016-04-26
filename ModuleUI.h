@@ -6,6 +6,7 @@
 #include "p2Point.h"
 #include "dynArray.h"
 #include "ModuleTextures.h"
+#include "ModuleAudio.h"
 #include "Animation.h"
 #include "dynArray.h"
 
@@ -147,6 +148,8 @@ public:
 	SDL_Rect c9;
 
 	SDL_Rect* c_num = nullptr;
+
+	Mix_Chunk* coin_sound;
 
 };
 
