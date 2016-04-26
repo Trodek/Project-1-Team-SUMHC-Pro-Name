@@ -20,6 +20,8 @@ public:
 	int starttime;
 public:
 	
+	bool no_pay = true;
+
 	SDL_Texture* title_tex = nullptr;
 	SDL_Rect title_screen;
 	Animation title_anim;

@@ -99,9 +99,9 @@ update_status ModuleSceneTitle::Update()
 	// swap Scene
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && App->ui->credit>0){
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
-		if (App->ui->game ==false)
+		if (no_pay)
 			App->ui->SubCoin();
-		App->ui->game = true;
+		no_pay = false;
 	}
 	
 	
