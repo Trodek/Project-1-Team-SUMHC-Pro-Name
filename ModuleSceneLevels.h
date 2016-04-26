@@ -21,6 +21,7 @@ public:
 	bool CleanUp();
 
 	bool CameraReset();
+	void RestartEnemiesPaths();
 
 public:
 

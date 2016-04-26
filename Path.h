@@ -71,7 +71,8 @@ public:
 
 	void Restart(){
 		current_frame = 0;
-		accumulated_speed = { 0, 0 };
+		accumulated_speed.x = 0;
+		accumulated_speed.y = 0;
 	}
 
 	bool Moving() const{
