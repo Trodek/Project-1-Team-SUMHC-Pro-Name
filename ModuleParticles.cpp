@@ -125,7 +125,6 @@ bool ModuleParticles::Start()
 	big_turret_bullet_start.anim.PushBack({ 4, 98, 30, 31 });
 	big_turret_bullet_start.anim.loop = false;
 	big_turret_bullet_start.anim.speed = 0.3f;
-	//big_turret_bullet_start.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/3-gun shoot.wav");
 	big_turret_bullet_start.tex = big_turret_bullet_tex;
 	big_turret_bullet_start.collider = COLLIDER_NONE;
 
@@ -192,12 +191,13 @@ bool ModuleParticles::Start()
 	green_basic_dead.anim.speed = 0.2f;
 	green_basic_dead.anim.loop = false;
 	green_basic_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Enemies Common Dead/common dead sprites.png");
+	green_basic_dead.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/enemy die.wav");
 
 	green_basic_bullet.anim.PushBack({ 98, 235, 6, 6 });
 	green_basic_bullet.anim.PushBack({ 113, 235, 6, 6 });
 	green_basic_bullet.anim.speed = 0.3f;
 	green_basic_bullet.end_particle = &green_basic_bullet_end;
-	green_basic_bullet.life = 1500;
+	green_basic_bullet.life = 2500;
 	green_basic_bullet.tex = green_basic;
 	green_basic_bullet.collider = COLLIDER_ENEMY_SHOT;
 
