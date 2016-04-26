@@ -353,7 +353,7 @@ update_status ModuleUI::Update(){
 void ModuleUI::SetGameStartConditions(){
 
 	lives = 2;
-	score = 111111;
+	score = 0;
 	energy = 36;
 	max_energy = 36;
 	bombs = 3;
