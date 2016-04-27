@@ -23,6 +23,11 @@ ModuleEnemies::ModuleEnemies()
 
 }
 
+
+bool ModuleEnemies::Start(){
+	enemy_hitted = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/enemy hitted.wav");
+	return true;
+}
 // Destructor
 ModuleEnemies::~ModuleEnemies()
 {
@@ -101,6 +106,8 @@ bool ModuleEnemies::CleanUp()
 		}
 	}
 
+	App->audio->UnloadSoundEffect(enemy_hitted);
+
 	return true;
 }
 
@@ -159,6 +166,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{	
 			if (c2->type == COLLIDER_PLAYER_SHOT && enemies[i]->hp>0){
 				enemies[i]->hp -= App->player->GetDmg();
+				App->audio->PlaySoundEffect(enemy_hitted);
 				if (enemies[i]->hp < 1){
 					if (enemies[i]->type == TRUCK) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y-126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
 					App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y+enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
