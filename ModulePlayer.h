@@ -31,12 +31,15 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
+
 	bool CheckPJAnimPos(Animation* anim, Direction dest_anim);
 	void CreateShoot(Weapons equiped, Animation* anim)const;
 	Weapons ChangeWeapon(Weapons current);
 	Animation* SelectAnimation(Direction direction);
 	void ResetPosition();
-	void OnCollision(Collider* c1, Collider* c2);
+	void OnCollision(Collider* c1, Collider* c2, Direction dir);
+
+	//bool CheckColliders();
 
 	int GetDmg();
 
@@ -50,6 +53,9 @@ public:
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
 	SDL_Texture* dead_explo_text = nullptr;
+
+	//SDL_Rect Playeraux;
+	bool move_up, move_down, move_left, move_right;
 
 	Animation up;
 	Animation down;
@@ -98,6 +104,8 @@ public:
 	bool collider_create = false;
 	uint last_laser;
 	uint now;
+
+
 
 };
 

@@ -245,9 +245,10 @@ bool ModulePlayer::Start()
 	multi_end = &App->particles->multi_end;
 	last_laser = SDL_GetTicks();
 	ResetPosition();
+	move_up = move_down = move_left = move_right = true;
 
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
-	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
+	//PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
 
 	return ret;
 }
@@ -280,12 +281,87 @@ update_status ModulePlayer::PostUpdate(){
 				App->render->camera.y += 6;
 				position.y -= speed;
 			}
-			else
+			else if (move_up) 
 				position.y -= speed; // - is + character speed
 		}
 		else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
 			direction = IDLE;
 		}
+
+		// D key
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+			if (position.x < SCREEN_WIDTH - 29 && move_right) 
+				position.x += speed;
+			direction = RIGHT;
+			current_animation = SelectAnimation(direction);
+			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+				direction = RIGHT_UP;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
+				direction = RIGHT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
+				direction = IDLE;
+			}
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
+			direction = IDLE;
+		}
+		
+		//A key
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
+			if (position.x > 0 && move_left) 
+				position.x -= speed;
+			direction = LEFT;
+			current_animation = SelectAnimation(direction);
+			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+				direction = LEFT_UP;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
+				direction = LEFT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+				direction = IDLE;
+				if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+					direction = UP;
+					current_animation = SelectAnimation(direction);
+				}
+			}
+
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
+			direction = IDLE;
+		}
+
+		//S key
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
+			if ((App->render->camera.y / 3 - 200) + (position.y) < 88 && move_down) 
+				position.y += speed; // + is - character speed
+			direction = DOWN;
+			current_animation = SelectAnimation(direction);
+			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+				direction = IDLE;
+			}
+			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
+				direction = LEFT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+				direction = RIGHT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
+		}
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
+			direction = IDLE;
+		}
+
+		
 	}
 	return UPDATE_CONTINUE;
 }
@@ -343,86 +419,7 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN && App->ui->bombs>0){
 			App->bomb->pressed = true;
 			App->ui->SubBomb();
-		}
-
-		
-		///////////////////////////////////////////////////////////////////////////////////////
-
-		// D key
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
-			if (position.x < SCREEN_WIDTH - 29){
-				position.x += speed;
-			}
-			direction = RIGHT;
-			current_animation = SelectAnimation(direction);
-			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
-				direction = RIGHT_UP;
-				current_animation = SelectAnimation(direction);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
-				direction = RIGHT_DOWN;
-				current_animation = SelectAnimation(direction);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
-				direction = IDLE;
-			}
-		}
-
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
-			direction = IDLE;
-		}
-		///////////////////////////////////////////////////////////////////////////////////////
-
-		// A key
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
-			if (position.x > 0){
-				position.x -= speed;
-			}
-			direction = LEFT;
-			current_animation = SelectAnimation(direction);
-			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
-				direction = LEFT_UP;
-				current_animation = SelectAnimation(direction);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
-				direction = LEFT_DOWN;
-				current_animation = SelectAnimation(direction);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
-				direction = IDLE;
-				if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
-					direction = UP;
-					current_animation = SelectAnimation(direction);
-				}
-			}
-
-		}
-
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
-			direction = IDLE;
-		}
-		///////////////////////////////////////////////////////////////////////////////////////
-
-		// S key
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
-			if ((App->render->camera.y / 3 - 200) + (position.y) < 88) position.y += speed; // + is - character speed
-			direction = DOWN;
-			current_animation = SelectAnimation(direction);
-			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
-				direction = IDLE;
-			}
-			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
-				direction = LEFT_DOWN;
-				current_animation = SelectAnimation(direction);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
-				direction = RIGHT_DOWN;
-				current_animation = SelectAnimation(direction);
-			}
-		}
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
-			direction = IDLE;
-		}
+		}	
 
 		if (direction != IDLE){
 			if (CheckPJAnimPos(weapon_anim, direction))
@@ -430,7 +427,6 @@ update_status ModulePlayer::Update()
 			else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 		}
 		else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
-		
 	}
 	else{
 		if (dead_fall){
@@ -459,7 +455,7 @@ update_status ModulePlayer::Update()
 	}
 
 	PlayerCollider->SetPos(position.x+10, position.y+20);
-	PlayerEBulletsCollider->SetPos(position.x+4 , position.y+3);
+	//PlayerEBulletsCollider->SetPos(position.x+4 , position.y+3);
 	
 	return UPDATE_CONTINUE;
 }
@@ -1019,10 +1015,35 @@ void ModulePlayer::ResetPosition(){
 	position.y = 15308;
 }
 
-void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 	if (PlayerCollider == c1 && PlayerCollider != nullptr){
 		if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_PASS_BULLET){
-			position = PreviousPos;
+			switch (dir) {
+			case UP: 
+				if (move_up) {
+					position.y = PreviousPos.y;
+					move_up = false;
+				}
+				break;
+			case DOWN: 
+				if (move_down) {
+					position.y = PreviousPos.y;
+					move_down = false;
+				}
+				break;
+			case LEFT:
+				if (move_left) {
+					position.x = PreviousPos.x;
+					move_left = false;
+				}
+				break;
+			case RIGHT:
+				if (move_right) {
+					position.x = PreviousPos.x;
+					move_right = false;
+				}
+				break;
+			}
 		}
 		if (c2->type == COLLIDER_HOLE){
 			dead = true;
@@ -1079,3 +1100,14 @@ int ModulePlayer::GetDmg(){
 		break;
 	}
 }
+/*
+bool ModulePlayer::CheckColliders() {
+	Playeraux = current_animation->GetActualFrame();
+	for (int i = 0; i < MAX_COLLIDERS && App->collisions->colliders[i] != nullptr; i++) {
+		LOG("%d", i);
+		if (App->collisions->colliders[i]->CheckCollision(Playeraux))
+			return true;
+	}
+	LOG("RETURNED");
+	return false;
+}*/
