@@ -174,6 +174,7 @@ bool ModuleParticles::Start()
 	truck_dead.anim.loop = false;
 	truck_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck Explosion.png");
 	truck_dead.collider = COLLIDER_NONE;
+	truck_dead.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/big enemy die.wav");
 
 	truck_dead_hole.anim.PushBack({ 480, 65, 96, 126 });
 	truck_dead_hole.tex = truck_tex;
