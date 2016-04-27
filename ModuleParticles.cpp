@@ -98,7 +98,7 @@ bool ModuleParticles::Start()
 
 	multi_start.anim.PushBack({ 39, 66, 36, 16 });
 	multi_start.anim.loop = false;
-	multi_start.anim.speed = 0.3f;
+	multi_start.anim.speed = 1.0f;
 	multi_start.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/3-gun shoot.wav");
 	multi_start.tex = multi_laser_tex;
 	multi_start.collider = COLLIDER_NONE;
