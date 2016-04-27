@@ -107,7 +107,7 @@ bool ModuleNameScreen::Start()
 // UnLoad assets
 bool ModuleNameScreen::CleanUp()
 {
-	LOG("Unloading name scene");
+	LOG("Unloading NameScreen");
 	if (keyboard != nullptr) {
 		delete[] keyboard;
 		keyboard = nullptr;

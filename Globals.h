@@ -36,3 +36,5 @@ typedef unsigned int uint;
 #define REN_VSYNC 1
 
 #endif // __GLOBALS_H__
+
+

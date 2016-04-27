@@ -44,7 +44,7 @@ ModuleContinue::~ModuleContinue()
 // Load assets
 bool ModuleContinue::Start()
 {
-	LOG("Loading Title scene");
+	LOG("Loading Continue scene");
 	actual = 9;
 	born = SDL_GetTicks();
 	time_elapsed = SDL_GetTicks();
@@ -62,7 +62,7 @@ bool ModuleContinue::Start()
 // UnLoad assets
 bool ModuleContinue::CleanUp()
 {
-	LOG("Unloading NameScreen scene");
+	LOG("Unloading Continue scene");
 	
 	App->textures->Unload(background);
 

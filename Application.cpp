@@ -68,6 +68,7 @@ bool Application::Init()
 	enemies->Disable();
 	scorescreen->Disable();
 	continuescreen->Disable();
+	particles->Disable();
 	//Disable collision system
 	collisions->Disable();
 
