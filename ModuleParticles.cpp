@@ -143,6 +143,7 @@ bool ModuleParticles::Start()
 	truck_footprint.tex = truck_tex;
 	truck_footprint.collider = COLLIDER_NONE;
 	truck_footprint.life = 50000;
+	truck_footprint.drawit = BEFOR_PLAYER;
 
 	truck_dead.anim.PushBack({ 0, 0, 112, 168 });
 	truck_dead.anim.PushBack({ 112, 0, 112, 168 });
@@ -178,6 +179,7 @@ bool ModuleParticles::Start()
 	truck_dead_hole.tex = truck_tex;
 	truck_dead_hole.collider = COLLIDER_NONE;
 	truck_dead_hole.life = 50000;
+	truck_dead_hole.drawit = BEFOR_PLAYER;
 
 	// green basic die
 	green_basic_dead.anim.PushBack({ 0, 0, 44, 46 });
@@ -245,7 +247,7 @@ update_status ModuleParticles::Update()
 	{
 		Particle* p = active[i];
 
-		if(p == nullptr)
+		if(p == nullptr||p->drawit == BEFOR_PLAYER)
 			continue;
 
 		if(p->Update() == false)
@@ -332,7 +334,7 @@ Particle::Particle()
 Particle::Particle(const Particle& p) :
 	anim(p.anim), position(p.position), speed(p.speed), angle(p.angle), tex(p.tex), end_particle(p.end_particle),
 	fx(p.fx), born(p.born), life(p.life), sound(p.sound), collider(p.collider), collider_box(p.collider_box),
-	fx_played(p.fx_played), collider_correction(p.collider_correction)
+	fx_played(p.fx_played), collider_correction(p.collider_correction), drawit(p.drawit)
 {}
 
 bool Particle::Update()

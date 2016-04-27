@@ -9,6 +9,10 @@
 
 #define MAX_ACTIVE_PARTICLES 1000
 
+enum DRAW{
+	BEFOR_PLAYER, AFTER_PLAYER,
+};
+
 struct SDL_Texture;
 struct Collider;
 enum COLLIDER_TYPE;
@@ -27,6 +31,7 @@ struct Particle
 	Mix_Chunk* sound = nullptr;
 	SDL_Texture* tex = nullptr;
 	Particle* end_particle = nullptr;
+	DRAW drawit = AFTER_PLAYER;
 	
 	bool fx_played = false;
 	double angle;
@@ -57,10 +62,11 @@ private:
 	SDL_Texture* multi_laser_tex = nullptr;
 	SDL_Texture* big_turret_bullet_tex = nullptr;
 	SDL_Texture* truck_tex = nullptr;
-	Particle* active[MAX_ACTIVE_PARTICLES];
 	uint last_particle = 0;
 
 public:
+
+	Particle* active[MAX_ACTIVE_PARTICLES];
 
 	SDL_Texture* green_basic;
 	SDL_Texture* small_turret;

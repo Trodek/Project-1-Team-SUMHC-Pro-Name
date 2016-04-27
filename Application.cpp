@@ -15,6 +15,7 @@
 #include "ModuleNameScreen.h"
 #include "ModuleScoreScreen.h"
 #include "ModuleParticles.h"
+#include "ModuleDrawParticles.h"
 #include "ModuleContinue.h"
 #include "ModuleCollision.h"
 #include "ModuleBomb.h"
@@ -35,13 +36,14 @@ Application::Application()
 	modules[10] = namescreen = new ModuleNameScreen();
 	modules[11] = scorescreen = new ModuleScoreScreen();
 	modules[12] = enemies = new ModuleEnemies();
-	modules[13] = particles = new ModuleParticles();
+	modules[13] = drawparticles = new ModuleDrawParticles();
 	modules[14] = player = new ModulePlayer();
-	modules[15] = levelstop = new ModuleLevelsTop();
-	modules[16] = collisions = new ModuleCollision();
-	modules[17] = bomb = new ModuleBomb();	
-	modules[18] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
-	modules[19] = ui = new ModuleUI();
+	modules[15] = particles = new ModuleParticles();
+	modules[16] = levelstop = new ModuleLevelsTop();
+	modules[17] = collisions = new ModuleCollision();
+	modules[18] = bomb = new ModuleBomb();	
+	modules[19] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
+	modules[20] = ui = new ModuleUI();
 	
 }	
 
