@@ -13,6 +13,7 @@
 #include "SDL/include/SDL_timer.h"
 #include "ModuleUI.h"
 
+#define TIME_ELAPSED 916
 
 ModuleSceneTitle::ModuleSceneTitle()
 {
@@ -47,7 +48,7 @@ ModuleSceneTitle::ModuleSceneTitle()
 	//O anim
 	Ob_anim.PushBack({ 2, 9, 34, 35 });
 
-	Ob_path.PushBack({ -2, -2.5f }, 101, &Ob_anim);
+	Ob_path.PushBack({ -4, -5.0f }, 50, &Ob_anim);
 	Ob_path.loop = false;
 	o.x = 217;
 	o.y = 350;
@@ -56,7 +57,7 @@ ModuleSceneTitle::ModuleSceneTitle()
 	//U anim
 	ub_anim.PushBack({ 39, 16, 31, 29 });
 
-	ub_path.PushBack({ -2, -2.5f }, 101, &Ob_anim);
+	ub_path.PushBack({ -4, -5.0f }, 50, &Ob_anim);
 	ub_path.loop = false;
 	u.x = 247;
 	u.y = 355;
@@ -65,7 +66,7 @@ ModuleSceneTitle::ModuleSceneTitle()
 	//T anim
 	tb_anim.PushBack({ 72, 8, 43, 39 });
 
-	tb_path.PushBack({ -2, -2.5f }, 101, &Ob_anim);
+	tb_path.PushBack({ -4, -5.0f }, 50, &Ob_anim);
 	tb_path.loop = false;
 	t.x = 265;
 	t.y = 348;
@@ -74,7 +75,7 @@ ModuleSceneTitle::ModuleSceneTitle()
 	//Z anim
 	zb_anim.PushBack({ 118, 9, 39, 37 });
 
-	zb_path.PushBack({ 1, -2.5f }, 101, &Ob_anim);
+	zb_path.PushBack({ 2, -5.0f }, 50, &Ob_anim);
 	zb_path.loop = false;
 	z.x = -2;
 	z.y = 349;
@@ -83,7 +84,7 @@ ModuleSceneTitle::ModuleSceneTitle()
 	//O2 anim
 	o2b_anim.PushBack({ 165, 13, 29, 33 });
 
-	o2b_path.PushBack({ 1, -2.5f }, 101, &Ob_anim);
+	o2b_path.PushBack({ 2, -5.0f }, 50, &Ob_anim);
 	o2b_path.loop = false;
 	o2.x = 31;
 	o2.y = 352;
@@ -92,7 +93,7 @@ ModuleSceneTitle::ModuleSceneTitle()
 	//n anim
 	nb_anim.PushBack({ 201, 12, 32, 33 });
 
-	nb_path.PushBack({ 1, -2.5f }, 101, &Ob_anim);
+	nb_path.PushBack({ 2, -5.0f }, 50, &Ob_anim);
 	nb_path.loop = false;
 	n.x = 56;
 	n.y = 352;
@@ -148,30 +149,42 @@ bool ModuleSceneTitle::CleanUp()
 update_status ModuleSceneTitle::Update()
 {
 	App->render->Blit(player_blue, 0, 0, &player_blue_rec);
-	App->render->Blit(title_tex, 15, 88, &title_anim.GetCurrentFrame());
+
+	if (first_time){
+		born = SDL_GetTicks();
+		first_time = false;
+	}
+	now = SDL_GetTicks();
+
 
 	//App->render->Blit(copyr, 0, 0, &copyr_rec); Copyright thing
-
 	co = o + Ob_path.GetCurrentSpeed();
 	App->render->Blit(chars_tex, co.x, co.y, &Ob_anim.GetCurrentFrame());
-
-	ct = t + tb_path.GetCurrentSpeed();
-	App->render->Blit(chars_tex, ct.x, ct.y, &tb_anim.GetCurrentFrame());
-
-	cu = u + ub_path.GetCurrentSpeed();
-	App->render->Blit(chars_tex, cu.x, cu.y, &ub_anim.GetCurrentFrame());
-
-	cz = z + zb_path.GetCurrentSpeed();
-	App->render->Blit(chars_tex, cz.x, cz.y, &zb_anim.GetCurrentFrame());
-
-	co2 = o2 + o2b_path.GetCurrentSpeed();
-	App->render->Blit(chars_tex, co2.x, co2.y, &o2b_anim.GetCurrentFrame());
-
-	cn = n + nb_path.GetCurrentSpeed();
-	App->render->Blit(chars_tex, cn.x, cn.y, &nb_anim.GetCurrentFrame());
-
+	if (now - born > TIME_ELAPSED && now-born < TIME_ELAPSED*6) {
+		cz = z + zb_path.GetCurrentSpeed();
+		App->render->Blit(chars_tex, cz.x, cz.y, &zb_anim.GetCurrentFrame());
+	}
+	if (now - born > TIME_ELAPSED * 2 && now - born < TIME_ELAPSED * 6) {
+		cu = u + ub_path.GetCurrentSpeed();
+		App->render->Blit(chars_tex, cu.x, cu.y, &ub_anim.GetCurrentFrame());
+	}
+	if (now - born > TIME_ELAPSED * 3 && now - born < TIME_ELAPSED * 6) {
+		co2 = o2 + o2b_path.GetCurrentSpeed();
+		App->render->Blit(chars_tex, co2.x, co2.y, &o2b_anim.GetCurrentFrame());
+	}
+	if (now - born > TIME_ELAPSED * 4 && now - born < TIME_ELAPSED * 6) {
+		ct = t + tb_path.GetCurrentSpeed();
+		App->render->Blit(chars_tex, ct.x, ct.y, &tb_anim.GetCurrentFrame());
+	}
+	if (now - born > TIME_ELAPSED * 5 && now - born < TIME_ELAPSED * 6) {
+		cn = n + nb_path.GetCurrentSpeed();
+		App->render->Blit(chars_tex, cn.x, cn.y, &nb_anim.GetCurrentFrame());
+	}
 	ce = e + eb_path.GetCurrentSpeed();
 	App->render->Blit(chars_tex, ce.x, ce.y, &eb_anim.GetCurrentFrame());
+	if (now - born > TIME_ELAPSED * 6) {
+		App->render->Blit(title_tex, 15, 88, &title_anim.GetCurrentFrame());
+	}
 	// swap Scene
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && App->ui->credit>0){
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);

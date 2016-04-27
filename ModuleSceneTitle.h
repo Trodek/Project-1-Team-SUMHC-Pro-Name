@@ -21,6 +21,9 @@ public:
 public:
 	
 	bool no_pay = true;
+	bool first_time = true;
+	uint born;
+	uint now;
 
 	SDL_Texture* title_tex = nullptr;
 	SDL_Rect title_screen;
