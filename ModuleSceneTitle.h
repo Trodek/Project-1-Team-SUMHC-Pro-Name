@@ -35,11 +35,41 @@ public:
 
 	SDL_Rect chars_rec_e;
 	Animation e_anim;
-
+	//O
 	Path Ob_path;
 	Animation Ob_anim;
 	iPoint o;
 	iPoint co;
+	//u
+	Path ub_path;
+	Animation ub_anim;
+	iPoint u;
+	iPoint cu;
+	//T
+	Path tb_path;
+	Animation tb_anim;
+	iPoint t;
+	iPoint ct;
+	//Z
+	Path zb_path;
+	Animation zb_anim;
+	iPoint z;
+	iPoint cz;
+	//O2
+	Path o2b_path;
+	Animation o2b_anim;
+	iPoint o2;
+	iPoint co2;
+	//n
+	Path nb_path;
+	Animation nb_anim;
+	iPoint n;
+	iPoint cn;
+	//e
+	Path eb_path;
+	Animation eb_anim;
+	iPoint e;
+	iPoint ce;
 
 
 };
