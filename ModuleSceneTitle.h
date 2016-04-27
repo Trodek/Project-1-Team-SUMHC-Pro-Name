@@ -75,6 +75,8 @@ public:
 	iPoint ce;
 
 
+	SDL_Rect Tittleposition;
+
 };
 
 #endif // __MODULESCENETitle_H__

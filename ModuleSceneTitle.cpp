@@ -23,6 +23,10 @@ ModuleSceneTitle::ModuleSceneTitle()
 	title_screen.w = 240;
 	title_screen.h = 320;
 	//
+	Tittleposition.x = 0; 
+	Tittleposition.y = 0;
+	Tittleposition.w = 200;
+	Tittleposition.h = 54;
 	title_anim.PushBack({ 0, 0,   200, 54 });
 	title_anim.PushBack({ 0, 65,  200, 54 });
 	title_anim.PushBack({ 0, 123, 200, 54 });
@@ -51,36 +55,32 @@ ModuleSceneTitle::ModuleSceneTitle()
 	Ob_path.PushBack({ -4, -5.0f }, 50, &Ob_anim);
 	Ob_path.loop = false;
 	o.x = 217;
-	o.y = 350;
-	co.x = 217;
-	co.y = 350;
+	o.y = 347;
+
 	//U anim
 	ub_anim.PushBack({ 39, 16, 31, 29 });
 
 	ub_path.PushBack({ -4, -5.0f }, 50, &Ob_anim);
 	ub_path.loop = false;
-	u.x = 247;
-	u.y = 355;
-	cu.x = 247;
-	cu.y = 355;
+	u.x = 246;
+	u.y = 354;
+
 	//T anim
 	tb_anim.PushBack({ 72, 8, 43, 39 });
 
 	tb_path.PushBack({ -4, -5.0f }, 50, &Ob_anim);
 	tb_path.loop = false;
-	t.x = 265;
-	t.y = 348;
-	ct.x = 265;
-	ct.y = 348;
+	t.x = 264;
+	t.y = 346;
+
 	//Z anim
 	zb_anim.PushBack({ 118, 9, 39, 37 });
 
 	zb_path.PushBack({ 2, -5.0f }, 50, &Ob_anim);
 	zb_path.loop = false;
-	z.x = -2;
-	z.y = 349;
-	cz.x = 39;
-	cz.y = 349;
+	z.x = -1;
+	z.y = 348;
+
 	//O2 anim
 	o2b_anim.PushBack({ 165, 13, 29, 33 });
 
@@ -88,17 +88,15 @@ ModuleSceneTitle::ModuleSceneTitle()
 	o2b_path.loop = false;
 	o2.x = 31;
 	o2.y = 352;
-	co2.x = 31;
-	co2.y = 352;
+
 	//n anim
 	nb_anim.PushBack({ 201, 12, 32, 33 });
 
 	nb_path.PushBack({ 2, -5.0f }, 50, &Ob_anim);
 	nb_path.loop = false;
 	n.x = 56;
-	n.y = 352;
-	cn.x = 56;
-	cn.y = 352;
+	n.y = 350;
+
 	//e anim
 	eb_anim.PushBack({ 242, 14, 30, 33 });
 	eb_anim.PushBack({ 242, 64, 30, 33 });
@@ -108,8 +106,7 @@ ModuleSceneTitle::ModuleSceneTitle()
 	eb_path.loop = false;
 	e.x = 184;
 	e.y = 100;
-	ce.x = 184;
-	ce.y = 100;
+
 
 
 }
@@ -157,9 +154,12 @@ update_status ModuleSceneTitle::Update()
 	now = SDL_GetTicks();
 
 
+
 	//App->render->Blit(copyr, 0, 0, &copyr_rec); Copyright thing
-	co = o + Ob_path.GetCurrentSpeed();
-	App->render->Blit(chars_tex, co.x, co.y, &Ob_anim.GetCurrentFrame());
+	if (now - born < TIME_ELAPSED * 6) {
+		co = o + Ob_path.GetCurrentSpeed();
+		App->render->Blit(chars_tex, co.x, co.y, &Ob_anim.GetCurrentFrame());
+	}
 	if (now - born > TIME_ELAPSED && now-born < TIME_ELAPSED*6) {
 		cz = z + zb_path.GetCurrentSpeed();
 		App->render->Blit(chars_tex, cz.x, cz.y, &zb_anim.GetCurrentFrame());
@@ -183,7 +183,7 @@ update_status ModuleSceneTitle::Update()
 	ce = e + eb_path.GetCurrentSpeed();
 	App->render->Blit(chars_tex, ce.x, ce.y, &eb_anim.GetCurrentFrame());
 	if (now - born > TIME_ELAPSED * 6) {
-		App->render->Blit(title_tex, 15, 88, &title_anim.GetCurrentFrame());
+			App->render->Blit(title_tex, 15, 88, &title_anim.GetCurrentFrame());
 	}
 	// swap Scene
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && App->ui->credit>0){

@@ -364,7 +364,13 @@ void ModuleUI::SetGameStartConditions(){
 	lives_num = &lives2;
 	curr_check = 0;
 	dead = false;
-
+	score1 = nullptr;
+	score10 = nullptr;
+	score100 = nullptr;
+	score1000 = nullptr;
+	score10000 = nullptr;
+	score100000 = nullptr;
+	score1000000 = nullptr;
 }
 
 void ModuleUI::UpdateScorenums(){
