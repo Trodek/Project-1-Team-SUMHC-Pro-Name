@@ -76,7 +76,8 @@ ModuleParticles::ModuleParticles()
 
 	multi_start.anim.PushBack({ 39, 66, 36, 16 });
 	multi_start.anim.loop = false;
-	multi_start.anim.speed = 0.3f;
+	multi_start.anim.speed = 1.0f;
+
 	multi_start.collider = COLLIDER_NONE;
 
 
@@ -147,6 +148,7 @@ ModuleParticles::ModuleParticles()
 	truck_dead.anim.loop = false;
 	truck_dead.collider = COLLIDER_NONE;
 
+
 	truck_dead_hole.anim.PushBack({ 480, 65, 96, 126 });
 
 	truck_dead_hole.collider = COLLIDER_NONE;
@@ -199,13 +201,15 @@ bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
 	green_basic_dead.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/enemy die.wav");
+	truck_dead.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/big enemy die.wav");
 
 	multi_laser_tex = App->textures->Load("OutZone/Sprites/Main Char/Weapons/multi laser.png");
 	truck_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck.png");
 	small_turret = App->textures->Load("Outzone/Sprites/Enemies/Level 1/Small Turret/Small Turret.png");
 	big_turret_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret fire.png");
 	green_basic_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Enemies Common Dead/common dead sprites.png");
-	
+
+
 	green_basic = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Green Soldier/Soldier Green.png");
 	green_basic_bullet_start.tex = green_basic;
 	green_basic_bullet.tex = green_basic;	
