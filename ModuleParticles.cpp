@@ -59,7 +59,7 @@ bool ModuleParticles::Start()
 
 	shoot_start.anim.PushBack({ 7, 6, 14, 16 });
 	shoot_start.anim.loop = false;
-	shoot_start.anim.speed = 0.2f;
+	shoot_start.anim.speed = 1.0f;
 	shoot_start.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/basic_laser_shoot.wav");
 	shoot_start.tex = basic_laser_tex;
 	shoot_start.collider = COLLIDER_NONE;

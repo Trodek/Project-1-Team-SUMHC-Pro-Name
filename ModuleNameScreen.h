@@ -39,7 +39,7 @@ public:
 	SDL_Rect layout;
 	SDL_Rect name_screen;
 	Mix_Music* music;
-
+	Mix_Chunk* letter_sound;
 	SDL_Rect Points;
 	SDL_Rect pos_ranking;
 	SDL_Rect name_input_1;

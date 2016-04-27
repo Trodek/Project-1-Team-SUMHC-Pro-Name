@@ -98,7 +98,7 @@ ModulePlayer::ModulePlayer()
 	fall_hole.speed = 0.1f;
 	fall_hole.loop = false;
 
-	//laser 180º
+	//laser 360
 	laser_360.PushBack({ 55, 192, 29, 35 });  //-- left
 	laser_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
 	laser_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
@@ -248,7 +248,7 @@ bool ModulePlayer::Start()
 	move_up = move_down = move_left = move_right = true;
 
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
-	//PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
+	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
 
 	return ret;
 }
@@ -275,6 +275,7 @@ update_status ModulePlayer::PostUpdate(){
 		int speed = 2;
 		// W key
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+			is_running = true;
 			direction = UP;
 			current_animation = SelectAnimation(direction);
 			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y < 0){
@@ -285,11 +286,13 @@ update_status ModulePlayer::PostUpdate(){
 				position.y -= speed; // - is + character speed
 		}
 		else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
+			is_running = false;
 			direction = IDLE;
 		}
 
 		// D key
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
+			is_running = true;
 			if (position.x < SCREEN_WIDTH - 29 && move_right) 
 				position.x += speed;
 			direction = RIGHT;
@@ -308,11 +311,13 @@ update_status ModulePlayer::PostUpdate(){
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
+			is_running = false;
 			direction = IDLE;
 		}
 		
 		//A key
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
+			is_running = true;
 			if (position.x > 0 && move_left) 
 				position.x -= speed;
 			direction = LEFT;
@@ -336,11 +341,17 @@ update_status ModulePlayer::PostUpdate(){
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
+			is_running = false;
 			direction = IDLE;
+			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
+				direction = LEFT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
 		}
 
 		//S key
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
+			is_running = true;
 			if ((App->render->camera.y / 3 - 200) + (position.y) < 88 && move_down) 
 				position.y += speed; // + is - character speed
 			direction = DOWN;
@@ -358,7 +369,12 @@ update_status ModulePlayer::PostUpdate(){
 			}
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
+			is_running = false;
 			direction = IDLE;
+			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
+				direction = LEFT_DOWN;
+				current_animation = SelectAnimation(direction);
+			}
 		}
 
 		
@@ -455,7 +471,7 @@ update_status ModulePlayer::Update()
 	}
 
 	PlayerCollider->SetPos(position.x+10, position.y+20);
-	//PlayerEBulletsCollider->SetPos(position.x+4 , position.y+3);
+	PlayerEBulletsCollider->SetPos(position.x+4 , position.y+3);
 	
 	return UPDATE_CONTINUE;
 }
@@ -553,97 +569,177 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				App->particles->SetParticleSpeed(laser_p0, -5, 0);
 				App->particles->SetColliderCorrection(laser_p0, -6, 6);
 				App->particles->AddParticle(*laser_p0, position.x - 8, position.y + 1, laser_p0->collider, laserbox_p0, -90);
-				App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 1, shoot_start->collider, nullrect, -90);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 12, position.y + 1, shoot_start->collider, nullrect, -90);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 10, position.y + 1, shoot_start->collider, nullrect, -90);
+				}
 				break;
 			case ANGLE_60:
 				App->particles->SetParticleSpeed(laser_p0, -4.61f, -1.91f);
 				App->particles->SetColliderCorrection(laser_p0, -5, 4);
 				App->particles->AddParticle(*laser_p0, position.x, position.y - 5, laser_p0->collider, laserbox_p0, -67.5);
-				App->particles->AddParticle(*shoot_start, position.x - 5, position.y - 5, shoot_start->collider, nullrect, -67.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 5, position.y - 5, shoot_start->collider, nullrect, -67.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 3, position.y - 3, shoot_start->collider, nullrect, -67.5);
+				}
 				break;
 			case LEFT_UP:
 				App->particles->SetParticleSpeed(laser_p0, -3.53f, -3.53f);
 				App->particles->SetColliderCorrection(laser_p0, -4, 2);
 				App->particles->AddParticle(*laser_p0, position.x + 3, position.y - 12, laser_p0->collider, laserbox_p0, -45);
-				App->particles->AddParticle(*shoot_start, position.x - 2, position.y - 12, shoot_start->collider, nullrect, -45);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 1, position.y - 11, shoot_start->collider, nullrect, -45);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 1, position.y - 9, shoot_start->collider, nullrect, -45);
+				}
 				break;
 			case ANGLE_30:
 				App->particles->SetParticleSpeed(laser_p0, -1.91f, -4.61f);
 				App->particles->SetColliderCorrection(laser_p0, -2, 1);
 				App->particles->AddParticle(*laser_p0, position.x + 8, position.y - 12, laser_p0->collider, laserbox_p0, -22.5);
-				App->particles->AddParticle(*shoot_start, position.x + 3, position.y - 12, shoot_start->collider, nullrect, -22.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 3, position.y - 12, shoot_start->collider, nullrect, -22.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 1, position.y - 10, shoot_start->collider, nullrect, -22.5);
+				}
 				break;
 			case UP:
 				App->particles->SetParticleSpeed(laser_p0, 0, -5);
 				App->particles->SetColliderCorrection(laser_p0, 0, 0);
 				App->particles->AddParticle(*laser_p0, position.x + 21, position.y - 15, laser_p0->collider, laserbox_p0);
-				App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 15, shoot_start->collider, nullrect);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 14, shoot_start->collider, nullrect);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 12, shoot_start->collider, nullrect);
+				}
 				break;
 			case ANGLE_330:
 				App->particles->SetParticleSpeed(laser_p0, 1.91f, -4.61f);
 				App->particles->SetColliderCorrection(laser_p0, 1, 0);
 				App->particles->AddParticle(*laser_p0, position.x + 25, position.y - 12, laser_p0->collider, laserbox_p0, 12.5);
-				App->particles->AddParticle(*shoot_start, position.x + 20, position.y - 12, shoot_start->collider, nullrect, 12.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 20, position.y - 12, shoot_start->collider, nullrect, 12.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 22, position.y - 10, shoot_start->collider, nullrect, 12.5);
+				}
 				break;
 			case RIGHT_UP:
 				App->particles->SetParticleSpeed(laser_p0, 3.53f, -3.53f);
 				App->particles->SetColliderCorrection(laser_p0, 4, 2);
 				App->particles->AddParticle(*laser_p0, position.x + 30, position.y - 12, laser_p0->collider, laserbox_p0, 45);
-				App->particles->AddParticle(*shoot_start, position.x + 25, position.y - 12, shoot_start->collider, nullrect, 45);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 25, position.y - 12, shoot_start->collider, nullrect, 45);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 23, position.y - 10, shoot_start->collider, nullrect, 45);
+				}
 				break;
 			case ANGLE_300:
 				App->particles->SetParticleSpeed(laser_p0, 4.61f, -1.91f);
 				App->particles->SetColliderCorrection(laser_p0, 5, 4);
 				App->particles->AddParticle(*laser_p0, position.x + 33, position.y - 5, laser_p0->collider, laserbox_p0, 67.5);
-				App->particles->AddParticle(*shoot_start, position.x + 28, position.y - 5, shoot_start->collider, nullrect, 67.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 28, position.y - 5, shoot_start->collider, nullrect, 67.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 26, position.y - 3, shoot_start->collider, nullrect, 67.5);
+				}
 				break;
 			case RIGHT:
 				App->particles->SetParticleSpeed(laser_p0, 5, 0);
 				App->particles->SetColliderCorrection(laser_p0, 6, 6);
 				App->particles->AddParticle(*laser_p0, position.x + 35, position.y + 2, laser_p0->collider, laserbox_p0, 90);
-				App->particles->AddParticle(*shoot_start, position.x + 30, position.y + 2, shoot_start->collider, nullrect, 90);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 28, position.y + 2, shoot_start->collider, nullrect, 90);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 26, position.y + 2, shoot_start->collider, nullrect, 90);
+				}
 				break;
 			case ANGLE_240:
 				App->particles->SetParticleSpeed(laser_p0, 4.61f, 1.91f);
 				App->particles->SetColliderCorrection(laser_p0, 6, 7);
 				App->particles->AddParticle(*laser_p0, position.x + 25, position.y + 15, laser_p0->collider, laserbox_p0, 102.5);
-				App->particles->AddParticle(*shoot_start, position.x + 20, position.y + 15, shoot_start->collider, nullrect, 102.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 20, position.y + 15, shoot_start->collider, nullrect, 102.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 13, shoot_start->collider, nullrect, 102.5);
+				}
 				break;
 			case RIGHT_DOWN:
 				App->particles->SetParticleSpeed(laser_p0, 3.53f, 3.53f);
 				App->particles->SetColliderCorrection(laser_p0, 4, 10);
 				App->particles->AddParticle(*laser_p0, position.x + 20, position.y + 17, laser_p0->collider, laserbox_p0, 135);
-				App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 16, position.y + 17, shoot_start->collider, nullrect, 135);
+				}
 				break;
 			case ANGLE_210:
 				App->particles->SetParticleSpeed(laser_p0, +1.91f, +4.61f);
 				App->particles->SetColliderCorrection(laser_p0, 1, 12);
 				App->particles->AddParticle(*laser_p0, position.x + 18, position.y + 17, laser_p0->collider, laserbox_p0, 167.5);
-				App->particles->AddParticle(*shoot_start, position.x + 15, position.y + 21, shoot_start->collider, nullrect, 167.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 15, position.y + 21, shoot_start->collider, nullrect, 167.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 13, position.y + 19, shoot_start->collider, nullrect, 167.5);
+				}
 				break;
 			case DOWN:
 				App->particles->SetParticleSpeed(laser_p0, 0, 5);
 				App->particles->SetColliderCorrection(laser_p0, 0, 12);
 				App->particles->AddParticle(*laser_p0, position.x + 8, position.y + 20, laser_p0->collider, laserbox_p0, 180);
-				App->particles->AddParticle(*shoot_start, position.x + 3, position.y + 27, shoot_start->collider, nullrect, 180);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 2, position.y + 26, shoot_start->collider, nullrect, 180);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 2, position.y + 24, shoot_start->collider, nullrect, 180);
+				}
 				break;
 			case ANGLE_150:
 				App->particles->SetParticleSpeed(laser_p0, -1.91f, 4.61f);
 				App->particles->SetColliderCorrection(laser_p0, -2, 12);
 				App->particles->AddParticle(*laser_p0, position.x, position.y + 20, laser_p0->collider, laserbox_p0, -157.5);
-				App->particles->AddParticle(*shoot_start, position.x - 5, position.y + 20, shoot_start->collider, nullrect, -157.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 5, position.y + 20, shoot_start->collider, nullrect, -157.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 3, position.y + 18, shoot_start->collider, nullrect, -157.5);
+				}
 				break;
 			case LEFT_DOWN:
 				App->particles->SetParticleSpeed(laser_p0, -3.53f, 3.53f);
 				App->particles->SetColliderCorrection(laser_p0, -5, 10);
 				App->particles->AddParticle(*laser_p0, position.x - 5, position.y + 17, laser_p0->collider, laserbox_p0, -125);
-				App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 17, shoot_start->collider, nullrect, -135);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 17, shoot_start->collider, nullrect, -135);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 9, position.y + 15, shoot_start->collider, nullrect, -135);
+				}
 				break;
 			case ANGLE_120:
 				App->particles->SetParticleSpeed(laser_p0, -4.61f, 1.91f);
 				App->particles->SetColliderCorrection(laser_p0, -6, 8);
 				App->particles->AddParticle(*laser_p0, position.x - 5, position.y + 13, laser_p0->collider, laserbox_p0, -102.5);
-				App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 13, shoot_start->collider, nullrect, -107.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 13, shoot_start->collider, nullrect, -107.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 11, shoot_start->collider, nullrect, -107.5);
+				}
 				break;
 			}
 			break;
@@ -654,97 +750,177 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 				App->particles->SetParticleSpeed(laser_p1, -5, 0);
 				App->particles->SetColliderCorrection(laser_p1, -3, 4);
 				App->particles->AddParticle(*laser_p1, position.x - 8, position.y + 1, laser_p1->collider, laserbox_p1, -90);
-				App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 1, shoot_start->collider, nullrect, -90);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 12, position.y + 1, shoot_start->collider, nullrect, -90);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 10, position.y + 1, shoot_start->collider, nullrect, -90);
+				}
 				break;
 			case ANGLE_60:
 				App->particles->SetParticleSpeed(laser_p1, -4.61f, -1.91f);
 				App->particles->SetColliderCorrection(laser_p1, -3, 2);
 				App->particles->AddParticle(*laser_p1, position.x, position.y - 5, laser_p1->collider, laserbox_p1, -67.5);
-				App->particles->AddParticle(*shoot_start, position.x - 5, position.y - 5, shoot_start->collider, nullrect, -67.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 5, position.y - 5, shoot_start->collider, nullrect, -67.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 3, position.y - 3, shoot_start->collider, nullrect, -67.5);
+				}
 				break;
 			case LEFT_UP:
 				App->particles->SetParticleSpeed(laser_p1, -3.53f, -3.53f);
 				App->particles->SetColliderCorrection(laser_p1, -1, 2);
 				App->particles->AddParticle(*laser_p1, position.x + 1, position.y - 11, laser_p1->collider, laserbox_p1, -45);
-				App->particles->AddParticle(*shoot_start, position.x - 2, position.y - 12, shoot_start->collider, nullrect, -45);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 1, position.y - 11, shoot_start->collider, nullrect, -45);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 1, position.y - 9, shoot_start->collider, nullrect, -45);
+				}
 				break;
 			case ANGLE_30:
 				App->particles->SetParticleSpeed(laser_p1, -1.91f, -4.61f);
 				App->particles->SetColliderCorrection(laser_p1, -1, 0);
 				App->particles->AddParticle(*laser_p1, position.x + 8, position.y - 12, laser_p1->collider, laserbox_p1, -22.5);
-				App->particles->AddParticle(*shoot_start, position.x + 3, position.y - 12, shoot_start->collider, nullrect, -22.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 3, position.y - 12, shoot_start->collider, nullrect, -22.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 1, position.y - 10, shoot_start->collider, nullrect, -22.5);
+				}
 				break;
 			case UP:
 				App->particles->SetParticleSpeed(laser_p1, 0, -5);
 				App->particles->SetColliderCorrection(laser_p1, 1, 0);
 				App->particles->AddParticle(*laser_p1, position.x + 17, position.y - 15, laser_p1->collider, laserbox_p1);
-				App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 15, shoot_start->collider, nullrect);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 14, shoot_start->collider, nullrect);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 12, shoot_start->collider, nullrect);
+				}
 				break;
 			case ANGLE_330:
 				App->particles->SetParticleSpeed(laser_p1, 1.91f, -4.61f);
 				App->particles->SetColliderCorrection(laser_p1, 3, 0);
 				App->particles->AddParticle(*laser_p1, position.x + 25, position.y - 12, laser_p1->collider, laserbox_p1, 22.5);
-				App->particles->AddParticle(*shoot_start, position.x + 20, position.y - 12, shoot_start->collider, nullrect, 22.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 20, position.y - 12, shoot_start->collider, nullrect, 12.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 22, position.y - 10, shoot_start->collider, nullrect, 12.5);
+				}
 				break;
 			case RIGHT_UP:
 				App->particles->SetParticleSpeed(laser_p1, 3.53f, -3.53f);
 				App->particles->SetColliderCorrection(laser_p1, 4, 1);
 				App->particles->AddParticle(*laser_p1, position.x + 30, position.y - 12, laser_p1->collider, laserbox_p1, 45);
-				App->particles->AddParticle(*shoot_start, position.x + 25, position.y - 12, shoot_start->collider, nullrect, 45);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 25, position.y - 12, shoot_start->collider, nullrect, 45);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 23, position.y - 10, shoot_start->collider, nullrect, 45);
+				}
 				break;
 			case ANGLE_300:
 				App->particles->SetParticleSpeed(laser_p1, 4.61f, -1.91f);
 				App->particles->SetColliderCorrection(laser_p1, 5, 2);
 				App->particles->AddParticle(*laser_p1, position.x + 33, position.y - 5, laser_p1->collider, laserbox_p1, 67.5);
-				App->particles->AddParticle(*shoot_start, position.x + 28, position.y - 5, shoot_start->collider, nullrect, 67.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 28, position.y - 5, shoot_start->collider, nullrect, 67.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 26, position.y - 3, shoot_start->collider, nullrect, 67.5);
+				}
 				break;
 			case RIGHT:
 				App->particles->SetParticleSpeed(laser_p1, 5, 0);
 				App->particles->SetColliderCorrection(laser_p1, 5, 4);
 				App->particles->AddParticle(*laser_p1, position.x + 35, position.y + 2, laser_p1->collider, laserbox_p1, 90);
-				App->particles->AddParticle(*shoot_start, position.x + 30, position.y + 2, shoot_start->collider, nullrect, 90);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 28, position.y + 2, shoot_start->collider, nullrect, 90);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 26, position.y + 2, shoot_start->collider, nullrect, 90);
+				}
 				break;
 			case ANGLE_240:
 				App->particles->SetParticleSpeed(laser_p1, 4.61f, 1.91f);
 				App->particles->SetColliderCorrection(laser_p1, 5, 5);
 				App->particles->AddParticle(*laser_p1, position.x + 25, position.y + 15, laser_p1->collider, laserbox_p1, 102.5);
-				App->particles->AddParticle(*shoot_start, position.x + 20, position.y + 15, shoot_start->collider, nullrect, 102.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 20, position.y + 15, shoot_start->collider, nullrect, 102.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 13, shoot_start->collider, nullrect, 102.5);
+				}
 				break;
 			case RIGHT_DOWN:
 				App->particles->SetParticleSpeed(laser_p1, 3.53f, 3.53f);
 				App->particles->SetColliderCorrection(laser_p1, 4, 7);
 				App->particles->AddParticle(*laser_p1, position.x + 20, position.y + 20, laser_p1->collider, laserbox_p1, 135);
-				App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 16, position.y + 17, shoot_start->collider, nullrect, 135);
+				}
 				break;
 			case ANGLE_210:
 				App->particles->SetParticleSpeed(laser_p1, +1.91f, +4.61f);
 				App->particles->SetColliderCorrection(laser_p1, 2, 8);
 				App->particles->AddParticle(*laser_p1, position.x + 18, position.y + 17, laser_p1->collider, laserbox_p1, 167.5);
-				App->particles->AddParticle(*shoot_start, position.x + 15, position.y + 21, shoot_start->collider, nullrect, 167.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 15, position.y + 21, shoot_start->collider, nullrect, 167.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 13, position.y + 19, shoot_start->collider, nullrect, 167.5);
+				}
 				break;
 			case DOWN:
 				App->particles->SetParticleSpeed(laser_p1, 0, 5);
 				App->particles->SetColliderCorrection(laser_p1, 1, 8);
 				App->particles->AddParticle(*laser_p1, position.x + 4, position.y + 20, laser_p1->collider, laserbox_p1, 180);
-				App->particles->AddParticle(*shoot_start, position.x + 3, position.y + 27, shoot_start->collider, nullrect, 180);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 2, position.y + 26, shoot_start->collider, nullrect, 180);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 2, position.y + 24, shoot_start->collider, nullrect, 180);
+				}
 				break;
 			case ANGLE_150:
 				App->particles->SetParticleSpeed(laser_p1, -1.91f, 4.61f);
 				App->particles->SetColliderCorrection(laser_p1, 0, 8);
 				App->particles->AddParticle(*laser_p1, position.x, position.y + 20, laser_p1->collider, laserbox_p1, -157.5);
-				App->particles->AddParticle(*shoot_start, position.x - 5, position.y + 20, shoot_start->collider, nullrect, -157.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 5, position.y + 20, shoot_start->collider, nullrect, -157.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 3, position.y + 18, shoot_start->collider, nullrect, -157.5);
+				}
 				break;
 			case LEFT_DOWN:
 				App->particles->SetParticleSpeed(laser_p1, -3.53f, 3.53f);
 				App->particles->SetColliderCorrection(laser_p1, -2, 6);
 				App->particles->AddParticle(*laser_p1, position.x - 5, position.y + 13, laser_p1->collider, laserbox_p1, -125);
-				App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 17, shoot_start->collider, nullrect, -135);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 17, shoot_start->collider, nullrect, -135);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 9, position.y + 15, shoot_start->collider, nullrect, -135);
+				}
 				break;
 			case ANGLE_120:
 				App->particles->SetParticleSpeed(laser_p1, -4.61f, 1.91f);
 				App->particles->SetColliderCorrection(laser_p1, -3, 6);
 				App->particles->AddParticle(*laser_p1, position.x - 5, position.y + 13, laser_p1->collider, laserbox_p1, -102.5);
-				App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 13, shoot_start->collider, nullrect, -107.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 13, shoot_start->collider, nullrect, -107.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 11, shoot_start->collider, nullrect, -107.5);
+				}
 				break;
 			}
 			break;
@@ -754,99 +930,178 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 			case LEFT:
 				App->particles->SetParticleSpeed(laser_p2, -5, 0);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x - 8, position.y - 3, laser_p2->collider, laserbox_p2, -90);
-				App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 1, shoot_start->collider, nullrect, -90);
-
+				App->particles->AddParticle(*laser_p2, position.x - 30, position.y - 3, laser_p2->collider, laserbox_p2, -90);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 12, position.y + 1, shoot_start->collider, nullrect, -90);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 10, position.y + 1, shoot_start->collider, nullrect, -90);
+				}
 				break;
 			case ANGLE_60:
 				App->particles->SetParticleSpeed(laser_p2, -4.61f, -1.91f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x, position.y - 5, laser_p2->collider, laserbox_p2, -67.5);
-				App->particles->AddParticle(*shoot_start, position.x - 5, position.y - 5, shoot_start->collider, nullrect, -67.5);
+				App->particles->AddParticle(*laser_p2, position.x-10, position.y - 16, laser_p2->collider, laserbox_p2, -67.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 5, position.y - 5, shoot_start->collider, nullrect, -67.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 3, position.y - 3, shoot_start->collider, nullrect, -67.5);
+				}
 				break;
 			case LEFT_UP:
 				App->particles->SetParticleSpeed(laser_p2, -3.53f, -3.53f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x - 6, position.y - 16, laser_p2->collider, laserbox_p2, -45);
-				App->particles->AddParticle(*shoot_start, position.x - 2, position.y - 12, shoot_start->collider, nullrect, -45);
+				App->particles->AddParticle(*laser_p2, position.x - 12, position.y - 22, laser_p2->collider, laserbox_p2, -45);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 1, position.y - 11, shoot_start->collider, nullrect, -45);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 1, position.y - 9, shoot_start->collider, nullrect, -45);
+				}
 				break;
 			case ANGLE_30:
 				App->particles->SetParticleSpeed(laser_p2, -1.91f, -4.61f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x + 8, position.y - 12, laser_p2->collider, laserbox_p2, -22.5);
-				App->particles->AddParticle(*shoot_start, position.x + 3, position.y - 12, shoot_start->collider, nullrect, -22.5);
+				App->particles->AddParticle(*laser_p2, position.x, position.y - 20, laser_p2->collider, laserbox_p2, -22.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 3, position.y - 12, shoot_start->collider, nullrect, -22.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 1, position.y - 10, shoot_start->collider, nullrect, -22.5);
+				}
 				break;
 			case UP:
 				App->particles->SetParticleSpeed(laser_p2, 0, -5);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x + 10, position.y - 15, laser_p2->collider, laserbox_p2);
-				App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 15, shoot_start->collider, nullrect);
+				App->particles->AddParticle(*laser_p2, position.x + 10, position.y - 25, laser_p2->collider, laserbox_p2);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 14, shoot_start->collider, nullrect);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 15, position.y - 12, shoot_start->collider, nullrect);
+				}
 				break;
 			case ANGLE_330:
 				App->particles->SetParticleSpeed(laser_p2, 1.91f, -4.61f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
 				App->particles->AddParticle(*laser_p2, position.x + 25, position.y - 12, laser_p2->collider, laserbox_p2, 22.5);
-				App->particles->AddParticle(*shoot_start, position.x + 20, position.y - 12, shoot_start->collider, nullrect, 22.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 20, position.y - 12, shoot_start->collider, nullrect, 12.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 22, position.y - 10, shoot_start->collider, nullrect, 12.5);
+				}
 				break;
 			case RIGHT_UP:
 				App->particles->SetParticleSpeed(laser_p2, 3.53f, -3.53f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
 				App->particles->AddParticle(*laser_p2, position.x + 21, position.y - 16, laser_p2->collider, laserbox_p2, 45);
-				App->particles->AddParticle(*shoot_start, position.x + 25, position.y - 12, shoot_start->collider, nullrect, 45);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 25, position.y - 12, shoot_start->collider, nullrect, 45);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 23, position.y - 10, shoot_start->collider, nullrect, 45);
+				}
 				break;
 			case ANGLE_300:
 				App->particles->SetParticleSpeed(laser_p2, 4.61f, -1.91f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
 				App->particles->AddParticle(*laser_p2, position.x + 33, position.y - 5, laser_p2->collider, laserbox_p2, 67.5);
-				App->particles->AddParticle(*shoot_start, position.x + 28, position.y - 5, shoot_start->collider, nullrect, 67.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 28, position.y - 5, shoot_start->collider, nullrect, 67.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 26, position.y - 3, shoot_start->collider, nullrect, 67.5);
+				}
 				break;
 			case RIGHT:
 				App->particles->SetParticleSpeed(laser_p2, 5, 0);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x + 35, position.y - 2, laser_p2->collider, laserbox_p2, 90);
-				App->particles->AddParticle(*shoot_start, position.x + 30, position.y + 2, shoot_start->collider, nullrect, 90);
+				App->particles->AddParticle(*laser_p2, position.x + 30, position.y - 2, laser_p2->collider, laserbox_p2, 90);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 28, position.y + 2, shoot_start->collider, nullrect, 90);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 26, position.y + 2, shoot_start->collider, nullrect, 90);
+				}
 				break;
 			case ANGLE_240:
 				App->particles->SetParticleSpeed(laser_p2, 4.61f, 1.91f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
 				App->particles->AddParticle(*laser_p2, position.x + 25, position.y + 15, laser_p2->collider, laserbox_p2, 102.5);
-				App->particles->AddParticle(*shoot_start, position.x + 20, position.y + 15, shoot_start->collider, nullrect, 102.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 20, position.y + 15, shoot_start->collider, nullrect, 102.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 13, shoot_start->collider, nullrect, 102.5);
+				}
 				break;
 			case RIGHT_DOWN:
 				App->particles->SetParticleSpeed(laser_p2, 3.53f, 3.53f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
 				App->particles->AddParticle(*laser_p2, position.x + 16, position.y + 20, laser_p2->collider, laserbox_p2, 135);
-				App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 19, shoot_start->collider, nullrect, 135);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 16, position.y + 17, shoot_start->collider, nullrect, 135);
+				}
 				break;
 			case ANGLE_210:
 				App->particles->SetParticleSpeed(laser_p2, +1.91f, +4.61f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
 				App->particles->AddParticle(*laser_p2, position.x + 18, position.y + 17, laser_p2->collider, laserbox_p2, 167.5);
-				App->particles->AddParticle(*shoot_start, position.x + 15, position.y + 21, shoot_start->collider, nullrect, 167.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 15, position.y + 21, shoot_start->collider, nullrect, 167.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 13, position.y + 19, shoot_start->collider, nullrect, 167.5);
+				}
 				break;
 			case DOWN:
 				App->particles->SetParticleSpeed(laser_p2, 0, 5);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x - 3, position.y + 20, laser_p2->collider, laserbox_p2, 180);
-				App->particles->AddParticle(*shoot_start, position.x + 3, position.y + 27, shoot_start->collider, nullrect, 180);
+				App->particles->AddParticle(*laser_p2, position.x - 3, position.y + 30, laser_p2->collider, laserbox_p2, 180);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x + 2, position.y + 26, shoot_start->collider, nullrect, 180);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x + 2, position.y + 24, shoot_start->collider, nullrect, 180);
+				}
 				break;
 			case ANGLE_150:
 				App->particles->SetParticleSpeed(laser_p2, -1.91f, 4.61f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x, position.y + 20, laser_p2->collider, laserbox_p2, -157.5);
-				App->particles->AddParticle(*shoot_start, position.x - 5, position.y + 20, shoot_start->collider, nullrect, -157.5);
+				App->particles->AddParticle(*laser_p2, position.x-5, position.y + 25, laser_p2->collider, laserbox_p2, -157.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 5, position.y + 20, shoot_start->collider, nullrect, -157.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 3, position.y + 18, shoot_start->collider, nullrect, -157.5);
+				}
 				break;
 			case LEFT_DOWN:
 				App->particles->SetParticleSpeed(laser_p2, -3.53f, 3.53f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x - 10, position.y + 10, laser_p2->collider, laserbox_p2, -125);
-				App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 17, shoot_start->collider, nullrect, -135);
+				App->particles->AddParticle(*laser_p2, position.x - 15, position.y + 15, laser_p2->collider, laserbox_p2, -125);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 17, shoot_start->collider, nullrect, -135);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 9, position.y + 15, shoot_start->collider, nullrect, -135);
+				}
 				break;
 			case ANGLE_120:
 				App->particles->SetParticleSpeed(laser_p2, -4.61f, 1.91f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x - 5, position.y + 13, laser_p2->collider, laserbox_p2, -102.5);
-				App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 13, shoot_start->collider, nullrect, -107.5);
+				App->particles->AddParticle(*laser_p2, position.x - 10, position.y + 18, laser_p2->collider, laserbox_p2, -102.5);
+				if (is_running){
+					App->particles->AddParticle(*shoot_start, position.x - 13, position.y + 13, shoot_start->collider, nullrect, -107.5);
+				}
+				else{
+					App->particles->AddParticle(*shoot_start, position.x - 11, position.y + 11, shoot_start->collider, nullrect, -107.5);
+				}
 				break;
 			}
 			break;

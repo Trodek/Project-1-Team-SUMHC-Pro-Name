@@ -102,6 +102,7 @@ public:
 
 	bool bomb_pressed;
 	bool collider_create = false;
+	bool is_running = false;
 	uint last_laser;
 	uint now;
 

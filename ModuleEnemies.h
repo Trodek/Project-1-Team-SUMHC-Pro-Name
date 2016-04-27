@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Path.h"
+#include "ModuleAudio.h"
 
 #define MAX_ENEMIES 100
 
@@ -33,6 +34,7 @@ public:
 	ModuleEnemies();
 	~ModuleEnemies();
 
+	bool Start();
 	update_status PreUpdate();
 	update_status Update();
 	update_status PostUpdate();
@@ -47,6 +49,7 @@ private:
 
 private:
 
+	Mix_Chunk* enemy_hitted;
 	EnemyInfo queue[MAX_ENEMIES];
 	Enemy* enemies[MAX_ENEMIES];
 };
