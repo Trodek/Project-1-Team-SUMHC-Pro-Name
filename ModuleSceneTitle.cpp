@@ -139,6 +139,7 @@ bool ModuleSceneTitle::CleanUp()
 	App->textures->Unload(title_tex);
 	App->textures->Unload(chars_tex);
 	App->ui->title = false;
+	no_pay = true;
 
 	return true;
 }
