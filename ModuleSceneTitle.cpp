@@ -68,9 +68,9 @@ ModuleSceneTitle::ModuleSceneTitle()
 	tb_path.PushBack({ -2, -2.5f }, 101, &Ob_anim);
 	tb_path.loop = false;
 	t.x = 265;
-	t.y = 344;
+	t.y = 348;
 	ct.x = 265;
-	ct.y = 344;
+	ct.y = 348;
 	//Z anim
 	zb_anim.PushBack({ 118, 9, 39, 37 });
 
