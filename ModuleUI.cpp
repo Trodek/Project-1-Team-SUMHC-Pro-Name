@@ -61,10 +61,10 @@ ModuleUI::ModuleUI(){
 
 	//credits
 
-	credits.x = 94;
-	credits.y = 90;
-	credits.w = 47;
-	credits.h = 7;
+	credits_name.x = 94;
+	credits_name.y = 90;
+	credits_name.w = 47;
+	credits_name.h = 7;
 
 	credits_num.x = 80;
 	credits_num.y = 102;
@@ -180,7 +180,7 @@ update_status ModuleUI::Update(){
 				App->player->fall_hole.Reset();
 				App->player->direction = IDLE;
 				App->render->camera.y = checkpoints[curr_check].camera_y;
-				RestetEnergyBombs();
+				ResetEnergyBombs();
 				App->player->dead_explo.Reset();
 			}
 			else {
@@ -206,12 +206,12 @@ update_status ModuleUI::Update(){
 		}
 
 		App->render->Blit(ui_graphics, 18, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player1.GetCurrentFrame()));	//player1 name
-		DrawNumber(score, 66, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);									//player score
+		DrawNumber(score, 66, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);								//player score
 
 		App->render->Blit(ui_graphics, 158, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2.GetCurrentFrame()));	//player2
 
-		App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 1, &top_name);							//top name
-		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);								//top score
+		App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 1, &top_name);						//top name
+		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);							//top score
 
 		for (int i = 0; i < bombs; i++){																				//bombs
 			App->render->Blit(ui_graphics, 8 * i, (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);
@@ -231,16 +231,16 @@ update_status ModuleUI::Update(){
 	else{
 		//Draw Stuff
 		App->render->Blit(ui_graphics, 18, 1, &player1_static);															//player1
-		DrawNumber(score, 66, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);									//player score
+		DrawNumber(score, 66, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);								//player score
 
 		App->render->Blit(ui_graphics, 158, 1, &player2_title);															//player2
-		DrawNumber(score_p2, 206, 9, 8, top_points);																		//player2 score
+		DrawNumber(score_p2, 206, 9, 8, top_points);																	//player2 score
 
-		App->render->Blit(ui_graphics, 105, 1, &top_name);																	//top
-		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);								//top score
+		App->render->Blit(ui_graphics, 105, 1, &top_name);																//top
+		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);							//top score
 
 		if (title || cont){
-			App->render->Blit(ui_graphics, 84, 305, &credits);															//credits
+			App->render->Blit(ui_graphics, 84, 305, &credits_name);														//credits
 			DrawNumber(credit, 140, 305, 10, credits_num);																//credit number
 		}	
 	}
@@ -284,11 +284,11 @@ void ModuleUI::SubCoin(){
 }
 
 void ModuleUI::AddBomb(){
-	if (bombs < 10)bombs++;
+	if (bombs < 10) bombs++;
 }
 
 void ModuleUI::SubBomb(){
-	if (bombs > 0)bombs--;
+	if (bombs > 0) bombs--;
 }
 
 void ModuleUI::AddEnergy(){
@@ -296,7 +296,7 @@ void ModuleUI::AddEnergy(){
 	if (energy > max_energy) energy = max_energy;
 }
 
-void ModuleUI::RestetEnergyBombs(){
+void ModuleUI::ResetEnergyBombs(){
 	energy = max_energy;
 	bombs = 3;
 }

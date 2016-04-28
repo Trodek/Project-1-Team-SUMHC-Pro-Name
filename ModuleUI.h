@@ -46,7 +46,7 @@ public:
 
 	void AddBomb();
 	void SubBomb();
-	void RestetEnergyBombs();
+	void ResetEnergyBombs();
 
 	void AddEnergy();
 
@@ -92,7 +92,7 @@ public:
 	SDL_Rect top_name;
 	SDL_Rect top_points;
 
-	SDL_Rect credits;
+	SDL_Rect credits_name;
 	SDL_Rect credits_num;
 
 	SDL_Rect energy_bar;
