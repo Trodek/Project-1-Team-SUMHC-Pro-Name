@@ -45,7 +45,7 @@ ModuleScoreScreen::~ModuleScoreScreen()
 // Load assets
 bool ModuleScoreScreen::Start()
 {
-	LOG("Loading score Screen");
+	LOG("Loading ScoreScreen");
 	bool ret = true;
 	graphics = App->textures->Load("OutZone/Sprites/Scores/Ranking.png");
 
@@ -57,7 +57,7 @@ bool ModuleScoreScreen::Start()
 // UnLoad assets
 bool ModuleScoreScreen::CleanUp()
 {
-	LOG("Unloading score scene");
+	LOG("Unloading ScoreScreen");
 	App->textures->Unload(graphics);
 	if (keyboard != nullptr) {
 		delete[] keyboard;

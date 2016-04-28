@@ -6,6 +6,7 @@
 #include "p2Point.h"
 #include "dynArray.h"
 #include "ModuleTextures.h"
+#include "ModuleAudio.h"
 #include "Animation.h"
 #include "dynArray.h"
 
@@ -101,6 +102,8 @@ public:
 	SDL_Rect gameover;
 
 	SDL_Rect bomb;
+
+	Mix_Chunk* coin_sound;
 };
 
 #endif

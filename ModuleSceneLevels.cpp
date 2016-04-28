@@ -501,11 +501,7 @@ bool ModuleSceneLevels::CleanUp()
 	App->render->camera.y = 0;
 
 	//restart paths
-	gb1.Restart();
-	gb2.Restart();
-	gb3.Restart();
-	gb4.Restart();
-	gb5.Restart();
+	RestartEnemiesPaths();
 
 	return true;
 }
@@ -549,4 +545,27 @@ update_status ModuleSceneLevels::Update()
 	else App->audio->PlayMusic(level3_song, LOOP);
 
 	return UPDATE_CONTINUE;
+}
+
+void ModuleSceneLevels::RestartEnemiesPaths(){
+	gb1.Restart();
+	gb2.Restart();
+	gb3.Restart();
+	gb4.Restart();
+	gb5.Restart();
+	gb6.Restart();
+	gb7.Restart();
+	gb8.Restart();
+	gb9.Restart();
+	gb10.Restart();
+	gb11.Restart();
+	gb12.Restart();
+	gb13.Restart();
+	gb14.Restart();
+	gb15.Restart();
+	gb16.Restart();
+	gb17.Restart();
+	gb18.Restart();
+	gb19.Restart();
+	gb20.Restart();
 }

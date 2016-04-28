@@ -3,6 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleCollision.h"
 #include "ModuleInput.h"
+#include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
@@ -135,6 +136,8 @@ ModuleUI::~ModuleUI(){}
 bool ModuleUI::Start(){
 
 	ui_graphics = App->textures->Load("OutZone/Sprites/Interface/ui_stuff.png");
+	coin_sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/insert coin.wav");
+
 	return true;
 }
 
@@ -156,6 +159,7 @@ update_status ModuleUI::Update(){
 
 	if (App->input->keyboard[SDL_SCANCODE_5] == KEY_STATE::KEY_DOWN){
 		App->ui->AddCoin();
+		App->audio->PlaySoundEffect(coin_sound);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN){
@@ -245,7 +249,6 @@ update_status ModuleUI::Update(){
 }
 
 void ModuleUI::SetGameStartConditions(){
-	credit = 0;
 	lives = 2;
 	score = 0;
 	energy = 36;
@@ -254,7 +257,6 @@ void ModuleUI::SetGameStartConditions(){
 	game = true;
 	curr_check = 0;
 	dead = false;
-
 }
 
 void ModuleUI::DrawNumber(int number, int x, int y, int variable, SDL_Rect Points) {

@@ -44,6 +44,7 @@ bool ModuleNameScreen::Start()
 	graphics = App->textures->Load("OutZone/Sprites/Scores/EnterNameBackground.png");
 	layout_graphic = App->textures->Load("Outzone/Sprites/Scores/Keyboard.png");
 	music = App->audio->LoadMusic("OutZone/Sounds/Music/namescene.ogg");
+	letter_sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/namescore letter.wav");
 
 	//Name position 6 258
 	name_input_1.x = 6;
@@ -106,7 +107,7 @@ bool ModuleNameScreen::Start()
 // UnLoad assets
 bool ModuleNameScreen::CleanUp()
 {
-	LOG("Unloading name scene");
+	LOG("Unloading NameScreen");
 	if (keyboard != nullptr) {
 		delete[] keyboard;
 		keyboard = nullptr;
@@ -115,7 +116,7 @@ bool ModuleNameScreen::CleanUp()
 	App->textures->Unload(graphics);
 	App->audio->StopAudio();
 	App->audio->UnloadMusic(music);
-
+	App->audio->UnloadSoundEffect(letter_sound);
 	return true;
 }
 
@@ -141,6 +142,7 @@ update_status ModuleNameScreen::Update()
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN) {
 		InputName();
+		App->audio->PlaySoundEffect(letter_sound);
 	}
 
 	App->render->Blit(App->ui->ui_graphics, square_x, square_y, &(square.GetCurrentFrame()));

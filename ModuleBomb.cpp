@@ -7,6 +7,8 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleBomb.h"
+#include "ModuleCollision.h"
+#include "SDL/include/SDL_timer.h"
 
 
 
@@ -48,6 +50,7 @@ ModuleBomb::~ModuleBomb()
 // Load assets
 bool ModuleBomb::Start()
 {
+	
 	LOG("Loading Bomb");
 	bool ret = true;
 	bombtex = App->textures->Load("OutZone/Sprites/Weapon Shots/bomb.png");
@@ -67,15 +70,22 @@ bool ModuleBomb::CleanUp()
 // Update: draw background
 update_status ModuleBomb::Update()
 {
-
+	
 	// Draw everything --------------------------------------
 	if (pressed){
+		
 		if (!bombanim.Finished()){
 			App->render->Blit(bombtex, 0, -App->render->camera.y / 3, &(bombanim.GetCurrentFrame()));
+			if (!collider_create){
+				BombCollider = App->collisions->AddCollider({ 0, (-App->render->camera.y) / 3, SCREEN_WIDTH, SCREEN_HEIGHT }, COLLIDER_BOMB, this);
+				collider_create = true;
+			}
 		}
 		else{
 			pressed = false;
 			bombanim.Reset();
+			BombCollider->to_delete = true;
+			collider_create = false;
 		}
 	}
 

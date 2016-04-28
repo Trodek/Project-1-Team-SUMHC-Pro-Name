@@ -19,6 +19,7 @@ enum COLLIDER_TYPE
 	COLLIDER_PASS_BULLET,
 	COLLIDER_PLAYER_EBULLETS,
 	COLLIDER_BOMB,
+	COLLIDER_DEAD_EXPLO,
 	COLLIDER_MAX
 };
 
@@ -41,6 +42,7 @@ struct Collider
 		rect.y = y;
 	}
 
+	Direction ColliderHit(const SDL_Rect& r) const;
 	bool CheckCollision(const SDL_Rect& r) const;
 };
 
@@ -53,14 +55,17 @@ public:
 
 	update_status PreUpdate();
 	update_status Update();
+	update_status PostUpdate();
 	bool CleanUp();
 
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module* callback = nullptr);
 	bool EraseCollider(Collider* collider);
 	void DebugDraw();
 
+
 private:
 
+	bool player_collided;
 	Collider* colliders[MAX_COLLIDERS];
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 	bool debug = false;
