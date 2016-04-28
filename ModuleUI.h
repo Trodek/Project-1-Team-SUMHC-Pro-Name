@@ -37,21 +37,19 @@ public:
 	bool CleanUp();
 
 	void SetGameStartConditions();
-	void UpdateCreditnum();
-	void UpdateScorenums();
-	void UpdateTopScorenums();
-	void UpdateLivesnums();
-	SDL_Rect* GetCorrectNum(const int& num);
-	void DrawPlayerScore();
-	void DrawPlayerScore(int x, int y, SDL_Rect Points);
-	void DrawTopScore();
+
 	void DrawBombs();
+
 	void AddCoin();
-	void AddBomb();
-	void AddEnergy();
 	void SubCoin();
+
+	void AddBomb();
 	void SubBomb();
 	void RestetEnergyBombs();
+
+	void AddEnergy();
+
+	void DrawNumber(int number, int x, int y, int variable, SDL_Rect Points);
 	bool TopScore();
 
 public:
@@ -60,14 +58,10 @@ public:
 	int curr_check = 0;
 
 	dynArray<Ranking> TopScores;
-	char* rank1;
-	char* rank2;
-	char* rank3;
-	char* rank4;
-	char* rank5;
 
 	int lives=0;
 	int score=0;
+	int score_p2 = 0;
 	int energy=0;
 	int max_energy = 36;
 	int bombs=0;
@@ -86,25 +80,19 @@ public:
 	SDL_Texture* ui_graphics;
 
 	Animation player1;
-	Animation player2;
 	SDL_Rect player1_static;
+
+	Animation player2;
 	SDL_Rect player2_title;
 
-	SDL_Rect num0;
-	SDL_Rect num1;
-	SDL_Rect num2;
-	SDL_Rect num3;
-	SDL_Rect num4;
-	SDL_Rect num5;
-	SDL_Rect num6;
-	SDL_Rect num7;
-	SDL_Rect num8;
-	SDL_Rect num9;
-
-	SDL_Rect lives0;
-	SDL_Rect lives1;
-	SDL_Rect lives2;
 	SDL_Rect lives_symbol;
+	SDL_Rect lives_num;
+
+	SDL_Rect top_name;
+	SDL_Rect top_points;
+
+	SDL_Rect credits;
+	SDL_Rect credits_num;
 
 	SDL_Rect energy_bar;
 	SDL_Rect energy_bar_ext;
@@ -112,42 +100,7 @@ public:
 
 	SDL_Rect gameover;
 
-	SDL_Rect top;
-
 	SDL_Rect bomb;
-
-	SDL_Rect* score1=nullptr;
-	SDL_Rect* score10 = nullptr;
-	SDL_Rect* score100 = nullptr;
-	SDL_Rect* score1000 = nullptr;
-	SDL_Rect* score10000 = nullptr;
-	SDL_Rect* score100000 = nullptr;
-	SDL_Rect* score1000000 = nullptr;
-	SDL_Rect* lives_num = nullptr;
-	SDL_Rect* p2_score = nullptr;
-
-	SDL_Rect* topscore1 = nullptr;
-	SDL_Rect* topscore10 = nullptr;
-	SDL_Rect* topscore100 = nullptr;
-	SDL_Rect* topscore1000 = nullptr;
-	SDL_Rect* topscore10000 = nullptr;
-	SDL_Rect* topscore100000 = nullptr;
-	SDL_Rect* topscore1000000 = nullptr;
-
-	SDL_Rect credits;
-	SDL_Rect c0;
-	SDL_Rect c1;
-	SDL_Rect c2;
-	SDL_Rect c3;
-	SDL_Rect c4;
-	SDL_Rect c5;
-	SDL_Rect c6;
-	SDL_Rect c7;
-	SDL_Rect c8;
-	SDL_Rect c9;
-
-	SDL_Rect* c_num = nullptr;
-
 };
 
 #endif

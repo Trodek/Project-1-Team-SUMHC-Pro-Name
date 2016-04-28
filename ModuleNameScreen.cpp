@@ -149,7 +149,7 @@ update_status ModuleNameScreen::Update()
 	App->render->Blit(App->ui->ui_graphics, 64, 264, &name_input_1);
 	App->render->Blit(App->ui->ui_graphics, 80, 264, &name_input_2);
 	App->render->Blit(App->ui->ui_graphics, 96, 264, &name_input_3);
-	App->ui->DrawPlayerScore(219, 265, Points);
+	App->ui->DrawNumber(App->ui->score, 219, 265, 8, Points);
 
 	return UPDATE_CONTINUE;
 }
