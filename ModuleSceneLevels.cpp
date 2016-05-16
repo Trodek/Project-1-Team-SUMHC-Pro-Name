@@ -64,10 +64,11 @@ bool ModuleSceneLevels::Start()
 	lava = App->textures->Load("OutZone/Sprites/Map/lava_anim.png");
 	sublighttex = App->textures->Load("OutZone/Sprites/Map/sublights.png");
 	graphics_l4 = App->textures->Load("OutZone/Sprites/Map/level4.png");
+	graphics_l4_below = App->textures->Load("OutZone/Sprites/Map/level4_below.png");
 
-	level1_song = App->audio->LoadMusic("OutZone/Sounds/Music/level1.ogg");
-	level2_song = App->audio->LoadMusic("OutZone/Sounds/Music/level2.ogg");
-	level3_song = App->audio->LoadMusic("OutZone/Sounds/Music/level3.ogg");
+	level4_song = App->audio->LoadMusic("OutZone/Sounds/Music/level4.ogg");
+
+	App->audio->PlayMusic(level4_song, LOOP);
 
 	//Enable Player and Collisions
 	App->player->Enable();
@@ -504,9 +505,7 @@ bool ModuleSceneLevels::CleanUp()
 
 	//Stop audio
 	App->audio->StopAudio();
-	App->audio->UnloadMusic(level1_song);
-	App->audio->UnloadMusic(level2_song);
-	App->audio->UnloadMusic(level3_song);
+	App->audio->UnloadMusic(level4_song);
 
 	App->render->camera.y = 0;
 
@@ -531,26 +530,16 @@ update_status ModuleSceneLevels::Update()
 	}
 	// Draw everything --------------------------------------
 	if (App->ui->game){
-		App->render->Blit(lava, 0, 0, &lavaanim.GetCurrentFrame());
+	/*	App->render->Blit(lava, 0, 0, &lavaanim.GetCurrentFrame());
 		App->render->Blit(lava, 0, 830, &lavaanim.GetCurrentFrame());
 		App->render->Blit(lava, 0, 2896, &lavaanim.GetCurrentFrame());
-		App->render->Blit(lava, 0, 5156, &lavaanim.GetCurrentFrame());
+		App->render->Blit(lava, 0, 5156, &lavaanim.GetCurrentFrame());*/
 
-		App->render->Blit(sublighttex, 0, 6781, &sublightanim.GetCurrentFrame());
+		//App->render->Blit(sublighttex, 0, 6781, &sublightanim.GetCurrentFrame());
+		App->render->Blit(graphics_l4_below, 0, 0, &level4);
 		App->render->Blit(graphics_l4, 0, 0, &level4); // Map
-		App->render->Blit(on_bg, 0, 8445, &lights.GetCurrentFrame());
+		//App->render->Blit(on_bg, 0, 8445, &lights.GetCurrentFrame());
 	}
-
-
-	
-	//TEST
-	
-	
-
-	//Check song to play
-	if (App->render->camera.y < -11489*SCREEN_SIZE) App->audio->PlayMusic(level1_song, LOOP);
-	else if (App->render->camera.y > -11489*SCREEN_SIZE && App->render->camera.y < -6436*SCREEN_SIZE) App->audio->PlayMusic(level2_song, LOOP);
-	else App->audio->PlayMusic(level3_song, LOOP);
 
 	return UPDATE_CONTINUE;
 }

@@ -26,6 +26,7 @@ public:
 public:
 
 	SDL_Texture* graphics_l4 = nullptr;
+	SDL_Texture* graphics_l4_below = nullptr;
 	SDL_Texture* lava = nullptr;
 	SDL_Texture* on_bg = nullptr;
 	SDL_Texture* sublighttex = nullptr;
@@ -37,9 +38,7 @@ public:
 
 	float camera_y;
 
-	Mix_Music* level1_song;
-	Mix_Music* level2_song;
-	Mix_Music* level3_song;
+	Mix_Music* level4_song;
 
 	Path gb1;
 	Path gb2;
