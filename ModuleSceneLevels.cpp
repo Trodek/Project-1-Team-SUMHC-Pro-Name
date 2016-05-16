@@ -326,7 +326,35 @@ bool ModuleSceneLevels::Start()
 	//App->collisions->AddCollider({ 107, 6888, 27, 120 }, COLLIDER_HOLE);
 	//App->collisions->AddCollider({ 172, 6855, 84, 58 }, COLLIDER_HOLE);
 	//App->collisions->AddCollider({ 170, 6760, 28, 58 }, COLLIDER_HOLE);
-	//App->collisions->AddCollider({ 0, 6758, 68, 59 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 7198, 46, 80 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 193, 7198, 46, 80 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 0, 6795, 64, 51 }, COLLIDER_WALL);
+	App->collisions->AddCollider({ 160, 6795, 80, 51 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 133, 6560, 120, 30 }, COLLIDER_WALL);	 //Same kind of structure
+	App->collisions->AddCollider({ 134, 6439, 120, 30 }, COLLIDER_WALL);	 //Same kind of structure
+	App->collisions->AddCollider({ 137, 6439, 20, 130 }, COLLIDER_WALL);	 //Same kind of structure
+																			
+	App->collisions->AddCollider({ 133, 6560-223, 120, 30 }, COLLIDER_WALL); //Same kind of structure
+	App->collisions->AddCollider({ 134, 6439-223, 120, 30 }, COLLIDER_WALL); //Same kind of structure
+	App->collisions->AddCollider({ 137, 6439-223, 20, 130 }, COLLIDER_WALL); //Same kind of structure
+																	
+	App->collisions->AddCollider({ 202, 6560-449, 120, 30 }, COLLIDER_WALL); //Same kind of structure
+	App->collisions->AddCollider({ 202, 6439-449, 120, 30 }, COLLIDER_WALL); //Same kind of structure
+	App->collisions->AddCollider({ 202, 6439-449, 20, 130 }, COLLIDER_WALL); //Same kind of structure
+																			
+	App->collisions->AddCollider({ 0, 6560 - 449, 90, 30 }, COLLIDER_WALL);	 //Same kind of structure
+	App->collisions->AddCollider({ 0, 6439 - 449, 90, 30 }, COLLIDER_WALL);	 //Same kind of structure
+	App->collisions->AddCollider({ 66, 6439 - 449, 20, 130 }, COLLIDER_WALL);//Same kind of structure
+
+	App->collisions->AddCollider({ 0, 4901, 63, 122 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 192, 4803, 63, 124 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 0, 4704, 63, 127 }, COLLIDER_WALL);
+
+	App->collisions->AddCollider({ 193, 4640, 48, 55 }, COLLIDER_WALL);
 
 	App->render->camera.y = -7199*SCREEN_SIZE;
 
