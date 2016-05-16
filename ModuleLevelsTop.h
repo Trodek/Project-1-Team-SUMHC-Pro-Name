@@ -17,13 +17,10 @@ public:
 
 public:
 
-	SDL_Texture* level1_top;
-	SDL_Texture* level2_top;
-	SDL_Texture* level3_top;
+	SDL_Texture* level4_top;
 
-	SDL_Rect level1;
-	SDL_Rect level2;
-	SDL_Rect level3;
+	SDL_Rect level4;
+
 
 };
 
