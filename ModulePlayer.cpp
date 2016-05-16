@@ -20,7 +20,7 @@
 ModulePlayer::ModulePlayer()
 {
 	position.x = 120;
-	position.y = 15308;
+	position.y = 7359;
 
 	//// LASER ANIMATIONS
 
@@ -1030,7 +1030,7 @@ Animation* ModulePlayer::SelectAnimation(Direction direction){
 
 void ModulePlayer::ResetPosition(){
 	position.x = 105;
-	position.y = 15308;
+	position.y = 7359;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
