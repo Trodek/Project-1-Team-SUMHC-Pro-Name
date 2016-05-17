@@ -61,10 +61,17 @@ public:
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
 	SDL_Texture* dead_explo_text = nullptr;
+	SDL_Texture* casual_tex = nullptr;
+
+	SDL_Rect casual;
 
 	//SDL_Rect Playeraux;
+<<<<<<< HEAD
 	bool move_up, move_down, move_left, move_right;
 	bool move_up_p2, move_down_p2, move_left_p2, move_right_p2;
+=======
+	bool move_up, move_down, move_left, move_right, god_mode = false;
+>>>>>>> origin/master
 
 	Animation up;
 	Animation up_p2;

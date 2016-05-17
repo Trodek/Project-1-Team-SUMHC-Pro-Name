@@ -22,8 +22,16 @@ ModulePlayer::ModulePlayer()
 	position.x = 120;
 	position.y = 7359;
 
+<<<<<<< HEAD
 	position_p2.x = 140;
 	position_p2.y = 7359;
+=======
+	//casual
+	casual.x = 0;
+	casual.y = 0;
+	casual.h = 150;
+	casual.w = 150;
+>>>>>>> origin/master
 
 	//// LASER ANIMATIONS
 
@@ -383,6 +391,7 @@ bool ModulePlayer::Start()
 	main_char_tex = App->textures->Load("OutZone/Sprites/Main Char/Main_moves.png");
 	bomb_tex = App->textures->Load("OutZone/Sprites/Weapon Shots/bomb.png");
 	dead_explo_text = App->textures->Load("OutZone/Sprites/Main Char/Dead_char_explosion.png"); 
+	casual_tex = App->textures->Load("OutZone/Sprites/Main Char/casual.png");
 	bomb_pressed = false;
 	current_animation = &up;
 	bool ret = true;
@@ -428,6 +437,8 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp(){
 
 	LOG("Player CleanUp--------");
+
+	god_mode = false;
 
 	dead = false;
 	dead_fall = false;
@@ -652,7 +663,17 @@ update_status ModulePlayer::Update()
 	PreviousPos_p2 = position_p2;
 	int speed = 2;
 	now = SDL_GetTicks();
-
+	
+	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN){
+		if (god_mode){
+			PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
+			god_mode = false;
+		}
+		else{
+			App->collisions->EraseCollider(PlayerEBulletsCollider);
+			god_mode = true;
+		}
+	}
 
 	if (!dead){
 		//TP last checkpoint
@@ -770,6 +791,7 @@ update_status ModulePlayer::Update()
 				App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 		}
 		else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
+<<<<<<< HEAD
 
 		
 
@@ -781,6 +803,10 @@ update_status ModulePlayer::Update()
 					App->render->Blit(main_char_tex, position_p2.x, position_p2.y, &(weapon_anim_player2->GetActualFrame()));
 			}
 			else App->render->Blit(main_char_tex, position_p2.x, position_p2.y, &(weapon_anim_player2->GetActualFrame()));
+=======
+		if (god_mode){
+			App->render->Blit(casual_tex, position.x-50, position.y - 150, &casual);
+>>>>>>> origin/master
 		}
 	}
 	else{
@@ -837,11 +863,16 @@ update_status ModulePlayer::Update()
 	}
 
 	PlayerCollider->SetPos(position.x+10, position.y+20);
+<<<<<<< HEAD
 	PlayerEBulletsCollider->SetPos(position.x+4 , position.y+3);
 	if (App->ui->player2_enabled) {
 		Player2Collider->SetPos(position_p2.x + 10, position_p2.y + 20);
 		Player2EBulltesCollider->SetPos(position_p2.x + 4, position_p2.y + 3);
 	}
+=======
+	if (!god_mode)
+		PlayerEBulletsCollider->SetPos(position.x+4 , position.y+3);
+>>>>>>> origin/master
 	
 	return UPDATE_CONTINUE;
 }
