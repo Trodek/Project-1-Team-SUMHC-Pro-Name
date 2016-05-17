@@ -45,12 +45,13 @@ public:
 	void SubCoin();
 
 	void AddBomb();
-	void SubBomb();
+	void SubBomb(char player);
 	void ResetEnergyBombs();
 
 	void AddEnergy();
 
 	void DrawNumber(int number, int x, int y, int variable, SDL_Rect Points);
+	void DrawPlayer2Score(int number, int x, int y, int variable, SDL_Rect Points);
 	bool TopScore();
 
 public:
@@ -61,11 +62,14 @@ public:
 	dynArray<Ranking> TopScores;
 
 	int lives=0;
+	int lives_p2 = 0;
 	int score=0;
 	int score_p2 = 0;
 	int energy=0;
+	int energy_p2 = 0;
 	int max_energy = 36;
 	int bombs=0;
+	int bombs_p2 = 0;
 	int credit=0;
 
 	int top_score;
@@ -77,6 +81,16 @@ public:
 	bool title = true;
 	bool cont = false;
 	bool dead = false;
+	bool player2_dead = false;
+
+	bool player2_enabled = false;
+
+
+	SDL_Texture* low_energy;
+	Animation Low_energy;
+	Animation Low_energy_p2;
+
+	SDL_Rect Low_energy_static;
 
 	SDL_Texture* ui_graphics;
 
@@ -85,6 +99,9 @@ public:
 
 	Animation player2;
 	SDL_Rect player2_title;
+
+	Animation player2_name;
+	SDL_Rect player2_static;
 
 	SDL_Rect lives_symbol;
 	SDL_Rect lives_num;
@@ -98,6 +115,8 @@ public:
 	SDL_Rect energy_bar;
 	SDL_Rect energy_bar_ext;
 	SDL_Rect energy_pill;
+
+	SDL_Rect energy_bar_p2;
 
 	SDL_Rect gameover;
 

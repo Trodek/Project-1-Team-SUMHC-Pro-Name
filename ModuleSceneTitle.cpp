@@ -186,13 +186,21 @@ update_status ModuleSceneTitle::Update()
 			App->render->Blit(title_tex, 15, 88, &title_anim.GetCurrentFrame());
 	}
 	// swap Scene
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && App->ui->credit>0){
+	if ((App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN || App->input->keyboard[SDL_SCANCODE_SPACE]) && App->ui->credit>0 && no_pay){
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
 		if (no_pay)
 			App->ui->SubCoin();
 		no_pay = false;
 	}
-	
+	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN && App->ui->credit > 1 && no_pay) {
+		App->ui->player2_enabled = true;
+		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
+		if (no_pay) {
+			App->ui->SubCoin();
+			App->ui->SubCoin();
+		}
+		no_pay = false;
+	}
 	
 
 	return UPDATE_CONTINUE;

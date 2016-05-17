@@ -31,10 +31,15 @@ ModuleUI::ModuleUI(){
 	player2.PushBack({ 82, 58, 75, 15 });
 	player2.speed = 0.15f;
 
-	player2_title.x = 89;
-	player2_title.y = 78;
+	player2_title.x = 144;
+	player2_title.y = 82;
 	player2_title.w = 55;
 	player2_title.h = 7;
+
+	//Player 2 ingame
+	player2_name.PushBack({ 144, 82, 55, 7 });
+	player2_name.PushBack({ 144, 90, 55, 7 });
+	player2_name.speed = 0.01f;
 
 	//lives 
 	lives_num.x = 17;
@@ -83,6 +88,11 @@ ModuleUI::ModuleUI(){
 	energy_bar.w = 92;
 	energy_bar.h = 8;
 
+	energy_bar_p2.x = 95;
+	energy_bar_p2.y = 20;
+	energy_bar_p2.w = 92;
+	energy_bar_p2.h = 8;
+
 	energy_bar_ext.x = 74;
 	energy_bar_ext.y = 43;
 	energy_bar_ext.w = 116;
@@ -99,7 +109,12 @@ ModuleUI::ModuleUI(){
 	gameover.y = 216;
 	gameover.w = 194;
 	gameover.h = 33;
-
+	
+	//low_energy
+	Low_energy_static.x = 5;
+	Low_energy_static.y = 5;
+	Low_energy_static.w = 40;
+	Low_energy_static.h = 24;
 
 	//CheckPoints
 	checkpoints.PushBack(-15063 * SCREEN_SIZE);
@@ -136,13 +151,14 @@ ModuleUI::~ModuleUI(){}
 bool ModuleUI::Start(){
 
 	ui_graphics = App->textures->Load("OutZone/Sprites/Interface/ui_stuff.png");
+	low_energy = App->textures->Load("Outzone/Sprites/Main Char/Energy_dead_char.png");
 	coin_sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/insert coin.wav");
 
 	return true;
 }
 
 bool ModuleUI::CleanUp(){
-
+	App->textures->Unload(low_energy);
 	App->textures->Unload(ui_graphics);
 	for (int i = 0; i < 5; i++) {
 		if (TopScores[i].name != nullptr) {
@@ -162,7 +178,7 @@ update_status ModuleUI::Update(){
 		App->audio->PlaySoundEffect(coin_sound);
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN){
+	if (App->input->keyboard[SDL_SCANCODE_M] == KEY_STATE::KEY_DOWN){
 		App->ui->AddEnergy();
 	}
 
@@ -197,6 +213,7 @@ update_status ModuleUI::Update(){
 		if (score > top_score) top_score = score;
 		if (now - e_timer > 1500 && energy > 0) {
 			energy--;
+			energy_p2--;
 			e_timer = SDL_GetTicks();
 		}
 
@@ -205,36 +222,56 @@ update_status ModuleUI::Update(){
 				curr_check++;
 		}
 
-		App->render->Blit(ui_graphics, 18, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player1.GetCurrentFrame()));	//player1 name
-		DrawNumber(score, 66, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);								//player score
+		/*---------------------- PLAYER 1 ----------------------*/
+		App->render->Blit(ui_graphics, 26, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player1.GetCurrentFrame()));			//player1 name
+		DrawNumber(score, 26, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);										//player score
 
-		App->render->Blit(ui_graphics, 158, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2.GetCurrentFrame()));	//player2
+		App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE, &lives_symbol);								//lives icon
+		DrawNumber(lives, 8, (-App->render->camera.y) / SCREEN_SIZE + 1, 8, lives_num);											//lives number
 
-		App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 1, &top_name);						//top name
-		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);							//top score
+		App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar);							//energy bar
 
-		for (int i = 0; i < bombs; i++){																				//bombs
-			App->render->Blit(ui_graphics, 8 * i, (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);
+		for (int i = 0; i < energy; i++)
+			App->render->Blit(ui_graphics, 17 + (2 * i), (-App->render->camera.y) / SCREEN_SIZE + 18, &energy_pill);			//fill the bar
+		for (int i = 0; i < bombs; i++)																				
+			App->render->Blit(ui_graphics, 8 * i, (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);							//bombs
+
+		if (!(energy % 2) && energy < 7) {
+			App->render->Blit(low_energy, 8, (-App->render->camera.y) / SCREEN_SIZE + 27, &Low_energy_static);					//Low energy
 		}
 
-		App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE, &lives_symbol);						//lives icon
-		DrawNumber(lives, 8, (-App->render->camera.y) / SCREEN_SIZE + 1, 8, lives_num);									//lives number
+		/*---------------------- TOP SCORE ----------------------*/
+		App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 1, &top_name);								//top name
+		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);									//top score
 
+		/*---------------------- PLAYER 2 ----------------------*/
+		if (player2_enabled) {
+			App->render->Blit(ui_graphics, 158, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2_name.GetCurrentFrame()));	//player2 name
+			DrawNumber(score_p2, 206, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);								//player2 score
 
-		App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar);					//energy bar
+			App->render->Blit(ui_graphics, 164 + 59, (-App->render->camera.y) / SCREEN_SIZE, &lives_symbol);					//lives icon
+			DrawNumber(lives_p2, 164 + 57 + 10, (-App->render->camera.y) / SCREEN_SIZE + 1, 9, lives_num);						//lives number
 
-		for (int i = 0; i < energy; i++){
-			App->render->Blit(ui_graphics, 17 + (2 * i), (-App->render->camera.y) / SCREEN_SIZE + 18, &energy_pill);
+			App->render->Blit(ui_graphics, 148, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar_p2);					//energy bar
+			for (int i = 0; i < energy; i++) 
+				App->render->Blit(ui_graphics, 164 + 58 - (2 * i), (-App->render->camera.y) / SCREEN_SIZE + 18, &energy_pill);	//fill the bar
+			for (int i = 0; i < bombs_p2;  i++)																					
+				App->render->Blit(ui_graphics, 232 - (8 * i), (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);				//bombs
+
+			if (!(energy % 2) && energy < 7) {
+				App->render->Blit(low_energy, 190, (-App->render->camera.y) / SCREEN_SIZE + 27, &Low_energy_static);			//Low energy
+			}
 		}
-
+		else
+			App->render->Blit(ui_graphics, 200, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2.GetCurrentFrame()));		//player2
 	}
 	else{
 		//Draw Stuff
 		App->render->Blit(ui_graphics, 18, 1, &player1_static);															//player1
 		DrawNumber(score, 66, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);								//player score
 
-		App->render->Blit(ui_graphics, 158, 1, &player2_title);															//player2
-		DrawNumber(score_p2, 206, 9, 8, top_points);																	//player2 score
+		App->render->Blit(ui_graphics, 164, 1, &player2_title);															//player2
+		DrawNumber(score_p2, 212, 9, 8, top_points);																	//player2 score
 
 		App->render->Blit(ui_graphics, 105, 1, &top_name);																//top
 		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);							//top score
@@ -257,6 +294,12 @@ void ModuleUI::SetGameStartConditions(){
 	game = true;
 	curr_check = 0;
 	dead = false;
+	if (player2_enabled) {
+		lives_p2 = 2;
+		score_p2 = 0;
+		bombs_p2 = 3;
+		player2_dead = false;
+	}
 }
 
 void ModuleUI::DrawNumber(int number, int x, int y, int variable, SDL_Rect Points) {
@@ -274,7 +317,6 @@ void ModuleUI::DrawNumber(int number, int x, int y, int variable, SDL_Rect Point
 	}
 }
 
-
 void ModuleUI::AddCoin(){
 	if (credit<9) credit++;
 }
@@ -287,13 +329,21 @@ void ModuleUI::AddBomb(){
 	if (bombs < 10) bombs++;
 }
 
-void ModuleUI::SubBomb(){
-	if (bombs > 0) bombs--;
+void ModuleUI::SubBomb(char player){
+	switch (player) {
+	case 1:
+		if (bombs > 0) bombs--;
+	case 2:
+		if (bombs > 0) bombs_p2--;
+	}
+
 }
 
 void ModuleUI::AddEnergy(){
-	energy += 15;
+	energy -= 15;
+	energy_p2 -= 15;
 	if (energy > max_energy) energy = max_energy;
+	if (energy_p2 > max_energy) energy_p2 = max_energy;
 }
 
 void ModuleUI::ResetEnergyBombs(){
