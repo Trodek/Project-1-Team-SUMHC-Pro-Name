@@ -9,10 +9,10 @@ enum STATES{
 	ST_ShellIdle, ST_Idle, ST_EjectShell, ST_EquipShell, ST_Apear
 };
 
-class EnemyBoss
+class EnemyBoss:public Enemy
 {
 public:
-	EnemyBoss();
+	EnemyBoss(int x, int y, ENEMY_TYPES type);
 
 	void Draw();
 
@@ -32,7 +32,14 @@ private:
 	Animation boss_idle;
 	
 	SDL_Rect misile;
+	SDL_Rect Shell_left;
+	SDL_Rect Shell_right;
 
+	Collider* shell_left_col;
+	Collider* shell_right_col;
+
+	uint timer;
+	uint now;
 
 private:
 	void CheckState();

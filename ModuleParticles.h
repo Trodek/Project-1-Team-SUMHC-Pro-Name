@@ -70,6 +70,7 @@ public:
 
 	SDL_Texture* green_basic;
 	SDL_Texture* small_turret;
+	SDL_Texture* boss = nullptr;
 
 	Particle basic_laser_p0;
 	Particle basic_laser_p1;
@@ -95,6 +96,8 @@ public:
 	Particle green_basic_bullet;
 	Particle green_basic_bullet_end;
 	Particle green_basic_bullet_start;
+
+	Particle missile;
 };
 
 #endif // __MODULEPARTICLES_H__

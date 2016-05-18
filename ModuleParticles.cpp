@@ -16,7 +16,17 @@ ModuleParticles::ModuleParticles()
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) 
 		active[i] = nullptr;
 
-	
+	//missile paritcle
+
+	missile.anim.PushBack({ 46, 197, 64, 16});
+	missile.anim.PushBack({ 73, 197, 64, 16 });
+	missile.anim.PushBack({ 100, 197, 64, 16 });
+	missile.anim.PushBack({ 126, 197, 64, 16 });
+	missile.end_particle = &green_basic_dead;
+	missile.life = 1500;
+	missile.collider = COLLIDER_ENEMY_SHOT;
+	missile.anim.speed = 0.8;
+	missile.anim.loop = true;
 
 	// laser particles and sound
 
@@ -208,7 +218,9 @@ bool ModuleParticles::Start()
 	small_turret = App->textures->Load("Outzone/Sprites/Enemies/Level 1/Small Turret/Small Turret.png");
 	big_turret_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret fire.png");
 	green_basic_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Enemies Common Dead/common dead sprites.png");
+	boss = App->textures->Load("OutZone/Sprites/Enemies/Level 4/boss.png");
 
+	missile.tex = boss;
 
 	green_basic = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Green Soldier/Soldier Green.png");
 	green_basic_bullet_start.tex = green_basic;
