@@ -35,8 +35,8 @@ Application::Application()
 	modules[9] = losescreen = new ModuleLoseScreen();
 	modules[10] = namescreen = new ModuleNameScreen();
 	modules[11] = scorescreen = new ModuleScoreScreen();
-	modules[12] = enemies = new ModuleEnemies();
-	modules[13] = drawparticles = new ModuleDrawParticles();
+	modules[12] = drawparticles = new ModuleDrawParticles();
+	modules[13] = enemies = new ModuleEnemies();
 	modules[14] = player = new ModulePlayer();
 	modules[15] = particles = new ModuleParticles();
 	modules[16] = levelstop = new ModuleLevelsTop();
