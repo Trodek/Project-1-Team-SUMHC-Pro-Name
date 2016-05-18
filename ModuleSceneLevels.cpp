@@ -377,16 +377,16 @@ bool ModuleSceneLevels::Start()
 	//App->enemies->AddEnemy(BIGTURRET, 0, 13742);
 	//App->enemies->AddEnemy(BIGTURRET, 160, 13458);
 
-	App->enemies->AddEnemy(BOSS, 132, 7000);
-	App->enemies->AddEnemy(SMALLTURRET, 100, 6500);
-	//App->enemies->AddEnemy(SMALLTURRET, 11, 13038);
-	//App->enemies->AddEnemy(SMALLTURRET, 77, 13027);
-	//App->enemies->AddEnemy(SMALLTURRET, 149, 13023);
-	//App->enemies->AddEnemy(SMALLTURRET, 206, 13049);
-	//App->enemies->AddEnemy(SMALLTURRET, 45, 12992);
-	//App->enemies->AddEnemy(SMALLTURRET, 111, 12994);
-	//App->enemies->AddEnemy(SMALLTURRET, 182, 13003);
-	//App->enemies->AddEnemy(SMALLTURRET, 22, 12952);
+	App->enemies->AddEnemy(BOSS, 88, -5);
+	App->enemies->AddEnemy(SMALLTURRET, 5, 2759);
+	App->enemies->AddEnemy(SMALLTURRET, 5, 2792);
+	App->enemies->AddEnemy(SMALLTURRET, 5, 2825);
+	App->enemies->AddEnemy(SMALLTURRET, 5, 3112);
+	App->enemies->AddEnemy(SMALLTURRET, 5, 3149);
+	App->enemies->AddEnemy(SMALLTURRET, 5, 3189);
+	App->enemies->AddEnemy(SMALLTURRET, 222, 2988);
+	App->enemies->AddEnemy(SMALLTURRET, 222, 2951);
+	App->enemies->AddEnemy(SMALLTURRET, 222, 3025);
 	//App->enemies->AddEnemy(SMALLTURRET, 100, 12946);
 	//App->enemies->AddEnemy(SMALLTURRET, 158, 12953);
 	//App->enemies->AddEnemy(SMALLTURRET, 4, 12909);

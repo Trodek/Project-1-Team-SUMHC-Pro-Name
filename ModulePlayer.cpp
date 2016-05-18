@@ -459,7 +459,7 @@ update_status ModulePlayer::PostUpdate(){
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 			direction = UP;
 			SelectAnimation(direction, 1, current_weapon);
-			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y < 0){
+			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y < 0 && scroll){
 				App->render->camera.y += 6;
 				position.y -= speed;
 			}

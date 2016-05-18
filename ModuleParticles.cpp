@@ -18,15 +18,17 @@ ModuleParticles::ModuleParticles()
 
 	//missile paritcle
 
-	missile.anim.PushBack({ 46, 197, 64, 16});
-	missile.anim.PushBack({ 73, 197, 64, 16 });
-	missile.anim.PushBack({ 100, 197, 64, 16 });
-	missile.anim.PushBack({ 126, 197, 64, 16 });
+	missile.anim.PushBack({ 46, 197, 16, 64});
+	missile.anim.PushBack({ 73, 197, 16, 64 });
+	missile.anim.PushBack({ 100, 197, 16, 64 });
+	missile.anim.PushBack({ 126, 197, 16, 64 });
 	missile.end_particle = &green_basic_dead;
-	missile.life = 1500;
+	missile.life = 2000;
 	missile.collider = COLLIDER_ENEMY_SHOT;
-	missile.anim.speed = 0.8;
+	missile.anim.speed = 1.1f;
 	missile.anim.loop = true;
+	missile.speed.y = 2;
+	missile.drawit = BEFOR_PLAYER;
 
 	// laser particles and sound
 

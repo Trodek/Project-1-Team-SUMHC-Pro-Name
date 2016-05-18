@@ -35,15 +35,14 @@ private:
 	Animation explosion_right;
 	Animation boss_idle;
 	
-	SDL_Rect misile;
+	SDL_Rect missile;
 	SDL_Rect Shell_left;
 	SDL_Rect Shell_right;
 
 	Collider* shell_left_col;
 	Collider* shell_right_col;
 
-	uint timer;
-	uint now;
+
 
 	float x_speed;
 	float y_speed;

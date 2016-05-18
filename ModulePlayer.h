@@ -57,6 +57,7 @@ public:
 	bool dead_fall_p2 = false;
 	bool pos_changed = false;
 	bool pos_changed_2 = false;
+	bool scroll = true;
 
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
