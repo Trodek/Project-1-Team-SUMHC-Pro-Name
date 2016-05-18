@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
+#include "ModulePlayer.h"
 #include "ModuleRender.h"
 #include "EnemyBoss.h"
 #include "SDL/include/SDL_timer.h"
@@ -30,9 +31,12 @@ EnemyBoss::EnemyBoss(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 	boss_idle.speed = 0.1f;
 	boss_idle.loop = true;
 
+	hp = 2040;
+	points = 332000;
+
 	timer = SDL_GetTicks();
 
-	collider = App->collisions->AddCollider({ 0, 0, 64, 56 }, COLLIDER_ENEMY);
+	collider = App->collisions->AddCollider({ 0, 0, 64, 56 }, COLLIDER_ENEMY, (Module*)App->enemies);
 	shell_left_col = App->collisions->AddCollider({ 0, 0, 96, 160 }, COLLIDER_WALL);
 	shell_right_col = App->collisions->AddCollider({ 0, 0, 96, 160 }, COLLIDER_WALL);
 	collider->SetPos(boss.x, boss.y);
@@ -47,49 +51,77 @@ void EnemyBoss::Draw(){
 	switch (curr_state)
 	{
 	case ST_ShellIdle:
-		if (now - timer > 2000)phase_change = true;
+		if (cont > 150)phase_change = true;
+		cont++;
 		App->render->Blit(tex, boss.x, boss.y, &(boss_idle.GetCurrentFrame()));
 		App->render->Blit(tex, Shell_left_pos.x, Shell_left_pos.y, &Shell_left);
 		App->render->Blit(tex, Shell_right_pos.x, Shell_right_pos.y, &Shell_right);
 		break;
 	case ST_Idle:
-		if (now - timer > 2000)phase_change = true;
+		if (get_speed){
+			SetMoveSpeed();
+			get_speed = false;
+		}
+		if (cont<120){
+			boss.x += x_speed;
+			boss.y += y_speed;
+		}
+		if (cont > 150 && cont < 271){
+			boss.x -= x_speed;
+			boss.y -= y_speed;
+		}
+		if (cont == 271){
+			get_speed = true;
+		}
+		if (cont > 271 && cont < 391){
+			boss.x += x_speed;
+			boss.y += y_speed;
+		}
+		if (cont > 421 && cont < 541){
+			boss.x -= x_speed;
+			boss.y -= y_speed;
+		}
+		if (cont>541)phase_change = true;
 		App->render->Blit(tex, boss.x, boss.y, &(boss_idle.GetCurrentFrame()));
+		cont++;
+		
 		break;
 	case ST_EjectShell:
-		if (now - timer > 1500)phase_change = true;
+		if (cont > 150)phase_change = true;
 		App->render->Blit(tex, boss.x, boss.y, &(boss_idle.GetCurrentFrame()));
-		if (now - timer < 1500){
+		if (cont < 150){
 			App->render->Blit(tex, Shell_left_pos.x--, Shell_left_pos.y--, &Shell_left);
 			App->render->Blit(tex, Shell_right_pos.x++, Shell_right_pos.y--, &Shell_right);
 		}
+		cont++;
 		break;
 	case ST_EquipShell:
-		if (now - timer > 2000)phase_change = true;
-		App->render->Blit(tex, boss.x, boss.y, &(boss_idle.GetCurrentFrame()));
-		if (Shell_right_pos.x !=boss.x+32){
+		App->render->Blit(tex, (int)boss.x, (int)boss.y, &(boss_idle.GetCurrentFrame()));
+		if (Shell_right_pos.x !=(int)boss.x+32){
 			App->render->Blit(tex, Shell_left_pos.x++, Shell_left_pos.y++, &Shell_left);
 			App->render->Blit(tex, Shell_right_pos.x--, Shell_right_pos.y++, &Shell_right);
 		}
 		else {
 			App->render->Blit(tex, Shell_left_pos.x, Shell_left_pos.y, &Shell_left);
 			App->render->Blit(tex, Shell_right_pos.x, Shell_right_pos.y, &Shell_right);
+			phase_change = true;
 		}
+		cont++;
 		break;
 	case ST_Apear:
-		if (now - timer < 2000){
+		if (cont < 90){
 			App->render->Blit(tex, boss.x, boss.y++, &(boss_idle.GetCurrentFrame()));
 			App->render->Blit(tex, Shell_left_pos.x, Shell_left_pos.y++, &Shell_left);
 			App->render->Blit(tex, Shell_right_pos.x, Shell_right_pos.y++, &Shell_right);
 		}
-		else if (now - timer < 3250){
+		else if (cont < 150){
 			App->render->Blit(tex, boss.x, boss.y--, &(boss_idle.GetCurrentFrame()));
 			App->render->Blit(tex, Shell_left_pos.x, Shell_left_pos.y--, &Shell_left);
 			App->render->Blit(tex, Shell_right_pos.x, Shell_right_pos.y--, &Shell_right);
 		}
 		else phase_change = true;
 		
-
+		cont++; 
 		break;
 	default:
 		break;
@@ -97,37 +129,41 @@ void EnemyBoss::Draw(){
 	collider->SetPos(boss.x, boss.y);
 	shell_left_col->SetPos(Shell_left_pos.x, Shell_left_pos.y);
 	shell_right_col->SetPos(Shell_right_pos.x, Shell_right_pos.y);
+
+	position.x = boss.x;
+	position.y = boss.y;
 }
 
 void EnemyBoss::CheckState(){
 	if (phase_change){
+		cont = 0;
+		phase_change = false;
 		switch (curr_state)
 		{
 		case ST_ShellIdle:
-			timer = SDL_GetTicks();
 			curr_state = ST_EjectShell;
-			phase_change = false;
 			break;
 		case ST_Idle:
-			timer = SDL_GetTicks();
 			curr_state = ST_EquipShell;
-			phase_change = false;
 			break;
 		case ST_EjectShell:
-			timer = SDL_GetTicks();
 			curr_state = ST_Idle;
-			phase_change = false;
 			break;
 		case ST_EquipShell:
-			timer = SDL_GetTicks();
 			curr_state = ST_ShellIdle;
-			phase_change = false;
 			break;
 		case ST_Apear:
-			timer = SDL_GetTicks();
 			curr_state = ST_ShellIdle;
-			phase_change = false;
 			break;
 		}
 	}
+}
+
+void EnemyBoss::SetMoveSpeed(){
+	enemy_player_radius = position.DistanceTo(App->player->position);
+	delta_y = (boss.y - App->player->position.y);
+	delta_x = (boss.x - App->player->position.x);
+	
+	x_speed = (-delta_x / enemy_player_radius);
+	y_speed = (-delta_y / enemy_player_radius);
 }

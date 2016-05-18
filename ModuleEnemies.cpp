@@ -190,7 +190,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				}
 			}
 			if (c2->type == COLLIDER_DEAD_EXPLO && enemies[i]->hp>0){
-				enemies[i]->hp -= 60;
+				if (enemies[i]->type != BOSS) enemies[i]->hp -= 60;
 				if (enemies[i]->hp < 1){
 					if (enemies[i]->type == TRUCK) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y - 126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
 					App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });

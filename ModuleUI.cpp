@@ -224,7 +224,7 @@ update_status ModuleUI::Update(){
 
 		/*---------------------- PLAYER 1 ----------------------*/
 		App->render->Blit(ui_graphics, 26, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player1.GetCurrentFrame()));			//player1 name
-		DrawNumber(score, 26, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);										//player score
+		DrawNumber(score, 74, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);										//player score
 
 		App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE, &lives_symbol);								//lives icon
 		DrawNumber(lives, 8, (-App->render->camera.y) / SCREEN_SIZE + 1, 8, lives_num);											//lives number
@@ -263,7 +263,7 @@ update_status ModuleUI::Update(){
 			}
 		}
 		else
-			App->render->Blit(ui_graphics, 200, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2.GetCurrentFrame()));		//player2
+			App->render->Blit(ui_graphics, 160, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2.GetCurrentFrame()));		//player2
 	}
 	else{
 		//Draw Stuff
@@ -340,8 +340,8 @@ void ModuleUI::SubBomb(char player){
 }
 
 void ModuleUI::AddEnergy(){
-	energy -= 15;
-	energy_p2 -= 15;
+	energy += 15;
+	energy_p2 += 15;
 	if (energy > max_energy) energy = max_energy;
 	if (energy_p2 > max_energy) energy_p2 = max_energy;
 }

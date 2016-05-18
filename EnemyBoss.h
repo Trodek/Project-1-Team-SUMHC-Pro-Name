@@ -23,7 +23,11 @@ private:
 
 	iPoint Shell_left_pos;
 	iPoint Shell_right_pos;
-	iPoint boss;
+	fPoint boss;
+	iPoint missile1;
+	iPoint missile2;
+	iPoint missile3;
+	iPoint missile4;
 
 	Animation rocket_left;
 	Animation explosion_left;
@@ -41,8 +45,19 @@ private:
 	uint timer;
 	uint now;
 
+	float x_speed;
+	float y_speed;
+	float enemy_player_radius;
+	float delta_y;
+	float delta_x;
+	bool get_speed=true;
+
+	uint cont = 0;
+
 private:
 	void CheckState();
+	void EquipMissile(int x, int missile_num);
+	void SetMoveSpeed();
 
 
 };
