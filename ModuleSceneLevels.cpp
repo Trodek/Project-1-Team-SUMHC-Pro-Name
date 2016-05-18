@@ -23,7 +23,19 @@ ModuleSceneLevels::ModuleSceneLevels()
 	level4.y = 0;
 	level4.w = 240;
 	level4.h = 7519;
+	//Platform
+	platform_anim.PushBack({ 0, 0, 77, 64 });
+	platform_p.PushBack({ 0.5f, 0 }, 100, &platform_anim);
+	platform_p.loop = true;
 
+	platform1_pos.x = -100;
+	platform1_pos.y = 4383;
+
+	platform2_pos.x = SCREEN_WIDTH+100;
+	platform2_pos.y = 4222;
+
+	platform3_pos.x = -100;
+	platform3_pos.y = 3870;
 
 	//Sub-Lights
 	sublightanim.PushBack({ 0, 0, 256, 666 });
@@ -65,6 +77,7 @@ bool ModuleSceneLevels::Start()
 	sublighttex = App->textures->Load("OutZone/Sprites/Map/sublights.png");
 	graphics_l4 = App->textures->Load("OutZone/Sprites/Map/level4.png");
 	graphics_l4_below = App->textures->Load("OutZone/Sprites/Map/level4_below.png");
+	platform_t = App->textures->Load("Outzone/Sprites/Map/MovingPlatform.png");
 
 	level4_song = App->audio->LoadMusic("OutZone/Sounds/Music/level4.ogg");
 
@@ -539,6 +552,20 @@ update_status ModuleSceneLevels::Update()
 		App->render->Blit(graphics_l4_below, 0, 0, &level4);
 		App->render->Blit(graphics_l4, 0, 0, &level4); // Map
 		//App->render->Blit(on_bg, 0, 8445, &lights.GetCurrentFrame());
+		platform1_aux_pos = platform1_pos + platform_p.GetCurrentSpeed();
+		App->render->Blit(platform_t, platform1_aux_pos.x , platform1_aux_pos.y, &platform_anim.GetCurrentFrame());
+
+		if (platform1_aux_pos.x > SCREEN_WIDTH+150) platform_p.Restart();
+
+		platform2_aux_pos = platform2_pos - platform_p.GetCurrentSpeed();
+		App->render->Blit(platform_t, platform2_aux_pos.x, platform2_aux_pos.y, &platform_anim.GetCurrentFrame());
+
+		if (platform2_aux_pos.x < -150) platform_p.Restart();
+
+		platform3_aux_pos = platform3_pos + platform_p.GetCurrentSpeed();
+		App->render->Blit(platform_t, platform3_aux_pos.x, platform3_aux_pos.y, &platform_anim.GetCurrentFrame());
+
+		if (platform3_aux_pos.x > SCREEN_WIDTH + 150) platform_p.Restart();
 	}
 
 	return UPDATE_CONTINUE;

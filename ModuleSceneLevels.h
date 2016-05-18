@@ -31,10 +31,13 @@ public:
 	SDL_Texture* on_bg = nullptr;
 	SDL_Texture* sublighttex = nullptr;
 
+
 	Animation lavaanim;
 	Animation sublightanim;
 	Animation lights;
+
 	SDL_Rect level4;
+
 
 	float camera_y;
 
@@ -60,8 +63,16 @@ public:
 	Path gb18;
 	Path gb19;
 	Path gb20;
-
-
+	//Platform stuff
+	Path platform_p;
+	Animation platform_anim;
+	SDL_Texture* platform_t = nullptr;
+	iPoint platform1_pos;
+	iPoint platform1_aux_pos;
+	iPoint platform2_pos;
+	iPoint platform2_aux_pos;
+	iPoint platform3_pos;
+	iPoint platform3_aux_pos;
 };
 
 #endif // __MODULESCENELevels_H__
