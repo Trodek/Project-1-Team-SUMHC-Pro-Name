@@ -405,6 +405,20 @@ bool ModuleSceneLevels::Start()
 
 	App->collisions->AddCollider({ 193, 4640, 48, 55 }, COLLIDER_WALL);
 
+
+	platform_1_1 = App->collisions->AddCollider({ -SCREEN_WIDTH-123, 4383, SCREEN_WIDTH+177, 64 }, COLLIDER_HOLE);
+	platform_1_2 = App->collisions->AddCollider({ -23, 4383, SCREEN_WIDTH+23, 64 }, COLLIDER_HOLE);
+																
+	platform_2_1 = App->collisions->AddCollider({ SCREEN_WIDTH + 177, 4222, SCREEN_WIDTH+100, 64 }, COLLIDER_HOLE);
+	platform_2_2 = App->collisions->AddCollider({ 0, 4222, SCREEN_WIDTH+73, 64 }, COLLIDER_HOLE);
+																
+	platform_3_1 = App->collisions->AddCollider({ -SCREEN_WIDTH - 123, 3870, SCREEN_WIDTH+177, 64 }, COLLIDER_HOLE);
+	platform_3_2 = App->collisions->AddCollider({ -23, 3870, SCREEN_WIDTH+23, 64 }, COLLIDER_HOLE);
+
+
+
+
+
 	App->render->camera.y = -7199*SCREEN_SIZE;
 
 	CameraReset();
@@ -587,19 +601,23 @@ update_status ModuleSceneLevels::Update()
 		App->render->Blit(graphics_l4_below, 0, 0, &level4);
 		App->render->Blit(graphics_l4, 0, 0, &level4); // Map
 		//App->render->Blit(on_bg, 0, 8445, &lights.GetCurrentFrame());
+		//platform stuff
 		platform1_aux_pos = platform1_pos + platform_p.GetCurrentSpeed();
 		App->render->Blit(platform_t, platform1_aux_pos.x , platform1_aux_pos.y, &platform_anim.GetCurrentFrame());
-
+		platform_1_1->SetPos(platform1_aux_pos.x - SCREEN_WIDTH-177, platform1_aux_pos.y);
+		platform_1_2->SetPos(platform1_aux_pos.x + 77, platform1_aux_pos.y);
 		if (platform1_aux_pos.x > SCREEN_WIDTH+150) platform_p.Restart();
 
 		platform2_aux_pos = platform2_pos - platform_p.GetCurrentSpeed();
 		App->render->Blit(platform_t, platform2_aux_pos.x, platform2_aux_pos.y, &platform_anim.GetCurrentFrame());
-
+		platform_2_1->SetPos(platform2_aux_pos.x - SCREEN_WIDTH-100, platform2_aux_pos.y);
+		platform_2_2->SetPos(platform2_aux_pos.x + 77, platform2_aux_pos.y);
 		if (platform2_aux_pos.x < -150) platform_p.Restart();
 
 		platform3_aux_pos = platform3_pos + platform_p.GetCurrentSpeed();
 		App->render->Blit(platform_t, platform3_aux_pos.x, platform3_aux_pos.y, &platform_anim.GetCurrentFrame());
-
+		platform_3_1->SetPos(platform3_aux_pos.x - SCREEN_WIDTH - 177, platform3_aux_pos.y);
+		platform_3_2->SetPos(platform3_aux_pos.x + 77, platform3_aux_pos.y);
 		if (platform3_aux_pos.x > SCREEN_WIDTH + 150) platform_p.Restart();
 	}
 

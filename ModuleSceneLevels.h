@@ -69,10 +69,16 @@ public:
 	SDL_Texture* platform_t = nullptr;
 	iPoint platform1_pos;
 	iPoint platform1_aux_pos;
+	Collider* platform_1_1;
+	Collider* platform_1_2;
 	iPoint platform2_pos;
 	iPoint platform2_aux_pos;
+	Collider* platform_2_1;
+	Collider* platform_2_2;
 	iPoint platform3_pos;
 	iPoint platform3_aux_pos;
+	Collider* platform_3_1;
+	Collider* platform_3_2;
 };
 
 #endif // __MODULESCENELevels_H__
