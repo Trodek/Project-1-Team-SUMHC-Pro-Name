@@ -117,15 +117,7 @@ ModuleUI::ModuleUI(){
 	Low_energy_static.h = 24;
 
 	//CheckPoints
-	checkpoints.PushBack(-7359 * SCREEN_SIZE);
-	checkpoints.PushBack(-14000 * SCREEN_SIZE);
-	checkpoints.PushBack(-13050 * SCREEN_SIZE);
-	checkpoints.PushBack(-12200 * SCREEN_SIZE);
-	checkpoints.PushBack(-11917 * SCREEN_SIZE);
-	checkpoints.PushBack(-11205 * SCREEN_SIZE);
-	checkpoints.PushBack(-10519 * SCREEN_SIZE);
-	checkpoints.PushBack(-9135 * SCREEN_SIZE);
-	checkpoints.PushBack(-8133 * SCREEN_SIZE);
+	checkpoints.PushBack(-7159 * SCREEN_SIZE);
 	checkpoints.PushBack(-7000 * SCREEN_SIZE);
 	checkpoints.PushBack(-5965 * SCREEN_SIZE);
 	checkpoints.PushBack(-4900 * SCREEN_SIZE);

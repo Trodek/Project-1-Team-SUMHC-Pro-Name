@@ -525,13 +525,13 @@ bool ModuleSceneLevels::Start()
 	App->enemies->AddEnemy(GREENBASIC, 140,7100, &gb3);
 	App->enemies->AddEnemy(GREENBASIC, 100,7050, &gb4);
 	App->enemies->AddEnemy(GREENBASIC, 140,7140, &gb5);
-	App->enemies->AddEnemy(GREENBASIC, 120,7160, &gb6);
+	App->enemies->AddEnemy(GREENBASIC, 110,7160, &gb6);
 	App->enemies->AddEnemy(GREENBASIC, 100,7020, &gb7);
 	App->enemies->AddEnemy(GREENBASIC, 100,6900, &gb8);
 	App->enemies->AddEnemy(GREENBASIC, 100,6800, &gb9);
 	App->enemies->AddEnemy(GREENBASIC, 130,7100, &gb10);
 	App->enemies->AddEnemy(GREENBASIC, 50 ,7150,&gb11);
-	App->enemies->AddEnemy(GREENBASIC, 50 ,7150,&gb12);
+	App->enemies->AddEnemy(GREENBASIC, 70 ,7150,&gb12);
 	App->enemies->AddEnemy(GREENBASIC, 80 ,7160,&gb13);
 	App->enemies->AddEnemy(GREENBASIC, 30 ,7160,&gb14);
 	App->enemies->AddEnemy(GREENBASIC, 60 ,6780,&gb15);
