@@ -425,7 +425,7 @@ bool ModuleSceneLevels::Start()
 
 	//App->enemies->AddEnemy(BIGTURRET, 0, 13742);
 	//App->enemies->AddEnemy(BIGTURRET, 160, 13458);
-
+	
 	App->enemies->AddEnemy(BOSS, 88, -5);
 	App->enemies->AddEnemy(SMALLTURRET, 5, 2759);
 	App->enemies->AddEnemy(SMALLTURRET, 5, 2792);
@@ -449,10 +449,8 @@ bool ModuleSceneLevels::Start()
 
 	////ENEMIES PATHS
 
-	//gb1.PushBack({ 0, 1 }, 140);
-	//gb1.PushBack({ 1, 1 }, 300);
-	//gb1.loop = false;
 
+	
 	//gb2.PushBack({ 0, 1 }, 150);
 	//gb2.PushBack({ 1, 1 }, 110);
 	//gb2.PushBack({ 1, 0 }, 60);
@@ -519,7 +517,6 @@ bool ModuleSceneLevels::Start()
 	//gb20.PushBack({ 0, 1 }, 90);
 	//gb20.PushBack({ -1, 1 }, 90);
 	//gb20.PushBack({ -1, 0 }, 110);
-
 	//App->enemies->AddEnemy(GREENBASIC, 140, 14980, &gb1);
 	//App->enemies->AddEnemy(GREENBASIC, 100, 14922, &gb2);
 	//App->enemies->AddEnemy(GREENBASIC, 140, 14876, &gb3);
@@ -604,20 +601,22 @@ update_status ModuleSceneLevels::Update()
 		//platform stuff
 		platform1_aux_pos = platform1_pos + platform_p.GetCurrentSpeed();
 		App->render->Blit(platform_t, platform1_aux_pos.x , platform1_aux_pos.y, &platform_anim.GetCurrentFrame());
-		platform_1_1->SetPos(platform1_aux_pos.x - SCREEN_WIDTH-177, platform1_aux_pos.y);
-		platform_1_2->SetPos(platform1_aux_pos.x + 77, platform1_aux_pos.y);
-		if (platform1_aux_pos.x > SCREEN_WIDTH+150) platform_p.Restart();
+		platform_1_1->SetPos(platform1_aux_pos.x - SCREEN_WIDTH-184, platform1_aux_pos.y);
+		platform_1_2->SetPos(platform1_aux_pos.x + 84, platform1_aux_pos.y);
+		if (platform1_aux_pos.x > SCREEN_WIDTH + 150){
+			platform_p.Restart();
+		}
 
 		platform2_aux_pos = platform2_pos - platform_p.GetCurrentSpeed();
 		App->render->Blit(platform_t, platform2_aux_pos.x, platform2_aux_pos.y, &platform_anim.GetCurrentFrame());
-		platform_2_1->SetPos(platform2_aux_pos.x - SCREEN_WIDTH-100, platform2_aux_pos.y);
-		platform_2_2->SetPos(platform2_aux_pos.x + 77, platform2_aux_pos.y);
+		platform_2_1->SetPos(platform2_aux_pos.x - SCREEN_WIDTH-106, platform2_aux_pos.y);
+		platform_2_2->SetPos(platform2_aux_pos.x + 84, platform2_aux_pos.y);
 		if (platform2_aux_pos.x < -150) platform_p.Restart();
 
 		platform3_aux_pos = platform3_pos + platform_p.GetCurrentSpeed();
 		App->render->Blit(platform_t, platform3_aux_pos.x, platform3_aux_pos.y, &platform_anim.GetCurrentFrame());
-		platform_3_1->SetPos(platform3_aux_pos.x - SCREEN_WIDTH - 177, platform3_aux_pos.y);
-		platform_3_2->SetPos(platform3_aux_pos.x + 77, platform3_aux_pos.y);
+		platform_3_1->SetPos(platform3_aux_pos.x - SCREEN_WIDTH - 184, platform3_aux_pos.y);
+		platform_3_2->SetPos(platform3_aux_pos.x + 84, platform3_aux_pos.y);
 		if (platform3_aux_pos.x > SCREEN_WIDTH + 150) platform_p.Restart();
 	}
 

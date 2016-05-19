@@ -31,7 +31,6 @@ public:
 	SDL_Texture* on_bg = nullptr;
 	SDL_Texture* sublighttex = nullptr;
 
-
 	Animation lavaanim;
 	Animation sublightanim;
 	Animation lights;
