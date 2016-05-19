@@ -62,6 +62,7 @@ public:
 	Path gb18;
 	Path gb19;
 	Path gb20;
+	Path gb21;
 	//Platform stuff
 	Path platform_p;
 	Animation platform_anim;
