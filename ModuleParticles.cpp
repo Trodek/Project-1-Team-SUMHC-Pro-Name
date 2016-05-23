@@ -29,6 +29,19 @@ ModuleParticles::ModuleParticles()
 	missile.anim.loop = true;
 	missile.speed.y = 2;
 	missile.drawit = BEFOR_PLAYER;
+	missile.end_particle = &bannana;
+
+	//banana particle
+	
+	bannana.anim.PushBack({ 177, 253, 16, 16 });
+	bannana.anim.PushBack({ 202, 253, 16, 16 });
+	bannana.anim.PushBack({ 223, 253, 16, 16 });
+	bannana.anim.PushBack({ 246, 253, 16, 16 });
+	bannana.anim.speed = 0.5f;
+	bannana.life = 1500;
+	bannana.collider = COLLIDER_ENEMY_SHOT;
+	bannana.anim.loop = true;
+
 
 	// laser particles and sound
 
@@ -223,6 +236,7 @@ bool ModuleParticles::Start()
 	boss = App->textures->Load("OutZone/Sprites/Enemies/Level 4/boss.png");
 
 	missile.tex = boss;
+	bannana.tex = boss;
 
 	green_basic = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Green Soldier/Soldier Green.png");
 	green_basic_bullet_start.tex = green_basic;
@@ -346,7 +360,28 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider_box == c1)
 		{
-			if (active[i]->end_particle!=nullptr)AddParticle(*active[i]->end_particle, active[i]->position.x - 5, active[i]->position.y, COLLIDER_NONE, nullrect);
+			if (active[i]->end_particle != nullptr){
+				if (active[i]->end_particle!=&bannana)
+				AddParticle(*active[i]->end_particle, active[i]->position.x - 5, active[i]->position.y, COLLIDER_NONE, nullrect);
+				else{
+					SetParticleSpeed(&bannana, 0, -2);
+					AddParticle(*active[i]->end_particle, active[i]->position.x + 5, active[i]->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+					SetParticleSpeed(&bannana, 1.41f, -1.41f);
+					AddParticle(*active[i]->end_particle, active[i]->position.x + 5, active[i]->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+					SetParticleSpeed(&bannana, 2, 0);
+					AddParticle(*active[i]->end_particle, active[i]->position.x + 5, active[i]->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+					SetParticleSpeed(&bannana, 1.41f, 1.41f);
+					AddParticle(*active[i]->end_particle, active[i]->position.x + 5, active[i]->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+					SetParticleSpeed(&bannana, 0, 2);
+					AddParticle(*active[i]->end_particle, active[i]->position.x + 5, active[i]->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+					SetParticleSpeed(&bannana, -1.41f, 1.41f);
+					AddParticle(*active[i]->end_particle, active[i]->position.x + 5, active[i]->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+					SetParticleSpeed(&bannana, -2, 0);
+					AddParticle(*active[i]->end_particle, active[i]->position.x + 5, active[i]->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+					SetParticleSpeed(&bannana, -1.41f, -1.41f);
+					AddParticle(*active[i]->end_particle, active[i]->position.x + 5, active[i]->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+				}
+			}
 			active[i]->collider_box->to_delete = true;
 			delete active[i];
 			active[i] = nullptr;

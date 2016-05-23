@@ -676,7 +676,7 @@ update_status ModulePlayer::Update()
 	if (!dead){
 		//TP last checkpoint
 		if (App->input->keyboard[SDL_SCANCODE_T] == KEY_STATE::KEY_DOWN){
-			App->ui->curr_check = 13;
+			App->ui->curr_check = 5;
 		}
 		// change weapon
 		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN){
@@ -824,6 +824,7 @@ update_status ModulePlayer::Update()
 			}
 		}
 		else{
+			scroll = true;
 			if (dead_explo.Finished()){
 				Player_explosion->to_delete = true;
 				collider_create = false;

@@ -98,6 +98,7 @@ public:
 	Particle green_basic_bullet_start;
 
 	Particle missile;
+	Particle bannana;
 };
 
 #endif // __MODULEPARTICLES_H__

@@ -7,6 +7,8 @@
 #include "ModuleAudio.h"
 #include "SDL/include/SDL_timer.h"
 
+#define nullrect {0,0,0,0} 
+
 update_status ModuleDrawParticles::Update(){
 	
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
@@ -18,6 +20,24 @@ update_status ModuleDrawParticles::Update(){
 
 		if (p->Update() == false)
 		{
+			if (p->end_particle == &App->particles->bannana){
+				App->particles->SetParticleSpeed(&App->particles->bannana, 0, -2);
+				App->particles->AddParticle(*p->end_particle, p->position.x + 5, p->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+				App->particles->SetParticleSpeed(&App->particles->bannana, 1.41f, -1.41f);
+				App->particles->AddParticle(*p->end_particle, p->position.x + 5, p->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+				App->particles->SetParticleSpeed(&App->particles->bannana, 2, 0);
+				App->particles->AddParticle(*p->end_particle, p->position.x + 5, p->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+				App->particles->SetParticleSpeed(&App->particles->bannana, 1.41f, 1.41f);
+				App->particles->AddParticle(*p->end_particle, p->position.x + 5, p->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+				App->particles->SetParticleSpeed(&App->particles->bannana, 0, 2);
+				App->particles->AddParticle(*p->end_particle, p->position.x + 5, p->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+				App->particles->SetParticleSpeed(&App->particles->bannana, -1.41f, 1.41f);
+				App->particles->AddParticle(*p->end_particle, p->position.x + 5, p->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+				App->particles->SetParticleSpeed(&App->particles->bannana, -2, 0);
+				App->particles->AddParticle(*p->end_particle, p->position.x + 5, p->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+				App->particles->SetParticleSpeed(&App->particles->bannana, -1.41f, -1.41f);
+				App->particles->AddParticle(*p->end_particle, p->position.x + 5, p->position.y, COLLIDER_ENEMY_SHOT, nullrect);
+			}
 			if (p->collider_box != nullptr)
 				p->collider_box->to_delete = true;
 			delete p;
