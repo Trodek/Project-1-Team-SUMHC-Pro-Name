@@ -112,6 +112,21 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
+void ModuleEnemies::DestroyEnemies() {
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+		if (enemies[i] != nullptr) {
+			delete enemies[i];
+			enemies[i] = nullptr;
+		}
+	}
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i){
+		if (queue[i].type != NO_TYPE){
+			queue[i].type = NO_TYPE;
+		}
+	}
+}
+
 bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y,Path* path)
 {
 	bool ret = false;

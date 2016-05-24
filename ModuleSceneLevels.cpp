@@ -182,16 +182,7 @@ bool ModuleSceneLevels::Start()
 	//App->enemies->AddEnemy(BIGTURRET, 0, 13742);
 	//App->enemies->AddEnemy(BIGTURRET, 160, 13458);
 	
-	App->enemies->AddEnemy(BOSS, 88, -5);
-	App->enemies->AddEnemy(SMALLTURRET, 5, 2759);
-	App->enemies->AddEnemy(SMALLTURRET, 5, 2792);
-	App->enemies->AddEnemy(SMALLTURRET, 5, 2825);
-	App->enemies->AddEnemy(SMALLTURRET, 5, 3112);
-	App->enemies->AddEnemy(SMALLTURRET, 5, 3149);
-	App->enemies->AddEnemy(SMALLTURRET, 5, 3189);
-	App->enemies->AddEnemy(SMALLTURRET, 222, 2988);
-	App->enemies->AddEnemy(SMALLTURRET, 222, 2951);
-	App->enemies->AddEnemy(SMALLTURRET, 222, 3025);
+
 	//App->enemies->AddEnemy(SMALLTURRET, 100, 12946);
 	//App->enemies->AddEnemy(SMALLTURRET, 158, 12953);
 	//App->enemies->AddEnemy(SMALLTURRET, 4, 12909);
@@ -277,38 +268,65 @@ bool ModuleSceneLevels::Start()
 	gb21.PushBack({ 0, 0.5f }, 70);
 	gb21.loop = false;
 
-	App->enemies->AddEnemy(GREENBASIC, 100,7100, &gb2);
-	App->enemies->AddEnemy(GREENBASIC, 140,7100, &gb3);
-	App->enemies->AddEnemy(GREENBASIC, 100,7050, &gb4);
-	App->enemies->AddEnemy(GREENBASIC, 140,7140, &gb5);
-	App->enemies->AddEnemy(GREENBASIC, 110,7160, &gb6);
-	App->enemies->AddEnemy(GREENBASIC, 100,7020, &gb7);
-	App->enemies->AddEnemy(GREENBASIC, 100,6900, &gb8);
-	App->enemies->AddEnemy(GREENBASIC, 100,6800, &gb9);
-	App->enemies->AddEnemy(GREENBASIC, 130,7100, &gb10);
-	App->enemies->AddEnemy(GREENBASIC, 50 ,7150,&gb11);
-	App->enemies->AddEnemy(GREENBASIC, 70 ,7150,&gb12);
-	App->enemies->AddEnemy(GREENBASIC, 80 ,7160,&gb13);
-	App->enemies->AddEnemy(GREENBASIC, 30 ,7160,&gb14);
-	App->enemies->AddEnemy(GREENBASIC, 60 ,6780,&gb15);
-	App->enemies->AddEnemy(GREENBASIC, 90 ,6850,&gb16);
-	App->enemies->AddEnemy(GREENBASIC, 90 ,6700,&gb17);
-	App->enemies->AddEnemy(GREENBASIC, 90 ,6600,&gb18);
-	App->enemies->AddEnemy(GREENBASIC, 80,6400, &gb19);
-	App->enemies->AddEnemy(GREENBASIC, 80,6500, &gb20);
-	App->enemies->AddEnemy(GREENBASIC, 73, 4700, &gb21);
-	App->enemies->AddEnemy(GREENBASIC, 140, 4700, &gb21);
-
-	App->enemies->AddEnemy(GREENBASIC, 27, 5125, &gb21);
-	App->enemies->AddEnemy(GREENBASIC, 198, 5125, &gb21);
-	App->enemies->AddEnemy(GREENBASIC, 45, 5000, &gb21);
-	App->enemies->AddEnemy(GREENBASIC, 160, 5000, &gb21);
-
-	App->enemies->AddEnemy(GREENBASIC, 27, 5325, &gb19);
-	App->enemies->AddEnemy(GREENBASIC, 198, 5325, &gb18);
-	App->enemies->AddEnemy(GREENBASIC, 45, 5200, &gb20);
-	App->enemies->AddEnemy(GREENBASIC, 160, 5200, &gb4);
+	RestartEnemies();
 	return ret;
+}
+
+void ModuleSceneLevels::RestartEnemies() {
+	RestartEnemiesPaths();
+	if (App->ui->curr_check == 0) {							// y < 7159
+		App->enemies->AddEnemy(GREENBASIC, 100, 7100, &gb2);
+		App->enemies->AddEnemy(GREENBASIC, 140, 7100, &gb3);
+		App->enemies->AddEnemy(GREENBASIC, 100, 7050, &gb4);
+		App->enemies->AddEnemy(GREENBASIC, 140, 7140, &gb5);
+		App->enemies->AddEnemy(GREENBASIC, 100, 7020, &gb7);
+		App->enemies->AddEnemy(GREENBASIC, 130, 7100, &gb10);
+		App->enemies->AddEnemy(GREENBASIC, 50, 7150, &gb11);
+		App->enemies->AddEnemy(GREENBASIC, 70, 7150, &gb12);
+		App->enemies->AddEnemy(GREENBASIC, 80, 7160, &gb13);
+		App->enemies->AddEnemy(GREENBASIC, 30, 7160, &gb14);
+	}
+	if (App->ui->curr_check <= 1) {						// y < 7000
+		App->enemies->AddEnemy(GREENBASIC, 60, 6780, &gb15);
+		App->enemies->AddEnemy(GREENBASIC, 90, 6850, &gb16);
+		App->enemies->AddEnemy(GREENBASIC, 90, 6700, &gb17);
+		App->enemies->AddEnemy(GREENBASIC, 90, 6600, &gb18);
+		App->enemies->AddEnemy(GREENBASIC, 80, 6400, &gb19);
+		App->enemies->AddEnemy(GREENBASIC, 80, 6500, &gb20);
+	}
+	if (App->ui->curr_check <= 2) {					// y < 5965
+		App->enemies->AddEnemy(GREENBASIC, 27, 5125, &gb21);
+		App->enemies->AddEnemy(GREENBASIC, 198, 5125, &gb21);
+		App->enemies->AddEnemy(GREENBASIC, 45, 5000, &gb21);
+		App->enemies->AddEnemy(GREENBASIC, 160, 5000, &gb21);
+
+		App->enemies->AddEnemy(GREENBASIC, 27, 5325, &gb19);
+		App->enemies->AddEnemy(GREENBASIC, 198, 5325, &gb18);
+		App->enemies->AddEnemy(GREENBASIC, 45, 5200, &gb20);
+		App->enemies->AddEnemy(GREENBASIC, 160, 5200, &gb4);
+	}
+	if (App->ui->curr_check <= 3) {				// y < 4900
+		App->enemies->AddEnemy(GREENBASIC, 73, 4700, &gb21);
+		App->enemies->AddEnemy(GREENBASIC, 140, 4700, &gb21);
+		App->enemies->AddEnemy(SMALLTURRET, 5, 2759);
+		App->enemies->AddEnemy(SMALLTURRET, 5, 2792);
+		App->enemies->AddEnemy(SMALLTURRET, 5, 2825);
+		App->enemies->AddEnemy(SMALLTURRET, 5, 3112);
+		App->enemies->AddEnemy(SMALLTURRET, 5, 3149);
+		App->enemies->AddEnemy(SMALLTURRET, 5, 3189);
+		App->enemies->AddEnemy(SMALLTURRET, 222, 2988);
+		App->enemies->AddEnemy(SMALLTURRET, 222, 2951);
+		App->enemies->AddEnemy(SMALLTURRET, 222, 3025);
+	}
+	if (App->ui->curr_check <= 4) {				// y < 2775
+		
+	}
+	if (App->ui->curr_check <= 5) {				// y < 2000
+	
+	}
+	if (App->ui->curr_check <= 6) {				// y < 479
+		App->enemies->AddEnemy(BOSS, 88, -5);
+	}
 }
 
 // Load assets
