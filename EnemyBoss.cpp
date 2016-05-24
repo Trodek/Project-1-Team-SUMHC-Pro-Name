@@ -184,6 +184,13 @@ void EnemyBoss::Draw(){
 		}
 		if (cont>541)phase_change = true;
 		MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
+		MoveBall(twister2, boss.x + 15, boss.y + 11, radius, steps + M_PI / 4, twister2_col);
+		MoveBall(twister3, boss.x + 15, boss.y + 11, radius, steps + M_PI / 2, twister3_col);
+		MoveBall(twister4, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI / 4, twister4_col);
+		MoveBall(twister5, boss.x + 15, boss.y + 11, radius, steps + M_PI, twister5_col);
+		MoveBall(twister6, boss.x + 15, boss.y + 11, radius, steps + 5 * M_PI / 4, twister6_col);
+		MoveBall(twister7, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI / 2, twister7_col);
+		MoveBall(twister8, boss.x + 15, boss.y + 11, radius, steps + 7 * M_PI / 4, twister8_col);
 		App->render->Blit(tex, boss.x, boss.y, &(boss_idle.GetCurrentFrame()));
 		cont++;
 		
@@ -210,6 +217,13 @@ void EnemyBoss::Draw(){
 			App->render->Blit(tex, Shell_right_pos.x++, Shell_right_pos.y--, &Shell_right);
 		}
 		MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
+		MoveBall(twister2, boss.x + 15, boss.y + 11, radius, steps + M_PI / 4, twister2_col);
+		MoveBall(twister3, boss.x + 15, boss.y + 11, radius, steps + M_PI / 2, twister3_col);
+		MoveBall(twister4, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI / 4, twister4_col);
+		MoveBall(twister5, boss.x + 15, boss.y + 11, radius, steps + M_PI, twister5_col);
+		MoveBall(twister6, boss.x + 15, boss.y + 11, radius, steps + 5 * M_PI / 4, twister6_col);
+		MoveBall(twister7, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI / 2, twister7_col);
+		MoveBall(twister8, boss.x + 15, boss.y + 11, radius, steps + 7 * M_PI / 4, twister8_col);
 		cont++;
 		break;
 	case ST_EquipShell:
@@ -229,6 +243,13 @@ void EnemyBoss::Draw(){
 			phase_change = true;
 		}
 		MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
+		MoveBall(twister2, boss.x + 15, boss.y + 11, radius, steps + M_PI/4, twister2_col);
+		MoveBall(twister3, boss.x + 15, boss.y + 11, radius, steps + M_PI/2, twister3_col);
+		MoveBall(twister4, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI/4, twister4_col);
+		MoveBall(twister5, boss.x + 15, boss.y + 11, radius, steps + M_PI, twister5_col);
+		MoveBall(twister6, boss.x + 15, boss.y + 11, radius, steps + 5 * M_PI/4, twister6_col);
+		MoveBall(twister7, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI/2, twister7_col);
+		MoveBall(twister8, boss.x + 15, boss.y + 11, radius, steps + 7 * M_PI/4, twister8_col);
 		cont++;
 		break;
 	case ST_Apear:
