@@ -82,6 +82,7 @@ public:
 	bool cont = false;
 	bool dead = false;
 	bool player2_dead = false;
+	bool startgame = false;
 
 	bool player2_enabled = false;
 
@@ -109,6 +110,7 @@ public:
 	SDL_Rect top_name;
 	SDL_Rect top_points;
 
+	Animation InsertCoin;
 	SDL_Rect credits_name;
 	SDL_Rect credits_num;
 

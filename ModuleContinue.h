@@ -28,6 +28,7 @@ public:
 	int x, y, actual, time_elapsed;
 	bool no_pay;
 
+
 	SDL_Rect continue_screen;
 
 	Mix_Music* continue_song;

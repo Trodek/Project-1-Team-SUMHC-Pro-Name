@@ -18,6 +18,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	int starttime;
+
 public:
 	
 	bool no_pay = true;

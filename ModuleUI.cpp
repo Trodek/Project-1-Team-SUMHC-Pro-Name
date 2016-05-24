@@ -10,6 +10,7 @@
 #include "SDL/include/SDL_timer.h"
 #include "ModuleUI.h"
 
+
 ModuleUI::ModuleUI(){
 
 	//Player 1 
@@ -80,6 +81,14 @@ ModuleUI::ModuleUI(){
 	insert_coin.y = 323;
 	insert_coin.w = 152;
 	insert_coin.h = 10;
+	
+	InsertCoin.PushBack({ 8, 336, 76, 16 });
+	InsertCoin.PushBack({ 95, 336, 76, 16 });
+	InsertCoin.PushBack({ 8, 355, 76, 16 });
+	InsertCoin.PushBack({ 95, 355, 76, 16 });
+	InsertCoin.PushBack({ 8, 355, 76, 16 });
+	InsertCoin.PushBack({ 95, 336, 76, 16 });
+	InsertCoin.speed = 0.4f;
 
 	//energy
 
@@ -265,8 +274,7 @@ update_status ModuleUI::Update(){
 	}
 	else{
 		//Draw Stuff
-		App->render->Blit(ui_graphics, 18, 1, &player1_static);															//player1
-		DrawNumber(score, 66, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);								//player score
+			
 
 		App->render->Blit(ui_graphics, 164, 1, &player2_title);															//player2
 		DrawNumber(score_p2, 212, 9, 8, top_points);																	//player2 score
@@ -278,10 +286,18 @@ update_status ModuleUI::Update(){
 			App->render->Blit(ui_graphics, 84, 305, &credits_name);														//credits
 			DrawNumber(credit, 140, 305, 10, credits_num);																//credit number
 		}	
-		if (title) {
-			if (credit == 0) {
-				App->render->Blit(ui_graphics, 45, 180, &insert_coin);
+		if (title || cont) {
+			if (credit == 0 && !startgame) {
+				App->render->Blit(ui_graphics, 18, 1, &(InsertCoin.GetCurrentFrame()));
 			}
+			else {
+				App->render->Blit(ui_graphics, 26, 1, &player1_static);													//player1
+				DrawNumber(score, 74, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);						//player score
+			}
+		}
+		else {
+			App->render->Blit(ui_graphics, 26, 1, &player1_static);														//player1						
+			DrawNumber(score, 74, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);							//player score	
 		}
 	}
 

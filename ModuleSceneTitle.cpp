@@ -125,7 +125,7 @@ bool ModuleSceneTitle::Start()
 	copyr = App->textures->Load("OutZone/Sprites/Title/OnMenu.png");
 	App->player->Disable();
 	App->ui->title = true;
-	
+	App->ui->startgame = false;
 	
 	return true;
 }
@@ -191,6 +191,7 @@ update_status ModuleSceneTitle::Update()
 		if (no_pay)
 			App->ui->SubCoin();
 		no_pay = false;
+		App->ui->startgame = true;
 	}
 /*
 	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN && App->ui->credit > 1 && no_pay) {

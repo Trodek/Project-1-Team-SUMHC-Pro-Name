@@ -56,8 +56,9 @@ bool ModuleContinue::Start()
 
 	App->audio->PlayMusic(continue_song, ONCE);
 	App->ui->cont = true;
+	App->ui->startgame = false;
 	no_pay = true;
-
+	
 	return true;
 }
 
@@ -101,6 +102,7 @@ update_status ModuleContinue::Update()
 	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
 		if (no_pay) {
+			App->ui->startgame = true;
 			App->ui->SubCoin();
 			if (App->ui->curr_check)
 				App->ui->curr_check--;
