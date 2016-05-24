@@ -93,6 +93,15 @@ void EnemyBoss::Draw(){
 	switch (curr_state)
 	{
 	case ST_ShellIdle:
+		twister1_col->SetPos(0, -50);
+		twister2_col->SetPos(0, -50);
+		twister3_col->SetPos(0, -50);
+		twister4_col->SetPos(0, -50);
+		twister5_col->SetPos(0, -50);
+		twister6_col->SetPos(0, -50);
+		twister7_col->SetPos(0, -50);
+		twister8_col->SetPos(0, -50);
+
 		if (cont > 210)phase_change = true;
 		if (cont < 60){
 			boss.y--;
@@ -183,6 +192,7 @@ void EnemyBoss::Draw(){
 			radius -= 0.5f;
 		}
 		if (cont>541)phase_change = true;
+
 		MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
 		MoveBall(twister2, boss.x + 15, boss.y + 11, radius, steps + M_PI / 4, twister2_col);
 		MoveBall(twister3, boss.x + 15, boss.y + 11, radius, steps + M_PI / 2, twister3_col);
@@ -199,6 +209,7 @@ void EnemyBoss::Draw(){
 		if (cont > 210)phase_change = true;
 		radius = 40;
 		App->render->Blit(tex, boss.x, boss.y, &(boss_idle.GetCurrentFrame()));
+		
 		if (cont < 60){
 			App->render->Blit(tex, Shell_left_pos.x - 23, Shell_left_pos.y + 20, &(rocket_left.GetCurrentFrame()));
 			App->render->Blit(tex, Shell_left_pos.x, Shell_left_pos.y, &Shell_left);
@@ -209,6 +220,15 @@ void EnemyBoss::Draw(){
 			Shell_right_pos.y++;	
 		}
 		else if (cont < 210){
+			MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
+			MoveBall(twister2, boss.x + 15, boss.y + 11, radius, steps + M_PI / 4, twister2_col);
+			MoveBall(twister3, boss.x + 15, boss.y + 11, radius, steps + M_PI / 2, twister3_col);
+			MoveBall(twister4, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI / 4, twister4_col);
+			MoveBall(twister5, boss.x + 15, boss.y + 11, radius, steps + M_PI, twister5_col);
+			MoveBall(twister6, boss.x + 15, boss.y + 11, radius, steps + 5 * M_PI / 4, twister6_col);
+			MoveBall(twister7, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI / 2, twister7_col);
+			MoveBall(twister8, boss.x + 15, boss.y + 11, radius, steps + 7 * M_PI / 4, twister8_col);
+
 			App->render->Blit(tex, Shell_left_pos.x - 23, Shell_left_pos.y + 20, &(rocket_left.GetCurrentFrame()));
 			App->render->Blit(tex, Shell_left_pos.x + 89 , Shell_left_pos.y + 52, &(explosion_left.GetCurrentFrame()));
 			App->render->Blit(tex, Shell_right_pos.x-24, Shell_right_pos.y+52, &(explosion_right.GetCurrentFrame()));
@@ -216,20 +236,21 @@ void EnemyBoss::Draw(){
 			App->render->Blit(tex, Shell_right_pos.x + 67, Shell_right_pos.y + 20, &(rocket_right.GetCurrentFrame()));
 			App->render->Blit(tex, Shell_right_pos.x++, Shell_right_pos.y--, &Shell_right);
 		}
-		MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
-		MoveBall(twister2, boss.x + 15, boss.y + 11, radius, steps + M_PI / 4, twister2_col);
-		MoveBall(twister3, boss.x + 15, boss.y + 11, radius, steps + M_PI / 2, twister3_col);
-		MoveBall(twister4, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI / 4, twister4_col);
-		MoveBall(twister5, boss.x + 15, boss.y + 11, radius, steps + M_PI, twister5_col);
-		MoveBall(twister6, boss.x + 15, boss.y + 11, radius, steps + 5 * M_PI / 4, twister6_col);
-		MoveBall(twister7, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI / 2, twister7_col);
-		MoveBall(twister8, boss.x + 15, boss.y + 11, radius, steps + 7 * M_PI / 4, twister8_col);
 		cont++;
 		break;
 	case ST_EquipShell:
 		App->render->Blit(tex, (int)boss.x, (int)boss.y, &(boss_idle.GetCurrentFrame()));
 		radius = 40;
 		if (Shell_right_pos.x !=(int)boss.x+32){
+			MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
+			MoveBall(twister2, boss.x + 15, boss.y + 11, radius, steps + M_PI / 4, twister2_col);
+			MoveBall(twister3, boss.x + 15, boss.y + 11, radius, steps + M_PI / 2, twister3_col);
+			MoveBall(twister4, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI / 4, twister4_col);
+			MoveBall(twister5, boss.x + 15, boss.y + 11, radius, steps + M_PI, twister5_col);
+			MoveBall(twister6, boss.x + 15, boss.y + 11, radius, steps + 5 * M_PI / 4, twister6_col);
+			MoveBall(twister7, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI / 2, twister7_col);
+			MoveBall(twister8, boss.x + 15, boss.y + 11, radius, steps + 7 * M_PI / 4, twister8_col);
+
 			App->render->Blit(tex, Shell_left_pos.x - 23, Shell_left_pos.y + 20, &(rocket_left.GetCurrentFrame()));
 			App->render->Blit(tex, Shell_left_pos.x++, Shell_left_pos.y++, &Shell_left);
 			App->render->Blit(tex, Shell_right_pos.x + 67, Shell_right_pos.y + 20, &(rocket_right.GetCurrentFrame()));
@@ -242,14 +263,7 @@ void EnemyBoss::Draw(){
 			App->render->Blit(tex, Shell_right_pos.x, Shell_right_pos.y, &Shell_right);
 			phase_change = true;
 		}
-		MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
-		MoveBall(twister2, boss.x + 15, boss.y + 11, radius, steps + M_PI/4, twister2_col);
-		MoveBall(twister3, boss.x + 15, boss.y + 11, radius, steps + M_PI/2, twister3_col);
-		MoveBall(twister4, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI/4, twister4_col);
-		MoveBall(twister5, boss.x + 15, boss.y + 11, radius, steps + M_PI, twister5_col);
-		MoveBall(twister6, boss.x + 15, boss.y + 11, radius, steps + 5 * M_PI/4, twister6_col);
-		MoveBall(twister7, boss.x + 15, boss.y + 11, radius, steps + 3 * M_PI/2, twister7_col);
-		MoveBall(twister8, boss.x + 15, boss.y + 11, radius, steps + 7 * M_PI/4, twister8_col);
+		
 		cont++;
 		break;
 	case ST_Apear:
