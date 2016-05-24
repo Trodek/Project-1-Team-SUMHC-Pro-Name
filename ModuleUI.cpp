@@ -123,6 +123,7 @@ ModuleUI::ModuleUI(){
 	checkpoints.PushBack(-4900 * SCREEN_SIZE);
 	checkpoints.PushBack(-2775 * SCREEN_SIZE);
 	checkpoints.PushBack(-2000 * SCREEN_SIZE);
+	checkpoints.PushBack(-471 * SCREEN_SIZE);
 
 	char* rank1 = new char[3] { '?', '?', '?' };
 	char* rank2 = new char[3] { '?', '?', '?' };

@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "EnemyBoss.h"
 #include "SDL/include/SDL_timer.h"
+#include <math.h>
 
 EnemyBoss::EnemyBoss(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 {
@@ -18,6 +19,9 @@ EnemyBoss::EnemyBoss(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 
 	Shell_right_pos.x = x + 32;
 	Shell_right_pos.y = y - 71;
+
+	twister1.x = twister2.x = twister3.x = twister4.x = twister5.x = twister6.x = twister7.x = twister8.x = x;
+	twister1.y = twister2.y = twister3.y = twister4.y = twister5.y = twister6.y = twister7.y = twister8.y = y;
 
 	//texture
 	tex = App->particles->boss;
@@ -52,16 +56,33 @@ EnemyBoss::EnemyBoss(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 	explosion_left.PushBack({ 291, 244, 30, 72 });
 	explosion_left.speed = 0.7f;
 
+	twister.PushBack({ 168, 191, 34, 34 });
+	twister.PushBack({ 206, 192, 34, 34 });
+	twister.PushBack({ 246, 193, 34, 34 });
+	twister.PushBack({ 282, 192, 34, 34 });
+	twister.speed = 0.7f;
+
 	hp = 2040;
 	points = 332000;
 
+	//colliders
 
 	collider = App->collisions->AddCollider({ 0, 0, 64, 56 }, COLLIDER_ENEMY, (Module*)App->enemies);
 	shell_left_col = App->collisions->AddCollider({ 0, 0, 96, 160 }, COLLIDER_PASS_BULLET);
 	shell_right_col = App->collisions->AddCollider({ 0, 0, 96, 160 }, COLLIDER_PASS_BULLET);
+	twister1_col = App->collisions->AddCollider({ 0, 0, 34, 34 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister2_col = App->collisions->AddCollider({ 0, 0, 34, 34 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister3_col = App->collisions->AddCollider({ 0, 0, 34, 34 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister4_col = App->collisions->AddCollider({ 0, 0, 34, 34 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister5_col = App->collisions->AddCollider({ 0, 0, 34, 34 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister6_col = App->collisions->AddCollider({ 0, 0, 34, 34 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister7_col = App->collisions->AddCollider({ 0, 0, 34, 34 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister8_col = App->collisions->AddCollider({ 0, 0, 34, 34 }, COLLIDER_ENEMY, (Module*)App->enemies);
+
 	collider->SetPos(boss.x, boss.y);
 	shell_left_col->SetPos(Shell_left_pos.x, Shell_left_pos.y);
 	shell_right_col->SetPos(Shell_right_pos.x, Shell_right_pos.y);
+	twister1_col->SetPos(twister1.x, twister1.y);
 
 	App->player->scroll = false;
 }
@@ -141,10 +162,12 @@ void EnemyBoss::Draw(){
 		if (cont<120){
 			boss.x += x_speed;
 			boss.y += y_speed;
+			radius+= 0.5f;
 		}
 		if (cont > 150 && cont < 271){
 			boss.x -= x_speed;
 			boss.y -= y_speed;
+			radius-=0.5f;
 		}
 		if (cont == 271){
 			get_speed = true;
@@ -152,10 +175,12 @@ void EnemyBoss::Draw(){
 		if (cont > 271 && cont < 391){
 			boss.x += x_speed;
 			boss.y += y_speed;
+			radius++;
 		}
 		if (cont > 421 && cont < 541){
 			boss.x -= x_speed;
 			boss.y -= y_speed;
+			radius--;
 		}
 		if (cont>541)phase_change = true;
 		App->render->Blit(tex, boss.x, boss.y, &(boss_idle.GetCurrentFrame()));
@@ -216,6 +241,12 @@ void EnemyBoss::Draw(){
 	default:
 		break;
 	}
+
+	twister1.x = boss.x + 15 + radius * cos((float)steps);
+	twister1.y = boss.y + 11 + radius * sin((float)steps);
+	twister1_col->SetPos(twister1.x, twister1.y);
+	steps += 0.05f;
+	App->render->Blit(tex, twister1.x, twister1.y, &(twister.GetCurrentFrame())); 
 	collider->SetPos(boss.x, boss.y);
 	shell_left_col->SetPos(Shell_left_pos.x, Shell_left_pos.y);
 	shell_right_col->SetPos(Shell_right_pos.x, Shell_right_pos.y);

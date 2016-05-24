@@ -28,12 +28,21 @@ private:
 	iPoint missile2;
 	iPoint missile3;
 	iPoint missile4;
+	iPoint twister1;
+	iPoint twister2;
+	iPoint twister3;
+	iPoint twister4;
+	iPoint twister5;
+	iPoint twister6;
+	iPoint twister7;
+	iPoint twister8;
 
 	Animation rocket_left;
 	Animation explosion_left;
 	Animation rocket_right;
 	Animation explosion_right;
 	Animation boss_idle;
+	Animation twister;
 	
 	SDL_Rect missile;
 	SDL_Rect Shell_left;
@@ -41,6 +50,14 @@ private:
 
 	Collider* shell_left_col;
 	Collider* shell_right_col;
+	Collider* twister1_col;
+	Collider* twister2_col;
+	Collider* twister3_col;
+	Collider* twister4_col;
+	Collider* twister5_col;
+	Collider* twister6_col;
+	Collider* twister7_col;
+	Collider* twister8_col;
 
 
 
@@ -52,6 +69,8 @@ private:
 	bool get_speed=true;
 
 	uint cont = 0;
+	float steps = 0;
+	float radius = 40;
 
 private:
 	void CheckState();
