@@ -26,6 +26,7 @@ public:
 	SDL_Rect number;
 
 	int x, y, actual, time_elapsed;
+	bool no_pay;
 
 	SDL_Rect continue_screen;
 

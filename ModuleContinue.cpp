@@ -55,6 +55,7 @@ bool ModuleContinue::Start()
 	App->audio->PlayMusic(continue_song, ONCE);
 
 	App->ui->cont = true;
+	no_pay = true;
 
 	return true;
 }
@@ -94,6 +95,16 @@ update_status ModuleContinue::Update()
 		else {
 			x -= 29; 
 		}
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
+		if (no_pay) {
+			App->ui->SubCoin();
+			if (App->ui->curr_check)
+				App->ui->curr_check--;
+		}
+		no_pay = false;
 	}
 
 	// swap Scene
