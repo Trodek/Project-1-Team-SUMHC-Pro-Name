@@ -46,6 +46,8 @@ bool ModuleContinue::Start()
 {
 	LOG("Loading Continue scene");
 	actual = 9;
+	y = 155;
+	x = 118;
 	born = SDL_GetTicks();
 	time_elapsed = SDL_GetTicks();
 
@@ -53,7 +55,6 @@ bool ModuleContinue::Start()
 	background = App->textures->Load("OutZone/Sprites/Title/BluePlayer.png");
 
 	App->audio->PlayMusic(continue_song, ONCE);
-
 	App->ui->cont = true;
 	no_pay = true;
 
