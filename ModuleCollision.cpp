@@ -243,7 +243,7 @@ update_status ModuleCollision::PostUpdate()
 {
 	if (player_collided == false) {
 		App->player->move_up = App->player->move_down = App->player->move_left = App->player->move_right = true;
-		App->player->move_up_p2 = App->player->move_down_p2 = App->player->move_left_p2 = App->player->move_right_p2 = true;
+		//App->player->move_up_p2 = App->player->move_down_p2 = App->player->move_left_p2 = App->player->move_right_p2 = true;
 	}
 	else
 		player_collided = false;

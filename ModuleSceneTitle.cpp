@@ -192,6 +192,7 @@ update_status ModuleSceneTitle::Update()
 			App->ui->SubCoin();
 		no_pay = false;
 	}
+/*
 	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN && App->ui->credit > 1 && no_pay) {
 		App->ui->player2_enabled = true;
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
@@ -200,7 +201,7 @@ update_status ModuleSceneTitle::Update()
 			App->ui->SubCoin();
 		}
 		no_pay = false;
-	}
+	}*/
 	
 
 	return UPDATE_CONTINUE;

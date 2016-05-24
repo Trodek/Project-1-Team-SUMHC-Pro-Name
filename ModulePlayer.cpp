@@ -22,9 +22,6 @@ ModulePlayer::ModulePlayer()
 	position.x = 120;
 	position.y = 7359;
 
-	position_p2.x = 140;
-	position_p2.y = 7359;
-
 	//casual
 	casual.x = 0;
 	casual.y = 0;
@@ -107,80 +104,6 @@ ModulePlayer::ModulePlayer()
 	fall_hole.speed = 0.1f;
 	fall_hole.loop = false;
 
-	//Char Up anim
-	up_p2.PushBack({ 17, 273, 29, 38 });
-	up_p2.PushBack({ 55, 274, 27, 37 });
-	up_p2.PushBack({ 90, 274, 27, 37 });
-	up_p2.PushBack({ 126, 273, 26, 37 });
-	up_p2.PushBack({ 161, 274, 28, 37 });
-	up_p2.speed = 0.2f;
-
-	//char right
-	right_p2.PushBack({ 92, 230, 28, 35 });
-	right_p2.PushBack({ 128, 230, 27, 36 });
-	right_p2.PushBack({ 165, 231, 30, 35 });
-	right_p2.PushBack({ 202, 230, 28, 37 });
-	right_p2.PushBack({ 55, 231, 29, 35 });
-	right_p2.speed = 0.25f;
-
-	//char left
-	left_p2.PushBack({ 166, 191, 29, 35 });
-	left_p2.PushBack({ 131, 192, 28, 33 });
-	left_p2.PushBack({ 93, 191, 28, 35 });
-	left_p2.PushBack({ 55, 192, 29, 35 });
-	left_p2.PushBack({ 18, 191, 27, 35 });
-	left_p2.speed = 0.25f;
-
-	//char down
-	down_p2.PushBack({ 54, 139, 31, 39 });
-	down_p2.PushBack({ 92, 141, 28, 39 });
-	down_p2.PushBack({ 125, 143, 27, 37 });
-	down_p2.PushBack({ 156, 143, 28, 39 });
-	down_p2.PushBack({ 193, 145, 28, 39 });
-	down_p2.speed = 0.2f;
-
-	//char left-up
-	left_up_p2.PushBack({ 57, 93, 29, 36 });
-	left_up_p2.PushBack({ 90, 93, 30, 37 });
-	left_up_p2.PushBack({ 123, 92, 30, 37 });
-	left_up_p2.PushBack({ 156, 91, 31, 35 });
-	left_up_p2.PushBack({ 202, 190, 28, 36 });
-	left_up_p2.speed = 0.2f;
-
-	// char left-down
-	left_down_p2.PushBack({ 193, 90, 30, 37 });
-	left_down_p2.PushBack({ 20, 372, 30, 37 });
-	left_down_p2.PushBack({ 53, 374, 31, 38 });
-	left_down_p2.PushBack({ 91, 374, 31, 39 });
-	left_down_p2.PushBack({ 128, 376, 28, 37 });
-	left_down_p2.speed = 0.2f;
-
-	// char right-down
-	right_down_p2.PushBack({ 18, 41, 25, 38 });
-	right_down_p2.PushBack({ 51, 44, 28, 38 });
-	right_down_p2.PushBack({ 86, 45, 28, 37 });
-	right_down_p2.PushBack({ 121, 45, 27, 37 });
-	right_down_p2.PushBack({ 157, 46, 27, 37 });
-	right_down_p2.speed = 0.2f;
-
-	// char right-up
-	right_up_p2.PushBack({ 20, 329, 24, 37 });
-	right_up_p2.PushBack({ 50, 326, 25, 38 });
-	right_up_p2.PushBack({ 82, 325, 24, 36 });
-	right_up_p2.PushBack({ 114, 323, 25, 37 });
-	right_up_p2.speed = 0.2f;
-
-	// char fall in a hole
-	fall_hole_p2.PushBack({ 6, 645, 32, 37 });
-	fall_hole_p2.PushBack({ 45, 649, 31, 30 });
-	fall_hole_p2.PushBack({ 83, 650, 30, 32 });
-	fall_hole_p2.PushBack({ 123, 653, 27, 22 });
-	fall_hole_p2.PushBack({ 156, 653, 21, 26 });
-	fall_hole_p2.PushBack({ 187, 655, 26, 22 });
-	fall_hole_p2.PushBack({ 223, 653, 11, 21 });
-	fall_hole_p2.speed = 0.1f;
-	fall_hole_p2.loop = false;
-
 	//laser 360
 	laser_360.PushBack({ 55, 192, 29, 35 });  //-- left
 	laser_360.PushBack({ 202, 190, 28, 36 }); //-- left-up
@@ -200,25 +123,6 @@ ModulePlayer::ModulePlayer()
 	laser_360.PushBack({ 19, 90, 31, 39 });  //-- left-down
 	laser_360.speed = 1.0f;
 	laser_360.SetInitialFrame(UP);
-
-	laser_360_p2.PushBack({ 55, 192, 29, 35 });  //-- left
-	laser_360_p2.PushBack({ 202, 190, 28, 36 }); //-- left-up
-	laser_360_p2.PushBack({ 202, 190, 28, 36 }); //-- left-up
-	laser_360_p2.PushBack({ 202, 190, 28, 36 }); //-- left-up
-	laser_360_p2.PushBack({ 17, 273, 29, 38 });  //-- up
-	laser_360_p2.PushBack({ 18, 230, 27, 36 });  //-- right-up
-	laser_360_p2.PushBack({ 18, 230, 27, 36 });  //-- right-up
-	laser_360_p2.PushBack({ 18, 230, 27, 36 });  //-- right-up
-	laser_360_p2.PushBack({ 55, 231, 29, 35 });  //-- right
-	laser_360_p2.PushBack({ 18, 139, 27, 37 });  //-- right-down
-	laser_360_p2.PushBack({ 18, 139, 27, 37 });  //-- right-down
-	laser_360_p2.PushBack({ 18, 139, 27, 37 });  //-- right-down
-	laser_360_p2.PushBack({ 54, 139, 31, 39 });  //-- down
-	laser_360_p2.PushBack({ 19, 90, 31, 39 });  //-- left-down
-	laser_360_p2.PushBack({ 19, 90, 31, 39 });  //-- left-down
-	laser_360_p2.PushBack({ 19, 90, 31, 39 });  //-- left-down
-	laser_360_p2.speed = 1.0f;
-	laser_360_p2.SetInitialFrame(UP);
 
 	//// MULTI LASER ANIMATIONS
 
@@ -240,24 +144,6 @@ ModulePlayer::ModulePlayer()
 	multi_360.PushBack({ 146, 431, 30, 36 });
 	multi_360.PushBack({ 146, 431, 30, 36 });
 	multi_360.speed = 0.8f;
-
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.PushBack({ 146, 431, 30, 36 });
-	multi_360_p2.speed = 0.8f;
 
 	//multi up
 	multi_up.PushBack({ 19, 432, 30, 37 });
@@ -290,39 +176,6 @@ ModulePlayer::ModulePlayer()
 	multi_right.PushBack({ 150, 594, 30, 37 });
 	multi_right.PushBack({ 189, 595, 30, 36 });
 	multi_right.speed = 0.2f;
-
-
-	//multi up
-	multi_up_p2.PushBack({ 19, 432, 30, 37 });
-	multi_up_p2.PushBack({ 62, 432, 30, 37 });
-	multi_up_p2.PushBack({ 103, 431, 30, 37 });
-	multi_up_p2.PushBack({ 146, 431, 30, 36 });
-	multi_up_p2.PushBack({ 191, 432, 30, 37 });
-	multi_up_p2.speed = 0.2f;
-
-	//multi down
-	multi_down_p2.PushBack({ 19, 488, 30, 37 });
-	multi_down_p2.PushBack({ 62, 489, 30, 36 });
-	multi_down_p2.PushBack({ 102, 488, 30, 37 });
-	multi_down_p2.PushBack({ 146, 488, 30, 37 });
-	multi_down_p2.PushBack({ 191, 489, 30, 37 });
-	multi_down_p2.speed = 0.2f;
-
-	//multi left
-	multi_left_p2.PushBack({ 21, 544, 30, 36 });
-	multi_left_p2.PushBack({ 63, 543, 30, 37 });
-	multi_left_p2.PushBack({ 105, 543, 30, 37 });
-	multi_left_p2.PushBack({ 147, 543, 30, 37 });
-	multi_left_p2.PushBack({ 189, 543, 30, 37 });
-	multi_left_p2.speed = 0.2f;
-
-	//multi right
-	multi_right_p2.PushBack({ 22, 594, 30, 37 });
-	multi_right_p2.PushBack({ 64, 594, 30, 37 });
-	multi_right_p2.PushBack({ 108, 594, 30, 37 });
-	multi_right_p2.PushBack({ 150, 594, 30, 37 });
-	multi_right_p2.PushBack({ 189, 595, 30, 36 });
-	multi_right_p2.speed = 0.2f;
 
 	//bomb anim
 	bomb.PushBack({ 0, 0, 240, 320 }); //-- yellow flash
@@ -365,18 +218,6 @@ ModulePlayer::ModulePlayer()
 	dead_explo.speed = 0.2f;
 	dead_explo.loop = false;
 
-	dead_explo_p2.PushBack({ 0, 0, 117, 115 });
-	dead_explo_p2.PushBack({ 117, 0, 117, 115 });
-	dead_explo_p2.PushBack({ 234, 0, 117, 115 });
-	dead_explo_p2.PushBack({ 351, 0, 117, 115 });
-	dead_explo_p2.PushBack({ 468, 0, 117, 115 });
-	dead_explo_p2.PushBack({ 585, 0, 117, 115 });
-	dead_explo_p2.PushBack({ 702, 0, 117, 115 });
-	dead_explo_p2.PushBack({ 819, 0, 117, 115 });
-	dead_explo_p2.PushBack({ 936, 0, 117, 115 });
-	dead_explo_p2.speed = 0.2f;
-	dead_explo_p2.loop = false;
-
 }
 
 ModulePlayer::~ModulePlayer()
@@ -388,7 +229,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	main_char_tex = App->textures->Load("OutZone/Sprites/Main Char/Main_moves.png");
 	bomb_tex = App->textures->Load("OutZone/Sprites/Weapon Shots/bomb.png");
-	dead_explo_text = App->textures->Load("OutZone/Sprites/Main Char/Dead_char_explosion.png"); 
+	dead_explo_text = App->textures->Load("OutZone/Sprites/Main Char/Dead_char_explosion.png");
 	casual_tex = App->textures->Load("OutZone/Sprites/Main Char/casual.png");
 	bomb_pressed = false;
 	current_animation = &up;
@@ -417,18 +258,6 @@ bool ModulePlayer::Start()
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
 	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
 
-	if (App->ui->player2_enabled) {
-		Player2Collider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
-		Player2EBulltesCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
-		player2_current_animation = &up_p2;
-		direction_p2 = IDLE;
-		weapon_anim_player2 = &laser_360_p2;
-		last_laser_p2 = SDL_GetTicks();
-		current_weapon_player2 = LASER;
-		current_power_player2 = P0;
-		last_multi_p2 = SDL_GetTicks();
-		move_up_p2 = move_down_p2 = move_left_p2 = move_right_p2 = true;
-	}
 	return ret;
 }
 
@@ -455,15 +284,14 @@ update_status ModulePlayer::PostUpdate(){
 	if (!dead){
 		int speed = 2;
 		// W key
-
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 			direction = UP;
-			SelectAnimation(direction, 1, current_weapon);
+			current_animation = SelectAnimation(direction);
 			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y < 0 && scroll){
 				App->render->camera.y += 6;
 				position.y -= speed;
 			}
-			else if (move_up) 
+			else if (move_up)
 				position.y -= speed; // - is + character speed
 		}
 		else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
@@ -472,18 +300,17 @@ update_status ModulePlayer::PostUpdate(){
 
 		// D key
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
-			
-			if (position.x < SCREEN_WIDTH - 29 && move_right) 
+			if (position.x < SCREEN_WIDTH - 29 && move_right)
 				position.x += speed;
 			direction = RIGHT;
-			SelectAnimation(direction, 1, current_weapon);
+			current_animation = SelectAnimation(direction);
 			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 				direction = RIGHT_UP;
-				SelectAnimation(direction, 1, current_weapon);
+				current_animation = SelectAnimation(direction);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
 				direction = RIGHT_DOWN;
-				SelectAnimation(direction, 1, current_weapon);
+				current_animation = SelectAnimation(direction);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
 				direction = IDLE;
@@ -493,26 +320,26 @@ update_status ModulePlayer::PostUpdate(){
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP){
 			direction = IDLE;
 		}
-		
+
 		//A key
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
-			if (position.x > 0 && move_left) 
+			if (position.x > 0 && move_left)
 				position.x -= speed;
 			direction = LEFT;
-			SelectAnimation(direction, 1, current_weapon);
+			current_animation = SelectAnimation(direction);
 			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 				direction = LEFT_UP;
-				SelectAnimation(direction, 1, current_weapon);
+				current_animation = SelectAnimation(direction);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
 				direction = LEFT_DOWN;
-				SelectAnimation(direction, 1, current_weapon);
+				current_animation = SelectAnimation(direction);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 				direction = IDLE;
 				if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 					direction = UP;
-					SelectAnimation(direction, 1, current_weapon);
+					current_animation = SelectAnimation(direction);
 				}
 			}
 
@@ -522,134 +349,37 @@ update_status ModulePlayer::PostUpdate(){
 			direction = IDLE;
 			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
 				direction = LEFT_DOWN;
-				SelectAnimation(direction, 1, current_weapon);
+				current_animation = SelectAnimation(direction);
 			}
 		}
 
 		//S key
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT){
-			if ((App->render->camera.y / 3 - 200) + (position.y) < 88 && move_down) 
+			if ((App->render->camera.y / 3 - 200) + (position.y) < 88 && move_down)
 				position.y += speed; // + is - character speed
 			direction = DOWN;
-			SelectAnimation(direction, 1, current_weapon);
+			current_animation = SelectAnimation(direction);
 			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 				direction = IDLE;
 			}
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
 				direction = LEFT_DOWN;
-				SelectAnimation(direction, 1, current_weapon);
+				current_animation = SelectAnimation(direction);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 				direction = RIGHT_DOWN;
-				SelectAnimation(direction, 1, current_weapon);
+				current_animation = SelectAnimation(direction);
 			}
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP){
 			direction = IDLE;
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP){
 				direction = LEFT_DOWN;
-				SelectAnimation(direction, 1, current_weapon);
-			}
-		}
-	}
-	/*----------------- PLAYER 2 -----------------*/
-	if (!dead_p2 && App->ui->player2_enabled) {
-		int speed = 2;
-		// I key
-		if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT){
-			direction_p2 = UP;
-			SelectAnimation(direction_p2, 2, current_weapon_player2);
-			if ((App->render->camera.y / 3 - 200) + (position_p2.y) < 0 && App->render->camera.y < 0){
-				App->render->camera.y += 6;
-				position_p2.y -= speed;
-			}
-			else if (move_up_p2)
-				position_p2.y -= speed; // - is + character speed
-		}
-		else if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_UP){
-			direction_p2 = IDLE;
-		}
-
-		// L key
-		if (App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT){
-			if (position_p2.x < SCREEN_WIDTH - 29 && move_right_p2)
-				position_p2.x += speed;
-			direction_p2 = RIGHT;
-			SelectAnimation(direction_p2, 2, current_weapon_player2);
-			if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT){
-				direction_p2 = RIGHT_UP;
-				SelectAnimation(direction_p2, 2, current_weapon_player2);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT){
-				direction_p2 = RIGHT_DOWN;
-				SelectAnimation(direction_p2, 2, current_weapon_player2);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT){
-				direction_p2 = IDLE;
+				current_animation = SelectAnimation(direction);
 			}
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_UP){
-			direction_p2 = IDLE;
-		}
 
-		//J key
-		if (App->input->keyboard[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT){
-			if (position_p2.x > 0 && move_left_p2)
-				position_p2.x -= speed;
-			direction_p2 = LEFT;
-			SelectAnimation(direction_p2, 2, current_weapon_player2);
-			if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT){
-				direction_p2 = LEFT_UP;
-				SelectAnimation(direction_p2, 2, current_weapon_player2);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT){
-				direction_p2 = LEFT_DOWN;
-				SelectAnimation(direction_p2, 2, current_weapon_player2);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT){
-				direction_p2 = IDLE;
-				if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT){
-					direction_p2 = UP;
-					SelectAnimation(direction_p2, 2, current_weapon_player2);
-				}
-			}
-
-		}
-
-		if (App->input->keyboard[SDL_SCANCODE_J] == KEY_STATE::KEY_UP){
-			direction_p2 = IDLE;
-			if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_UP){
-				direction_p2 = LEFT_DOWN;
-				SelectAnimation(direction_p2, 2, current_weapon_player2);
-			}
-		}
-
-		//K key
-		if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT){
-			if ((App->render->camera.y / 3 - 200) + (position_p2.y) < 88 && move_down_p2)
-				position_p2.y += speed; // + is - character speed
-			direction_p2 = DOWN;
-			SelectAnimation(direction_p2, 2, current_weapon_player2);
-			if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT){
-				direction_p2 = IDLE;
-			}
-			if (App->input->keyboard[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT){
-				direction_p2 = LEFT_DOWN;
-				SelectAnimation(direction_p2, 2, current_weapon_player2);
-			}
-			if (App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT){
-				direction_p2 = RIGHT_DOWN;
-				SelectAnimation(direction_p2, 2, current_weapon_player2);
-			}
-		}
-		if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_UP){
-			direction_p2 = IDLE;
-			if (App->input->keyboard[SDL_SCANCODE_J] == KEY_STATE::KEY_UP){
-				direction_p2 = LEFT_DOWN;
-				SelectAnimation(direction_p2, 2, current_weapon_player2);
-			}
-		}
 	}
 	return UPDATE_CONTINUE;
 }
@@ -658,10 +388,9 @@ update_status ModulePlayer::PostUpdate(){
 update_status ModulePlayer::Update()
 {
 	PreviousPos = position;
-	PreviousPos_p2 = position_p2;
 	int speed = 2;
 	now = SDL_GetTicks();
-	
+
 	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN){
 		if (god_mode){
 			PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
@@ -676,23 +405,23 @@ update_status ModulePlayer::Update()
 	if (!dead){
 		//TP last checkpoint
 		if (App->input->keyboard[SDL_SCANCODE_T] == KEY_STATE::KEY_DOWN){
-			App->ui->curr_check = 5;
+			App->ui->curr_check = 13;
 		}
 		// change weapon
 		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN){
-			current_weapon = ChangeWeapon(current_weapon, 1);
+			current_weapon = ChangeWeapon(current_weapon);
 			last_basic_weapon = current_weapon;
 		}
 
 		//power up
-		if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_DOWN){
+		if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN){
 			if (current_power == P0) current_power = P1;
 			else if (current_power == P1)current_power = P2;
 			//SDL_SetTextureColorMod(main_char_tex, 255, 120, 86);
 		}
 
 		//power down
-		if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN){
+		if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN){
 			if (current_power == P2) current_power = P1;
 			else if (current_power == P1)current_power = P0;
 		}
@@ -700,131 +429,57 @@ update_status ModulePlayer::Update()
 		// Shoot key
 		if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN){
 			if (current_weapon == MULTI){
-				CreateShoot(current_weapon, weapon_anim, position);
+				CreateShoot(current_weapon, weapon_anim);
 			}
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_REPEAT){
 			if (current_weapon == LASER){
 				if (pos_changed&&now - last_laser > 30){
-					CreateShoot(current_weapon, weapon_anim, position);
+					CreateShoot(current_weapon, weapon_anim);
 					pos_changed = false;
 					last_laser = SDL_GetTicks();
 				}
 				else if (now - last_laser > 140){
-					CreateShoot(current_weapon, weapon_anim, position);
+					CreateShoot(current_weapon, weapon_anim);
 					last_laser = SDL_GetTicks();
 				}
 			}
 			else if (current_weapon == MULTI){
 				if (now - last_multi > 1000){
-					CreateShoot(current_weapon, weapon_anim, position);
+					CreateShoot(current_weapon, weapon_anim);
 					last_multi = SDL_GetTicks();
 				}
 			}
 		}
 
-		/*------------ PLAYER 2 -------------------------*/
-		if (App->ui->player2_enabled) {
-			// change weapon
-			if (App->input->keyboard[SDL_SCANCODE_N] == KEY_STATE::KEY_DOWN){
-				current_weapon_player2 = ChangeWeapon(current_weapon_player2, 2);
-				last_basic_weapon_player2 = current_weapon_player2;
-			}
-
-			//power up
-			if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN){
-				if (current_power_player2 == P0) current_power_player2 = P1;
-				else if (current_power_player2 == P1)current_power_player2 = P2;
-				//SDL_SetTextureColorMod(main_char_tex, 255, 120, 86);
-			}
-
-			//power down
-			if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN){
-				if (current_power_player2 == P2) current_power_player2 = P1;
-				else if (current_power_player2 == P1)current_power_player2 = P0;
-			}
-			//Shoot player 2 key
-			if (App->input->keyboard[SDL_SCANCODE_PERIOD] == KEY_STATE::KEY_DOWN){
-				if (current_weapon_player2 == MULTI){
-					CreateShoot(current_weapon_player2, weapon_anim_player2, position_p2);
-				}
-			}
-
-			if (App->input->keyboard[SDL_SCANCODE_PERIOD] == KEY_STATE::KEY_REPEAT){
-				if (current_weapon_player2 == LASER){
-					if (pos_changed_2 &&now - last_laser_p2 > 30){
-						CreateShoot(current_weapon_player2, weapon_anim_player2, position_p2);
-						pos_changed_2 = false;
-						last_laser_p2 = SDL_GetTicks();
-					}
-					else if (now - last_laser_p2 > 140){
-						CreateShoot(current_weapon_player2, weapon_anim_player2, position_p2);
-						last_laser_p2 = SDL_GetTicks();
-					}
-				}
-				else if (current_weapon_player2 == MULTI){
-					if (now - last_multi_p2 > 1000){
-						CreateShoot(current_weapon_player2, weapon_anim_player2, position_p2);
-						last_multi_p2 = SDL_GetTicks();
-					}
-				}
-			}
-			if (App->input->keyboard[SDL_SCANCODE_U] == KEY_STATE::KEY_DOWN && App->ui->bombs_p2 > 0) {
-				App->bomb->pressed = true;
-				App->ui->SubBomb(2);
-			}
-		}
-
 		//Special attack key
-		if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN && App->ui->bombs > 0){
+		if (App->input->keyboard[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN && App->ui->bombs>0){
 			App->bomb->pressed = true;
 			App->ui->SubBomb(1);
 		}
 
 		if (direction != IDLE){
-			if (CheckPJAnimPos(weapon_anim, direction, 1))
+			if (CheckPJAnimPos(weapon_anim, direction))
 				App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
-			else
-				App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
+			else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 		}
 		else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
-
-		if (App->ui->player2_enabled) {
-			if (direction_p2 != IDLE) {
-				if (CheckPJAnimPos(weapon_anim_player2, direction_p2, 2))
-					App->render->Blit(main_char_tex, position_p2.x, position_p2.y, &(player2_current_animation->GetCurrentFrame()));
-				else
-					App->render->Blit(main_char_tex, position_p2.x, position_p2.y, &(weapon_anim_player2->GetActualFrame()));
-			}
-			else App->render->Blit(main_char_tex, position_p2.x, position_p2.y, &(weapon_anim_player2->GetActualFrame()));
+		if (god_mode){
+			App->render->Blit(casual_tex, position.x - 50, position.y - 150, &casual);
 		}
 	}
 	else{
-		if (dead_fall || dead_fall_p2){
-			if (dead_fall) {
-				if (fall_hole.Finished()){
-					App->ui->dead = true;
-					fall_hole.Finished();
-				}
-				else
-					App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		scroll = true;
+		if (dead_fall){
+			if (fall_hole.Finished()){
+				App->ui->dead = true;
+				fall_hole.Finished();
 			}
-			if (App->ui->player2_enabled) {
-				if (dead_fall_p2) {
-					if (dead_fall) {
-						if (fall_hole.Finished()){
-							App->ui->player2_dead = true;
-							fall_hole.Finished();
-						}
-						else
-							App->render->Blit(main_char_tex, position_p2.x, position_p2.y, &(player2_current_animation->GetCurrentFrame()));
-					}
-				}
-			}
+			else
+				App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 		}
 		else{
-			scroll = true;
 			if (dead_explo.Finished()){
 				Player_explosion->to_delete = true;
 				collider_create = false;
@@ -837,117 +492,96 @@ update_status ModulePlayer::Update()
 					collider_create = true;
 				}
 			}
-			if (App->ui->player2_enabled) {
-				if (dead_explo_p2.Finished()){
-					Player2_explosion->to_delete = true;
-					collider_create = false;
-					App->ui->player2_dead = true;
-				}
-				else{
-					App->render->Blit(dead_explo_text, position_p2.x - 40, position_p2.y - 39, &(current_animation->GetCurrentFrame()));
-					if (!collider_create){
-						Player_explosion = App->collisions->AddCollider({ position_p2.x - 60, position_p2.y - 60, 117, 115 }, COLLIDER_DEAD_EXPLO, this);
-						collider_create = true;
-					}
-				}
-			}
+
 		}
 	}
-	if (god_mode)
-		App->render->Blit(casual_tex, position.x - 50, position.y - 150, &casual);
-	PlayerCollider->SetPos(position.x+10, position.y+20);
-	if (App->ui->player2_enabled) {
-		Player2Collider->SetPos(position_p2.x + 10, position_p2.y + 20);
-		Player2EBulltesCollider->SetPos(position_p2.x + 4, position_p2.y + 3);
-	}
+
+	PlayerCollider->SetPos(position.x + 10, position.y + 20);
 	if (!god_mode)
-		PlayerEBulletsCollider->SetPos(position.x+4 , position.y+3);
-	
+		PlayerEBulletsCollider->SetPos(position.x + 4, position.y + 3);
+
 	return UPDATE_CONTINUE;
 }
 
-bool ModulePlayer::CheckPJAnimPos(Animation* anim, Direction dest_anim, char player){
+bool ModulePlayer::CheckPJAnimPos(Animation* anim, Direction dest_anim){
 
 	bool ret = false;
 	uint FrameIndex = (uint)anim->GetFrameIndex();
 	if (FrameIndex == dest_anim) ret = true;
 	else {
-		if (player == 1) 
-			pos_changed = true;
-		if (player == 2)
-			pos_changed_2 = true;
+		pos_changed = true;
 		switch (dest_anim){
-		case LEFT: if (FrameIndex > RIGHT) 
-						anim->AnimForward();
+		case LEFT: if (FrameIndex > RIGHT)
+			anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
 		case ANGLE_60: if (FrameIndex > ANGLE_240 || FrameIndex < ANGLE_60)
-							anim->AnimForward();
+			anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
 		case LEFT_UP: if (FrameIndex > RIGHT_DOWN || FrameIndex < LEFT_UP)
-							anim->AnimForward();
-				   else anim->AnimBack();
-				   break;
+			anim->AnimForward();
+					  else anim->AnimBack();
+					  break;
 		case ANGLE_30: if (FrameIndex > ANGLE_210 || FrameIndex < ANGLE_30)
-							anim->AnimForward();
+			anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
 		case UP: if (FrameIndex > DOWN || FrameIndex < UP)
-					 anim->AnimForward();
-				   else anim->AnimBack();
-				   break;
+			anim->AnimForward();
+				 else anim->AnimBack();
+				 break;
 		case ANGLE_330: if (FrameIndex > ANGLE_150 || FrameIndex < ANGLE_330)
-							anim->AnimForward();
+			anim->AnimForward();
+						else anim->AnimBack();
+						break;
+		case RIGHT_UP: if (FrameIndex > LEFT_DOWN || FrameIndex < RIGHT_UP)
+			anim->AnimForward();
 					   else anim->AnimBack();
 					   break;
-		case RIGHT_UP: if (FrameIndex > LEFT_DOWN || FrameIndex < RIGHT_UP) 
-							anim->AnimForward();
-				   else anim->AnimBack();
-				   break;
 		case ANGLE_300: if (FrameIndex < ANGLE_300)
-							anim->AnimForward();
-					   else anim->AnimBack();
-					   break;
-		case RIGHT: if (FrameIndex < RIGHT) 
-						anim->AnimForward();
-				   else anim->AnimBack();
-				   break;
+			anim->AnimForward();
+						else anim->AnimBack();
+						break;
+		case RIGHT: if (FrameIndex < RIGHT)
+			anim->AnimForward();
+					else anim->AnimBack();
+					break;
 		case ANGLE_240: if (FrameIndex >= ANGLE_60)
-							anim->AnimForward();
-					   else anim->AnimBack();
-					   break;
-		case RIGHT_DOWN: if (FrameIndex >= LEFT_UP && FrameIndex < RIGHT_DOWN) 
-							anim->AnimForward();
-				   else anim->AnimBack();
-				   break;
+			anim->AnimForward();
+						else anim->AnimBack();
+						break;
+		case RIGHT_DOWN: if (FrameIndex >= LEFT_UP && FrameIndex < RIGHT_DOWN)
+			anim->AnimForward();
+						 else anim->AnimBack();
+						 break;
 		case ANGLE_210: if (FrameIndex >= ANGLE_30)
-							anim->AnimForward();
-					   else anim->AnimBack();
-					   break;
-		case DOWN: if (FrameIndex >= UP && FrameIndex < DOWN) 
-						anim->AnimForward();
+			anim->AnimForward();
+						else anim->AnimBack();
+						break;
+		case DOWN: if (FrameIndex >= UP && FrameIndex < DOWN)
+			anim->AnimForward();
 				   else anim->AnimBack();
 				   break;
-		case ANGLE_150: if (FrameIndex  >= ANGLE_330)
-							anim->AnimForward();
-					   else anim->AnimBack();
-					   break;
-		case LEFT_DOWN: if (FrameIndex >= RIGHT_UP && FrameIndex < LEFT_DOWN) 
-							anim->AnimForward();
-				   else anim->AnimBack();
-				   break;
+		case ANGLE_150: if (FrameIndex >= ANGLE_330)
+			anim->AnimForward();
+						else anim->AnimBack();
+						break;
+		case LEFT_DOWN: if (FrameIndex >= RIGHT_UP && FrameIndex < LEFT_DOWN)
+			anim->AnimForward();
+						else anim->AnimBack();
+						break;
 		case ANGLE_120: if (FrameIndex >= ANGLE_300)
-							anim->AnimForward();
-					   else anim->AnimBack();
-					   break;
+			anim->AnimForward();
+						else anim->AnimBack();
+						break;
 
 		}
 	}
 	return ret;
 }
 
-void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim, iPoint position)const{
+void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim)const{
 
 	uint FrameIndex = (uint)anim->GetFrameIndex();
 	switch (equiped)
@@ -1169,7 +803,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim, iPoint position
 			case ANGLE_60:
 				App->particles->SetParticleSpeed(laser_p2, -4.61f, -1.91f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x-10, position.y - 16, laser_p2->collider, laserbox_p2, -67.5);
+				App->particles->AddParticle(*laser_p2, position.x - 10, position.y - 16, laser_p2->collider, laserbox_p2, -67.5);
 				App->particles->AddParticle(*shoot_start, position.x - 3, position.y - 3, shoot_start->collider, nullrect, -67.5);
 				break;
 			case LEFT_UP:
@@ -1241,7 +875,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim, iPoint position
 			case ANGLE_150:
 				App->particles->SetParticleSpeed(laser_p2, -1.91f, 4.61f);
 				App->particles->SetColliderCorrection(laser_p2, 1, 1);
-				App->particles->AddParticle(*laser_p2, position.x-5, position.y + 25, laser_p2->collider, laserbox_p2, -157.5);
+				App->particles->AddParticle(*laser_p2, position.x - 5, position.y + 25, laser_p2->collider, laserbox_p2, -157.5);
 				App->particles->AddParticle(*shoot_start, position.x - 3, position.y + 18, shoot_start->collider, nullrect, -157.5);
 				break;
 			case LEFT_DOWN:
@@ -1261,7 +895,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim, iPoint position
 		default:
 			break;
 		}
-		
+
 		break;
 	case MULTI:
 		switch (current_power)
@@ -1269,7 +903,7 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim, iPoint position
 		case P0:
 			App->particles->SetParticleSpeed(multi_laser_p0, 0, -5);
 			App->particles->SetColliderCorrection(multi_laser_p0, 0, 1);
-			App->particles->AddParticle(*multi_laser_p0, position.x + 12, position.y - 5, multi_laser_p0->collider, { 0, 0, 6, 6});
+			App->particles->AddParticle(*multi_laser_p0, position.x + 12, position.y - 5, multi_laser_p0->collider, { 0, 0, 6, 6 });
 			App->particles->SetParticleSpeed(multi_laser_p0, -1.91f, -4.61f);
 			App->particles->SetColliderCorrection(multi_laser_p0, -1, 1);
 			App->particles->AddParticle(*multi_laser_p0, position.x + 2, position.y - 5, multi_laser_p0->collider, { 0, 0, 6, 6 }, -22.5);
@@ -1294,10 +928,10 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim, iPoint position
 			App->particles->SetParticleSpeed(multi_laser_p2, 0, -5);
 			App->particles->SetColliderCorrection(multi_laser_p2, 0, 1);
 			App->particles->AddParticle(*multi_laser_p2, position.x + 9, position.y - 10, multi_laser_p2->collider, { 0, 0, 14, 14 });
-			App->particles->SetParticleSpeed(multi_laser_p2, -1.91f, -4.61f);	
+			App->particles->SetParticleSpeed(multi_laser_p2, -1.91f, -4.61f);
 			App->particles->SetColliderCorrection(multi_laser_p2, -1, 1);
 			App->particles->AddParticle(*multi_laser_p2, position.x + 1, position.y - 10, multi_laser_p2->collider, { 0, 0, 14, 14 }, -22.5);
-			App->particles->SetParticleSpeed(multi_laser_p2, 2.91f, -4.61f);	
+			App->particles->SetParticleSpeed(multi_laser_p2, 2.91f, -4.61f);
 			App->particles->SetColliderCorrection(multi_laser_p2, 1, 1);
 			App->particles->AddParticle(*multi_laser_p2, position.x + 17, position.y - 8, multi_laser_p2->collider, { 0, 0, 14, 14 }, 22.5);
 			App->particles->AddParticle(*multi_start, position.x - 3, position.y - 15, multi_start->collider, nullrect);
@@ -1315,86 +949,66 @@ void ModulePlayer::CreateShoot(Weapons equiped, Animation* anim, iPoint position
 	}
 }
 
-Weapons ModulePlayer::ChangeWeapon(Weapons current, char player){
+Weapons ModulePlayer::ChangeWeapon(Weapons current){
 	Weapons ret;
 	switch (current)
 	{
 	case LASER:
 		ret = MULTI;
-		if (player == 1) weapon_anim = &multi_360;
-		else weapon_anim_player2 = &multi_360_p2;
+		weapon_anim = &multi_360;
 		break;
 	case MULTI:
 		ret = LASER;
-		if (player == 1) weapon_anim = &laser_360;
-		else weapon_anim_player2 = &laser_360_p2;
+		weapon_anim = &laser_360;
 		break;
 	case SUPERBALL:
-		if (player == 1) {
-			ret = last_basic_weapon;
-			if (last_basic_weapon == LASER) weapon_anim = &laser_360;
-			else weapon_anim = &multi_360;
-		}
-		else {
-			ret = last_basic_weapon_player2;
-			if (last_basic_weapon_player2 == LASER) weapon_anim_player2 = &laser_360_p2;
-			else weapon_anim_player2 = &multi_360_p2;
-		}
+		ret = last_basic_weapon;
+		if (last_basic_weapon == LASER)
+			weapon_anim = &laser_360;
+		else weapon_anim = &multi_360;
 		break;
 	case SUPERBURNER:
-		if (player == 1) {
-			ret = last_basic_weapon;
-			if (last_basic_weapon == LASER) weapon_anim = &laser_360;
-			else weapon_anim = &multi_360;
-		}
-		else {
-			ret = last_basic_weapon_player2;
-			if (last_basic_weapon_player2 == LASER) weapon_anim_player2 = &laser_360_p2;
-			else weapon_anim_player2 = &multi_360_p2;
-		}
+		ret = last_basic_weapon;
+		if (last_basic_weapon == LASER)
+			weapon_anim = &laser_360;
+		else weapon_anim = &multi_360;
 		break;
 	}
 
 	return ret;
 }
 
-void ModulePlayer::SelectAnimation(Direction direction, char player, Weapons current_weapo) {
-	switch (current_weapo)
+Animation* ModulePlayer::SelectAnimation(Direction direction){
+
+	Animation* ret = current_animation;
+	switch (current_weapon)
 	{
 	case LASER:
 		switch (direction)
 		{
 		case LEFT:
-			if (player == 1) current_animation = &left;
-			else player2_current_animation = &left_p2;
+			ret = &left;
 			break;
 		case LEFT_UP:
-			if (player == 1) current_animation = &left_up;
-			else player2_current_animation = &left_up_p2;
+			ret = &left_up;
 			break;
 		case UP:
-			if (player == 1) current_animation = &up;
-			else player2_current_animation = &up_p2;
+			ret = &up;
 			break;
 		case RIGHT_UP:
-			if (player == 1) current_animation = &right_up;
-			else player2_current_animation = &right_up_p2;
+			ret = &right_up;
 			break;
 		case RIGHT:
-			if (player == 1) current_animation = &right;
-			else player2_current_animation = &right_p2;
+			ret = &right;
 			break;
 		case RIGHT_DOWN:
-			if (player == 1) current_animation = &right_down;
-			else player2_current_animation = &right_down_p2;
+			ret = &right_down;
 			break;
 		case DOWN:
-			if (player == 1) current_animation = &down;
-			else player2_current_animation = &down_p2;
+			ret = &down;
 			break;
 		case LEFT_DOWN:
-			if (player == 1) current_animation = &left_down;
-			else player2_current_animation = &left_down_p2;
+			ret = &left_down;
 			break;
 		}
 		break;
@@ -1402,36 +1016,28 @@ void ModulePlayer::SelectAnimation(Direction direction, char player, Weapons cur
 		switch (direction)
 		{
 		case LEFT:
-			if (player == 1) current_animation = &multi_left;
-			else player2_current_animation = &multi_left_p2;
+			ret = &multi_left;
 			break;
 		case LEFT_UP:
-			if (player == 1) current_animation = &multi_up;
-			else player2_current_animation = &multi_up_p2;
+			ret = &multi_up;
 			break;
 		case UP:
-			if (player == 1) current_animation = &multi_up;
-			else player2_current_animation = &multi_up_p2;
+			ret = &multi_up;
 			break;
 		case RIGHT_UP:
-			if (player == 1) current_animation = &multi_up;
-			else player2_current_animation = &multi_up_p2;
+			ret = &multi_up;
 			break;
 		case RIGHT:
-			if (player == 1) current_animation = &multi_right;
-			else player2_current_animation = &multi_right_p2;
+			ret = &multi_right;
 			break;
 		case RIGHT_DOWN:
-			if (player == 1) current_animation = &multi_down;
-			else player2_current_animation = &multi_down_p2;
+			ret = &multi_down;
 			break;
 		case DOWN:
-			if (player == 1) current_animation = &multi_down;
-			else player2_current_animation = &multi_down_p2;
+			ret = &multi_down;
 			break;
 		case LEFT_DOWN:
-			if (player == 1) current_animation = &multi_down;
-			else player2_current_animation = &multi_down_p2;
+			ret = &multi_down;
 			break;
 		}
 		break;
@@ -1442,27 +1048,26 @@ void ModulePlayer::SelectAnimation(Direction direction, char player, Weapons cur
 	default:
 		break;
 	}
+
+	return ret;
 }
 
 void ModulePlayer::ResetPosition(){
 	position.x = 105;
-	position.y = 7400;
-
-	position_p2.x = 140;
-	position_p2.y = 7400;
+	position.y = 7359;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 	if (PlayerCollider == c1 && PlayerCollider != nullptr){
 		if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_PASS_BULLET){
 			switch (dir) {
-			case UP: 
+			case UP:
 				if (move_up) {
 					position.y = PreviousPos.y;
 					move_up = false;
 				}
 				break;
-			case DOWN: 
+			case DOWN:
 				if (move_down) {
 					position.y = PreviousPos.y;
 					move_down = false;
@@ -1486,51 +1091,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 			dead = true;
 			dead_fall = true;
 			current_animation = &fall_hole;
-		}
-	}
-	if (App->ui->player2_enabled) {
-		if (Player2Collider == c1 && Player2Collider != nullptr){
-			if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_PASS_BULLET){
-				switch (dir) {
-				case UP:
-					if (move_up_p2) {
-						position_p2.y = PreviousPos_p2.y;
-						move_up_p2 = false;
-					}
-					break;
-				case DOWN:
-					if (move_down_p2) {
-						position_p2.y = PreviousPos_p2.y;
-						move_down_p2 = false;
-					}
-					break;
-				case LEFT:
-					if (move_left_p2) {
-						position_p2.x = PreviousPos_p2.x;
-						move_left_p2 = false;
-					}
-					break;
-				case RIGHT:
-					if (move_right_p2) {
-						position_p2.x = PreviousPos_p2.x;
-						move_right_p2 = false;
-					}
-					break;
-				}
-			}
-			if (c2->type == COLLIDER_HOLE){
-				dead_p2 = true;
-				dead_fall_p2 = true;
-				player2_current_animation = &fall_hole;
-			}
-		}
-		if (Player2EBulltesCollider == c1 && Player2EBulltesCollider != nullptr){
-			if (c2->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY_SHOT){
-				if (!dead_p2){
-					dead_p2 = true;
-					player2_current_animation = &dead_explo;
-				}
-			}
 		}
 	}
 	if (PlayerEBulletsCollider == c1 && PlayerEBulletsCollider != nullptr){
@@ -1588,7 +1148,7 @@ bool ModulePlayer::CheckColliders() {
 	for (int i = 0; i < MAX_COLLIDERS && App->collisions->colliders[i] != nullptr; i++) {
 		LOG("%d", i);
 		if (App->collisions->colliders[i]->CheckCollision(Playeraux))
-			return true;
+		return true;
 	}
 	LOG("RETURNED");
 	return false;
