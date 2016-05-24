@@ -10,6 +10,7 @@
 #include "ModuleSceneLevels.h"
 #include "SDL/include/SDL_timer.h"
 #include "ModuleBomb.h"
+#include "ModuleEnemies.h"
 #include "ModuleUI.h"
 
 #define nullrect {0,0,0,0} 
@@ -475,6 +476,10 @@ update_status ModulePlayer::Update()
 			if (fall_hole.Finished()){
 				App->ui->dead = true;
 				fall_hole.Finished();
+				if (App->ui->lives > 0){
+					App->enemies->DestroyEnemies();
+					App->levels->RestartEnemies();
+				}
 			}
 			else
 				App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -484,6 +489,10 @@ update_status ModulePlayer::Update()
 				Player_explosion->to_delete = true;
 				collider_create = false;
 				App->ui->dead = true;
+				if (App->ui->lives > 0){
+					App->enemies->DestroyEnemies();
+					App->levels->RestartEnemies();
+				}
 			}
 			else{
 				App->render->Blit(dead_explo_text, position.x - 40, position.y - 39, &(current_animation->GetCurrentFrame()));

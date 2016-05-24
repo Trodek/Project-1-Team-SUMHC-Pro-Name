@@ -13,6 +13,7 @@ class EnemyBoss:public Enemy
 {
 public:
 	EnemyBoss(int x, int y, ENEMY_TYPES type);
+	void DeleteAll();
 
 	void Draw();
 
