@@ -76,7 +76,7 @@ private:
 	void CheckState();
 	void EquipMissile(int x, int missile_num);
 	void SetMoveSpeed();
-
+	void MoveBall(iPoint peg, int x, int y, float r, float t, Collider* peg_col);
 
 };
 

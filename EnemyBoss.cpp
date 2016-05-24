@@ -175,20 +175,22 @@ void EnemyBoss::Draw(){
 		if (cont > 271 && cont < 391){
 			boss.x += x_speed;
 			boss.y += y_speed;
-			radius++;
+			radius += 0.5f;
 		}
 		if (cont > 421 && cont < 541){
 			boss.x -= x_speed;
 			boss.y -= y_speed;
-			radius--;
+			radius -= 0.5f;
 		}
 		if (cont>541)phase_change = true;
+		MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
 		App->render->Blit(tex, boss.x, boss.y, &(boss_idle.GetCurrentFrame()));
 		cont++;
 		
 		break;
 	case ST_EjectShell:
 		if (cont > 210)phase_change = true;
+		radius = 40;
 		App->render->Blit(tex, boss.x, boss.y, &(boss_idle.GetCurrentFrame()));
 		if (cont < 60){
 			App->render->Blit(tex, Shell_left_pos.x - 23, Shell_left_pos.y + 20, &(rocket_left.GetCurrentFrame()));
@@ -207,10 +209,12 @@ void EnemyBoss::Draw(){
 			App->render->Blit(tex, Shell_right_pos.x + 67, Shell_right_pos.y + 20, &(rocket_right.GetCurrentFrame()));
 			App->render->Blit(tex, Shell_right_pos.x++, Shell_right_pos.y--, &Shell_right);
 		}
+		MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
 		cont++;
 		break;
 	case ST_EquipShell:
 		App->render->Blit(tex, (int)boss.x, (int)boss.y, &(boss_idle.GetCurrentFrame()));
+		radius = 40;
 		if (Shell_right_pos.x !=(int)boss.x+32){
 			App->render->Blit(tex, Shell_left_pos.x - 23, Shell_left_pos.y + 20, &(rocket_left.GetCurrentFrame()));
 			App->render->Blit(tex, Shell_left_pos.x++, Shell_left_pos.y++, &Shell_left);
@@ -224,6 +228,7 @@ void EnemyBoss::Draw(){
 			App->render->Blit(tex, Shell_right_pos.x, Shell_right_pos.y, &Shell_right);
 			phase_change = true;
 		}
+		MoveBall(twister1, boss.x + 15, boss.y + 11, radius, steps, twister1_col);
 		cont++;
 		break;
 	case ST_Apear:
@@ -242,17 +247,21 @@ void EnemyBoss::Draw(){
 		break;
 	}
 
-	twister1.x = boss.x + 15 + radius * cos((float)steps);
-	twister1.y = boss.y + 11 + radius * sin((float)steps);
-	twister1_col->SetPos(twister1.x, twister1.y);
 	steps += 0.05f;
-	App->render->Blit(tex, twister1.x, twister1.y, &(twister.GetCurrentFrame())); 
+
 	collider->SetPos(boss.x, boss.y);
 	shell_left_col->SetPos(Shell_left_pos.x, Shell_left_pos.y);
 	shell_right_col->SetPos(Shell_right_pos.x, Shell_right_pos.y);
 
 	position.x = boss.x;
 	position.y = boss.y;
+}
+
+void EnemyBoss::MoveBall(iPoint peg, int x, int y, float r, float t, Collider* peg_col) {
+	peg.x = x + r*cos((float)t);
+	peg.y = y + r*sin((float)t);
+	peg_col->SetPos(peg.x, peg.y);
+	App->render->Blit(tex, peg.x, peg.y, &(twister.GetCurrentFrame()));
 }
 
 void EnemyBoss::CheckState(){
