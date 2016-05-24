@@ -76,6 +76,11 @@ ModuleUI::ModuleUI(){
 	credits_num.w = 7;
 	credits_num.h = 7;
 
+	insert_coin.x = 8;
+	insert_coin.y = 323;
+	insert_coin.w = 152;
+	insert_coin.h = 10;
+
 	//energy
 
 	energy_pill.x = 89;
@@ -273,6 +278,11 @@ update_status ModuleUI::Update(){
 			App->render->Blit(ui_graphics, 84, 305, &credits_name);														//credits
 			DrawNumber(credit, 140, 305, 10, credits_num);																//credit number
 		}	
+		if (title) {
+			if (credit == 0) {
+				App->render->Blit(ui_graphics, 45, 180, &insert_coin);
+			}
+		}
 	}
 
 	return UPDATE_CONTINUE;

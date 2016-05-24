@@ -112,6 +112,8 @@ public:
 	SDL_Rect credits_name;
 	SDL_Rect credits_num;
 
+	SDL_Rect insert_coin;
+
 	SDL_Rect energy_bar;
 	SDL_Rect energy_bar_ext;
 	SDL_Rect energy_pill;
