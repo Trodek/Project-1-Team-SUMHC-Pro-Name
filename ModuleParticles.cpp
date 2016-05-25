@@ -234,6 +234,7 @@ bool ModuleParticles::Start()
 	big_turret_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret fire.png");
 	green_basic_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Enemies Common Dead/common dead sprites.png");
 	boss = App->textures->Load("OutZone/Sprites/Enemies/Level 4/boss.png");
+	roomba = App->textures->Load("OutZone/Sprites/Enemies/Level 4/roomba.png");
 
 	missile.tex = boss;
 	bannana.tex = boss;

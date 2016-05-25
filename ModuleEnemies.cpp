@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "EnemyBigTurret.h"
 #include "EnemyTruck.h"
+#include "EnemyRoomba.h"
 #include "EnemyGreenBasic.h"
 #include "EnemyBoss.h"
 #include "ModuleBomb.h"
@@ -176,6 +177,10 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 				break;
 			case ENEMY_TYPES::BOSS:
 				enemies[i] = new EnemyBoss(info.x, info.y, info.type);
+				break;
+			case ENEMY_TYPES::ROOMBA:
+				enemies[i] = new EnemyRoomba(info.x, info.y, info.type);
+				enemies[i]->SetPath(info.path);
 				break;
 		}
 	}

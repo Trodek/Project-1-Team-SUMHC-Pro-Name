@@ -64,6 +64,10 @@ public:
 	Path gb19;
 	Path gb20;
 	Path gb21;
+	Path roomba1;
+	Path roomba2;
+	Path roomba3;
+
 	//Platform stuff
 	Path platform_p;
 	Animation platform_anim;

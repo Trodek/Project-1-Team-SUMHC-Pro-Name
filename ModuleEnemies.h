@@ -16,6 +16,7 @@ enum ENEMY_TYPES
 	GREENBASIC,
 	SMALLTURRET,
 	BOSS,
+	ROOMBA,
 };
 
 struct SDL_Texture;

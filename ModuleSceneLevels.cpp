@@ -268,6 +268,42 @@ bool ModuleSceneLevels::Start()
 	gb21.PushBack({ 0, 0.5f }, 70);
 	gb21.loop = false;
 
+	roomba1.PushBack({ 0, 1 }, 55);
+	roomba1.PushBack({ -1, 0 }, 160);
+	roomba1.PushBack({ 1, 0 }, 100);
+	roomba1.PushBack({ -1, 0 }, 160);
+	roomba1.PushBack({ 1, 0 }, 100);
+	roomba1.PushBack({ -1, 0 }, 160);
+	roomba1.PushBack({ 1, 0 }, 100);
+	roomba1.PushBack({ -1, 0 }, 160);
+	roomba1.PushBack({ 1, 0 }, 100);
+	roomba1.PushBack({ -1, 0 }, 160);
+	roomba1.PushBack({ 1, 0 }, 100);
+	roomba1.PushBack({ -1, 0 }, 160);
+
+	roomba2.PushBack({ 0, 1 }, 25);
+	roomba2.PushBack({ -1, 0 }, 190);
+	roomba2.PushBack({ 0, -1 }, 130);
+	roomba2.PushBack({ 0, 1 }, 90);
+	roomba2.PushBack({ 0, -1 }, 90);
+	roomba2.PushBack({ 0, 1 }, 90);
+	roomba2.PushBack({ 0, -1 }, 90);
+	roomba2.PushBack({ 0, 1 }, 90);
+	roomba2.PushBack({ 0, -1 }, 90);
+	roomba2.PushBack({ 0, 1 }, 90);
+	roomba2.PushBack({ 0, -1 }, 90);
+	roomba2.PushBack({ 0, 1 }, 90);
+	roomba2.PushBack({ 0, -1 }, 90);
+	roomba2.PushBack({ 0, 1 }, 90);
+	roomba2.PushBack({ 0, -1 }, 90);
+	roomba2.PushBack({ 0, 1 }, 90);
+	roomba2.PushBack({ 0, -1 }, 90);
+
+	roomba3.PushBack({ 0.5f, 0.5f }, 30);
+	roomba3.PushBack({ -0.5f, 0.5f }, 30);
+	roomba3.PushBack({ -0.5f, -0.5f }, 30);
+	roomba3.PushBack({ 0.5f, -0.5f }, 30);
+
 	RestartEnemies();
 	return ret;
 }
@@ -285,6 +321,7 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(GREENBASIC, 70, 7150, &gb12);
 		App->enemies->AddEnemy(GREENBASIC, 80, 7160, &gb13);
 		App->enemies->AddEnemy(GREENBASIC, 30, 7160, &gb14);
+		
 	}
 	if (App->ui->curr_check <= 1) {						// y < 7000
 		App->enemies->AddEnemy(GREENBASIC, 60, 6780, &gb15);
@@ -322,7 +359,9 @@ void ModuleSceneLevels::RestartEnemies() {
 		
 	}
 	if (App->ui->curr_check <= 5) {				// y < 2000
-	
+		App->enemies->AddEnemy(ROOMBA, 197, 1091, &roomba1);
+		App->enemies->AddEnemy(ROOMBA, 197, 1123, &roomba2);
+		App->enemies->AddEnemy(ROOMBA, 115, 1029, &roomba3);
 	}
 	if (App->ui->curr_check <= 6) {				// y < 479
 		App->enemies->AddEnemy(BOSS, 88, -5);

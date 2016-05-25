@@ -71,6 +71,7 @@ public:
 	SDL_Texture* green_basic;
 	SDL_Texture* small_turret;
 	SDL_Texture* boss = nullptr;
+	SDL_Texture* roomba = nullptr;
 
 	Particle basic_laser_p0;
 	Particle basic_laser_p1;

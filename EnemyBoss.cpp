@@ -70,14 +70,14 @@ EnemyBoss::EnemyBoss(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 	collider = App->collisions->AddCollider({ 0, 0, 64, 56 }, COLLIDER_ENEMY, (Module*)App->enemies);
 	shell_left_col = App->collisions->AddCollider({ 0, 0, 96, 160 }, COLLIDER_PASS_BULLET);
 	shell_right_col = App->collisions->AddCollider({ 0, 0, 96, 160 }, COLLIDER_PASS_BULLET);
-	twister1_col = App->collisions->AddCollider({ 0, 0, 28, 28 }, COLLIDER_ENEMY, (Module*)App->enemies);
-	twister2_col = App->collisions->AddCollider({ 0, 0, 28, 28 }, COLLIDER_ENEMY, (Module*)App->enemies);
-	twister3_col = App->collisions->AddCollider({ 0, 0, 28, 28 }, COLLIDER_ENEMY, (Module*)App->enemies);
-	twister4_col = App->collisions->AddCollider({ 0, 0, 28, 28 }, COLLIDER_ENEMY, (Module*)App->enemies);
-	twister5_col = App->collisions->AddCollider({ 0, 0, 28, 28 }, COLLIDER_ENEMY, (Module*)App->enemies);
-	twister6_col = App->collisions->AddCollider({ 0, 0, 28, 28 }, COLLIDER_ENEMY, (Module*)App->enemies);
-	twister7_col = App->collisions->AddCollider({ 0, 0, 28, 28 }, COLLIDER_ENEMY, (Module*)App->enemies);
-	twister8_col = App->collisions->AddCollider({ 0, 0, 28, 28 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister1_col = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister2_col = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister3_col = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister4_col = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister5_col = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister6_col = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister7_col = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	twister8_col = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_ENEMY, (Module*)App->enemies);
 
 	collider->SetPos(boss.x, boss.y);
 	shell_left_col->SetPos(Shell_left_pos.x, Shell_left_pos.y);
@@ -282,7 +282,7 @@ void EnemyBoss::Draw(){
 		break;
 	}
 
-	steps += 0.05f;
+	steps += 0.02f;
 
 	collider->SetPos(boss.x, boss.y);
 	shell_left_col->SetPos(Shell_left_pos.x, Shell_left_pos.y);
@@ -295,7 +295,7 @@ void EnemyBoss::Draw(){
 void EnemyBoss::MoveBall(iPoint peg, int x, int y, float r, float t, Collider* peg_col) {
 	peg.x = x + r*cos((float)t);
 	peg.y = y + r*sin((float)t);
-	peg_col->SetPos(peg.x+3, peg.y+3);
+	peg_col->SetPos(peg.x+12, peg.y+12);
 	App->render->Blit(tex, peg.x, peg.y, &(twister.GetCurrentFrame()));
 }
 
