@@ -282,7 +282,7 @@ void EnemyBoss::Draw(){
 		break;
 	}
 
-	steps += 0.02f;
+	steps += 0.01f;
 
 	collider->SetPos(boss.x, boss.y);
 	shell_left_col->SetPos(Shell_left_pos.x, Shell_left_pos.y);
