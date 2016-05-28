@@ -94,6 +94,31 @@ bool ModuleSceneLevels::Start()
 	App->ui->SetGameStartConditions();
 	App->ui->e_timer = SDL_GetTicks()+1000;
 
+	App->collisions->AddCollider({ 0, 7393, 12, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 10, 7400, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 20, 7410, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 30, 7420, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 40, 7430, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 50, 7440, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 60, 7450, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 70, 7460, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 80, 7470, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 90, 7480, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 100,7490, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 110,7500, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 120, 7480+30, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 130, 7470+30, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 140, 7460+30, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 150, 7450+30, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 160, 7450+30, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 170, 7450+30, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 180, 7440 + 30, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 190, 7440 + 30, 10, 90 }, COLLIDER_HOLE);
+
+	App->collisions->AddCollider({ 200, 7430 + 30, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 210, 7420 + 40, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 220, 7420 + 40, 10, 90 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 230, 7410 + 40, 10, 90 }, COLLIDER_HOLE);
 
 	App->collisions->AddCollider({ 0, 2430, 65, 1228 }, COLLIDER_HOLE);
 	App->collisions->AddCollider({ 175, 2493, 65, 1162 }, COLLIDER_HOLE);
@@ -304,6 +329,42 @@ bool ModuleSceneLevels::Start()
 	roomba3.PushBack({ -0.5f, -0.5f }, 30);
 	roomba3.PushBack({ 0.5f, -0.5f }, 30);
 
+
+	notsobasic1.PushBack({ 0, 1 }, 70);
+	notsobasic1.PushBack({ 1, 0 }, 30);
+	notsobasic1.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic1.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic1.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic1.PushBack({ -1, 0 }, 50);
+
+	notsobasic2.PushBack({ 1, 1 }, 60);
+	notsobasic2.PushBack({ 0, 1 }, 50);
+	notsobasic2.PushBack({ 1, -0.5f }, 50);
+	notsobasic2.PushBack({ -1, 0 }, 40);
+	notsobasic2.PushBack({ 0, -1 }, 50);
+
+	notsobasic3.PushBack({ -1, 1 }, 60);
+	notsobasic3.PushBack({ 0, 1 }, 50);
+	notsobasic3.PushBack({ -1, 0.5f }, 50);
+	notsobasic3.PushBack({ 1, 0 }, 40);
+	notsobasic3.PushBack({ 0, -1 }, 50);
+
+	fastright.PushBack({ -1, 0 }, 200);
+	fastright.PushBack({ 0, 1 }, 60);
+	fastright.PushBack({ -1, -1 }, 40);
+
+	fastright1.PushBack({ -1, 0 }, 200);
+	fastright1.PushBack({ 0, 1 }, 60);
+	fastright1.PushBack({ -1, -1 }, 40);
+
+	fastright2.PushBack({ -1, 0 }, 200);
+	fastright2.PushBack({ 0, 1 }, 60);
+	fastright2.PushBack({ -1, -1 }, 40);
+
+	fastright3.PushBack({ -1, 0 }, 200);
+	fastright3.PushBack({ 0, 1 }, 60);
+	fastright3.PushBack({ -1, -1 }, 40);
+
 	sl1.PushBack({ 0, 0 }, 50);
 	sl1.PushBack({ 1, 0 }, 125);
 	sl1.PushBack({ 0, 0 }, 500);
@@ -342,54 +403,73 @@ bool ModuleSceneLevels::Start()
 
 
 
+
 	RestartEnemies();
 	return ret;
 }
 
 void ModuleSceneLevels::RestartEnemies() {
 	RestartEnemiesPaths();
+
+
 	if (App->ui->curr_check == 0) {							// y < 7159
 		App->enemies->AddEnemy(BLUEBASIC, 100, 6100);
-		App->enemies->AddEnemy(GREENBASIC, 100, 7100, &gb2);
-		App->enemies->AddEnemy(GREENBASIC, 140, 7100, &gb3);
-		App->enemies->AddEnemy(GREENBASIC, 100, 7050, &gb4);
-		App->enemies->AddEnemy(GREENBASIC, 140, 7140, &gb5);
-		App->enemies->AddEnemy(GREENBASIC, 100, 7020, &gb7);
-		App->enemies->AddEnemy(GREENBASIC, 130, 7100, &gb10);
-		App->enemies->AddEnemy(GREENBASIC, 50, 7150, &gb11);
-		App->enemies->AddEnemy(GREENBASIC, 70, 7150, &gb12);
-		App->enemies->AddEnemy(GREENBASIC, 80, 7160, &gb13);
-		App->enemies->AddEnemy(GREENBASIC, 30, 7160, &gb14);
 		
 	}
+
 	if (App->ui->curr_check <= 1) {						// y < 7000
-		App->enemies->AddEnemy(GREENBASIC, 60, 6780, &gb15);
-		App->enemies->AddEnemy(GREENBASIC, 90, 6850, &gb16);
-		App->enemies->AddEnemy(GREENBASIC, 90, 6700, &gb17);
-		App->enemies->AddEnemy(GREENBASIC, 90, 6600, &gb18);
-		App->enemies->AddEnemy(GREENBASIC, 80, 6400, &gb19);
-		App->enemies->AddEnemy(GREENBASIC, 80, 6500, &gb20);
+		App->enemies->AddEnemy(NOTBASIC, 50, 6870, &notsobasic2);
+		App->enemies->AddEnemy(NOTBASIC, 70, 6850, &gb12);
+		App->enemies->AddEnemy(NOTBASIC, 40, 6870, &notsobasic1);
+		App->enemies->AddEnemy(NOTBASIC, 0, 6850, &gb4);
+		App->enemies->AddEnemy(NOTBASIC, 30, 6870, &gb14);
+		App->enemies->AddEnemy(NOTBASIC, 200, 6850, &notsobasic3);
+
+		App->enemies->AddEnemy(NOTBASIC, 0, 6590, &notsobasic1);
+		App->enemies->AddEnemy(NOTBASIC, 200, 6590, &notsobasic2);
+		App->enemies->AddEnemy(NOTBASIC, 200, 6530, &notsobasic3);
+
+
+		App->enemies->AddEnemy(NOTBASIC, 240, 6367, &fastright);
+		App->enemies->AddEnemy(NOTBASIC, 230, 6367, &fastright1);
+		App->enemies->AddEnemy(NOTBASIC, 240, 6413, &fastright2);
+		App->enemies->AddEnemy(NOTBASIC, 230, 6413, &fastright3);
+
 	}
 	if (App->ui->curr_check <= 2) {					// y < 5965
-		App->enemies->AddEnemy(GREENBASIC, 27, 5125, &gb21);
-		App->enemies->AddEnemy(GREENBASIC, 198, 5125, &gb21);
-		App->enemies->AddEnemy(GREENBASIC, 45, 5000, &gb21);
-		App->enemies->AddEnemy(GREENBASIC, 160, 5000, &gb21);
 
-		App->enemies->AddEnemy(GREENBASIC, 27, 5325, &gb19);
-		App->enemies->AddEnemy(GREENBASIC, 198, 5325, &gb18);
-		App->enemies->AddEnemy(GREENBASIC, 45, 5200, &gb20);
-		App->enemies->AddEnemy(GREENBASIC, 160, 5200, &gb4);
+		App->enemies->AddEnemy(NOTBASIC, 27, 5125, &gb11);
+		App->enemies->AddEnemy(NOTBASIC, 198, 5125, &gb17);
+		App->enemies->AddEnemy(NOTBASIC, 45, 5000, &gb18);
+		App->enemies->AddEnemy(NOTBASIC, 160, 5000, &gb6);
+
+		App->enemies->AddEnemy(NOTBASIC, 27, 5325, &gb5);
+		App->enemies->AddEnemy(NOTBASIC, 198, 5325, &gb6);
+		App->enemies->AddEnemy(NOTBASIC, 45, 5200, &gb7);
+		App->enemies->AddEnemy(NOTBASIC, 160, 5200, &gb8);
+
+		App->enemies->AddEnemy(NOTBASIC, 27, 5125, &gb21);
+		App->enemies->AddEnemy(NOTBASIC, 198, 5125, &gb21);
+		App->enemies->AddEnemy(NOTBASIC, 45, 5000, &gb21);
+		App->enemies->AddEnemy(NOTBASIC, 160, 5000, &gb21);
+
+		App->enemies->AddEnemy(NOTBASIC, 27, 5325, &gb19);
+		App->enemies->AddEnemy(NOTBASIC, 198, 5325, &gb18);
+		App->enemies->AddEnemy(NOTBASIC, 45, 5200, &gb20);
+		App->enemies->AddEnemy(NOTBASIC, 160, 5200, &gb4);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4950, &sl1);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4900, &sl2);
 		App->enemies->AddEnemy(STRANGE_LARGE, 196, 4854, &sl3);
 		App->enemies->AddEnemy(STRANGE_LARGE, 196, 4804, &sl4);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4758, &sl6);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4708, &sl5);
+
 	}
 	if (App->ui->curr_check <= 3) {				// y < 4900
-		App->enemies->AddEnemy(GREENBASIC, 73, 4700, &gb21);
-		App->enemies->AddEnemy(GREENBASIC, 140, 4700, &gb21);
+		App->enemies->AddEnemy(NOTBASIC, 73, 4700, &gb21);
+		App->enemies->AddEnemy(NOTBASIC, 140, 4700, &gb21);
+		App->enemies->AddEnemy(NOTBASIC, 73, 3951, &notsobasic1);
+		App->enemies->AddEnemy(NOTBASIC, 140, 3951, &notsobasic2);
 		App->enemies->AddEnemy(SMALLTURRET, 5, 2759);
 		App->enemies->AddEnemy(SMALLTURRET, 5, 2792);
 		App->enemies->AddEnemy(SMALLTURRET, 5, 2825);
@@ -517,4 +597,18 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	gb19.Restart();
 	gb20.Restart();
 	gb21.Restart();
+	notsobasic1.Restart();
+	notsobasic2.Restart();
+	notsobasic3.Restart();
+	fastright.Restart();
+	fastright1.Restart();
+	fastright2.Restart();
+	fastright3.Restart();
+	sl1.Restart();
+	sl2.Restart();
+	sl3.Restart();
+	sl4.Restart();
+	sl5.Restart();
+	sl6.Restart();
+
 }

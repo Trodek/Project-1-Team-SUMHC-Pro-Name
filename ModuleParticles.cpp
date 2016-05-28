@@ -252,6 +252,7 @@ bool ModuleParticles::Start()
 	green_basic_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Enemies Common Dead/common dead sprites.png");
 	boss = App->textures->Load("OutZone/Sprites/Enemies/Level 4/boss.png");
 	roomba = App->textures->Load("OutZone/Sprites/Enemies/Level 4/roomba.png");
+	notbasic = App->textures->Load("OutZone/Sprites/Enemies/Level 4/notsobasic.png");
 	strange_large = App->textures->Load("OutZone/Sprites/Enemies/Level 4/StrangeLargeShit.png");
 
 	enemy_blaster.tex = strange_large;

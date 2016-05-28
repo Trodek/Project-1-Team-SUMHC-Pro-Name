@@ -1,11 +1,11 @@
-#ifndef __Enemy_GreenBasic__
-#define __Enemy_GreenBasic__
+#ifndef __Enemy_NotBasic__
+#define __Enemy_NotBasic__
 
 #include "Enemy.h"
 #include "Globals.h"
 #include "ModuleEnemies.h"
 
-class EnemyGreenBasic : public Enemy
+class EnemyNotSoBasic : public Enemy
 {
 private:
 
@@ -39,7 +39,7 @@ private:
 
 public:
 
-	EnemyGreenBasic(int x, int y, ENEMY_TYPES type);
+	EnemyNotSoBasic(int x, int y, ENEMY_TYPES type);
 
 	void Shot();
 	void Move();

@@ -1063,7 +1063,7 @@ Animation* ModulePlayer::SelectAnimation(Direction direction){
 
 void ModulePlayer::ResetPosition(){
 	position.x = 105;
-	position.y = 7359;
+	position.y = 7410;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {

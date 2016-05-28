@@ -67,6 +67,13 @@ public:
 	Path roomba1;
 	Path roomba2;
 	Path roomba3;
+	Path notsobasic1;
+	Path notsobasic2;
+	Path notsobasic3;
+	Path fastright;
+	Path fastright1;
+	Path fastright2;
+	Path fastright3;
 	Path sl1;
 	Path sl2;
 	Path sl3;

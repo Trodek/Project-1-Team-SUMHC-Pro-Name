@@ -16,6 +16,12 @@
     <ClCompile Include="ModuleCollision.cpp">
       <Filter>Modules\Core</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleDrawParticles.cpp">
+      <Filter>Modules\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnemies.cpp">
+      <Filter>Modules\Core</Filter>
+    </ClCompile>
     <ClCompile Include="ModuleFadeToBlack.cpp">
       <Filter>Modules\Core</Filter>
     </ClCompile>
@@ -34,22 +40,40 @@
     <ClCompile Include="ModuleWindow.cpp">
       <Filter>Modules\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBigTurret.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBlueBasic.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBoss.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyGreenBasic.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyNotSoBasic.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyRoomba.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySmallTurret.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyStrangeLarge.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyTrain.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules\Player</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleWinScreen.cpp">
-      <Filter>Modules\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleScoreScreen.cpp">
-      <Filter>Modules\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneTitle.cpp">
-      <Filter>Modules\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneLevels.cpp">
-      <Filter>Modules\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleNameScreen.cpp">
+    <ClCompile Include="ModuleBomb.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ModuleContinue.cpp">
@@ -61,56 +85,26 @@
     <ClCompile Include="ModuleLoseScreen.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleBomb.cpp">
+    <ClCompile Include="ModuleNameScreen.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneLevels.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneTitle.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleScoreScreen.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWinScreen.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ModuleUI.cpp">
       <Filter>Modules\UI</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleEnemies.cpp">
-      <Filter>Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyBigTurret.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyGreenBasic.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemySmallTurret.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleDrawParticles.cpp">
-      <Filter>Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyBoss.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyRoomba.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyStrangeLarge.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyTrain.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyBlueBasic.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animation.h">
-      <Filter>Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="dynArray.h">
-      <Filter>Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Point.h">
-      <Filter>Containers</Filter>
-    </ClInclude>
     <ClInclude Include="Application.h">
       <Filter>Basic</Filter>
     </ClInclude>
@@ -120,6 +114,18 @@
     <ClInclude Include="MemLeaks.h">
       <Filter>Basic</Filter>
     </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="dynArray.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
     <ClInclude Include="Module.h">
       <Filter>Modules\Core</Filter>
     </ClInclude>
@@ -127,6 +133,12 @@
       <Filter>Modules\Core</Filter>
     </ClInclude>
     <ClInclude Include="ModuleCollision.h">
+      <Filter>Modules\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleDrawParticles.h">
+      <Filter>Modules\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleEnemies.h">
       <Filter>Modules\Core</Filter>
     </ClInclude>
     <ClInclude Include="ModuleFadeToBlack.h">
@@ -147,19 +159,40 @@
     <ClInclude Include="ModuleWindow.h">
       <Filter>Modules\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBigTurret.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBlueBasic.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBoss.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyGreenBasic.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyNotSoBasic.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyRoomba.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySmallTurret.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyStrangeLarge.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyTrain.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules\Player</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleWinScreen.h">
-      <Filter>Modules\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleScoreScreen.h">
-      <Filter>Modules\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneTitle.h">
-      <Filter>Modules\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneLevels.h">
+    <ClInclude Include="ModuleBomb.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleContinue.h">
@@ -174,73 +207,46 @@
     <ClInclude Include="ModuleNameScreen.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleBomb.h">
+    <ClInclude Include="ModuleSceneLevels.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneTitle.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleScoreScreen.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWinScreen.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleUI.h">
       <Filter>Modules\UI</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleEnemies.h">
-      <Filter>Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Path.h">
-      <Filter>Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyBigTurret.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyGreenBasic.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemySmallTurret.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleDrawParticles.h">
-      <Filter>Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyBoss.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyRoomba.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyStrangeLarge.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyTrain.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyBlueBasic.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Containers">
-      <UniqueIdentifier>{4f3f2849-c9cc-46db-b84f-d1b037aa2f63}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Basic">
-      <UniqueIdentifier>{cb6746fa-edbd-4de9-96ee-771d5e52adbd}</UniqueIdentifier>
+      <UniqueIdentifier>{5f35acd5-8c3a-441c-84f8-6615354b0913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{d0aafa92-84b1-4223-a100-669672bd3183}</UniqueIdentifier>
     </Filter>
     <Filter Include="Modules">
-      <UniqueIdentifier>{09a653e8-310c-4b07-8b58-cd54df6757b2}</UniqueIdentifier>
+      <UniqueIdentifier>{5e4ea6d1-efb5-46ab-a62e-b17b6e893602}</UniqueIdentifier>
     </Filter>
     <Filter Include="Modules\Core">
-      <UniqueIdentifier>{3fcd757a-9608-49a2-af72-50db0b98b61d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Modules\Player">
-      <UniqueIdentifier>{4fb025ed-b435-4082-8e32-0e5f82f209f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Modules\Scenes">
-      <UniqueIdentifier>{31dbe2cd-90d6-4d52-8cd6-deae21638760}</UniqueIdentifier>
+      <UniqueIdentifier>{31ab3cdb-8828-467d-b8a8-116b7215f447}</UniqueIdentifier>
     </Filter>
     <Filter Include="Modules\Enemies">
-      <UniqueIdentifier>{a43ad7a4-d02d-4ccb-98ac-4da46f0746ea}</UniqueIdentifier>
+      <UniqueIdentifier>{1ae6cf46-b94d-4436-847e-4f22490880c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Player">
+      <UniqueIdentifier>{20b33e08-79f8-4b29-be86-d75551cbfb37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Scenes">
+      <UniqueIdentifier>{b0a3e1b0-0d3b-4c56-a015-5beba9477cd3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Modules\UI">
-      <UniqueIdentifier>{8f4d430e-20fc-4340-8a58-4cb4f15c18da}</UniqueIdentifier>
+      <UniqueIdentifier>{1915d182-0da2-4c2c-950a-9529ab7bfade}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
