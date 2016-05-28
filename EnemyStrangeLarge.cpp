@@ -25,7 +25,7 @@ EnemyStrangeLarge::EnemyStrangeLarge(int x, int y, ENEMY_TYPES types) : Enemy(x,
 
 	tex = App->particles->strange_large;
 
-	dead = &App->particles->truck_dead;
+	dead = &App->particles->green_basic_dead;
 
 }
 
