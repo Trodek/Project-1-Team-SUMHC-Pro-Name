@@ -349,6 +349,7 @@ bool ModuleSceneLevels::Start()
 void ModuleSceneLevels::RestartEnemies() {
 	RestartEnemiesPaths();
 	if (App->ui->curr_check == 0) {							// y < 7159
+		App->enemies->AddEnemy(BLUEBASIC, 100, 6100);
 		App->enemies->AddEnemy(GREENBASIC, 100, 7100, &gb2);
 		App->enemies->AddEnemy(GREENBASIC, 140, 7100, &gb3);
 		App->enemies->AddEnemy(GREENBASIC, 100, 7050, &gb4);

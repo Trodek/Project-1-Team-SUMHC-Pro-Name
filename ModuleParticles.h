@@ -69,6 +69,7 @@ public:
 	Particle* active[MAX_ACTIVE_PARTICLES];
 
 	SDL_Texture* green_basic;
+	SDL_Texture* blue_basic;
 	SDL_Texture* small_turret;
 	SDL_Texture* boss = nullptr;
 	SDL_Texture* roomba = nullptr;

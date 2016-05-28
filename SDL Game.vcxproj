@@ -74,6 +74,7 @@
     <ClInclude Include="dynArray.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBigTurret.h" />
+    <ClInclude Include="EnemyBlueBasic.h" />
     <ClInclude Include="EnemyBoss.h" />
     <ClInclude Include="EnemyGreenBasic.h" />
     <ClInclude Include="EnemyRoomba.h" />
@@ -111,6 +112,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBigTurret.cpp" />
+    <ClCompile Include="EnemyBlueBasic.cpp" />
     <ClCompile Include="EnemyBoss.cpp" />
     <ClCompile Include="EnemyGreenBasic.cpp" />
     <ClCompile Include="EnemyRoomba.cpp" />

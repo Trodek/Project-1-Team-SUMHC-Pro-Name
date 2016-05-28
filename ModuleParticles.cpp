@@ -265,6 +265,8 @@ bool ModuleParticles::Start()
 	green_basic_bullet.tex = green_basic;	
 	green_basic_bullet_end.tex = green_basic;
 
+	blue_basic = App->textures->Load("OutZone/Sprites/Enemies/Level 4/train/blue_static_soldier.png");
+
 	truck_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck Explosion.png");
 	truck_dead_hole.tex = truck_tex;	
 	truck_footprint.tex = truck_tex;	

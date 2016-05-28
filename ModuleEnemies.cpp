@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "EnemyBigTurret.h"
 #include "EnemyTrain.h"
+#include "EnemyBlueBasic.h"
 #include "EnemyRoomba.h"
 #include "EnemyGreenBasic.h"
 #include "EnemyBoss.h"
@@ -168,6 +169,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 				break;
 			case ENEMY_TYPES::TRAIN:
 				enemies[i] = new EnemyTrain(info.x, info.y,info.type);
+				break;
+			case ENEMY_TYPES::BLUEBASIC:
+				enemies[i] = new EnemyBlueBasic(info.x, info.y, info.type);
 				break;
 			case ENEMY_TYPES::GREENBASIC:
 				enemies[i] = new EnemyGreenBasic(info.x, info.y, info.type);
