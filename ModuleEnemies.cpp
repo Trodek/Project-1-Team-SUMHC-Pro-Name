@@ -10,7 +10,7 @@
 #include "ModuleUI.h"
 #include "Enemy.h"
 #include "EnemyBigTurret.h"
-#include "EnemyTruck.h"
+#include "EnemyTrain.h"
 #include "EnemyRoomba.h"
 #include "EnemyGreenBasic.h"
 #include "EnemyBoss.h"
@@ -166,8 +166,8 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			case ENEMY_TYPES::BIGTURRET:
 				enemies[i] = new EnemyBigTurret(info.x,info.y,info.type);
 				break;
-			case ENEMY_TYPES::TRUCK:
-				enemies[i] = new EnemyTruck(info.x, info.y,info.type);
+			case ENEMY_TYPES::TRAIN:
+				enemies[i] = new EnemyTrain(info.x, info.y,info.type);
 				break;
 			case ENEMY_TYPES::GREENBASIC:
 				enemies[i] = new EnemyGreenBasic(info.x, info.y, info.type);
@@ -205,7 +205,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						temp->DeleteAll();
 					}
 					if (enemies[i]->type == BOSS) App->player->scroll = true;
-					if (enemies[i]->type == TRUCK) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y-126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
+					if (enemies[i]->type == TRAIN) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y-126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
 					App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y+enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 					App->ui->score += enemies[i]->points;
 					delete enemies[i];
@@ -219,7 +219,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						EnemyBoss* temp = dynamic_cast<EnemyBoss*> (enemies[i]);
 						temp->DeleteAll();
 					}
-					if (enemies[i]->type == TRUCK) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y - 126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
+					if (enemies[i]->type == TRAIN) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y - 126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
 					App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 					App->ui->score += enemies[i]->points;
 					delete enemies[i];
@@ -229,7 +229,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			if (c2->type == COLLIDER_DEAD_EXPLO && enemies[i]->hp>0){
 				if (enemies[i]->type != BOSS) enemies[i]->hp -= 60;
 				if (enemies[i]->hp < 1){
-					if (enemies[i]->type == TRUCK) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y - 126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
+					if (enemies[i]->type == TRAIN) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y - 126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
 					App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 					App->ui->score += enemies[i]->points;
 					delete enemies[i];
