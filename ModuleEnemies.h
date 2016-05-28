@@ -20,6 +20,7 @@ enum ENEMY_TYPES
 	ROOMBA,
 	NOTBASIC,
 	STRANGE_LARGE,
+	ENERGY_BOX,
 };
 
 struct SDL_Texture;

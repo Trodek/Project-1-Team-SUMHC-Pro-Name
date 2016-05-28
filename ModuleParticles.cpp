@@ -242,8 +242,11 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
+
 	green_basic_dead.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/enemy die.wav");
 	truck_dead.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/big enemy die.wav");
+
+	boxes = App->textures->Load("OutZone/Sprites/Enemies/Level 4/boxes.png");
 
 	multi_laser_tex = App->textures->Load("OutZone/Sprites/Main Char/Weapons/multi laser.png");
 	truck_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck.png");

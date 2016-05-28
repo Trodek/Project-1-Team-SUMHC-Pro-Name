@@ -75,6 +75,7 @@ public:
 	SDL_Texture* roomba = nullptr;
 	SDL_Texture* notbasic = nullptr;
 	SDL_Texture* strange_large = nullptr;;
+	SDL_Texture* boxes;
 
 
 	Particle basic_laser_p0;

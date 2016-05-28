@@ -401,9 +401,6 @@ bool ModuleSceneLevels::Start()
 	sl6.PushBack({ 0, -1 }, 105);
 	sl6.PushBack({ -1, 0 }, 555);
 
-
-
-
 	RestartEnemies();
 	return ret;
 }
@@ -414,6 +411,7 @@ void ModuleSceneLevels::RestartEnemies() {
 
 	if (App->ui->curr_check == 0) {							// y < 7159
 		App->enemies->AddEnemy(BLUEBASIC, 100, 6100);
+		App->enemies->AddEnemy(ENERGY_BOX, 50, 7150);
 		
 	}
 

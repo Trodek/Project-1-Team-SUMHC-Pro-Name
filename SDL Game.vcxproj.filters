@@ -222,6 +222,9 @@
     <ClInclude Include="ModuleUI.h">
       <Filter>Modules\UI</Filter>
     </ClInclude>
+    <ClInclude Include="EnergyBox.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Basic">

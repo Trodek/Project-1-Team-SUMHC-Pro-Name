@@ -18,6 +18,7 @@
 #include "EnemyNotSoBasic.h"
 #include "ModuleBomb.h"
 #include "EnemyStrangeLarge.h"
+#include "EnergyBox.h"
 
 #define SPAWN_MARGIN 150
 
@@ -197,7 +198,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			case ENEMY_TYPES::STRANGE_LARGE:
 				enemies[i] = new EnemyStrangeLarge(info.x, info.y, info.type);
 				enemies[i]->SetPath(info.path);
-
+			case ENEMY_TYPES::ENERGY_BOX:
+				enemies[i] = new EnergyBox(info.x, info.y, info.type);
+				break;
 		}
 	}
 }
@@ -222,7 +225,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
 					}
-					else App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y+enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
+					else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 					App->ui->score += enemies[i]->points;
 					delete enemies[i];
 					enemies[i] = nullptr;
@@ -240,7 +243,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
 					}
-					else App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
+					else if(enemies[i]->dead !=nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 					App->ui->score += enemies[i]->points;
 					delete enemies[i];
 					enemies[i] = nullptr;
@@ -254,7 +257,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
 					}
-					else App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
+					else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 					App->ui->score += enemies[i]->points;
 					delete enemies[i];
 					enemies[i] = nullptr;

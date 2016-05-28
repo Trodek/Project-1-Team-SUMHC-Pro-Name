@@ -25,7 +25,7 @@ public:
 	int y_collider_correction = 0;
 	ENEMY_TYPES type;
 	iPoint position;
-	Particle* dead;
+	Particle* dead = nullptr;
 	int hp;
 	int points;
 
