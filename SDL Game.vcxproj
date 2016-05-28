@@ -83,6 +83,7 @@
     <ClInclude Include="EnemyStrangeLarge.h" />
     <ClInclude Include="EnemyTrain.h" />
     <ClInclude Include="EnergyBox.h" />
+    <ClInclude Include="EnergyPill.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />

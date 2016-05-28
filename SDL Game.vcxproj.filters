@@ -225,6 +225,9 @@
     <ClInclude Include="EnergyBox.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="EnergyPill.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Basic">
