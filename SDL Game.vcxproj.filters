@@ -76,9 +76,6 @@
     <ClCompile Include="EnemyBigTurret.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyTruck.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyGreenBasic.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
@@ -95,6 +92,9 @@
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="EnemyStrangeLarge.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyTrain.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -189,9 +189,6 @@
     <ClInclude Include="EnemyBigTurret.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyTruck.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyGreenBasic.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
@@ -208,6 +205,9 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="EnemyStrangeLarge.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyTrain.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

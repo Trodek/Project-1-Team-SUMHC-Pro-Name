@@ -79,7 +79,7 @@
     <ClInclude Include="EnemyRoomba.h" />
     <ClInclude Include="EnemySmallTurret.h" />
     <ClInclude Include="EnemyStrangeLarge.h" />
-    <ClInclude Include="EnemyTruck.h" />
+    <ClInclude Include="EnemyTrain.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />
@@ -116,7 +116,7 @@
     <ClCompile Include="EnemyRoomba.cpp" />
     <ClCompile Include="EnemySmallTurret.cpp" />
     <ClCompile Include="EnemyStrangeLarge.cpp" />
-    <ClCompile Include="EnemyTruck.cpp" />
+    <ClCompile Include="EnemyTrain.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />

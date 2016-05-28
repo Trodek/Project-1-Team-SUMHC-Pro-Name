@@ -4,23 +4,20 @@
 #include "Enemy.h"
 #include "ModuleEnemies.h"
 
-class EnemyTruck : public Enemy
+class EnemyTrain : public Enemy
 {
 private:
 	iPoint original_pos;
-	Animation run;
 	Animation idle;
 	
 	int now;
-	int last_footprint;
 
-	Particle* footprint;
 	Particle* dead_hole;
 	Path mov;
 
 public:
 
-	EnemyTruck(int x, int y, ENEMY_TYPES type);
+	EnemyTrain(int x, int y, ENEMY_TYPES type);
 
 	void UpdateAnim();
 	void Move();
