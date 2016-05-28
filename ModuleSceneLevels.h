@@ -67,6 +67,12 @@ public:
 	Path roomba1;
 	Path roomba2;
 	Path roomba3;
+	Path sl1;
+	Path sl2;
+	Path sl3;
+	Path sl4;
+	Path sl5;
+	Path sl6;
 
 	//Platform stuff
 	Path platform_p;

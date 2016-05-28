@@ -304,6 +304,44 @@ bool ModuleSceneLevels::Start()
 	roomba3.PushBack({ -0.5f, -0.5f }, 30);
 	roomba3.PushBack({ 0.5f, -0.5f }, 30);
 
+	sl1.PushBack({ 0, 0 }, 50);
+	sl1.PushBack({ 1, 0 }, 125);
+	sl1.PushBack({ 0, 0 }, 500);
+	sl1.PushBack({ 0, 1 }, 75);
+	sl1.PushBack({ -1, 0 }, 555);
+
+	sl2.PushBack({ 0, 0 }, 200);
+	sl2.PushBack({ 1, 0 }, 125);
+	sl2.PushBack({ 0, 0 }, 500);
+	sl2.PushBack({ 0, 1 }, 125);
+	sl2.PushBack({ -1, 0 }, 555);
+
+	sl3.PushBack({ 0, 0 }, 50);
+	sl3.PushBack({ -1, 0 }, 125);
+	sl3.PushBack({ 0, 0 }, 500);
+	sl3.PushBack({ 0, 1 }, 75);
+	sl3.PushBack({ 1, 0 }, 555);
+
+	sl4.PushBack({ 0, 0 }, 200);
+	sl4.PushBack({ -1, 0 }, 125);
+	sl4.PushBack({ 0, 0 }, 500);
+	sl4.PushBack({ 0, 1 }, 125);
+	sl4.PushBack({ 1, 0 }, 555);
+
+	sl5.PushBack({ 0, 0 }, 200);
+	sl5.PushBack({ 1, 0 }, 125);
+	sl5.PushBack({ 0, 0 }, 500);
+	sl5.PushBack({ 0, -1 }, 55);
+	sl5.PushBack({ -1, 0 }, 555);
+
+	sl6.PushBack({ 0, 0 }, 50);
+	sl6.PushBack({ 1, 0 }, 125);
+	sl6.PushBack({ 0, 0 }, 500);
+	sl6.PushBack({ 0, -1 }, 105);
+	sl6.PushBack({ -1, 0 }, 555);
+
+
+
 	RestartEnemies();
 	return ret;
 }
@@ -341,6 +379,12 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(GREENBASIC, 198, 5325, &gb18);
 		App->enemies->AddEnemy(GREENBASIC, 45, 5200, &gb20);
 		App->enemies->AddEnemy(GREENBASIC, 160, 5200, &gb4);
+		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4950, &sl1);
+		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4900, &sl2);
+		App->enemies->AddEnemy(STRANGE_LARGE, 196, 4854, &sl3);
+		App->enemies->AddEnemy(STRANGE_LARGE, 196, 4804, &sl4);
+		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4758, &sl6);
+		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4708, &sl5);
 	}
 	if (App->ui->curr_check <= 3) {				// y < 4900
 		App->enemies->AddEnemy(GREENBASIC, 73, 4700, &gb21);

@@ -15,6 +15,7 @@
 #include "EnemyGreenBasic.h"
 #include "EnemyBoss.h"
 #include "ModuleBomb.h"
+#include "EnemyStrangeLarge.h"
 
 #define SPAWN_MARGIN 150
 
@@ -182,6 +183,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 				enemies[i] = new EnemyRoomba(info.x, info.y, info.type);
 				enemies[i]->SetPath(info.path);
 				break;
+			case ENEMY_TYPES::STRANGE_LARGE:
+				enemies[i] = new EnemyStrangeLarge(info.x, info.y, info.type);
+				enemies[i]->SetPath(info.path);
 		}
 	}
 }

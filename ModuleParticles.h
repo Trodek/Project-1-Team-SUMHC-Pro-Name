@@ -72,6 +72,7 @@ public:
 	SDL_Texture* small_turret;
 	SDL_Texture* boss = nullptr;
 	SDL_Texture* roomba = nullptr;
+	SDL_Texture* strange_large = nullptr;;
 
 	Particle basic_laser_p0;
 	Particle basic_laser_p1;
@@ -100,6 +101,9 @@ public:
 
 	Particle missile;
 	Particle bannana;
+
+	Particle enemy_shot_especial;
+	Particle enemy_blaster;
 };
 
 #endif // __MODULEPARTICLES_H__

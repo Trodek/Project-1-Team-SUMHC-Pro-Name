@@ -17,6 +17,7 @@ enum ENEMY_TYPES
 	SMALLTURRET,
 	BOSS,
 	ROOMBA,
+	STRANGE_LARGE,
 };
 
 struct SDL_Texture;

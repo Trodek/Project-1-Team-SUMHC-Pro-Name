@@ -94,6 +94,9 @@
     <ClCompile Include="EnemyRoomba.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyStrangeLarge.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -202,6 +205,9 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="EnemyRoomba.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyStrangeLarge.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

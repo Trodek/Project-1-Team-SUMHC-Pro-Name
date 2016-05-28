@@ -16,6 +16,23 @@ ModuleParticles::ModuleParticles()
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) 
 		active[i] = nullptr;
 
+	//enemy_shot_especial
+
+	enemy_shot_especial.anim.PushBack({ 10, 60, 14, 15 });
+	enemy_shot_especial.anim.PushBack({ 35, 60, 14, 15 });
+	enemy_shot_especial.anim.speed = 0.5f;
+	enemy_shot_especial.life = 1500;
+	enemy_shot_especial.collider = COLLIDER_ENEMY_SHOT;
+	enemy_shot_especial.end_particle = &green_basic_bullet_end;
+
+	//enemy_blaster
+
+	enemy_blaster.anim.PushBack({ 80, 48, 8, 40 });
+	enemy_blaster.life = 1500;
+	enemy_blaster.speed.y = 2;
+	enemy_blaster.drawit = BEFOR_PLAYER;
+	enemy_blaster.end_particle = &green_basic_bullet_end;
+
 	//missile paritcle
 
 	missile.anim.PushBack({ 46, 197, 16, 64});
@@ -235,6 +252,10 @@ bool ModuleParticles::Start()
 	green_basic_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Enemies Common Dead/common dead sprites.png");
 	boss = App->textures->Load("OutZone/Sprites/Enemies/Level 4/boss.png");
 	roomba = App->textures->Load("OutZone/Sprites/Enemies/Level 4/roomba.png");
+	strange_large = App->textures->Load("OutZone/Sprites/Enemies/Level 4/StrangeLargeShit.png");
+
+	enemy_blaster.tex = strange_large;
+	enemy_shot_especial.tex = strange_large;
 
 	missile.tex = boss;
 	bannana.tex = boss;
