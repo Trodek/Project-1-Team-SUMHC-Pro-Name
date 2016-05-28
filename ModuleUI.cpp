@@ -182,7 +182,6 @@ update_status ModuleUI::Update(){
 
 	if (App->input->keyboard[SDL_SCANCODE_5] == KEY_STATE::KEY_DOWN){
 		App->ui->AddCoin();
-		App->audio->PlaySoundEffect(coin_sound);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_M] == KEY_STATE::KEY_DOWN){
@@ -337,7 +336,10 @@ void ModuleUI::DrawNumber(int number, int x, int y, int variable, SDL_Rect Point
 }
 
 void ModuleUI::AddCoin(){
-	if (credit<9) credit++;
+	if (credit<9){ 
+		credit++;
+		App->audio->PlaySoundEffect(coin_sound);
+	}
 }
 
 void ModuleUI::SubCoin(){
