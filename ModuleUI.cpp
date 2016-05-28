@@ -288,7 +288,7 @@ update_status ModuleUI::Update(){
 		}	
 		if (title || cont) {
 			if (credit == 0 && !startgame) {
-				App->render->Blit(ui_graphics, 18, 1, &(InsertCoin.GetCurrentFrame()));
+				App->render->Blit(ui_graphics, 10, 1, &(InsertCoin.GetCurrentFrame()));
 			}
 			else {
 				App->render->Blit(ui_graphics, 26, 1, &player1_static);													//player1

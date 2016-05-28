@@ -1109,6 +1109,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 				current_animation = &dead_explo;
 			}
 		}
+
 	}
 }
 

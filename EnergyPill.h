@@ -21,6 +21,9 @@ public:
 		anim.PushBack({ 16, 183, 16, 16 });
 		anim.PushBack({ 39, 183, 16, 16 });
 		anim.speed = 0.4f;
+
+		hp = 1;
+		points = 50;
 		
 	}
 

@@ -429,9 +429,9 @@ void ModuleSceneLevels::RestartEnemies() {
 
 
 		App->enemies->AddEnemy(NOTBASIC, 240, 6367, &fastright);
-		App->enemies->AddEnemy(NOTBASIC, 230, 6367, &fastright1);
+		App->enemies->AddEnemy(NOTBASIC, 220, 6367, &fastright1);
 		App->enemies->AddEnemy(NOTBASIC, 240, 6413, &fastright2);
-		App->enemies->AddEnemy(NOTBASIC, 230, 6413, &fastright3);
+		App->enemies->AddEnemy(NOTBASIC, 220, 6413, &fastright3);
 
 	}
 	if (App->ui->curr_check <= 2) {					// y < 5965
@@ -445,11 +445,6 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(NOTBASIC, 198, 5325, &gb6);
 		App->enemies->AddEnemy(NOTBASIC, 45, 5200, &gb7);
 		App->enemies->AddEnemy(NOTBASIC, 160, 5200, &gb8);
-
-		App->enemies->AddEnemy(NOTBASIC, 27, 5125, &gb21);
-		App->enemies->AddEnemy(NOTBASIC, 198, 5125, &gb21);
-		App->enemies->AddEnemy(NOTBASIC, 45, 5000, &gb21);
-		App->enemies->AddEnemy(NOTBASIC, 160, 5000, &gb21);
 
 		App->enemies->AddEnemy(NOTBASIC, 27, 5325, &gb19);
 		App->enemies->AddEnemy(NOTBASIC, 198, 5325, &gb18);
