@@ -1101,6 +1101,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 			dead_fall = true;
 			current_animation = &fall_hole;
 		}
+		if (c2->type == COLLIDER_PLATFORM){
+			position.x++;
+		}
 	}
 	if (PlayerEBulletsCollider == c1 && PlayerEBulletsCollider != nullptr){
 		if (c2->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY_SHOT){
