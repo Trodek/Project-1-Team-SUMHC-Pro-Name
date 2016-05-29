@@ -487,17 +487,35 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(SMALLTURRET, 222, 2988);
 		App->enemies->AddEnemy(SMALLTURRET, 222, 2951);
 		App->enemies->AddEnemy(SMALLTURRET, 222, 3025);
+
+		AddEnergyBox(212, 4614);
+		AddEnergyBox(14, 3816);
+		AddEnergyBox(52, 2972);
+		AddChangeBox(30, 4511);
+		AddChangeBox(18, 4000);
 	}
 	if (App->ui->curr_check <= 4) {				// y < 2775
-		
+		AddEnergyBox(25, 2319);
+		AddChangeBox(218, 2278);
+
 	}
 	if (App->ui->curr_check <= 5) {				// y < 2000
 		App->enemies->AddEnemy(ROOMBA, 197, 1091, &roomba1);
 		App->enemies->AddEnemy(ROOMBA, 197, 1123, &roomba2);
 		App->enemies->AddEnemy(ROOMBA, 115, 1029, &roomba3);
+
+		AddEnergyBox(25, 1847);
+		AddEnergyBox(119, 1609);
+		AddEnergyBox(50, 1265);
+		AddEnergyBox(15, 528);
+		AddChangeBox(77, 1903);
+		AddChangeBox(210, 1083);
 	}
 	if (App->ui->curr_check <= 6) {				// y < 479
 		App->enemies->AddEnemy(BOSS, 88, -5);
+		AddChangeBox(30, 457);
+		AddChangeBox(193, 457);
+		
 	}
 }
 
