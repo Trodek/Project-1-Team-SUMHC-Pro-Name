@@ -1,3 +1,6 @@
+#ifndef _StrangeLarge_
+#define _StrangeLarge_
+
 #include "Enemy.h"
 
 class EnemyStrangeLarge :public Enemy{
@@ -18,3 +21,5 @@ public:
 
 
 };
+
+#endif

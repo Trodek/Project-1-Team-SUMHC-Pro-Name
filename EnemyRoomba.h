@@ -1,3 +1,6 @@
+#ifndef _Roomba_
+#define _Roomba_
+
 #include "Enemy.h"
 
 enum ROOMBA_STATES {
@@ -37,3 +40,5 @@ public:
 	void CreateShots();
 
 };
+
+#endif

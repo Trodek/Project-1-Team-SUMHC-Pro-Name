@@ -413,6 +413,8 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(BLUEBASIC, 100, 6100);
 		App->enemies->AddEnemy(ENERGY_PILL, 55, 7155);
 		App->enemies->AddEnemy(ENERGY_BOX, 50, 7150);
+		App->enemies->AddEnemy(CHANGE_PILL, 95, 7155);
+		App->enemies->AddEnemy(CHANGE_BOX, 90, 7150);
 		
 	}
 

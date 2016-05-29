@@ -20,6 +20,8 @@
 #include "ModuleBomb.h"
 #include "EnemyStrangeLarge.h"
 #include "EnergyBox.h"
+#include "ChangeBox.h"
+#include "ChangePill.h"
 
 #define SPAWN_MARGIN 150
 
@@ -205,6 +207,12 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			case ENEMY_TYPES::ENERGY_PILL:
 				enemies[i] = new EnergyPill(info.x, info.y, info.type);
 				break;
+			case ENEMY_TYPES::CHANGE_BOX:
+				enemies[i] = new ChangeBox(info.x, info.y, info.type);
+				break;
+			case ENEMY_TYPES::CHANGE_PILL:
+				enemies[i] = new ChangePill(info.x, info.y, info.type);
+				break;
 		}
 	}
 }
@@ -217,6 +225,12 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (c1->type == COLLIDER_ENERGY && c2->type == COLLIDER_PLAYER_EBULLETS){
 				App->ui->AddEnergy();
+				delete enemies[i];
+				enemies[i] = nullptr;
+			}
+			else if (c1->type == COLLIDER_CHANGE && c2->type == COLLIDER_PLAYER_EBULLETS){
+				App->player->current_weapon = App->player->ChangeWeapon(App->player->current_weapon);
+				App->player->last_basic_weapon = App->player->current_weapon;
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}

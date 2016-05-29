@@ -1,5 +1,5 @@
-#ifndef _EnergyBox_
-#define _EnergyBox_
+#ifndef _ChangeBox_
+#define _ChangeBox_
 
 #include "Application.h"
 #include "Enemy.h"
@@ -7,17 +7,17 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 
-class EnergyBox :public Enemy{
+class ChangeBox :public Enemy{
 private:
 	SDL_Rect image;
 public:
-	EnergyBox(int x, int y, ENEMY_TYPES types) : Enemy(x, y, types){
+	ChangeBox(int x, int y, ENEMY_TYPES types) : Enemy(x, y, types){
 		position.x = x;
 		position.y = y;
 
 		tex = App->particles->boxes;
-		
-		image = { 24, 269, 40, 39 };
+
+		image = { 21, 222, 32, 32 };
 
 		collider = App->collisions->AddCollider({ 0, 0, 40, 39 }, COLLIDER_BOX, (Module*)App->enemies);
 		collider->SetPos(position.x, position.y);
