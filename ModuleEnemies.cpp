@@ -201,6 +201,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			case ENEMY_TYPES::STRANGE_LARGE:
 				enemies[i] = new EnemyStrangeLarge(info.x, info.y, info.type);
 				enemies[i]->SetPath(info.path);
+				break;
 			case ENEMY_TYPES::ENERGY_BOX:
 				enemies[i] = new EnergyBox(info.x, info.y, info.type);
 				break;

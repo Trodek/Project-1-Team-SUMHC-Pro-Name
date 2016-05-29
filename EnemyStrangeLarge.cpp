@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "ModuleCollision.h"
 #include "EnemyStrangeLarge.h"
+#include "ModuleRender.h"
 #include "ModuleParticles.h"
 
 EnemyStrangeLarge::EnemyStrangeLarge(int x, int y, ENEMY_TYPES types) : Enemy(x, y, types) {
@@ -53,4 +54,9 @@ void EnemyStrangeLarge::Shot(){
 	cont++;
 	position = original + path->GetCurrentSpeed();
 
+}
+
+void EnemyStrangeLarge::Draw(){
+	collider->SetPos(position.x, position.y);
+	App->render->Blit(tex, position.x, position.y, &animation->GetCurrentFrame());
 }

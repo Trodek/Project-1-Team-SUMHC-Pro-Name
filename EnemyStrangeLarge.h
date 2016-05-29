@@ -18,7 +18,7 @@ private:
 public:
 	EnemyStrangeLarge(int x, int y, ENEMY_TYPES types);
 	void Shot();
-
+	void Draw();
 
 };
 

@@ -19,7 +19,7 @@ public:
 
 		image = { 21, 222, 32, 32 };
 
-		collider = App->collisions->AddCollider({ 0, 0, 40, 39 }, COLLIDER_BOX, (Module*)App->enemies);
+		collider = App->collisions->AddCollider({ 0, 0, 32, 32 }, COLLIDER_BOX, (Module*)App->enemies);
 		collider->SetPos(position.x, position.y);
 
 		hp = 1;
