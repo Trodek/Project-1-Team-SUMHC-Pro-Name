@@ -130,6 +130,16 @@ ModuleUI::ModuleUI(){
 	Low_energy_static.w = 40;
 	Low_energy_static.h = 24;
 
+	//Stage Clear
+	stageclear.x = 0;
+	stageclear.y = 378;
+	stageclear.w = 118;
+	stageclear.h = 37;
+
+	bombpoints.x = 119;
+	bombpoints.y = 378;
+	bombpoints.w = 120;
+	bombpoints.h = 87;
 	//CheckPoints
 	checkpoints.PushBack(-7159 * SCREEN_SIZE);
 	checkpoints.PushBack(-7000 * SCREEN_SIZE);
@@ -271,6 +281,12 @@ update_status ModuleUI::Update(){
 		}
 		else
 			App->render->Blit(ui_graphics, 160, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2.GetCurrentFrame()));		//player2
+		if (get_score) {
+			App->render->Blit(ui_graphics, 60, 60, &stageclear);
+			App->render->Blit(ui_graphics, 60, 110, &bombpoints);
+			DrawNumber(bombs, 149, 138, 8, top_points);
+//			DrawNumber(50000, 1)
+		}
 	}
 	else{
 		//Draw Stuff

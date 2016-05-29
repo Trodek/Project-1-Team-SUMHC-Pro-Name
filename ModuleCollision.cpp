@@ -288,6 +288,8 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_PLATFORMR][COLLIDER_ENERGY] = false;
 	matrix[COLLIDER_PLATFORMR][COLLIDER_CHANGE] = false;
 	matrix[COLLIDER_PLATFORMR][COLLIDER_PLATFORMR] = false;
+
+	player_collisioning = 0;
 }
 
 // Destructor
@@ -333,7 +335,20 @@ update_status ModuleCollision::PreUpdate()
 					Direction dir = c1->ColliderHit(c2->rect);
 					if (c1->type == COLLIDER_PLAYER || c1->type == COLLIDER_PLAYER_EBULLETS) {
 						App->player->OnCollision(c1, c2, dir);
-						player_collided = true;
+						switch (dir) {
+						case UP:
+							player_collisioning += 1;
+							break;
+						case LEFT:
+							player_collisioning += 2;
+							break;
+						case RIGHT:
+							player_collisioning += 4;
+							break;
+						case DOWN:
+							player_collisioning += 7;
+							break;
+						}
 					}
 					else
 						c1->callback->OnCollision(c1, c2);
@@ -368,12 +383,59 @@ update_status ModuleCollision::Update()
 
 update_status ModuleCollision::PostUpdate()
 {
-	if (player_collided == false) {
-		App->player->move_up = App->player->move_down = App->player->move_left = App->player->move_right = true;
-		//App->player->move_up_p2 = App->player->move_down_p2 = App->player->move_left_p2 = App->player->move_right_p2 = true;
+	switch (player_collisioning) {
+	case 0:								//no collision
+		App->player->move_left = true;
+		App->player->move_right = true;
+		App->player->move_down = true;
+		App->player->move_up = true;
+		break;
+	case 1:								//collision UP
+		App->player->move_left = true;
+		App->player->move_right = true;
+		App->player->move_down = true;
+		break;
+	case 2:								//collision LEFT
+		App->player->move_up = true;
+		App->player->move_right = true;
+		App->player->move_down = true;
+		break;
+	case 3:								//collision LEFT + UP
+		App->player->move_down = true;
+		App->player->move_right = true;
+		break;
+	case 4:								//collision RIGHT
+		App->player->move_left = true;
+		App->player->move_up = true;
+		App->player->move_down = true;
+		break;
+	case 5:								//collision RIGHT + UP
+		App->player->move_left = true;
+		App->player->move_down = true;
+		break;
+	case 6:								//collision RIGHT + LEFT
+		App->player->move_down = true;
+		App->player->move_up = true;
+		break;
+	case 7:								//collision DOWN
+		App->player->move_left = true;
+		App->player->move_right = true;
+		App->player->move_up = true;
+		break;
+	case 8:								//collision DOWN + UP
+		App->player->move_left = true;
+		App->player->move_right = true;
+		break;
+	case 9:								//collision DOWN + LEFT
+		App->player->move_up = true;
+		App->player->move_right = true;
+		break;
+	case 11:							//collision DOWN + RIGHT
+		App->player->move_left = true;
+		App->player->move_up = true;
+		break;
 	}
-	else
-		player_collided = false;
+	player_collisioning = 0;
 
 	return UPDATE_CONTINUE;
 }

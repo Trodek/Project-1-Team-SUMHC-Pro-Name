@@ -51,6 +51,7 @@ public:
 	void AddEnergy();
 
 	void GetScore();
+	void Endlevel();
 
 	void DrawNumber(int number, int x, int y, int variable, SDL_Rect Points);
 	void DrawPlayer2Score(int number, int x, int y, int variable, SDL_Rect Points);
@@ -130,6 +131,9 @@ public:
 	SDL_Rect gameover;
 
 	SDL_Rect bomb;
+
+	SDL_Rect stageclear;
+	SDL_Rect bombpoints;
 
 	Mix_Chunk* coin_sound;
 };
