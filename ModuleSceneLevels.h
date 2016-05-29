@@ -82,7 +82,9 @@ public:
 	Path sl6;
 
 	//Platform stuff
-	Path platform_p;
+	Path platform_p1;
+	Path platform_p2;
+	Path platform_p3;
 	Animation platform_anim;
 	SDL_Texture* platform_t = nullptr;
 	iPoint platform1_pos;
@@ -97,6 +99,9 @@ public:
 	iPoint platform3_aux_pos;
 	Collider* platform_3_1;
 	Collider* platform_3_2;
+	Collider* platformr1;
+	Collider* platformr2;
+	Collider* platforml;
 };
 
 #endif // __MODULESCENELevels_H__
