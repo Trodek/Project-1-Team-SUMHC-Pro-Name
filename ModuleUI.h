@@ -50,6 +50,8 @@ public:
 
 	void AddEnergy();
 
+	void GetScore();
+
 	void DrawNumber(int number, int x, int y, int variable, SDL_Rect Points);
 	void DrawPlayer2Score(int number, int x, int y, int variable, SDL_Rect Points);
 	bool TopScore();
@@ -83,6 +85,9 @@ public:
 	bool dead = false;
 	bool player2_dead = false;
 	bool startgame = false;
+
+	int temp_score;
+	bool get_score;
 
 	bool player2_enabled = false;
 

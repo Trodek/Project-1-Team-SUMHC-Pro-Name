@@ -540,6 +540,7 @@ update_status ModuleSceneLevels::Update()
 		App->fade->FadeToBlack(this, (Module*)App->losescreen, 1.0f);
 	}
 	if (App->render->camera.y > -1){
+		App->ui->GetScore();
 		App->fade->FadeToBlack(this, (Module*)App->winscreen, 0.3f);
 	}
 	// Draw everything --------------------------------------
