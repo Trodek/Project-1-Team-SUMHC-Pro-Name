@@ -16,6 +16,7 @@
 #include "EnemyGreenBasic.h"
 #include "EnemyBoss.h"
 #include "EnemyNotSoBasic.h"
+#include "EnergyPill.h"
 #include "ModuleBomb.h"
 #include "EnemyStrangeLarge.h"
 #include "EnergyBox.h"
@@ -201,6 +202,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			case ENEMY_TYPES::ENERGY_BOX:
 				enemies[i] = new EnergyBox(info.x, info.y, info.type);
 				break;
+			case ENEMY_TYPES::ENERGY_PILL:
+				enemies[i] = new EnergyPill(info.x, info.y, info.type);
+				break;
 		}
 	}
 }
@@ -209,58 +213,65 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
-		{	
-			if (c2->type == COLLIDER_PLAYER_SHOT && enemies[i]->hp>0){
-				enemies[i]->hp -= App->player->GetDmg();
-				App->audio->PlaySoundEffect(enemy_hitted);
-				if (enemies[i]->hp < 1){
-					if (enemies[i]->type == BOSS){
-						EnemyBoss* temp = dynamic_cast<EnemyBoss*> (enemies[i]);
-						temp->DeleteAll();
-					}
-					if (enemies[i]->type == BOSS) App->player->scroll = true;
-					if (enemies[i]->type == TRAIN) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y-126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
-					if (enemies[i]->type == STRANGE_LARGE){
-						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
-						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
-					}
-					else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
-					App->ui->score += enemies[i]->points;
-					delete enemies[i];
-					enemies[i] = nullptr;
-				}
+		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+		{
+			if (c1->type == COLLIDER_ENERGY && c2->type == COLLIDER_PLAYER_EBULLETS){
+				App->ui->AddEnergy();
+				delete enemies[i];
+				enemies[i] = nullptr;
 			}
-			if (c2->type == COLLIDER_BOMB && enemies[i]->hp>0){
-				enemies[i]->hp -= 125;
-				if (enemies[i]->hp < 1){
-					if (enemies[i]->type == BOSS){
-						EnemyBoss* temp = dynamic_cast<EnemyBoss*> (enemies[i]);
-						temp->DeleteAll();
+			else{
+				if (c2->type == COLLIDER_PLAYER_SHOT && enemies[i]->hp>0){
+					enemies[i]->hp -= App->player->GetDmg();
+					App->audio->PlaySoundEffect(enemy_hitted);
+					if (enemies[i]->hp < 1){
+						if (enemies[i]->type == BOSS){
+							EnemyBoss* temp = dynamic_cast<EnemyBoss*> (enemies[i]);
+							temp->DeleteAll();
+						}
+						if (enemies[i]->type == BOSS) App->player->scroll = true;
+						if (enemies[i]->type == TRAIN) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y - 126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
+						if (enemies[i]->type == STRANGE_LARGE){
+							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
+							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
+						}
+						else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
+						App->ui->score += enemies[i]->points;
+						delete enemies[i];
+						enemies[i] = nullptr;
 					}
-					if (enemies[i]->type == TRAIN) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y - 126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
-					if (enemies[i]->type == STRANGE_LARGE){
-						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
-						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
-					}
-					else if(enemies[i]->dead !=nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
-					App->ui->score += enemies[i]->points;
-					delete enemies[i];
-					enemies[i] = nullptr;
 				}
-			}
-			if (c2->type == COLLIDER_DEAD_EXPLO && enemies[i]->hp>0){
-				if (enemies[i]->type != BOSS) enemies[i]->hp -= 60;
-				if (enemies[i]->hp < 1){
-					if (enemies[i]->type == TRAIN) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y - 126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
-					if (enemies[i]->type == STRANGE_LARGE){
-						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
-						App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
+				if (c2->type == COLLIDER_BOMB && enemies[i]->hp > 0){
+					enemies[i]->hp -= 125;
+					if (enemies[i]->hp < 1){
+						if (enemies[i]->type == BOSS){
+							EnemyBoss* temp = dynamic_cast<EnemyBoss*> (enemies[i]);
+							temp->DeleteAll();
+						}
+						if (enemies[i]->type == TRAIN) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y - 126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
+						if (enemies[i]->type == STRANGE_LARGE){
+							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
+							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
+						}
+						else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
+						App->ui->score += enemies[i]->points;
+						delete enemies[i];
+						enemies[i] = nullptr;
 					}
-					else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
-					App->ui->score += enemies[i]->points;
-					delete enemies[i];
-					enemies[i] = nullptr;
+				}
+				if (c2->type == COLLIDER_DEAD_EXPLO && enemies[i]->hp > 0){
+					if (enemies[i]->type != BOSS) enemies[i]->hp -= 60;
+					if (enemies[i]->hp < 1){
+						if (enemies[i]->type == TRAIN) App->particles->AddParticle(App->particles->truck_dead_hole, enemies[i]->position.x + 1, enemies[i]->position.y - 126, COLLIDER_NONE, { 0, 0, 0, 0 }, 0);
+						if (enemies[i]->type == STRANGE_LARGE){
+							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
+							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
+						}
+						else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
+						App->ui->score += enemies[i]->points;
+						delete enemies[i];
+						enemies[i] = nullptr;
+					}
 				}
 			}
 			break;

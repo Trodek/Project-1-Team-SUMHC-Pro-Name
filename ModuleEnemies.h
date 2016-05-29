@@ -21,6 +21,7 @@ enum ENEMY_TYPES
 	NOTBASIC,
 	STRANGE_LARGE,
 	ENERGY_BOX,
+	ENERGY_PILL,
 };
 
 struct SDL_Texture;

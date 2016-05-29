@@ -411,6 +411,7 @@ void ModuleSceneLevels::RestartEnemies() {
 
 	if (App->ui->curr_check == 0) {							// y < 7159
 		App->enemies->AddEnemy(BLUEBASIC, 100, 6100);
+		App->enemies->AddEnemy(ENERGY_PILL, 55, 7155);
 		App->enemies->AddEnemy(ENERGY_BOX, 50, 7150);
 		
 	}
