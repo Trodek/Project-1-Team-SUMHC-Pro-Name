@@ -411,10 +411,6 @@ void ModuleSceneLevels::RestartEnemies() {
 
 	if (App->ui->curr_check == 0) {							// y < 7159
 		App->enemies->AddEnemy(BLUEBASIC, 100, 6100);
-		App->enemies->AddEnemy(ENERGY_PILL, 55, 7155);
-		App->enemies->AddEnemy(ENERGY_BOX, 50, 7150);
-		App->enemies->AddEnemy(CHANGE_PILL, 95, 7155);
-		App->enemies->AddEnemy(CHANGE_BOX, 90, 7150);
 		
 	}
 
@@ -435,6 +431,9 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(NOTBASIC, 220, 6367, &fastright1);
 		App->enemies->AddEnemy(NOTBASIC, 240, 6413, &fastright2);
 		App->enemies->AddEnemy(NOTBASIC, 220, 6413, &fastright3);
+
+		AddChangeBox(108, 6336);
+		AddEnergyBox(18,6161);
 
 	}
 	if (App->ui->curr_check <= 2) {					// y < 5965
@@ -459,6 +458,12 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(STRANGE_LARGE, 196, 4804, &sl4);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4758, &sl6);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4708, &sl5);
+
+		AddChangeBox(14, 5928);
+		AddEnergyBox(32, 5656);
+		AddChangeBox(204, 5432);
+		AddChangeBox(12, 5038);
+		AddEnergyBox(48, 5038);
 
 	}
 	if (App->ui->curr_check <= 3) {				// y < 4900
@@ -607,4 +612,14 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	sl5.Restart();
 	sl6.Restart();
 
+}
+
+void ModuleSceneLevels::AddChangeBox(int x,int y){
+	App->enemies->AddEnemy(CHANGE_PILL, x,y);
+	App->enemies->AddEnemy(CHANGE_BOX, x-8, y-8);
+}
+
+void ModuleSceneLevels::AddEnergyBox(int x, int y){
+	App->enemies->AddEnemy(ENERGY_PILL, x, y);
+	App->enemies->AddEnemy(ENERGY_BOX, x-12, y-12);
 }

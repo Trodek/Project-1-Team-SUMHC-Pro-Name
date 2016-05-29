@@ -23,6 +23,8 @@ public:
 	bool CameraReset();
 	void RestartEnemiesPaths();
 	void RestartEnemies();
+	void AddEnergyBox(int x, int y);
+	void AddChangeBox(int x, int y);
 
 public:
 

@@ -1,3 +1,4 @@
+
 #ifndef _EnergyBox_
 #define _EnergyBox_
 
