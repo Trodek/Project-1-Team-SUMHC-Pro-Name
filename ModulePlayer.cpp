@@ -1101,8 +1101,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 			dead_fall = true;
 			current_animation = &fall_hole;
 		}
-		if (c2->type == COLLIDER_PLATFORM){
-			position.x++;
+		if (c2->type == COLLIDER_PLATFORMR&&position.x<240){
+			position.x+=1;
+		}
+		if (c2->type == COLLIDER_PLATFORML&&position.x>0){
+			position.x-=1;
 		}
 	}
 	if (PlayerEBulletsCollider == c1 && PlayerEBulletsCollider != nullptr){
