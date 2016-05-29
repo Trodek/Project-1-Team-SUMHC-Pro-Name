@@ -140,6 +140,11 @@ ModuleUI::ModuleUI(){
 	bombpoints.y = 378;
 	bombpoints.w = 120;
 	bombpoints.h = 87;
+
+	pink_numbers.x = 5;
+	pink_numbers.y = 472;
+	pink_numbers.w = 7;
+	pink_numbers.h = 7;
 	//CheckPoints
 	checkpoints.PushBack(-7159 * SCREEN_SIZE);
 	checkpoints.PushBack(-7000 * SCREEN_SIZE);
@@ -285,7 +290,10 @@ update_status ModuleUI::Update(){
 			App->render->Blit(ui_graphics, 60, 60, &stageclear);
 			App->render->Blit(ui_graphics, 60, 110, &bombpoints);
 			DrawNumber(bombs, 149, 138, 8, top_points);
-//			DrawNumber(50000, 1)
+			DrawNumber(50000, 112, 163, 8, pink_numbers);
+			DrawNumber(temp_bomb, 112, 179, 8, pink_numbers);
+			if (temp_bomb < 0) temp_bomb == 0;
+			else temp_bomb -= 11;
 		}
 	}
 	else{
@@ -328,6 +336,7 @@ void ModuleUI::SetGameStartConditions(){
 		score = temp_score;
 		get_score = false;
 	}
+	first_time = true;
 	temp_score = 0;
 	energy = 36;
 	max_energy = 36;
@@ -405,4 +414,7 @@ bool ModuleUI::TopScore() {
 void ModuleUI::GetScore() {
 	temp_score = score;
 	get_score = true;
+	temp_bomb = bombs * 500;
+	score += temp_bomb;
+	first_time = false;
 }

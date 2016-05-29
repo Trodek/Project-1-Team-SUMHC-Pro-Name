@@ -89,6 +89,8 @@ public:
 
 	int temp_score;
 	bool get_score;
+	bool first_time;
+	int temp_bomb;
 
 	bool player2_enabled = false;
 
@@ -134,6 +136,7 @@ public:
 
 	SDL_Rect stageclear;
 	SDL_Rect bombpoints;
+	SDL_Rect pink_numbers;
 
 	Mix_Chunk* coin_sound;
 };
