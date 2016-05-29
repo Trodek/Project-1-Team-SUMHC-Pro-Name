@@ -124,8 +124,10 @@ bool ModuleSceneLevels::Start()
 	App->collisions->AddCollider({ 220, 7420 + 40, 10, 90 }, COLLIDER_HOLE);
 	App->collisions->AddCollider({ 230, 7410 + 40, 10, 90 }, COLLIDER_HOLE);
 
-	App->collisions->AddCollider({ 0, 2430, 65, 1228 }, COLLIDER_HOLE);
-	App->collisions->AddCollider({ 175, 2493, 65, 1162 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 2937, 33, 74 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 2493, 65, 448 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 0, 3007, 65, 607 }, COLLIDER_HOLE);
+	App->collisions->AddCollider({ 175, 2557, 65, 1057 }, COLLIDER_HOLE);
 
 	App->collisions->AddCollider({ 0, 2089, 33, 54 }, COLLIDER_WALL);
 	App->collisions->AddCollider({ 64, 2087, 62, 56 }, COLLIDER_WALL);
