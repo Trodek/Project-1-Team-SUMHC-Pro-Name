@@ -145,6 +145,11 @@ ModuleUI::ModuleUI(){
 	pink_numbers.y = 472;
 	pink_numbers.w = 7;
 	pink_numbers.h = 7;
+
+	bomb_cont.x = 2;
+	bomb_cont.y = 493;
+	bomb_cont.w = 12;
+	bomb_cont.h = 18;
 	//CheckPoints
 	checkpoints.PushBack(-7159 * SCREEN_SIZE);
 	checkpoints.PushBack(-7000 * SCREEN_SIZE);
@@ -289,11 +294,11 @@ update_status ModuleUI::Update(){
 		if (get_score) {
 			App->render->Blit(ui_graphics, 60, 60, &stageclear);
 			App->render->Blit(ui_graphics, 60, 110, &bombpoints);
-			DrawNumber(bombs, 149, 138, 8, top_points);
+			DrawNumber(bombs, 158, 136, 8, bomb_cont);
 			DrawNumber(50000, 112, 163, 8, pink_numbers);
 			DrawNumber(temp_bomb, 112, 179, 8, pink_numbers);
-			if (temp_bomb < 0) temp_bomb == 0;
-			else temp_bomb -= 100;
+			if ((temp_bomb - 100) >= 0) temp_bomb -= 100;
+			else temp_bomb = 0;
 		}
 	}
 	else{
