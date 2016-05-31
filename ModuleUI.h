@@ -139,6 +139,8 @@ public:
 	SDL_Rect pink_numbers;
 	SDL_Rect bomb_cont;
 
+	uint e_dead;
+
 	Mix_Chunk* coin_sound;
 };
 

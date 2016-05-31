@@ -241,9 +241,11 @@ update_status ModuleUI::Update(){
 		if (now - e_timer > 1500 && energy > 0) {
 			energy--;
 			energy_p2--;
-			e_timer = SDL_GetTicks();
+			e_timer = SDL_GetTicks();	
+			if (energy == 0) 
+				App->player->SetEnergyDeath();
 		}
-
+	
 		if (curr_check + 1 < checkpoints.size()){
 			if ((-App->render->camera.y) / 3 + 200 < checkpoints[curr_check + 1].y)
 				curr_check++;

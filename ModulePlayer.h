@@ -38,6 +38,7 @@ public:
 	Animation* SelectAnimation(Direction direction);
 	void ResetPosition();
 	void OnCollision(Collider* c1, Collider* c2, Direction dir);
+	void SetEnergyDeath();
 
 	//bool CheckColliders();
 
@@ -48,6 +49,7 @@ public:
 	iPoint PreviousPos;
 	bool dead = false;
 	bool dead_fall = false;
+	bool dead_energy = false;
 	bool pos_changed = false;
 	bool scroll = true;
 
@@ -55,6 +57,7 @@ public:
 	SDL_Texture* bomb_tex = nullptr;
 	SDL_Texture* dead_explo_text = nullptr;
 	SDL_Texture* casual_tex = nullptr;
+	SDL_Texture* dead_energy_text = nullptr;
 
 	SDL_Rect casual;
 
@@ -73,6 +76,7 @@ public:
 	Animation laser_360;
 	Animation bomb;
 	Animation dead_explo;
+	Animation out_of_energy;
 
 	Animation multi_up;
 	Animation multi_down;
@@ -110,7 +114,9 @@ public:
 	uint last_multi;
 	uint now;
 
+	uint go;
 
+	SDL_Rect go_ahead;
 
 };
 
