@@ -293,7 +293,7 @@ update_status ModuleUI::Update(){
 			DrawNumber(50000, 112, 163, 8, pink_numbers);
 			DrawNumber(temp_bomb, 112, 179, 8, pink_numbers);
 			if (temp_bomb < 0) temp_bomb == 0;
-			else temp_bomb -= 11;
+			else temp_bomb -= 100;
 		}
 	}
 	else{
@@ -414,7 +414,7 @@ bool ModuleUI::TopScore() {
 void ModuleUI::GetScore() {
 	temp_score = score;
 	get_score = true;
-	temp_bomb = bombs * 500;
+	temp_bomb = bombs * 1500;
 	score += temp_bomb;
 	first_time = false;
 }
