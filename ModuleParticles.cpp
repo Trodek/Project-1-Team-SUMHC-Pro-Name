@@ -16,6 +16,18 @@ ModuleParticles::ModuleParticles()
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) 
 		active[i] = nullptr;
 
+	//missile2
+
+	missile2.anim.PushBack({ 13, 63, 16, 32 });
+	missile2.anim.PushBack({ 37, 63, 16, 32 });
+	missile2.anim.PushBack({ 62, 63, 16, 32 });
+	missile2.anim.PushBack({ 83, 63, 16, 32 });
+	missile2.anim.speed = 0.6f;
+	missile2.collider = COLLIDER_ENEMY_SHOT;
+	missile2.end_particle = &green_basic_bullet_end;
+	missile2.life = 2500;
+	missile2.speed.y = 2;
+
 	//enemy_shot_especial
 
 	enemy_shot_especial.anim.PushBack({ 10, 60, 14, 15 });
@@ -263,6 +275,9 @@ bool ModuleParticles::Start()
 
 	missile.tex = boss;
 	bannana.tex = boss;
+
+	missilethrower = App->textures->Load("OutZone/Sprites/Enemies/Level 4/missile thrower.png");
+	missile2.tex = missilethrower;
 
 	green_basic = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Green Soldier/Soldier Green.png");
 	green_basic_bullet_start.tex = green_basic;

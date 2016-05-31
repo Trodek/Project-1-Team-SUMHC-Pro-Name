@@ -103,6 +103,9 @@
     <ClCompile Include="ModuleUI.cpp">
       <Filter>Modules\UI</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyMissileThrower.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -232,6 +235,9 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ChangePill.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyMissileThrower.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

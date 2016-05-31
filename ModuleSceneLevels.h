@@ -83,6 +83,12 @@ public:
 	Path sl5;
 	Path sl6;
 
+	Path mt1;
+	Path mt2;
+	Path mt3;
+	Path mt4;
+	Path mt5;
+
 	//Platform stuff
 	Path platform_p1;
 	Path platform_p2;
