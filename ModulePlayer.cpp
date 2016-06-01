@@ -446,18 +446,19 @@ update_status ModulePlayer::Update()
 	PreviousPos = position;
 	now = SDL_GetTicks();
 
-	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN){
-		if (god_mode){
-			PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
-			god_mode = false;
-		}
-		else{
-			App->collisions->EraseCollider(PlayerEBulletsCollider);
-			god_mode = true;
-		}
-	}
+	
 
 	if (!dead){
+		if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN){
+			if (god_mode){
+				PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
+				god_mode = false;
+			}
+			else{
+				App->collisions->EraseCollider(PlayerEBulletsCollider);
+				god_mode = true;
+			}
+		}
 		//TP last checkpoint
 		if (App->input->keyboard[SDL_SCANCODE_T] == KEY_STATE::KEY_DOWN){
 			App->ui->curr_check = 4;
