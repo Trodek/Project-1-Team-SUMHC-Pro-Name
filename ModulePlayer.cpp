@@ -300,6 +300,8 @@ bool ModulePlayer::Start()
 	speed = 2;
 	shield = false;
 
+	train_scroll = false;
+
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
 	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
 
@@ -335,7 +337,14 @@ update_status ModulePlayer::PostUpdate(){
 			go = 0;
 			direction = UP;
 			current_animation = SelectAnimation(direction);
-			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y < 0 && scroll){
+			if (train_scroll && scroll) {
+				App->render->camera.y += 9;
+				position.y -= 1;
+				if ((-App->render->camera.y / 3 + 200) < position.y) {
+					train_scroll = false;
+				}
+			}
+			else if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y < 0 && scroll){
 				App->render->camera.y += (speed == 2) ? 6 : 9;
 				position.y -= speed;
 			}

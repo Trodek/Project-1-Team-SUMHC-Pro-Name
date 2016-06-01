@@ -22,6 +22,7 @@ public:
 
 	bool CameraReset();
 	bool train_dead;
+	bool train_first_time = true;
 	bool first_path_made = false;
 	bool train_start_path = false;
 	void RestartEnemiesPaths();

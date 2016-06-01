@@ -251,7 +251,7 @@ update_status ModuleUI::Update(){
 		}
 
 		if (score > top_score) top_score = score;
-		if (now - e_timer > 1500 && energy > 0) {
+		if (now - e_timer > 1500 && energy > 0 && !(App->player->god_mode)) {
 			energy--;
 			energy_p2--;
 			e_timer = SDL_GetTicks();	

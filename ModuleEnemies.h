@@ -6,7 +6,7 @@
 #include "Path.h"
 #include "ModuleAudio.h"
 
-#define MAX_ENEMIES 100
+#define MAX_ENEMIES 200
 
 enum ENEMY_TYPES
 {

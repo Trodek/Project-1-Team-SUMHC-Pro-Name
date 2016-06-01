@@ -54,6 +54,7 @@ public:
 	bool dead_energy = false;
 	bool pos_changed = false;
 	bool scroll = true;
+	bool train_scroll = true;
 	
 	bool speedup = false;
 	bool shield = false;

@@ -73,7 +73,7 @@ ModuleSceneLevels::ModuleSceneLevels()
 	train_platform_pos_aux.x = train_platform_pos.x;
 	train_platform_pos_aux.y = train_platform_pos.y;
 	train_dead = false;
-	
+
 	
 }
 
@@ -113,6 +113,8 @@ bool ModuleSceneLevels::Start()
 	App->levelstop->Enable();
 	App->enemies->Enable();
 	App->particles->Enable();
+
+	train_first_time = true;
 
 	App->ui->game = true;
 	App->ui->SetGameStartConditions();
@@ -592,6 +594,8 @@ bool ModuleSceneLevels::Start()
 void ModuleSceneLevels::RestartEnemies() {
 	RestartEnemiesPaths();
 
+	if (!train_dead)
+		train_first_time = true;
 
 	if (App->ui->curr_check == 0) {							// y < 7159
 		
@@ -740,7 +744,6 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 564, 1670);
 		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 628, 1670);
 		App->enemies->AddEnemy(TRAIN, 378, 1670);
-
 	}
 	if (App->ui->curr_check <= 6) {				// y < 479
 		App->enemies->AddEnemy(BOSS, 88, -5);
@@ -870,7 +873,7 @@ update_status ModuleSceneLevels::Update()
 
 		//train
 
-		if (App->render->camera.y > -1665 * SCREEN_SIZE){
+		if (App->render->camera.y > -1665 * SCREEN_SIZE && !train_dead){
 			App->player->scroll = false;
 		}
 
@@ -891,8 +894,10 @@ update_status ModuleSceneLevels::Update()
 				last_enemy = SDL_GetTicks();
 			}
 		}
-		if (train_dead){
+		if (train_dead && train_first_time){
+			App->player->train_scroll = true;
 			App->player->scroll = true;
+			train_first_time = false;
 		}
 
 		App->render->Blit(train_platform_tex, train_platform_pos_aux.x, train_platform_pos_aux.y, &train_platform_anim.GetCurrentFrame());

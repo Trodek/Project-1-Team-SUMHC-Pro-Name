@@ -7,7 +7,7 @@
 #include "p2Point.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 
-#define MAX_ACTIVE_PARTICLES 1000
+#define MAX_ACTIVE_PARTICLES 1500
 
 enum DRAW{
 	BEFOR_PLAYER, AFTER_PLAYER,
