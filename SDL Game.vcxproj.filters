@@ -109,6 +109,9 @@
     <ClCompile Include="ModuleUI.cpp">
       <Filter>Modules\UI</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleDrawEnemies.cpp">
+      <Filter>Modules\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -245,6 +248,9 @@
     </ClInclude>
     <ClInclude Include="ChangeBox.h">
       <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleDrawEnemies.h">
+      <Filter>Modules\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

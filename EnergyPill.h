@@ -27,6 +27,8 @@ public:
 
 		hp = 1;
 		points = 50;
+
+		draw = PILL;
 		
 	}
 

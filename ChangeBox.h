@@ -24,6 +24,8 @@ public:
 
 		hp = 1;
 		points = 100;
+
+		draw = BEFORE;
 	}
 
 	void Draw(){

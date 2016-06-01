@@ -63,6 +63,8 @@ private:
 
 	Mix_Chunk* enemy_hitted;
 	EnemyInfo queue[MAX_ENEMIES];
+
+public:
 	Enemy* enemies[MAX_ENEMIES];
 };
 

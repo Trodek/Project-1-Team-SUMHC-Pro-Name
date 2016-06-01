@@ -8,6 +8,7 @@
 #include "ModuleSceneLevels.h"
 #include "ModuleLevelsTop.h"
 #include "ModulePlayer.h"
+#include "ModuleDrawEnemies.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
@@ -36,14 +37,15 @@ Application::Application()
 	modules[10] = namescreen = new ModuleNameScreen();
 	modules[11] = scorescreen = new ModuleScoreScreen();
 	modules[12] = drawparticles = new ModuleDrawParticles();
-	modules[13] = player = new ModulePlayer();
-	modules[14] = enemies = new ModuleEnemies();
-	modules[15] = particles = new ModuleParticles();
-	modules[16] = levelstop = new ModuleLevelsTop();
-	modules[17] = collisions = new ModuleCollision();
-	modules[18] = bomb = new ModuleBomb();	
-	modules[19] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
-	modules[20] = ui = new ModuleUI();
+	modules[13] = drawenemies = new ModuleDrawEnemies();
+	modules[14] = player = new ModulePlayer();
+	modules[15] = enemies = new ModuleEnemies();
+	modules[16] = particles = new ModuleParticles();
+	modules[17] = levelstop = new ModuleLevelsTop();
+	modules[18] = collisions = new ModuleCollision();
+	modules[19] = bomb = new ModuleBomb();	
+	modules[20] = fade = new ModuleFadeToBlack(); // Fade Module must be after the scenes
+	modules[21] = ui = new ModuleUI();
 	
 }	
 

@@ -10,6 +10,12 @@
 struct SDL_Texture;
 struct Collider;
 
+enum Draw_Me{
+	PILL,
+	BEFORE,
+	AFTER
+};
+
 class Enemy
 {
 protected:
@@ -28,6 +34,7 @@ public:
 	Particle* dead = nullptr;
 	int hp;
 	int points;
+	Draw_Me draw = AFTER;
 
 public:
 	Enemy(int x, int y, ENEMY_TYPES type);

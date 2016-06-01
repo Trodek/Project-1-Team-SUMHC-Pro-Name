@@ -95,6 +95,7 @@
     <ClInclude Include="ModuleBomb.h" />
     <ClInclude Include="ModuleCollision.h" />
     <ClInclude Include="ModuleContinue.h" />
+    <ClInclude Include="ModuleDrawEnemies.h" />
     <ClInclude Include="ModuleDrawParticles.h" />
     <ClInclude Include="ModuleEnemies.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
@@ -135,6 +136,7 @@
     <ClCompile Include="ModuleBomb.cpp" />
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleContinue.cpp" />
+    <ClCompile Include="ModuleDrawEnemies.cpp" />
     <ClCompile Include="ModuleDrawParticles.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
