@@ -24,6 +24,7 @@
 #include "ChangeBox.h"
 #include "ChangePill.h"
 #include "EnemyMissileThrower.h"
+#include "PowerUP.h"
 
 #define SPAWN_MARGIN 150
 
@@ -37,6 +38,7 @@ ModuleEnemies::ModuleEnemies()
 
 bool ModuleEnemies::Start(){
 	enemy_hitted = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/enemy hitted.wav");
+	loot = 0;
 	return true;
 }
 // Destructor
@@ -223,6 +225,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 				enemies[i] = new EnemyMissileThrower(info.x, info.y, info.type);
 				enemies[i]->SetPath(info.path);
 				break;
+			case ENEMY_TYPES::POWERUP:
+				enemies[i] = new PowerUP(info.x, info.y, info.type);
+				break;
 		}
 	}
 }
@@ -260,6 +265,21 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
 						}
 						else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
+						/*if (enemies[i]->type == **RED_ENEMY_HERE**) {
+							if (loot % 2 == 0 && loot < 10) {
+								if (App->player->current_power < 2)
+									App->enemies->AddEnemy(POWERUP, enemies[i]->position.x, enemies[i]->position.y);
+								else
+									App->enemies->AddEnemy(SPEED, enemies[i]->position.x, enemies[i]->position.y);
+							}
+							else if (loot % 2 == 1 || loot >= 10) {
+								if (App->player->current_power < 2)
+									App->enemies->AddEnemy(BOMB, enemies[i]->position.x, enemies[i]->position.y);
+								else
+									App->enemies->AddEnemy(SHIELD, enemies[i]->position.x, enemies[i]->position.y);
+							}
+							loot++;
+						}*/
 						App->ui->score += enemies[i]->points;
 						delete enemies[i];
 						enemies[i] = nullptr;

@@ -26,6 +26,7 @@ enum ENEMY_TYPES
 	CHANGE_BOX,
 	CHANGE_PILL,
 	MISSILE_THROWER,
+	POWERUP,
 };
 
 struct SDL_Texture;
@@ -58,6 +59,7 @@ public:
 private:
 
 	void SpawnEnemy(const EnemyInfo& info);
+	uint loot;
 
 private:
 
