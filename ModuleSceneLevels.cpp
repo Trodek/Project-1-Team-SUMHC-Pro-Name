@@ -912,11 +912,9 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 }
 
 void ModuleSceneLevels::AddChangeBox(int x,int y){
-	App->enemies->AddEnemy(CHANGE_PILL, x,y);
 	App->enemies->AddEnemy(CHANGE_BOX, x-8, y-8);
 }
 
 void ModuleSceneLevels::AddEnergyBox(int x, int y){
-	App->enemies->AddEnemy(ENERGY_PILL, x, y);
 	App->enemies->AddEnemy(ENERGY_BOX, x-12, y-12);
 }
