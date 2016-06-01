@@ -6,11 +6,13 @@
 #include "ModuleRender.h"
 #include "SDL/include/SDL_timer.h"
 #include "ModulePlayer.h"
+#include "ModuleSceneLevels.h"
 
 EnemyBlueBasic::EnemyBlueBasic(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type){
 
+	position.x = x;
+	position.y = y;
 	original = position;
-
 	dir = IDLE;
 
 	//move 360º
@@ -53,7 +55,7 @@ void EnemyBlueBasic::Move(){
 
 	enemy_player_radius = position.DistanceTo(App->player->position);
 	delta_y = position.y - App->player->position.y;
-	delta_x = position.x - App->player->position.x;
+	delta_x = original.x - App->player->position.x;
 	radius_deltax = enemy_player_radius - delta_x;
 
 	if (radius_deltax < enemy_player_radius / 5){
@@ -136,90 +138,92 @@ void EnemyBlueBasic::Move(){
 	}
 
 	//-----------------------------------------------
-
+	
+	original.x = App->levels->train_platform_pos_aux.x + position.x;
 }
 
 void EnemyBlueBasic::Draw(){
 
 	if (collider != nullptr)
-		collider->SetPos(position.x, position.y);
+		collider->SetPos(original.x, position.y);
 
-	App->render->Blit(tex, position.x, position.y, &move_360.GetActualFrame());
+	App->render->Blit(tex, original.x, position.y, &move_360.GetActualFrame());
 }
 
 void EnemyBlueBasic::Shot(){
 
 	now = SDL_GetTicks();
 
-	if (now - last_shot > 3000 && (position.y - App->player->position.y >-200 && position.y - App->player->position.y < 200)){
+	if (now - last_shot > 3000 && (position.y - App->player->position.y >-200 && position.y - App->player->position.y < 200
+		&& original.x < SCREEN_WIDTH - 20 && original.x > 20)){
 		float x_speed = (-delta_x / enemy_player_radius) * 3;
 		float y_speed = (-delta_y / enemy_player_radius) * 3;
 		App->particles->SetParticleSpeed(bullet, x_speed, y_speed);
 		switch (dir)
 		{
 		case LEFT:
-			App->particles->AddParticle(*bullet, position.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case ANGLE_60:
-			App->particles->AddParticle(*bullet, position.x, position.y + 5, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x - 8, position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x, position.y + 5, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x - 8, position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case LEFT_UP:
-			App->particles->AddParticle(*bullet, position.x + 5, position.y, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x - 3, position.y - 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 5, position.y, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x - 3, position.y - 5, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case ANGLE_30:
-			App->particles->AddParticle(*bullet, position.x + 8, position.y - 3, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x + 1, position.y - 8, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 8, position.y - 3, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x + 1, position.y - 8, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case UP:
-			App->particles->AddParticle(*bullet, position.x + 10, position.y, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x + 5, position.y - 8, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 10, position.y, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x + 5, position.y - 8, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case ANGLE_330:
-			App->particles->AddParticle(*bullet, position.x + 19, position.y - 3, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x + 12, position.y - 8, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 19, position.y - 3, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x + 12, position.y - 8, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case RIGHT_UP:
-			App->particles->AddParticle(*bullet, position.x + 27, position.y, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x + 19, position.y - 4, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 27, position.y, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x + 19, position.y - 4, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case ANGLE_300:
-			App->particles->AddParticle(*bullet, position.x + 22, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x + 16, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 22, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x + 16, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case RIGHT:
-			App->particles->AddParticle(*bullet, position.x + 25, position.y + 13, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x + 22, position.y + 8, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 25, position.y + 13, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x + 22, position.y + 8, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case ANGLE_240:
-			App->particles->AddParticle(*bullet, position.x + 21, position.y + 13, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x + 18, position.y + 8, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 21, position.y + 13, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x + 18, position.y + 8, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case RIGHT_DOWN:
-			App->particles->AddParticle(*bullet, position.x + 24, position.y + 20, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x + 16, position.y + 15, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 24, position.y + 20, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x + 16, position.y + 15, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case ANGLE_210:
-			App->particles->AddParticle(*bullet, position.x + 20, position.y + 20, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x + 12, position.y + 15, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 20, position.y + 20, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x + 12, position.y + 15, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case DOWN:
-			App->particles->AddParticle(*bullet, position.x + 10, position.y + 25, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x + 5, position.y + 20, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 10, position.y + 25, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x + 5, position.y + 20, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case ANGLE_150:
-			App->particles->AddParticle(*bullet, position.x + 5, position.y + 20, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x - 3, position.y + 15, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 5, position.y + 20, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x - 3, position.y + 15, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case LEFT_DOWN:
-			App->particles->AddParticle(*bullet, position.x + 3, position.y + 20, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x - 5, position.y + 15, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 3, position.y + 20, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x - 5, position.y + 15, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		case ANGLE_120:
-			App->particles->AddParticle(*bullet, position.x + 3, position.y + 15, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-			App->particles->AddParticle(*shoot_start, position.x - 5, position.y + 10, COLLIDER_NONE, { 0, 0, 0, 0 });
+			App->particles->AddParticle(*bullet, original.x + 3, position.y + 15, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
+			App->particles->AddParticle(*shoot_start, original.x - 5, position.y + 10, COLLIDER_NONE, { 0, 0, 0, 0 });
 			break;
 		}
 		last_shot = SDL_GetTicks();

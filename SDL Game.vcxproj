@@ -78,6 +78,7 @@
     <ClInclude Include="EnemyBigTurret.h" />
     <ClInclude Include="EnemyBlueBasic.h" />
     <ClInclude Include="EnemyBoss.h" />
+    <ClInclude Include="EnemyFatRobotTrain.h" />
     <ClInclude Include="EnemyGreenBasic.h" />
     <ClInclude Include="EnemyMissileThrower.h" />
     <ClInclude Include="EnemyNotSoBasic.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="EnemyBigTurret.cpp" />
     <ClCompile Include="EnemyBlueBasic.cpp" />
     <ClCompile Include="EnemyBoss.cpp" />
+    <ClCompile Include="EnemyFatRobotTrain.cpp" />
     <ClCompile Include="EnemyGreenBasic.cpp" />
     <ClCompile Include="EnemyMissileThrower.cpp" />
     <ClCompile Include="EnemyNotSoBasic.cpp" />

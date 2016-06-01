@@ -223,7 +223,11 @@ ModulePlayer::ModulePlayer()
 	out_of_energy.PushBack({ 59, 63, 30, 30 });
 	out_of_energy.PushBack({ 111, 63, 30, 30 });
 	out_of_energy.PushBack({ 160, 63, 30, 30 });
+<<<<<<< HEAD
 	out_of_energy.speed = 0.1f;
+=======
+	out_of_energy.speed = 0.08f;
+>>>>>>> origin/master
 	out_of_energy.loop = false;
 
 	go_ahead.x = 45;
@@ -478,10 +482,10 @@ update_status ModulePlayer::Update()
 			App->ui->SubBomb(1);
 		}
 
-		if (go > 150)
+		/*if (go > 150)
 			App->render->Blit((App->ui->ui_graphics), 60, 60, &go_ahead);
 		else
-			go++;
+			go++;*/
 
 		if (direction != IDLE){
 			if (CheckPJAnimPos(weapon_anim, direction))

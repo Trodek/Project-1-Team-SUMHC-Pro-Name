@@ -21,6 +21,8 @@ public:
 	bool CleanUp();
 
 	bool CameraReset();
+	bool train_dead;
+	bool first_path_made = false;
 	void RestartEnemiesPaths();
 	void RestartEnemies();
 	void AddEnergyBox(int x, int y);
@@ -116,6 +118,18 @@ public:
 	Collider* platformr1;
 	Collider* platformr2;
 	Collider* platforml;
+
+	// train
+	Path train_platform_first_path;
+	Path train_platform_loop_path;
+	Path train_platform_death_path;
+	Path current_train_path;
+	Animation train_platform_anim;
+	SDL_Texture* train_platform_tex = nullptr;
+	iPoint train_platform_pos;
+	iPoint train_platform_pos_aux;
+	Collider* train_platform_coll_left;
+	Collider* train_platform_coll_right;
 };
 
 #endif // __MODULESCENELevels_H__
