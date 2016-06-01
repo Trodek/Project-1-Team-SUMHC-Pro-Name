@@ -95,6 +95,47 @@ public:
 	Path notsobasic6;
 	Path notsobasic7;
 	Path notsobasic8;
+	Path notsobasic9;
+	Path notsobasic10;
+	Path notsobasic11;
+	Path notsobasic12;
+	Path notsobasic13;
+	Path notsobasic14;
+	Path notsobasic15;
+	Path notsobasic16;
+	Path notsobasic17;
+	Path notsobasic18;
+	Path notsobasic19;
+	Path notsobasic20;
+	Path notsobasic21;
+	Path notsobasic22;
+	Path notsobasic23;
+	Path notsobasic24;
+	Path turret;
+
+	Path doyouevenyolo1;
+	Path doyouevenyolo2;
+	Path doyouevenyolo3;
+	Path doyouevenyolo4;
+
+	Path doyouevenyolo5;
+	Path doyouevenyolo6;
+	Path doyouevenyolo7;
+	Path doyouevenyolo8;
+
+	Path verticalyolo1;
+	Path verticalyolo2;
+	Path verticalyolo3;
+	Path verticalyolo4;
+	Path verticalyolo5;
+	Path verticalyolo6;
+	Path verticalyolo7;
+	Path verticalyolo8;
+	Path verticalyolo9;
+	Path verticalyolo10;
+	Path verticalyolo11;
+	Path verticalyolo12;
+
 	Path fastright;
 	Path fastright1;
 	Path fastright2;

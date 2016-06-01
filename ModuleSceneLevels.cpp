@@ -425,6 +425,110 @@ bool ModuleSceneLevels::Start()
 	notsobasic8.PushBack({ -1, 0 }, 40);
 	notsobasic8.PushBack({ 0, -1 }, 50);
 
+	notsobasic9.PushBack({ 0, 1 }, 70);
+	notsobasic9.PushBack({ 1, 0 }, 30);
+	notsobasic9.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic9.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic9.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic9.PushBack({ -1, 0 }, 50);
+
+	notsobasic10.PushBack({ 1, 1 }, 60);
+	notsobasic10.PushBack({ 0, 1 }, 50);
+	notsobasic10.PushBack({ 1, -0.5f }, 50);
+	notsobasic10.PushBack({ -1, 0 }, 40);
+	notsobasic10.PushBack({ 0, -1 }, 50);
+
+	notsobasic11.PushBack({ -1, 1 }, 60);
+	notsobasic11.PushBack({ 0, 1 }, 50);
+	notsobasic11.PushBack({ -1, 0.5f }, 50);
+	notsobasic11.PushBack({ 1, 0 }, 40);
+	notsobasic11.PushBack({ 0, -1 }, 50);
+
+	notsobasic12.PushBack({ 0, 1 }, 70);
+	notsobasic12.PushBack({ 1, 0 }, 30);
+	notsobasic12.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic12.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic12.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic12.PushBack({ -1, 0 }, 50);
+
+	notsobasic13.PushBack({ 1, 1 }, 60);
+	notsobasic13.PushBack({ 0, 1 }, 50);
+	notsobasic13.PushBack({ 1, -0.5f }, 50);
+	notsobasic13.PushBack({ -1, 0 }, 40);
+	notsobasic13.PushBack({ 0, -1 }, 50);
+
+	notsobasic14.PushBack({ -1, 1 }, 60);
+	notsobasic14.PushBack({ 0, 1 }, 50);
+	notsobasic14.PushBack({ -1, 0.5f }, 50);
+	notsobasic14.PushBack({ 1, 0 }, 40);
+	notsobasic14.PushBack({ 0, -1 }, 50);
+
+	notsobasic15.PushBack({ 0, 1 }, 70);
+	notsobasic15.PushBack({ 1, 0 }, 30);
+	notsobasic15.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic15.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic15.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic15.PushBack({ -1, 0 }, 50);
+
+	notsobasic16.PushBack({ 1, 1 }, 60);
+	notsobasic16.PushBack({ 0, 1 }, 50);
+	notsobasic16.PushBack({ 1, -0.5f }, 50);
+	notsobasic16.PushBack({ -1, 0 }, 40);
+	notsobasic16.PushBack({ 0, -1 }, 50);
+
+	notsobasic17.PushBack({ 0, 1 }, 70);
+	notsobasic17.PushBack({ 1, 0 }, 30);
+	notsobasic17.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic17.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic17.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic17.PushBack({ -1, 0 }, 50);
+
+	notsobasic18.PushBack({ 1, 1 }, 60);
+	notsobasic18.PushBack({ 0, 1 }, 50);
+	notsobasic18.PushBack({ 1, -0.5f }, 50);
+	notsobasic18.PushBack({ -1, 0 }, 40);
+	notsobasic18.PushBack({ 0, -1 }, 50);
+
+	notsobasic19.PushBack({ -1, 1 }, 60);
+	notsobasic19.PushBack({ 0, 1 }, 50);
+	notsobasic19.PushBack({ -1, 0.5f }, 50);
+	notsobasic19.PushBack({ 1, 0 }, 40);
+	notsobasic19.PushBack({ 0, -1 }, 50);
+
+	notsobasic20.PushBack({ 0, 1 }, 70);
+	notsobasic20.PushBack({ 1, 0 }, 30);
+	notsobasic20.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic20.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic20.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic20.PushBack({ -1, 0 }, 50);
+
+	notsobasic21.PushBack({ 1, 1 }, 60);
+	notsobasic21.PushBack({ 0, 1 }, 50);
+	notsobasic21.PushBack({ 1, -0.5f }, 50);
+	notsobasic21.PushBack({ -1, 0 }, 40);
+	notsobasic21.PushBack({ 0, -1 }, 50);
+
+	notsobasic22.PushBack({ -1, 1 }, 60);
+	notsobasic22.PushBack({ 0, 1 }, 50);
+	notsobasic22.PushBack({ -1, 0.5f }, 50);
+	notsobasic22.PushBack({ 1, 0 }, 40);
+	notsobasic22.PushBack({ 0, -1 }, 50);
+
+	notsobasic23.PushBack({ 0, 1 }, 70);
+	notsobasic23.PushBack({ 1, 0 }, 30);
+	notsobasic23.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic23.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic23.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic23.PushBack({ -1, 0 }, 50);
+
+	notsobasic24.PushBack({ 1, 1 }, 60);
+	notsobasic24.PushBack({ 0, 1 }, 50);
+	notsobasic24.PushBack({ 1, -0.5f }, 50);
+	notsobasic24.PushBack({ -1, 0 }, 40);
+	notsobasic24.PushBack({ 0, -1 }, 50);
+
+
+
 	fastright.PushBack({ -1, 0 }, 200);
 	fastright.PushBack({ 0, 1 }, 60);
 	fastright.PushBack({ -1, -1 }, 40);
@@ -523,6 +627,8 @@ bool ModuleSceneLevels::Start()
 	mt11.PushBack({ 1.5f, -1.5f }, 50);
 	mt11.PushBack({ 1.5f, 1.5f }, 20);
 	mt11.PushBack({ -1.5f, 1.5f }, 250);
+
+	turret.PushBack({ 0, 0 }, 10);
 
 	mt12.PushBack({ 1.5f, 1.5f }, 30);
 	mt12.PushBack({ -1.5f, 1.5f }, 30);
@@ -630,6 +736,31 @@ bool ModuleSceneLevels::Start()
 	notsobasic_train.PushBack({ 0.5f, -0.5f }, 30);
 	notsobasic_train.PushBack({ -1, 0 }, 50);
 
+	doyouevenyolo1.PushBack({ 0, 1 }, 50);
+	doyouevenyolo1.loop = false;
+
+	doyouevenyolo2.PushBack({ 0, 1 }, 50);
+	doyouevenyolo2.loop = false;
+
+	doyouevenyolo3.PushBack({ 0, 1 }, 50);
+	doyouevenyolo3.loop = false;
+
+	doyouevenyolo4.PushBack({ 0, 1 }, 50);
+	doyouevenyolo4.loop = false;
+
+	verticalyolo1.PushBack({ 0, 1 }, 50);
+	verticalyolo2.PushBack({ 0, 1 }, 50);
+	verticalyolo3.PushBack({ 0, 1 }, 50);
+	verticalyolo4.PushBack({ 0, 1 }, 50);
+	verticalyolo5.PushBack({ 0, 1 }, 50);
+	verticalyolo6.PushBack({ 0, 1 }, 50);
+	verticalyolo7.PushBack({ 0, 1 }, 50);
+	verticalyolo8.PushBack({ 0, 1 }, 50);
+	verticalyolo9.PushBack({ 0, 1 }, 50);
+	verticalyolo10.PushBack({ 0, 1 }, 50);
+	verticalyolo11.PushBack({ 0, 1 }, 50);
+	verticalyolo12.PushBack({ 0, 1 }, 50);
+
 	RestartEnemies();
 	return ret;
 }
@@ -651,16 +782,18 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(NOTBASIC, 0, 6850, &gb4);
 		App->enemies->AddEnemy(NOTBASIC, 30, 6870, &gb14);
 		App->enemies->AddEnemy(NOTBASIC, 200, 6850, &notsobasic3);
+		App->enemies->AddEnemy(NOTBASIC, 30, 6870, &gb14);
+		App->enemies->AddEnemy(NOTBASICCOMMANDER, 100, 6850, &notsobasic9);
 
-		App->enemies->AddEnemy(NOTBASIC, 0, 6590, &notsobasic4);
-		App->enemies->AddEnemy(NOTBASIC, 200, 6590, &notsobasic5);
-		App->enemies->AddEnemy(NOTBASIC, 200, 6530, &notsobasic6);
+		App->enemies->AddEnemy(NOTBASICGREEN, 0, 6590, &notsobasic4);
+		App->enemies->AddEnemy(NOTBASICGREEN, 200, 6590, &notsobasic5);
+		App->enemies->AddEnemy(NOTBASICGREEN, 200, 6530, &notsobasic6);
 
 
-		App->enemies->AddEnemy(NOTBASIC, 240, 6367, &fastright);
-		App->enemies->AddEnemy(NOTBASIC, 220, 6367, &fastright1);
-		App->enemies->AddEnemy(NOTBASIC, 240, 6413, &fastright2);
-		App->enemies->AddEnemy(NOTBASIC, 220, 6413, &fastright3);
+		App->enemies->AddEnemy(NOTBASICCOMMANDER, 240, 6367, &fastright);
+		App->enemies->AddEnemy(NOTBASICGREEN, 220, 6367, &fastright1);
+		App->enemies->AddEnemy(NOTBASICGREEN, 240, 6413, &fastright2);
+		App->enemies->AddEnemy(NOTBASICGREEN, 220, 6413, &fastright3);
 
 		AddChangeBox(108, 6336);
 		AddEnergyBox(18,6161);
@@ -673,26 +806,33 @@ void ModuleSceneLevels::RestartEnemies() {
 	}
 	if (App->ui->curr_check <= 2) {					// y < 5965
 
-		App->enemies->AddEnemy(NOTBASIC, 27, 5125, &gb11);
-		App->enemies->AddEnemy(NOTBASIC, 198, 5125, &gb17);
-		App->enemies->AddEnemy(NOTBASIC, 45, 5000, &gb18);
-		App->enemies->AddEnemy(NOTBASIC, 160, 5000, &gb6);
+		App->enemies->AddEnemy(NOTBASICGREEN, 27, 5125, &gb11);
+		App->enemies->AddEnemy(NOTBASICGREEN, 198, 5125, &gb17);
+		App->enemies->AddEnemy(NOTBASICGREEN, 45, 5000, &gb18);
+		App->enemies->AddEnemy(NOTBASICGREEN, 160, 5000, &gb6);
 
-		App->enemies->AddEnemy(NOTBASIC, 27, 5325, &gb5);
-		App->enemies->AddEnemy(NOTBASIC, 198, 5325, &gb22);
-		App->enemies->AddEnemy(NOTBASIC, 45, 5200, &gb7);
-		App->enemies->AddEnemy(NOTBASIC, 160, 5200, &gb8);
+		App->enemies->AddEnemy(NOTBASICGREEN, 27, 5325, &gb5);
+		App->enemies->AddEnemy(NOTBASICGREEN, 198, 5325, &gb22);
+		App->enemies->AddEnemy(NOTBASICGREEN, 45, 5200, &gb7);
+		App->enemies->AddEnemy(NOTBASICGREEN, 160, 5200, &gb8);
 
-		App->enemies->AddEnemy(NOTBASIC, 27, 5325, &gb19);
-		App->enemies->AddEnemy(NOTBASIC, 198, 5325, &gb23);
-		App->enemies->AddEnemy(NOTBASIC, 45, 5200, &gb20);
-		App->enemies->AddEnemy(NOTBASIC, 160, 5200, &gb25);
+		App->enemies->AddEnemy(NOTBASICGREEN, 50, 5325, &gb19);
+		App->enemies->AddEnemy(NOTBASICGREEN, 120, 5325, &gb23);
+		App->enemies->AddEnemy(NOTBASICGREEN, 60, 5200, &gb20);
+		App->enemies->AddEnemy(NOTBASICGREEN, 120, 5200, &gb25);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4950, &sl1);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4900, &sl2);
 		App->enemies->AddEnemy(STRANGE_LARGE, 196, 4854, &sl3);
 		App->enemies->AddEnemy(STRANGE_LARGE, 196, 4804, &sl4);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4758, &sl6);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4708, &sl5);
+		App->enemies->AddEnemy(NOTBASICGREEN, 120, 5200, &notsobasic10);
+		App->enemies->AddEnemy(NOTBASICGREEN, -50, 5300, &notsobasic11);
+		App->enemies->AddEnemy(NOTBASICGREEN, -50, 5300, &notsobasic12);
+		App->enemies->AddEnemy(NOTBASICGREEN, 196, 5200, &notsobasic13);
+		App->enemies->AddEnemy(NOTBASICCOMMANDER, 196, 5200, &notsobasic14);
+		App->enemies->AddEnemy(NOTBASICGREEN, -50, 5200, &notsobasic15);
+		App->enemies->AddEnemy(NOTBASICGREEN, -50, 5100, &notsobasic16);
 
 		AddChangeBox(14, 5928);
 		AddEnergyBox(32, 5656);
@@ -718,11 +858,17 @@ void ModuleSceneLevels::RestartEnemies() {
 
 	}
 	if (App->ui->curr_check <= 3) {				// y < 4900
-		App->enemies->AddEnemy(NOTBASIC, 73, 4700, &gb21);
+		App->enemies->AddEnemy(NOTBASICGREEN, 73, 4700, &gb21);
 
-		App->enemies->AddEnemy(NOTBASIC, 140, 4700, &gb24);
-		App->enemies->AddEnemy(NOTBASIC, 73, 3951, &notsobasic7);
-		App->enemies->AddEnemy(NOTBASIC, 140, 3951, &notsobasic8);
+		App->enemies->AddEnemy(NOTBASICGREEN, 20, 4324, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 150, 4324, &turret);
+
+		App->enemies->AddEnemy(NOTBASICGREEN, 140, 4650, &gb24);
+		App->enemies->AddEnemy(NOTBASICGREEN, 0, 3961, &notsobasic7);
+		App->enemies->AddEnemy(NOTBASICGREEN, 160, 3961, &notsobasic8);
+		App->enemies->AddEnemy(NOTBASICGREEN, 0, 3961, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 160, 3971, &turret);
+
 
 		App->enemies->AddEnemy(SMALLTURRET, -5, 2743);
 		App->enemies->AddEnemy(SMALLTURRET, -5, 2775);
@@ -749,6 +895,17 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(ROUNDED_TURRET, 139, 4616);
 		App->enemies->AddEnemy(ROUNDED_TURRET, 185, 4071);
 	
+		App->enemies->AddEnemy(NOTBASICGREEN, 0, 3740, &doyouevenyolo1);
+		App->enemies->AddEnemy(NOTBASICGREEN, 50, 3740, &doyouevenyolo2);
+		App->enemies->AddEnemy(NOTBASICCOMMANDER, 100, 3740, &doyouevenyolo3);
+		App->enemies->AddEnemy(NOTBASICGREEN, 130, 3740, &doyouevenyolo4);
+
+		App->enemies->AddEnemy(NOTBASICGREEN, 114, 3220, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 84, 3210, &verticalyolo1);
+		App->enemies->AddEnemy(NOTBASICGREEN, 100, 3057, &verticalyolo2);
+		App->enemies->AddEnemy(NOTBASICCOMMANDER, 84, 3057, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 140, 3212, &verticalyolo3);
+		App->enemies->AddEnemy(NOTBASICGREEN, 1130, 3212, &verticalyolo4);
 
 	}
 	if (App->ui->curr_check <= 4) {				// y < 2775
@@ -760,6 +917,30 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(MISSILE_THROWER, 84, 2446, &mt19);
 		App->enemies->AddEnemy(MISSILE_THROWER, 164, 2075, &mt20);
 		App->enemies->AddEnemy(MISSILE_THROWER, 164, 2000, &mt21);
+
+		App->enemies->AddEnemy(NOTBASICGREEN, 112, 2696, &verticalyolo5);
+		App->enemies->AddEnemy(NOTBASICGREEN, 95, 2920, &verticalyolo6);
+		App->enemies->AddEnemy(NOTBASICCOMMANDER, 84, 2920, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 84, 2900, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 160, 2865, &verticalyolo7);
+		App->enemies->AddEnemy(NOTBASICGREEN, 160, 2865, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 100, 2696, &verticalyolo8);
+		App->enemies->AddEnemy(NOTBASICGREEN, 110, 2755, &verticalyolo9);
+		App->enemies->AddEnemy(NOTBASICGREEN, 75, 2255, &verticalyolo10);
+		App->enemies->AddEnemy(NOTBASICCOMMANDER, 84, 2555, &verticalyolo11);
+		App->enemies->AddEnemy(NOTBASICGREEN, 120, 2000, &turret);
+
+		App->enemies->AddEnemy(NOTBASICGREEN, 70, 2178, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 30, 2178, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 110, 2178, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 36, 2113, &turret);
+
+		App->enemies->AddEnemy(NOTBASICGREEN, 178, 1927, &verticalyolo12);
+
+		App->enemies->AddEnemy(NOTBASICGREEN, 0, 1937, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 60, 1987, &turret);
+
+
 
 	}
 	if (App->ui->curr_check <= 5) {				// y < 2000
@@ -790,6 +971,28 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 564, 1670);
 		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 628, 1670);
 		App->enemies->AddEnemy(TRAIN, 378, 1670);
+
+
+		App->enemies->AddEnemy(NOTBASICCOMMANDER, 150, 1586, &notsobasic18);
+		App->enemies->AddEnemy(NOTBASICGREEN, 60, 1540, &turret);
+		App->enemies->AddEnemy(NOTBASICCOMMANDER, 160, 1587, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 180, 1586, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 200, 1530, &turret);
+
+		App->enemies->AddEnemy(NOTBASICGREEN, 220, 900, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 200, 900, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 0, 900, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 25, 900, &turret);
+
+		App->enemies->AddEnemy(NOTBASICGREEN, 0, 685, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 0, 737, &turret);
+
+		App->enemies->AddEnemy(NOTBASICGREEN, 200, 685, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 200, 737, &turret);
+		App->enemies->AddEnemy(NOTBASICCOMMANDER, 178, 507, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 193, 790, &turret);
+
+
 	}
 	if (App->ui->curr_check <= 6) {				// y < 479
 		App->enemies->AddEnemy(BOSS, 88, -5);
@@ -986,6 +1189,23 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	notsobasic6.Restart();
 	notsobasic7.Restart();
 	notsobasic8.Restart();
+	notsobasic9.Restart();
+	notsobasic10.Restart();
+	notsobasic11.Restart();
+	notsobasic12.Restart();
+	notsobasic13.Restart();
+	notsobasic14.Restart();
+	notsobasic15.Restart();
+	notsobasic16.Restart();
+	notsobasic17.Restart();
+	notsobasic18.Restart();
+	notsobasic19.Restart();
+	notsobasic20.Restart();
+	notsobasic21.Restart();
+	notsobasic22.Restart();
+	notsobasic23.Restart();
+	notsobasic24.Restart();
+	turret.Restart();
 	fastright.Restart();
 	fastright1.Restart();
 	fastright2.Restart();
@@ -1024,7 +1244,28 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	mt23.Restart();
 	train_platform_first_path.Restart();
 	train_platform_loop_path.Restart();
+	doyouevenyolo1.Restart();
+	doyouevenyolo2.Restart();
+	doyouevenyolo3.Restart();
+	doyouevenyolo4.Restart();
 
+	doyouevenyolo5.Restart();
+	doyouevenyolo6.Restart();
+	doyouevenyolo7.Restart();
+	doyouevenyolo8.Restart();
+
+	verticalyolo1.Restart();
+	verticalyolo2.Restart();
+	verticalyolo3.Restart();
+	verticalyolo4.Restart();
+	verticalyolo5.Restart();
+	verticalyolo6.Restart();
+	verticalyolo7.Restart();
+	verticalyolo8.Restart();
+	verticalyolo9.Restart();
+	verticalyolo10.Restart();
+	verticalyolo11.Restart();
+	verticalyolo12.Restart();
 }
 
 void ModuleSceneLevels::AddChangeBox(int x,int y){
