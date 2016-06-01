@@ -31,6 +31,7 @@
 #include "Extra_Bomb.h"
 #include "EnemyRoundedTurret.h"
 #include "ModuleSceneLevels.h"
+#include "ExtendedEnergy.h"
 
 #define SPAWN_MARGIN 150
 
@@ -129,8 +130,11 @@ bool ModuleEnemies::CleanUp()
 		}
 	}
 
+	App->audio->UnloadSoundEffect(expand_energy);
+	App->audio->UnloadSoundEffect(pick_energy);
+	App->audio->UnloadSoundEffect(pick_speed);
+	App->audio->UnloadSoundEffect(change_weapon);
 	App->audio->UnloadSoundEffect(enemy_hitted);
-
 	return true;
 }
 
@@ -254,6 +258,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			case ENEMY_TYPES::ROUNDED_TURRET:
 				enemies[i] = new EnemyRoundedTurret(info.x, info.y, info.type);
 				break;
+			case ENEMY_TYPES::EXTENDEDENERGY:
+				enemies[i] = new ExtendedEnergy(info.x, info.y, info.type);
+				break;
 		}
 	}
 }
@@ -302,8 +309,15 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
-
-			//App->audio->PlaySoundEffect(expand_energy);
+			else if (c1->type == COLLIDER_EXTENDEDENERGY && c2->type == COLLIDER_PLAYER_EBULLETS) {
+				App->ui->max_energy = 48;
+				App->ui->energy = 48;
+				App->player->paintenergy = 1;
+				App->player->pos_energy = enemies[i]->position;
+				App->audio->PlaySoundEffect(expand_energy);
+				delete enemies[i];
+				enemies[i] = nullptr;
+			}
 
 			else{
 				if (c2->type == COLLIDER_PLAYER_SHOT && enemies[i]->hp>0){
@@ -343,7 +357,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 								loot++;
 							}
 							else {
-								App->enemies->AddEnemy(EXTRA_BOMB, enemies[i]->position.x, enemies[i]->position.y);
+								App->enemies->AddEnemy(EXTENDEDENERGY, enemies[i]->position.x, enemies[i]->position.y);
 								loot = 0;
 							}
 						}

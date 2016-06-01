@@ -245,6 +245,11 @@ ModulePlayer::ModulePlayer()
 	wordspeed.y = 122;
 	wordspeed.w = 36;
 	wordspeed.h = 23;
+	
+	wordenergy.x = 167;
+	wordenergy.y = 65;
+	wordenergy.w = 43;
+	wordenergy.h = 23;
 
 	go_ahead.x = 45;
 	go_ahead.y = 416;
@@ -327,10 +332,7 @@ update_status ModulePlayer::PostUpdate(){
 			direction = UP;
 			current_animation = SelectAnimation(direction);
 			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y < 0 && scroll){
-				if ((-App->render->camera.y / 3 - position.y) < -200) {
-					App->render->camera.y += speed * 6;
-				} else
-					App->render->camera.y += speed*3;
+				App->render->camera.y += (speed == 2) ? 6 : 9;
 				position.y -= speed;
 			}
 			else if (move_up)
@@ -339,7 +341,6 @@ update_status ModulePlayer::PostUpdate(){
 		else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){
 			direction = IDLE;
 		}
-
 		// D key
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 			if (position.x < SCREEN_WIDTH - 29 && move_right)
@@ -525,6 +526,11 @@ update_status ModulePlayer::Update()
 		if (paintspeed > 0 && paintspeed <= 31) {
 			App->render->Blit(App->particles->boxes, pos_speed.x, pos_speed.y, &wordspeed);
 			paintspeed++;
+		}
+
+		if (paintenergy > 0 && paintenergy <= 31) {
+			App->render->Blit(App->particles->boxes, pos_energy.x, pos_energy.y, &wordenergy);
+			paintenergy++;
 		}
 	}
 	else{

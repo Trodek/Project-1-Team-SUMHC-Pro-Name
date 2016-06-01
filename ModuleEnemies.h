@@ -32,6 +32,8 @@ enum ENEMY_TYPES
 	EXTRA_BOMB,
 	SPEED,
 	ROUNDED_TURRET,
+	EXTENDEDENERGY,
+
 };
 
 struct SDL_Texture;

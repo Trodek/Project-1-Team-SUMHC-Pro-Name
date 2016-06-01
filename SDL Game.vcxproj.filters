@@ -270,6 +270,9 @@
     <ClInclude Include="Extra_Bomb.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="ExtendedEnergy.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
     <ClInclude Include="EnemyNotSoBasicCommander.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>

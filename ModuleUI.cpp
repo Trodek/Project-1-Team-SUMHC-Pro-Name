@@ -232,6 +232,8 @@ update_status ModuleUI::Update(){
 				ResetEnergyBombs();
 				App->player->dead_explo.Reset();
 				App->player->out_of_energy.Reset();
+				energy = 36;
+				max_energy = 36;
 			}
 			else {
 				//App->render->Blit(ui_graphics, 23, (-App->render->camera.y) / SCREEN_SIZE + 136, &gameover);
@@ -265,7 +267,10 @@ update_status ModuleUI::Update(){
 		App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE, &lives_symbol);								//lives icon
 		DrawNumber(lives, 8, (-App->render->camera.y) / SCREEN_SIZE + 1, 8, lives_num);											//lives number
 
-		App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar);							//energy bar
+		if (max_energy == 36)
+			App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar);							//energy bar
+		else
+			App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar_ext);
 
 		for (int i = 0; i < energy; i++)
 			App->render->Blit(ui_graphics, 17 + (2 * i), (-App->render->camera.y) / SCREEN_SIZE + 18, &energy_pill);			//fill the bar
