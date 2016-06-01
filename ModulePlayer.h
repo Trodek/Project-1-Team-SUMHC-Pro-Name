@@ -41,6 +41,7 @@ public:
 	void SetEnergyDeath();
 	void AddPower();
 	void AddSpeed();
+	void PaintArrow();
 
 	//bool CheckColliders();
 

@@ -367,7 +367,7 @@ update_status ModuleUI::Update(){
 			DrawNumber(score, 74, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);							//player score	
 		}
 	}
-
+	App->player->PaintArrow();
 	return UPDATE_CONTINUE;
 }
 
