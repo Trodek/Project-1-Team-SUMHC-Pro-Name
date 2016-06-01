@@ -269,7 +269,7 @@ bool ModuleParticles::Start()
 	roomba = App->textures->Load("OutZone/Sprites/Enemies/Level 4/roomba.png");
 	notbasic = App->textures->Load("OutZone/Sprites/Enemies/Level 4/notsobasic.png");
 	strange_large = App->textures->Load("OutZone/Sprites/Enemies/Level 4/StrangeLargeShit.png");
-
+	notbasiccommander = App->textures->Load("Outzone/Sprites/Enemies/Level 4/notsobasiccomm.png");
 	fat_robot_train = App->textures->Load("OutZone/Sprites/Enemies/Level 4/Train/laser_robot.png");
 	train = App->textures->Load("OutZone/Sprites/Enemies/Level 4/Train/train.png");
 
