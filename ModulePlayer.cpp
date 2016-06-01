@@ -236,6 +236,10 @@ ModulePlayer::ModulePlayer()
 	shieldon.PushBack({ 101, 234, 38, 38 });
 	shieldon.speed = 0.5f;
 
+	wordshield.x = 89;
+	wordshield.y = 64;
+	wordshield.w = 30;
+	wordshield.h = 14;
 
 	go_ahead.x = 45;
 	go_ahead.y = 416;
@@ -280,7 +284,7 @@ bool ModulePlayer::Start()
 	move_up = move_down = move_left = move_right = true;
 	go = 0;
 	speed = 2;
-	shield = true;
+	shield = false;
 
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
 	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
@@ -505,6 +509,10 @@ update_status ModulePlayer::Update()
 		}
 		if (god_mode){
 			App->render->Blit(casual_tex, position.x - 50, position.y - 150, &casual);
+		}
+		if (paintshield > 0 && paintshield <= 31) {
+			App->render->Blit(App->particles->boxes, pos_shield.x, pos_shield.y, &wordshield);
+			paintshield++;
 		}
 	}
 	else{
