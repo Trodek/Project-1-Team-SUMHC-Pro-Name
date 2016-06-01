@@ -21,8 +21,8 @@ public:
 		collider = App->collisions->AddCollider({ 0, 0, 16, 16 }, COLLIDER_EXTRA_BOMB, (Module*)App->enemies);
 		collider->SetPos(position.x, position.y);
 
-		anim.PushBack({ 16, 183, 16, 16 });
-		anim.PushBack({ 39, 183, 16, 16 });
+		anim.PushBack({ 32, 328, 16, 17 });
+		anim.PushBack({ 32, 349, 16, 17 });
 		anim.speed = 0.2f;
 
 		hp = 1;

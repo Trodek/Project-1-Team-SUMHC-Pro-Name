@@ -219,6 +219,9 @@ update_status ModuleUI::Update(){
 				App->player->position.y = checkpoints[curr_check].y;
 				App->player->PlayerCollider->SetPos(App->player->position.x + 10, App->player->position.y + 20);
 				App->player->PlayerEBulletsCollider->SetPos(App->player->position.x + 4, App->player->position.y + 3);
+				App->player->speedup = false;
+				App->player->last_basic_weapon = MULTI;
+				App->player->current_weapon = LASER;
 				App->player->current_power = P0;
 				App->player->dead = false;
 				App->player->speed = 2;

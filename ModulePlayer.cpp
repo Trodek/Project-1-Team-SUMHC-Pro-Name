@@ -238,7 +238,7 @@ ModulePlayer::ModulePlayer()
 
 	wordshield.x = 89;
 	wordshield.y = 64;
-	wordshield.w = 30;
+	wordshield.w = 40;
 	wordshield.h = 14;
 
 	wordspeed.x = 93;
@@ -327,7 +327,10 @@ update_status ModulePlayer::PostUpdate(){
 			direction = UP;
 			current_animation = SelectAnimation(direction);
 			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y < 0 && scroll){
-				App->render->camera.y += 6;
+				if ((-App->render->camera.y / 3 - position.y) < -200) {
+					App->render->camera.y += speed * 6;
+				} else
+					App->render->camera.y += speed*3;
 				position.y -= speed;
 			}
 			else if (move_up)

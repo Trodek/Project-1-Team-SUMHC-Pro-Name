@@ -25,6 +25,9 @@
 #include "ChangePill.h"
 #include "EnemyMissileThrower.h"
 #include "PowerUP.h"
+#include "Shield.h"
+#include "Speed.h"
+#include "Extra_Bomb.h"
 #include "ModuleSceneLevels.h"
 
 #define SPAWN_MARGIN 150
@@ -233,6 +236,15 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			case ENEMY_TYPES::POWERUP:
 				enemies[i] = new PowerUP(info.x, info.y, info.type);
 				break;
+			case ENEMY_TYPES::SHIELD:
+				enemies[i] = new Shield(info.x, info.y, info.type);
+				break;
+			case ENEMY_TYPES::EXTRA_BOMB:
+				enemies[i] = new Extra_Bomb(info.x, info.y, info.type);
+				break;
+			case ENEMY_TYPES::SPEED:
+				enemies[i] = new Speed(info.x, info.y, info.type);
+				break;
 		}
 	}
 }
@@ -302,22 +314,30 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
 						}
 						else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
-						/*if (enemies[i]->type == **RED_ENEMY_HERE**) {
-							if (loot % 2 == 0 && loot < 10) {
+						if (enemies[i]->type == NOTBASIC) {
+							if (loot % 4 == 0) {
 								if (App->player->current_power < 2)
 									App->enemies->AddEnemy(POWERUP, enemies[i]->position.x, enemies[i]->position.y);
 								else
 									App->enemies->AddEnemy(SPEED, enemies[i]->position.x, enemies[i]->position.y);
+								loot++;
 							}
-							else if (loot % 2 == 1 || loot >= 10) {
+							else if (loot % 4 == 1 ) {
+								App->enemies->AddEnemy(EXTRA_BOMB, enemies[i]->position.x, enemies[i]->position.y);
+								loot++;
+							}
+							else if (loot % 4 == 2) {
 								if (App->player->current_power < 2)
-									App->enemies->AddEnemy(BOMB, enemies[i]->position.x, enemies[i]->position.y);
-								else {
+									App->enemies->AddEnemy(POWERUP, enemies[i]->position.x, enemies[i]->position.y);
+								else
 									App->enemies->AddEnemy(SHIELD, enemies[i]->position.x, enemies[i]->position.y);
-								}
+								loot++;
 							}
-							loot++;
-						}*/
+							else {
+								App->enemies->AddEnemy(EXTRA_BOMB, enemies[i]->position.x, enemies[i]->position.y);
+								loot = 0;
+							}
+						}
 						App->ui->score += enemies[i]->points;
 						delete enemies[i];
 						enemies[i] = nullptr;
