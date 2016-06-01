@@ -24,6 +24,8 @@ EnemyMissileThrower::EnemyMissileThrower(int x, int y, ENEMY_TYPES types) : Enem
 
 	dead = &App->particles->green_basic_dead;
 
+	draw = BEFORE;
+
 }
 
 void EnemyMissileThrower::Draw(){

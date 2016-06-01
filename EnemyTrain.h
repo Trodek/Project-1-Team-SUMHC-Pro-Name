@@ -11,9 +11,12 @@ private:
 
 	iPoint original;
 	Animation machine_top_anim;
-	Animation door_anim;
+	Animation door_idle_anim;
+	Animation door_open_anim;
 	Animation turret_idle_anim;
 	Animation turret_shot_anim;
+
+	Animation* current_anim;
 
 	Particle* bullet;
 	Particle* shoot_start;
@@ -21,9 +24,10 @@ private:
 	Direction dir = IDLE;
 
 	int now;
-	int last_enemy;
 	int last_shot;
+	int open_door;
 	bool shot_finish = true;
+	bool start_spam = false;
 
 	float enemy_player_radius;
 	float delta_y;
