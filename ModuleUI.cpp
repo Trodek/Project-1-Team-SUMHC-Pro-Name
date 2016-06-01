@@ -181,6 +181,7 @@ bool ModuleUI::Start(){
 	ui_graphics = App->textures->Load("OutZone/Sprites/Interface/ui_stuff.png");
 	low_energy = App->textures->Load("Outzone/Sprites/Main Char/Energy_dead_char.png");
 	coin_sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/insert coin.wav");
+	low_energy_sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/low energy.wav");
 
 	return true;
 }
@@ -188,6 +189,7 @@ bool ModuleUI::Start(){
 bool ModuleUI::CleanUp(){
 	App->textures->Unload(low_energy);
 	App->textures->Unload(ui_graphics);
+
 	for (int i = 0; i < 5; i++) {
 		if (TopScores[i].name != nullptr) {
 			delete[] TopScores[i].name;
@@ -247,13 +249,13 @@ update_status ModuleUI::Update(){
 				App->player->out_of_energy.Reset();
 				App->player->fall_hole.Reset();
 			}
-
 		}
 
 		if (score > top_score) top_score = score;
 		if (now - e_timer > 1500 && energy > 0 && !(App->player->god_mode)) {
 			energy--;
 			energy_p2--;
+			energy_cont = 0;
 			e_timer = SDL_GetTicks();	
 			if (energy == 0) 
 				App->player->SetEnergyDeath();
@@ -272,7 +274,7 @@ update_status ModuleUI::Update(){
 		DrawNumber(lives, 8, (-App->render->camera.y) / SCREEN_SIZE + 1, 8, lives_num);											//lives number
 
 		if (max_energy == 36)
-			App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar);							//energy bar
+			App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar);						//energy bar
 		else
 			App->render->Blit(ui_graphics, 0, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar_ext);
 
@@ -281,10 +283,11 @@ update_status ModuleUI::Update(){
 		for (int i = 0; i < bombs; i++)																				
 			App->render->Blit(ui_graphics, 8 * i, (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);							//bombs
 
-		if (!(energy % 2) && energy < 7) {
+		if (energy == 0 || (((energy*energy) + energy_cont % (4 * (energy - 1) + 1) < (energy * energy + energy + 2)) && energy < 9)) {
 			App->render->Blit(low_energy, 8, (-App->render->camera.y) / SCREEN_SIZE + 27, &Low_energy_static);					//Low energy
+			App->audio->PlaySoundEffect(low_energy_sound);
 		}
-
+		energy_cont++;
 		/*---------------------- TOP SCORE ----------------------*/
 		App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 1, &top_name);								//top name
 		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);									//top score
@@ -305,6 +308,7 @@ update_status ModuleUI::Update(){
 
 			if (!(energy % 2) && energy < 7) {
 				App->render->Blit(low_energy, 190, (-App->render->camera.y) / SCREEN_SIZE + 27, &Low_energy_static);			//Low energy
+
 			}
 		}
 		else
