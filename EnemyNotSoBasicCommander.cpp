@@ -89,7 +89,7 @@ EnemyNotSoBasicCommander::EnemyNotSoBasicCommander(int x, int y, ENEMY_TYPES typ
 	move_360.speed = 0.6f;
 	move_360.SetInitialFrame(DOWN);
 
-	tex = App->particles->notbasic;
+	tex = App->particles->notbasiccommander;
 
 	last_shot = SDL_GetTicks();
 

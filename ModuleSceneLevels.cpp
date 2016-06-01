@@ -719,18 +719,21 @@ void ModuleSceneLevels::RestartEnemies() {
 	}
 	if (App->ui->curr_check <= 3) {				// y < 4900
 		App->enemies->AddEnemy(NOTBASIC, 73, 4700, &gb21);
+
 		App->enemies->AddEnemy(NOTBASIC, 140, 4700, &gb24);
 		App->enemies->AddEnemy(NOTBASIC, 73, 3951, &notsobasic7);
 		App->enemies->AddEnemy(NOTBASIC, 140, 3951, &notsobasic8);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 2759);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 2792);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 2825);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 3112);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 3149);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 3189);
-		App->enemies->AddEnemy(SMALLTURRET, 222, 2988);
-		App->enemies->AddEnemy(SMALLTURRET, 222, 2951);
-		App->enemies->AddEnemy(SMALLTURRET, 222, 3025);
+
+		App->enemies->AddEnemy(SMALLTURRET, -5, 2743);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 2775);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 2807);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 3095);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 3127);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 3159);
+		App->enemies->AddEnemy(SMALLTURRET, 210, 2967);
+		App->enemies->AddEnemy(SMALLTURRET, 210, 2935);
+		App->enemies->AddEnemy(SMALLTURRET, 210, 2999);
+
 
 		AddEnergyBox(212, 4614);
 		AddEnergyBox(14, 3816);
@@ -860,23 +863,23 @@ update_status ModuleSceneLevels::Update()
 		App->render->Blit(lava, 0, 5156, &lavaanim.GetCurrentFrame());*/
 
 		//App->render->Blit(sublighttex, 0, 6781, &sublightanim.GetCurrentFrame());
-		if ((purple_background_1 += 1) > 3615){
+		if ((purple_background_1 += 0.25f) > 3615){
 			purple_background_1 = 1055;
 		}
 
-		if ((purple_background_2 += 1) > 3615){
+		if ((purple_background_2 += 0.25f) > 3615){
 			purple_background_2 = 1055;
 		}
 
-		if ((purple_background_3 += 1) > 3615){
+		if ((purple_background_3 += 0.25f) > 3615){
 			purple_background_3 = 1055;
 		}
 
-		if ((purple_background_4 += 1) > 3615){
+		if ((purple_background_4 += 0.25f) > 3615){
 			purple_background_4 = 1055;
 		}
 
-		if ((purple_background_5 += 1) > 3615){
+		if ((purple_background_5 += 0.25f) > 3615){
 			purple_background_5 = 1055;
 		}
 

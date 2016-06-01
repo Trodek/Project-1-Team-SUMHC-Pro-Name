@@ -337,6 +337,9 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
 						}
+						if (enemies[i]->type == SMALLTURRET){
+							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x - 3, enemies[i]->position.y - 15, COLLIDER_NONE, { 0, 0, 0, 0 });
+						}
 						else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 						if (enemies[i]->type == NOTBASICCOMMANDER) {
 							if (loot % 4 == 0) {
@@ -380,6 +383,9 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						if (enemies[i]->type == STRANGE_LARGE){
 							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x + 60, enemies[i]->position.y, COLLIDER_NONE, { 0, 0, 0, 0 });
+						}
+						if (enemies[i]->type == SMALLTURRET){
+							App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x - 3, enemies[i]->position.y - 15, COLLIDER_NONE, { 0, 0, 0, 0 });
 						}
 						else if (enemies[i]->dead != nullptr) App->particles->AddParticle(*enemies[i]->dead, enemies[i]->position.x, enemies[i]->position.y + enemies[i]->y_collider_correction, COLLIDER_NONE, { 0, 0, 0, 0 });
 						App->ui->score += enemies[i]->points;

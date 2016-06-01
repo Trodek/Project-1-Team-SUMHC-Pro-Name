@@ -30,8 +30,8 @@ EnemyTrain::EnemyTrain(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 
 	dead = &App->particles->green_basic_dead;
 
-	hp = 6;
-	points = 390;
+	hp = 216;
+	points = 1670;
 	collider = App->collisions->AddCollider({ 0, 0, 95, 83 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	collider->SetPos(position.x, position.y);
 	bullet = &App->particles->big_turret_bullet;

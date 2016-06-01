@@ -80,7 +80,7 @@ public:
 	SDL_Texture* fat_robot_train;
 	SDL_Texture* train;
 	SDL_Texture* rounded_turret;
-
+	SDL_Texture* notbasiccommander;
 
 	Particle basic_laser_p0;
 	Particle basic_laser_p1;
