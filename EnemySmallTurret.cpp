@@ -10,32 +10,32 @@
 
 EnemySmallTurret::EnemySmallTurret(int x, int y, ENEMY_TYPES type): Enemy(x,y,type){
 
-	move_360.PushBack({ 157, 80, 30, 47 });
-	move_360.PushBack({ 205, 80, 30, 47 });
-	move_360.PushBack({ 251, 80, 30, 47 });
-	move_360.PushBack({ 296, 80, 30, 47 });
-	move_360.PushBack({ 341, 80, 30, 47 });
-	move_360.PushBack({ 340, 135, 30, 47 });
-	move_360.PushBack({ 298, 135, 30, 47 });
-	move_360.PushBack({ 251, 135, 30, 47 });
-	move_360.PushBack({ 205, 135, 30, 47 });
-	move_360.PushBack({ 160, 135, 30, 47 });
-	move_360.PushBack({ 114, 135, 30, 47 });
-	move_360.PushBack({ 68, 137, 30, 47 });
-	move_360.PushBack({ 21, 137, 30, 47 });
-	move_360.PushBack({ 24, 81, 30, 47 });
-	move_360.PushBack({ 69, 81, 30, 47 });
-	move_360.PushBack({ 113, 80, 30, 47 });
+	move_360.PushBack({ 224, 0, 32, 36 });	 //-- left
+	move_360.PushBack({ 0, 36, 32, 36 });	 //-- left-up
+	move_360.PushBack({ 32, 36, 32, 36 });	 //-- left-up
+	move_360.PushBack({ 64, 36, 32, 36 });	 //-- left-up
+	move_360.PushBack({ 96, 36, 32, 36 });	 //-- up
+	move_360.PushBack({ 128, 36, 32, 36 }); //-- right-up
+	move_360.PushBack({ 160, 36, 32, 36 }); //-- right-up
+	move_360.PushBack({ 192, 36, 32, 36 }); //-- right-up
+	move_360.PushBack({ 224, 36, 32, 36 }); //-- right
+	move_360.PushBack({ 0, 0, 32, 36 }); //-- right-down
+	move_360.PushBack({ 32, 0, 32, 36 }); //-- right-down
+	move_360.PushBack({ 64, 0, 32, 36 });	 //-- right-down
+	move_360.PushBack({ 96, 0, 32, 36 });	 //-- down
+	move_360.PushBack({ 128, 0, 32, 36 });   // --left - down
+	move_360.PushBack({ 160, 0, 32, 36 });   // --left - down
+	move_360.PushBack({ 192, 0, 32, 36 });  // --left - down
 
 	tex = App->particles->small_turret;
 
-	collider = App->collisions->AddCollider({ 0, 0, 30, 47 }, COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 32, 36 }, COLLIDER_ENEMY, (Module*)App->enemies);
 	collider->SetPos(position.x, position.y);
 
 	hp = 12;
 	points = 410;
 
-	dead = &App->particles->green_basic_dead;
+	dead = &App->particles->big_turret_dead;
 
 	bullet = &App->particles->green_basic_bullet;
 	shoot_start = &App->particles->green_basic_bullet_start;
