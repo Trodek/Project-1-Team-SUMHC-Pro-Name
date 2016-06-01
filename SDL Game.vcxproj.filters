@@ -67,6 +67,9 @@
     <ClCompile Include="EnemyStrangeLarge.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyTrain.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules\Player</Filter>
     </ClCompile>
@@ -101,6 +104,7 @@
       <Filter>Modules\UI</Filter>
     </ClCompile>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="EnemyFatRobotTrain.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
@@ -110,6 +114,8 @@
 >>>>>>> origin/master
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
+=======
+>>>>>>> parent of 4053ad4... train + enemies
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -193,6 +199,9 @@
     <ClInclude Include="EnemyStrangeLarge.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyTrain.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules\Player</Filter>
     </ClInclude>
@@ -239,6 +248,7 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClInclude Include="EnemyFatRobotTrain.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
@@ -248,6 +258,8 @@
 >>>>>>> origin/master
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
+=======
+>>>>>>> parent of 4053ad4... train + enemies
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Basic">
