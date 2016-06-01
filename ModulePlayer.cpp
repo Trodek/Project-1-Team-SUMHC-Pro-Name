@@ -223,11 +223,7 @@ ModulePlayer::ModulePlayer()
 	out_of_energy.PushBack({ 59, 63, 30, 30 });
 	out_of_energy.PushBack({ 111, 63, 30, 30 });
 	out_of_energy.PushBack({ 160, 63, 30, 30 });
-<<<<<<< HEAD
-	out_of_energy.speed = 0.1f;
-=======
 	out_of_energy.speed = 0.08f;
->>>>>>> origin/master
 	out_of_energy.loop = false;
 
 	go_ahead.x = 45;

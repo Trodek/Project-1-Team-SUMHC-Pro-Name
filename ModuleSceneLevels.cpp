@@ -759,7 +759,6 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	platform_p1.Restart();
 	platform_p2.Restart();
 	platform_p3.Restart();
-<<<<<<< HEAD
 	mt1.Restart();
 	mt2.Restart();
 	mt3.Restart();
@@ -771,11 +770,10 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	mt9.Restart();
 	mt10.Restart();
 	mt11.Restart();
-=======
 	train_platform_first_path.Restart();
 	train_platform_loop_path.Restart();
 	train_platform_death_path.Restart();
->>>>>>> origin/master
+
 }
 
 void ModuleSceneLevels::AddChangeBox(int x,int y){
