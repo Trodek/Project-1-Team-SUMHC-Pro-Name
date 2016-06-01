@@ -220,28 +220,32 @@ update_status ModuleUI::Update(){
 				App->player->PlayerCollider->SetPos(App->player->position.x + 10, App->player->position.y + 20);
 				App->player->PlayerEBulletsCollider->SetPos(App->player->position.x + 4, App->player->position.y + 3);
 				App->player->speedup = false;
-				App->player->last_basic_weapon = MULTI;
+				App->player->last_basic_weapon = LASER;
 				App->player->current_weapon = LASER;
 				App->player->current_power = P0;
+				App->player->current_animation = &(App->player->up);
+				App->player->weapon_anim = &(App->player->laser_360);
 				App->player->dead = false;
 				App->player->speed = 2;
 				App->player->shield = false;
-				App->player->fall_hole.Reset();
 				App->player->direction = IDLE;
 				App->render->camera.y = checkpoints[curr_check].camera_y;
 				ResetEnergyBombs();
 				App->player->dead_explo.Reset();
 				App->player->out_of_energy.Reset();
+				App->player->fall_hole.Reset();
 				energy = 36;
 				max_energy = 36;
 			}
 			else {
 				//App->render->Blit(ui_graphics, 23, (-App->render->camera.y) / SCREEN_SIZE + 136, &gameover);
 				if (TopScore())
-					App->fade->FadeToBlack((Module *)App->levels, (Module *)App->namescreen, 1.0f);
+					App->fade->FadeToBlack((Module *)App->levels, (Module *)App->namescreen, 0.8f);
 				else
-					App->fade->FadeToBlack((Module *)App->levels, (Module *)App->losescreen, 1.0f);
+					App->fade->FadeToBlack((Module *)App->levels, (Module *)App->losescreen, 0.8f);
 				App->player->dead_explo.Reset();
+				App->player->out_of_energy.Reset();
+				App->player->fall_hole.Reset();
 			}
 
 		}
