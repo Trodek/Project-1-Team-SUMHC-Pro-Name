@@ -89,6 +89,8 @@ public:
 	bool player2_dead = false;
 	bool startgame = false;
 
+	bool energy_sound;
+
 	int temp_score;
 	bool get_score;
 	bool first_time;

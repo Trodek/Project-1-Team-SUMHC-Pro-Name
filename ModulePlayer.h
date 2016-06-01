@@ -141,6 +141,8 @@ public:
 
 	SDL_Rect go_ahead;
 
+	bool energy_sound;
+
 };
 
 #endif
