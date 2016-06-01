@@ -81,6 +81,7 @@ public:
 	SDL_Texture* train;
 	SDL_Texture* rounded_turret;
 	SDL_Texture* notbasiccommander;
+	SDL_Texture* notsobasicgreen;
 
 	Particle basic_laser_p0;
 	Particle basic_laser_p1;

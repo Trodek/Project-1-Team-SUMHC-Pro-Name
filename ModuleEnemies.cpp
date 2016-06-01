@@ -17,6 +17,7 @@
 #include "EnemyGreenBasic.h"
 #include "EnemyBoss.h"
 #include "EnemyNotSoBasic.h"
+#include "EnemyNotSoBasicGreen.h"
 #include "EnemyNotSoBasicCommander.h"
 #include "EnergyPill.h"
 #include "ModuleBomb.h"
@@ -214,9 +215,12 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 				enemies[i] = new EnemyRoomba(info.x, info.y, info.type);
 				enemies[i]->SetPath(info.path);
 				break;
-
 			case ENEMY_TYPES::NOTBASIC:
 				enemies[i] = new EnemyNotSoBasic(info.x, info.y, info.type);
+				enemies[i]->SetPath(info.path);
+				break;
+			case ENEMY_TYPES::NOTBASICGREEN:
+				enemies[i] = new EnemyNotSoBasicGreen(info.x, info.y, info.type);
 				enemies[i]->SetPath(info.path);
 				break;
 			case ENEMY_TYPES::NOTBASICCOMMANDER:
