@@ -22,6 +22,8 @@ EnemyMissileThrower::EnemyMissileThrower(int x, int y, ENEMY_TYPES types) : Enem
 
 	collider = App->collisions->AddCollider({ 0, 0, 50, 40 }, COLLIDER_ENEMY, (Module*)App->enemies);
 
+	dead = &App->particles->green_basic_dead;
+
 }
 
 void EnemyMissileThrower::Draw(){

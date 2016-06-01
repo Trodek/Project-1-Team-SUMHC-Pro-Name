@@ -142,6 +142,8 @@ public:
 	uint e_dead;
 
 	Mix_Chunk* coin_sound;
+
+	int low;
 };
 
 #endif

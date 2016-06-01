@@ -285,6 +285,10 @@ update_status ModuleUI::Update(){
 			App->render->Blit(low_energy, 8, (-App->render->camera.y) / SCREEN_SIZE + 27, &Low_energy_static);					//Low energy
 		}
 
+		if (energy == 0){
+			App->render->Blit(low_energy, App->player->position.x - 5, App->player->position.y - 40, &Low_energy_static);
+		}
+
 		/*---------------------- TOP SCORE ----------------------*/
 		App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 1, &top_name);								//top name
 		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);									//top score
