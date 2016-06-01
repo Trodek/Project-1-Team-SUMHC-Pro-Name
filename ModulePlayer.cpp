@@ -223,7 +223,7 @@ ModulePlayer::ModulePlayer()
 	out_of_energy.PushBack({ 59, 63, 30, 30 });
 	out_of_energy.PushBack({ 111, 63, 30, 30 });
 	out_of_energy.PushBack({ 160, 63, 30, 30 });
-	out_of_energy.speed = 0.4f;
+	out_of_energy.speed = 0.1f;
 	out_of_energy.loop = false;
 
 	go_ahead.x = 45;
@@ -498,7 +498,7 @@ update_status ModulePlayer::Update()
 		if (dead_fall){
 			if (fall_hole.Finished()){
 				App->ui->dead = true;
-				fall_hole.Finished();
+				fall_hole.Reset();
 				if (App->ui->lives > 0){
 					App->enemies->DestroyEnemies();
 					App->levels->RestartEnemies();
@@ -510,7 +510,7 @@ update_status ModulePlayer::Update()
 		else if (dead_energy) {
 			if (out_of_energy.Finished()) {
 				App->ui->dead = true;
-				out_of_energy.Finished();
+				out_of_energy.Reset();
 				if (App->ui->lives > 0){
 					App->enemies->DestroyEnemies();
 					App->levels->RestartEnemies();

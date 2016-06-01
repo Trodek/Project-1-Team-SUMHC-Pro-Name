@@ -88,6 +88,12 @@ public:
 	Path mt3;
 	Path mt4;
 	Path mt5;
+	Path mt6;
+	Path mt7;
+	Path mt8;
+	Path mt9;
+	Path mt10;
+	Path mt11;
 
 	//Platform stuff
 	Path platform_p1;

@@ -418,6 +418,45 @@ bool ModuleSceneLevels::Start()
 	mt2.PushBack({ 0, -2 }, 50);
 	mt2.PushBack({ 2, 0 }, 75);
 
+	mt3.PushBack({ 0, 2 }, 55);
+	mt3.PushBack({ 1, 1 }, 50);
+	mt3.PushBack({ 2, 0 }, 100);
+
+	mt4.PushBack({ 0, 2 }, 55);
+	mt4.PushBack({ 1, 1 }, 50);
+	mt4.PushBack({ 2, 0 }, 100);
+
+	mt5.PushBack({ -2, 0 }, 55);
+	mt5.PushBack({ 0, 2 }, 50);
+	mt5.PushBack({ -2, 0 }, 75);
+
+	mt6.PushBack({ -2, 0 }, 55);
+	mt6.PushBack({ 0, 2 }, 40);
+	mt6.PushBack({ -2, 0 }, 75);
+
+	mt7.PushBack({ -2, 0 }, 55);
+	mt7.PushBack({ 0, 2 }, 40);
+	mt7.PushBack({ -2, 0 }, 75);
+
+	mt8.PushBack({ 0, 2 }, 55);
+	mt8.PushBack({ 1, 1 }, 50);
+	mt8.PushBack({ 2, 0 }, 100);
+
+	mt9.PushBack({ 2, 0 }, 60);
+	mt9.PushBack({ 1.5f, -1.5f }, 50);
+	mt9.PushBack({ 1.5f, 1.5f }, 20);
+	mt9.PushBack({ -1.5f, 1.5f }, 250);
+
+	mt10.PushBack({ 2, 0 }, 60);
+	mt10.PushBack({ 1.5f, -1.5f }, 50);
+	mt10.PushBack({ 1.5f, 1.5f }, 20);
+	mt10.PushBack({ -1.5f, 1.5f }, 250);
+
+	mt11.PushBack({ 2, 0 }, 60);
+	mt11.PushBack({ 1.5f, -1.5f }, 50);
+	mt11.PushBack({ 1.5f, 1.5f }, 20);
+	mt11.PushBack({ -1.5f, 1.5f }, 250);
+
 	RestartEnemies();
 	return ret;
 }
@@ -485,6 +524,16 @@ void ModuleSceneLevels::RestartEnemies() {
 
 		App->enemies->AddEnemy(MISSILE_THROWER, -56, 5756, &mt1);
 		App->enemies->AddEnemy(MISSILE_THROWER, -56, 5680, &mt2);
+		App->enemies->AddEnemy(MISSILE_THROWER, 9, 5779, &mt3);
+		App->enemies->AddEnemy(MISSILE_THROWER, 4, 5689, &mt4);
+		App->enemies->AddEnemy(MISSILE_THROWER, 239, 5493, &mt5);
+		App->enemies->AddEnemy(MISSILE_THROWER, 200, 5433, &mt6);
+		App->enemies->AddEnemy(MISSILE_THROWER, 239, 5384, &mt7);
+		App->enemies->AddEnemy(MISSILE_THROWER, 5, 5344, &mt8);
+		App->enemies->AddEnemy(MISSILE_THROWER, -40, 5312, &mt9);
+		App->enemies->AddEnemy(MISSILE_THROWER, -40, 5247, &mt10);
+		App->enemies->AddEnemy(MISSILE_THROWER, -40, 5177, &mt11);
+
 
 	}
 	if (App->ui->curr_check <= 3) {				// y < 4900
@@ -658,6 +707,17 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	platform_p1.Restart();
 	platform_p2.Restart();
 	platform_p3.Restart();
+	mt1.Restart();
+	mt2.Restart();
+	mt3.Restart();
+	mt4.Restart();
+	mt5.Restart();
+	mt6.Restart();
+	mt7.Restart();
+	mt8.Restart();
+	mt9.Restart();
+	mt10.Restart();
+	mt11.Restart();
 }
 
 void ModuleSceneLevels::AddChangeBox(int x,int y){
