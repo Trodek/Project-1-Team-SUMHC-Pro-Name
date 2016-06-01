@@ -22,6 +22,8 @@ EnemyMissileThrower::EnemyMissileThrower(int x, int y, ENEMY_TYPES types) : Enem
 
 	collider = App->collisions->AddCollider({ 0, 0, 50, 40 }, COLLIDER_ENEMY, (Module*)App->enemies);
 
+	draw = BEFORE;
+
 }
 
 void EnemyMissileThrower::Draw(){
