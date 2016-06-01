@@ -64,6 +64,10 @@ private:
 private:
 
 	Mix_Chunk* enemy_hitted;
+	Mix_Chunk* change_weapon;
+	Mix_Chunk* pick_energy;
+	Mix_Chunk* pick_speed;
+	Mix_Chunk* expand_energy;
 	EnemyInfo queue[MAX_ENEMIES];
 
 public:

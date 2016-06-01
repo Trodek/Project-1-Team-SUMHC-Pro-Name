@@ -39,6 +39,10 @@ ModuleEnemies::ModuleEnemies()
 
 bool ModuleEnemies::Start(){
 	enemy_hitted = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/enemy hitted.wav");
+	change_weapon = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/change weapon.wav");
+	pick_speed = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/Speed_pickup.wav");
+	pick_energy = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/energy_pickup.wav");
+	expand_energy = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/energy extend pickup.wav");
 	loot = 0;
 	return true;
 }
@@ -241,12 +245,14 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (c1->type == COLLIDER_ENERGY && c2->type == COLLIDER_PLAYER_EBULLETS){
 				App->ui->AddEnergy();
+				App->audio->PlaySoundEffect(pick_energy);
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
 			else if (c1->type == COLLIDER_CHANGE && c2->type == COLLIDER_PLAYER_EBULLETS){
 				App->player->current_weapon = App->player->ChangeWeapon(App->player->current_weapon);
 				App->player->last_basic_weapon = App->player->current_weapon;
+				App->audio->PlaySoundEffect(change_weapon);
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
@@ -255,6 +261,9 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			}
 			else if (c1->type == COLLIDER_SPEED && c2->type == COLLIDER_PLAYER_EBULLETS) {
 				App->player->AddSpeed();
+				App->player->pos_speed = enemies[i]->position;
+				App->player->paintspeed = 1;
+				App->audio->PlaySoundEffect(pick_speed);
 			}
 			else if (c1->type == COLLIDER_EXTRA_BOMB && c2->type == COLLIDER_PLAYER_EBULLETS) {
 				App->ui->AddBomb();
@@ -263,6 +272,9 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				App->player->shield = true;
 				//App->player->PaintShield();
 			}
+
+			//App->audio->PlaySoundEffect(expand_energy);
+
 			else{
 				if (c2->type == COLLIDER_PLAYER_SHOT && enemies[i]->hp>0){
 					enemies[i]->hp -= App->player->GetDmg();

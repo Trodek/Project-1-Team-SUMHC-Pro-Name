@@ -236,7 +236,6 @@ ModulePlayer::ModulePlayer()
 	shieldon.PushBack({ 101, 234, 38, 38 });
 	shieldon.speed = 0.5f;
 
-
 	go_ahead.x = 45;
 	go_ahead.y = 416;
 	go_ahead.w = 50;
