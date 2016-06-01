@@ -66,7 +66,7 @@ ModuleSceneLevels::ModuleSceneLevels()
 	train_platform_first_path.PushBack({ -1.0f, 0 }, 333);
 	train_platform_first_path.loop = false;
 	train_platform_loop_path.PushBack({ 1.0f, 0 }, 165);
-	train_platform_loop_path.PushBack({ -1.0f, 0 }, 170);
+	train_platform_loop_path.PushBack({ -1.0f, 0 }, 180);
 	train_platform_death_path.PushBack({ 0, 0 }, 177);
 	train_platform_pos.x = 0;
 	train_platform_pos.y = 1694;

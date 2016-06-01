@@ -322,6 +322,18 @@ bool ModuleParticles::CleanUp()
 	LOG("Unloading particles");
 	App->textures->Unload(basic_laser_tex);
 	App->textures->Unload(multi_laser_tex);
+	App->textures->Unload(truck_tex);
+	App->textures->Unload(small_turret);
+	App->textures->Unload(boss);
+	App->textures->Unload(roomba);
+	App->textures->Unload(notbasic);
+	App->textures->Unload(strange_large);
+	App->textures->Unload(fat_robot_train);
+	App->textures->Unload(train);
+	App->textures->Unload(missilethrower);
+	App->textures->Unload(green_basic);
+	App->textures->Unload(blue_basic);
+	App->textures->Unload(big_turret_bullet_tex);
 
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
