@@ -326,6 +326,17 @@ bool ModuleSceneLevels::Start()
 	gb21.PushBack({ 0, 0.5f }, 70);
 	gb21.loop = false;
 
+	gb22.PushBack({ 0, 1 }, 200);
+
+	gb23.PushBack({ 0, 1 }, 90);
+	gb23.PushBack({ -1, 1 }, 90);
+	gb23.PushBack({ -1, 0 }, 110);
+
+	gb24.PushBack({ 0, 0.5f }, 70);
+	gb24.loop = false;
+
+	gb25.PushBack({ 0, 1 }, 200);
+
 	roomba1.PushBack({ 0, 1 }, 55);
 	roomba1.PushBack({ -1, 0 }, 160);
 	roomba1.PushBack({ 1, 0 }, 100);
@@ -381,6 +392,38 @@ bool ModuleSceneLevels::Start()
 	notsobasic3.PushBack({ -1, 0.5f }, 50);
 	notsobasic3.PushBack({ 1, 0 }, 40);
 	notsobasic3.PushBack({ 0, -1 }, 50);
+
+	notsobasic4.PushBack({ 0, 1 }, 70);
+	notsobasic4.PushBack({ 1, 0 }, 30);
+	notsobasic4.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic4.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic4.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic4.PushBack({ -1, 0 }, 50);
+
+	notsobasic5.PushBack({ 1, 1 }, 60);
+	notsobasic5.PushBack({ 0, 1 }, 50);
+	notsobasic5.PushBack({ 1, -0.5f }, 50);
+	notsobasic5.PushBack({ -1, 0 }, 40);
+	notsobasic5.PushBack({ 0, -1 }, 50);
+
+	notsobasic6.PushBack({ -1, 1 }, 60);
+	notsobasic6.PushBack({ 0, 1 }, 50);
+	notsobasic6.PushBack({ -1, 0.5f }, 50);
+	notsobasic6.PushBack({ 1, 0 }, 40);
+	notsobasic6.PushBack({ 0, -1 }, 50);
+
+	notsobasic7.PushBack({ 0, 1 }, 70);
+	notsobasic7.PushBack({ 1, 0 }, 30);
+	notsobasic7.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic7.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic7.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic7.PushBack({ -1, 0 }, 50);
+
+	notsobasic8.PushBack({ 1, 1 }, 60);
+	notsobasic8.PushBack({ 0, 1 }, 50);
+	notsobasic8.PushBack({ 1, -0.5f }, 50);
+	notsobasic8.PushBack({ -1, 0 }, 40);
+	notsobasic8.PushBack({ 0, -1 }, 50);
 
 	fastright.PushBack({ -1, 0 }, 200);
 	fastright.PushBack({ 0, 1 }, 60);
@@ -609,9 +652,9 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(NOTBASIC, 30, 6870, &gb14);
 		App->enemies->AddEnemy(NOTBASIC, 200, 6850, &notsobasic3);
 
-		App->enemies->AddEnemy(NOTBASIC, 0, 6590, &notsobasic1);
-		App->enemies->AddEnemy(NOTBASIC, 200, 6590, &notsobasic2);
-		App->enemies->AddEnemy(NOTBASIC, 200, 6530, &notsobasic3);
+		App->enemies->AddEnemy(NOTBASIC, 0, 6590, &notsobasic4);
+		App->enemies->AddEnemy(NOTBASIC, 200, 6590, &notsobasic5);
+		App->enemies->AddEnemy(NOTBASIC, 200, 6530, &notsobasic6);
 
 
 		App->enemies->AddEnemy(NOTBASIC, 240, 6367, &fastright);
@@ -636,14 +679,14 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(NOTBASIC, 160, 5000, &gb6);
 
 		App->enemies->AddEnemy(NOTBASIC, 27, 5325, &gb5);
-		App->enemies->AddEnemy(NOTBASIC, 198, 5325, &gb6);
+		App->enemies->AddEnemy(NOTBASIC, 198, 5325, &gb22);
 		App->enemies->AddEnemy(NOTBASIC, 45, 5200, &gb7);
 		App->enemies->AddEnemy(NOTBASIC, 160, 5200, &gb8);
 
 		App->enemies->AddEnemy(NOTBASIC, 27, 5325, &gb19);
-		App->enemies->AddEnemy(NOTBASIC, 198, 5325, &gb18);
+		App->enemies->AddEnemy(NOTBASIC, 198, 5325, &gb23);
 		App->enemies->AddEnemy(NOTBASIC, 45, 5200, &gb20);
-		App->enemies->AddEnemy(NOTBASIC, 160, 5200, &gb4);
+		App->enemies->AddEnemy(NOTBASIC, 160, 5200, &gb25);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4950, &sl1);
 		App->enemies->AddEnemy(STRANGE_LARGE, -50, 4900, &sl2);
 		App->enemies->AddEnemy(STRANGE_LARGE, 196, 4854, &sl3);
@@ -676,9 +719,9 @@ void ModuleSceneLevels::RestartEnemies() {
 	}
 	if (App->ui->curr_check <= 3) {				// y < 4900
 		App->enemies->AddEnemy(NOTBASIC, 73, 4700, &gb21);
-		App->enemies->AddEnemy(NOTBASIC, 140, 4700, &gb21);
-		App->enemies->AddEnemy(NOTBASIC, 73, 3951, &notsobasic1);
-		App->enemies->AddEnemy(NOTBASIC, 140, 3951, &notsobasic2);
+		App->enemies->AddEnemy(NOTBASIC, 140, 4700, &gb24);
+		App->enemies->AddEnemy(NOTBASIC, 73, 3951, &notsobasic7);
+		App->enemies->AddEnemy(NOTBASIC, 140, 3951, &notsobasic8);
 		App->enemies->AddEnemy(SMALLTURRET, 5, 2759);
 		App->enemies->AddEnemy(SMALLTURRET, 5, 2792);
 		App->enemies->AddEnemy(SMALLTURRET, 5, 2825);
@@ -928,9 +971,18 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	gb19.Restart();
 	gb20.Restart();
 	gb21.Restart();
+	gb22.Restart();
+	gb23.Restart();
+	gb24.Restart();
+	gb25.Restart();
 	notsobasic1.Restart();
 	notsobasic2.Restart();
 	notsobasic3.Restart();
+	notsobasic4.Restart();
+	notsobasic5.Restart();
+	notsobasic6.Restart();
+	notsobasic7.Restart();
+	notsobasic8.Restart();
 	fastright.Restart();
 	fastright1.Restart();
 	fastright2.Restart();

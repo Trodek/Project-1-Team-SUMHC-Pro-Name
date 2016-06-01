@@ -348,7 +348,7 @@ update_status ModulePlayer::PostUpdate(){
 				App->render->camera.y += (speed == 2) ? 6 : 9;
 				position.y -= speed;
 			}
-			else if (move_up)
+			else if (move_up && (-App->render->camera.y / 3 < position.y))
 				position.y -= speed; // - is + character speed
 		}
 		else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP){

@@ -79,12 +79,22 @@ public:
 	Path gb19;
 	Path gb20;
 	Path gb21;
+	Path gb22;
+	Path gb23;
+	Path gb24;
+	Path gb25;
+
 	Path roomba1;
 	Path roomba2;
 	Path roomba3;
 	Path notsobasic1;
 	Path notsobasic2;
 	Path notsobasic3;
+	Path notsobasic4;
+	Path notsobasic5;
+	Path notsobasic6;
+	Path notsobasic7;
+	Path notsobasic8;
 	Path fastright;
 	Path fastright1;
 	Path fastright2;
