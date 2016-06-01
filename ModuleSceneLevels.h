@@ -23,6 +23,7 @@ public:
 	bool CameraReset();
 	bool train_dead;
 	bool first_path_made = false;
+	bool train_start_path = false;
 	void RestartEnemiesPaths();
 	void RestartEnemies();
 	void AddEnergyBox(int x, int y);

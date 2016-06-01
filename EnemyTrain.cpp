@@ -34,10 +34,11 @@ EnemyTrain::EnemyTrain(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 
 	hp = 6;
 	points = 390;
-	collider = App->collisions->AddCollider({ 0, 0, 115, 83 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 95, 83 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	collider->SetPos(position.x, position.y);
 	bullet = &App->particles->big_turret_bullet;
 	shoot_start = &App->particles->big_turret_bullet_start;
+	draw = BEFORE;
 
 }
 

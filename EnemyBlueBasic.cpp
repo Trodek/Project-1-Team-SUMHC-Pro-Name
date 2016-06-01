@@ -47,6 +47,7 @@ EnemyBlueBasic::EnemyBlueBasic(int x, int y, ENEMY_TYPES type) : Enemy(x, y, typ
 	collider->SetPos(position.x, position.y);
 	bullet = &App->particles->green_basic_bullet;
 	shoot_start = &App->particles->green_basic_bullet_start;
+	draw = BEFORE;
 }
 
 void EnemyBlueBasic::Move(){

@@ -822,12 +822,13 @@ update_status ModuleSceneLevels::Update()
 		}
 
 		if (App->player->position.y < 1795){
-			if (!first_path_made){
-				train_platform_pos_aux = train_platform_pos + train_platform_first_path.GetCurrentSpeed();
-				if (train_platform_pos_aux.x < -312){
-					first_path_made = true;
-					train_platform_pos = train_platform_pos_aux;
-				}
+			train_start_path = true;
+		}
+		if (!first_path_made && train_start_path){
+			train_platform_pos_aux = train_platform_pos + train_platform_first_path.GetCurrentSpeed();
+			if (train_platform_pos_aux.x < -312){
+				first_path_made = true;
+				train_platform_pos = train_platform_pos_aux;
 			}
 		}
 		if (!train_dead && first_path_made){
