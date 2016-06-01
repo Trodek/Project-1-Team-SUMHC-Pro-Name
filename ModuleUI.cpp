@@ -300,7 +300,10 @@ update_status ModuleUI::Update(){
 			DrawNumber(50000, 112, 163, 8, pink_numbers);
 			DrawNumber(temp_bomb, 112, 179, 8, pink_numbers);
 			if ((temp_bomb - 100) >= 0) temp_bomb -= 100;
-			else temp_bomb = 0;
+			else {
+				temp_bomb = 0;
+				App->fade->FadeToBlack((Module*)App->levels, (Module*)App->winscreen, 4.0f);
+			}
 		}
 	}
 	else{

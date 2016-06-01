@@ -579,7 +579,7 @@ update_status ModuleSceneLevels::Update()
 	if (App->render->camera.y > -1){
 		if (App->ui->first_time) 
 			App->ui->GetScore();
-		App->fade->FadeToBlack(this, (Module*)App->winscreen, 15.0f);
+		
 	}
 	// Draw everything --------------------------------------
 	if (App->ui->game){
