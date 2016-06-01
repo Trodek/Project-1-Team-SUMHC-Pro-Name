@@ -58,13 +58,15 @@ ModuleSceneLevels::ModuleSceneLevels()
 
 	//train
 	train_platform_anim.PushBack({ 0, 0, 760, 64 });
-	train_platform_first_path.PushBack({ -1.0f, 0 }, 333, &train_platform_anim);
+	train_platform_first_path.PushBack({ -1.0f, 0 }, 333);
 	train_platform_first_path.loop = false;
-	train_platform_loop_path.PushBack({ 1.0f, 0 }, 165, &train_platform_anim);
-	train_platform_loop_path.PushBack({ -1.0f, 0 }, 170, &train_platform_anim);
-	train_platform_death_path.PushBack({ 0, 0 }, 177, &train_platform_anim);
+	train_platform_loop_path.PushBack({ 1.0f, 0 }, 165);
+	train_platform_loop_path.PushBack({ -1.0f, 0 }, 170);
+	train_platform_death_path.PushBack({ 0, 0 }, 177);
 	train_platform_pos.x = 0;
 	train_platform_pos.y = 1694;
+	train_platform_pos_aux.x = train_platform_pos.x;
+	train_platform_pos_aux.y = train_platform_pos.y;
 	train_dead = false;
 	
 	
@@ -814,6 +816,11 @@ update_status ModuleSceneLevels::Update()
 		platformr2->SetPos(platform3_aux_pos.x, platform3_aux_pos.y + 10);
 
 		//train
+
+		if (App->render->camera.y > -1665 * SCREEN_SIZE){
+			App->player->scroll = false;
+		}
+
 		if (App->player->position.y < 1795){
 			if (!first_path_made){
 				train_platform_pos_aux = train_platform_pos + train_platform_first_path.GetCurrentSpeed();
@@ -822,13 +829,12 @@ update_status ModuleSceneLevels::Update()
 					train_platform_pos = train_platform_pos_aux;
 				}
 			}
-			if (!train_dead && first_path_made){
-				train_platform_pos_aux = train_platform_pos + train_platform_loop_path.GetCurrentSpeed();
-				LOG("%d", train_dead);
-			}
-			/*if (train_dead){
-			train_platform_pos_aux = train_platform_pos + train_platform_death_path.GetCurrentSpeed();
-			}*/
+		}
+		if (!train_dead && first_path_made){
+			train_platform_pos_aux = train_platform_pos + train_platform_loop_path.GetCurrentSpeed();
+		}
+		if (train_dead){
+			App->player->scroll = true;
 		}
 
 		App->render->Blit(train_platform_tex, train_platform_pos_aux.x, train_platform_pos_aux.y, &train_platform_anim.GetCurrentFrame());
