@@ -515,10 +515,9 @@ update_status ModulePlayer::Update()
 			App->ui->SubBomb(1);
 		}
 
-		/*if (go > 150)
-			App->render->Blit((App->ui->ui_graphics), 60, 60, &go_ahead);
-		else
-			go++;*/
+		if (go > 150 && (go % 25) < 14)  
+			App->render->Blit((App->ui->ui_graphics), 95, (-App->render->camera.y) / SCREEN_SIZE + 60, &go_ahead);
+		go++;
 
 		if (direction != IDLE){
 			if (CheckPJAnimPos(weapon_anim, direction))
