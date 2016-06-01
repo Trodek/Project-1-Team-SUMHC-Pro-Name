@@ -64,6 +64,9 @@ public:
 	int paintspeed = 0;
 	iPoint pos_speed;
 
+	int paintenergy = 0;
+	iPoint pos_energy;
+
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
 	SDL_Texture* dead_explo_text = nullptr;
@@ -131,6 +134,7 @@ public:
 	
 	SDL_Rect wordshield;
 	SDL_Rect wordspeed;
+	SDL_Rect wordenergy;
 
 	uint go;
 
