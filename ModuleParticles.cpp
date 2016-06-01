@@ -245,6 +245,32 @@ ModuleParticles::ModuleParticles()
 	green_basic_bullet_start.collider = COLLIDER_NONE;
 
 	
+	fat_robot_train_laser_end.anim.PushBack({ 63, 0, 9, 64 });
+	fat_robot_train_laser_end.anim.PushBack({ 54, 0, 9, 64 });
+	fat_robot_train_laser_end.anim.PushBack({ 45, 0, 9, 64 });
+	fat_robot_train_laser_end.anim.PushBack({ 36, 0, 9, 64 });
+	fat_robot_train_laser_end.anim.PushBack({ 27, 0, 9, 64 });
+	fat_robot_train_laser_end.anim.PushBack({ 18, 0, 9, 64 });
+	fat_robot_train_laser_end.anim.PushBack({ 9, 0, 9, 64 });
+	fat_robot_train_laser_end.anim.PushBack({ 0, 0, 9, 64 });
+	fat_robot_train_laser_end.anim.speed = 0.5f;
+	fat_robot_train_laser_end.anim.loop = false;
+	fat_robot_train_laser_end.collider = COLLIDER_NONE;
+
+	fat_robot_train_laser.anim.PushBack({ 0, 0, 4, 64 });
+	fat_robot_train_laser.anim.PushBack({ 4, 0, 4, 64 });
+	fat_robot_train_laser.anim.PushBack({ 8, 0, 4, 64 });
+	fat_robot_train_laser.anim.PushBack({ 12, 0, 4, 64 });
+	fat_robot_train_laser.anim.PushBack({ 16, 0, 4, 64 });
+	fat_robot_train_laser.anim.PushBack({ 20, 0, 4, 64 });
+	fat_robot_train_laser.anim.PushBack({ 24, 0, 4, 64 });
+	fat_robot_train_laser.anim.PushBack({ 28, 0, 4, 64 });
+	fat_robot_train_laser.anim.speed = 0.5f;
+	fat_robot_train_laser.anim.loop = false;
+	fat_robot_train_laser.collider = COLLIDER_NONE;
+	fat_robot_train_laser.life = 3000;
+	fat_robot_train_laser.end_particle = &fat_robot_train_laser_end;
+	
 }
 
 ModuleParticles::~ModuleParticles()
@@ -315,6 +341,11 @@ bool ModuleParticles::Start()
 
 	shoot_start.sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/basic_laser_shoot.wav");
 	shoot_start.tex = basic_laser_tex;
+
+	fat_robot_laser_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 4/Train/robot_lasers.png");
+	fat_robot_laser_tex_inver = App->textures->Load("OutZone/Sprites/Enemies/Level 4/Train/robot_lasers_inver.png");
+	fat_robot_train_laser.tex = fat_robot_laser_tex;
+	fat_robot_train_laser_end.tex = fat_robot_laser_tex_inver;
 
 	return true;
 }

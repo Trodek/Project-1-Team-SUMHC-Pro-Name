@@ -936,7 +936,7 @@ update_status ModuleSceneLevels::Update()
 		if (!train_dead && first_path_made){
 			train_platform_pos_aux = train_platform_pos + train_platform_loop_path.GetCurrentSpeed();
 			if (now - last_enemy > 2000){
-				App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 420, train_platform_pos_aux.y, &notsobasic_train);
+				App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 426, train_platform_pos_aux.y, &notsobasic_train);
 				last_enemy = SDL_GetTicks();
 			}
 		}

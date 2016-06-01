@@ -62,6 +62,8 @@ private:
 	SDL_Texture* multi_laser_tex = nullptr;
 	SDL_Texture* big_turret_bullet_tex = nullptr;
 	SDL_Texture* truck_tex = nullptr;
+	SDL_Texture* fat_robot_laser_tex = nullptr;
+	SDL_Texture* fat_robot_laser_tex_inver = nullptr;
 	uint last_particle = 0;
 
 public:
@@ -115,6 +117,9 @@ public:
 
 	Particle enemy_shot_especial;
 	Particle enemy_blaster;
+
+	Particle fat_robot_train_laser;
+	Particle fat_robot_train_laser_end;
 };
 
 #endif // __MODULEPARTICLES_H__

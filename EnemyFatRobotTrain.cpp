@@ -24,7 +24,7 @@ EnemyFatRobotTrain::EnemyFatRobotTrain(int x, int y, ENEMY_TYPES type) : Enemy(x
 	points = 800;
 	collider = App->collisions->AddCollider({ 0, 0, 63, 72 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	collider->SetPos(position.x, position.y);
-	bullet = &App->particles->green_basic_bullet;
+	bullet = &App->particles->fat_robot_train_laser;
 	shoot_start = &App->particles->green_basic_bullet_start;
 	draw = BEFORE;
 }
@@ -50,8 +50,8 @@ void EnemyFatRobotTrain::Shot(){
 	if (now - last_shot > 3000 && (position.y - App->player->position.y >-200 && position.y - App->player->position.y < 200
 		&& original.x < SCREEN_WIDTH && original.x > 0)){
 		App->particles->SetParticleSpeed(bullet, 0, 2);
-		App->particles->AddParticle(*bullet, original.x, position.y + 10, COLLIDER_ENEMY_SHOT, { 0, 0, 6, 6 });
-		App->particles->AddParticle(*shoot_start, original.x - 8, position.y + 5, COLLIDER_NONE, { 0, 0, 0, 0 });
+		App->particles->AddParticle(*bullet, original.x+ 30, position.y + 25, COLLIDER_ENEMY_SHOT, { 0, 0, 4, 64 });
+		App->particles->AddParticle(*shoot_start, original.x + 22, position.y + 20, COLLIDER_NONE, { 0, 0, 0, 0 });
 		
 		last_shot = SDL_GetTicks();
 	}
