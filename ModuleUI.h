@@ -80,6 +80,8 @@ public:
 	int now;
 	int e_timer;
 
+	int energy_cont = 0;
+
 	bool game = false;
 	bool title = true;
 	bool cont = false;
@@ -93,7 +95,6 @@ public:
 	int temp_bomb;
 
 	bool player2_enabled = false;
-
 
 	SDL_Texture* low_energy;
 	Animation Low_energy;
@@ -143,7 +144,8 @@ public:
 
 	Mix_Chunk* coin_sound;
 
-	int low;
+	Mix_Chunk* low_energy_sound;
+
 };
 
 #endif
