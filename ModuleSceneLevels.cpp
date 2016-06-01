@@ -817,23 +817,23 @@ update_status ModuleSceneLevels::Update()
 		App->render->Blit(lava, 0, 5156, &lavaanim.GetCurrentFrame());*/
 
 		//App->render->Blit(sublighttex, 0, 6781, &sublightanim.GetCurrentFrame());
-		if ((purple_background_1 += 1) > 3615){
+		if ((purple_background_1 += 0.25f) > 3615){
 			purple_background_1 = 1055;
 		}
 
-		if ((purple_background_2 += 1) > 3615){
+		if ((purple_background_2 += 0.25f) > 3615){
 			purple_background_2 = 1055;
 		}
 
-		if ((purple_background_3 += 1) > 3615){
+		if ((purple_background_3 += 0.25f) > 3615){
 			purple_background_3 = 1055;
 		}
 
-		if ((purple_background_4 += 1) > 3615){
+		if ((purple_background_4 += 0.25f) > 3615){
 			purple_background_4 = 1055;
 		}
 
-		if ((purple_background_5 += 1) > 3615){
+		if ((purple_background_5 += 0.25f) > 3615){
 			purple_background_5 = 1055;
 		}
 

@@ -20,8 +20,8 @@ EnemyFatRobotTrain::EnemyFatRobotTrain(int x, int y, ENEMY_TYPES type) : Enemy(x
 
 	dead = &App->particles->green_basic_dead;
 
-	hp = 6;
-	points = 390;
+	hp = 114;
+	points = 800;
 	collider = App->collisions->AddCollider({ 0, 0, 63, 72 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	collider->SetPos(position.x, position.y);
 	bullet = &App->particles->green_basic_bullet;

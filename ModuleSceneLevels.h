@@ -32,11 +32,11 @@ public:
 
 	int now;
 	int last_enemy;
-	int purple_background_1 = 1055;
-	int purple_background_2 = 1567;
-	int purple_background_3 = 2079;
-	int purple_background_4 = 2591;
-	int purple_background_5 = 3103;
+	float purple_background_1 = 1055;
+	float purple_background_2 = 1567;
+	float purple_background_3 = 2079;
+	float purple_background_4 = 2591;
+	float purple_background_5 = 3103;
 
 public:
 
