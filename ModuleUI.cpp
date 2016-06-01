@@ -145,6 +145,11 @@ ModuleUI::ModuleUI(){
 	pink_numbers.y = 472;
 	pink_numbers.w = 7;
 	pink_numbers.h = 7;
+
+	bomb_cont.x = 2;
+	bomb_cont.y = 493;
+	bomb_cont.w = 12;
+	bomb_cont.h = 18;
 	//CheckPoints
 	checkpoints.PushBack(-7159 * SCREEN_SIZE);
 	checkpoints.PushBack(-7000 * SCREEN_SIZE);
@@ -236,9 +241,11 @@ update_status ModuleUI::Update(){
 		if (now - e_timer > 1500 && energy > 0) {
 			energy--;
 			energy_p2--;
-			e_timer = SDL_GetTicks();
+			e_timer = SDL_GetTicks();	
+			if (energy == 0) 
+				App->player->SetEnergyDeath();
 		}
-
+	
 		if (curr_check + 1 < checkpoints.size()){
 			if ((-App->render->camera.y) / 3 + 200 < checkpoints[curr_check + 1].y)
 				curr_check++;
@@ -289,11 +296,14 @@ update_status ModuleUI::Update(){
 		if (get_score) {
 			App->render->Blit(ui_graphics, 60, 60, &stageclear);
 			App->render->Blit(ui_graphics, 60, 110, &bombpoints);
-			DrawNumber(bombs, 149, 138, 8, top_points);
+			DrawNumber(bombs, 158, 136, 8, bomb_cont);
 			DrawNumber(50000, 112, 163, 8, pink_numbers);
 			DrawNumber(temp_bomb, 112, 179, 8, pink_numbers);
-			if (temp_bomb < 0) temp_bomb == 0;
-			else temp_bomb -= 11;
+			if ((temp_bomb - 100) >= 0) temp_bomb -= 100;
+			else {
+				temp_bomb = 0;
+				App->fade->FadeToBlack((Module*)App->levels, (Module*)App->winscreen, 4.0f);
+			}
 		}
 	}
 	else{
@@ -414,7 +424,7 @@ bool ModuleUI::TopScore() {
 void ModuleUI::GetScore() {
 	temp_score = score;
 	get_score = true;
-	temp_bomb = bombs * 500;
+	temp_bomb = bombs * 1500;
 	score += temp_bomb;
 	first_time = false;
 }

@@ -22,6 +22,7 @@
 #include "EnergyBox.h"
 #include "ChangeBox.h"
 #include "ChangePill.h"
+#include "EnemyMissileThrower.h"
 
 #define SPAWN_MARGIN 150
 
@@ -213,6 +214,10 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 				break;
 			case ENEMY_TYPES::CHANGE_PILL:
 				enemies[i] = new ChangePill(info.x, info.y, info.type);
+				break;
+			case ENEMY_TYPES::MISSILE_THROWER:
+				enemies[i] = new EnemyMissileThrower(info.x, info.y, info.type);
+				enemies[i]->SetPath(info.path);
 				break;
 		}
 	}

@@ -76,6 +76,7 @@ public:
 	SDL_Texture* notbasic = nullptr;
 	SDL_Texture* strange_large = nullptr;;
 	SDL_Texture* boxes;
+	SDL_Texture* missilethrower;
 
 
 	Particle basic_laser_p0;
@@ -105,6 +106,8 @@ public:
 
 	Particle missile;
 	Particle bannana;
+
+	Particle missile2;
 
 	Particle enemy_shot_especial;
 	Particle enemy_blaster;

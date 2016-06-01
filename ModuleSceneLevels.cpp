@@ -410,6 +410,14 @@ bool ModuleSceneLevels::Start()
 	sl6.PushBack({ 0, -1 }, 105);
 	sl6.PushBack({ -1, 0 }, 555);
 
+	mt1.PushBack({ 2, 0 }, 75);
+	mt1.PushBack({ 0, -2 }, 70);
+	mt1.PushBack({ 2, 0 }, 75);
+
+	mt2.PushBack({ 2, 0 }, 55);
+	mt2.PushBack({ 0, -2 }, 50);
+	mt2.PushBack({ 2, 0 }, 75);
+
 	RestartEnemies();
 	return ret;
 }
@@ -420,6 +428,7 @@ void ModuleSceneLevels::RestartEnemies() {
 
 	if (App->ui->curr_check == 0) {							// y < 7159
 		App->enemies->AddEnemy(BLUEBASIC, 100, 6100);
+		
 		
 	}
 
@@ -473,6 +482,9 @@ void ModuleSceneLevels::RestartEnemies() {
 		AddChangeBox(204, 5432);
 		AddChangeBox(12, 5038);
 		AddEnergyBox(48, 5038);
+
+		App->enemies->AddEnemy(MISSILE_THROWER, -56, 5756, &mt1);
+		App->enemies->AddEnemy(MISSILE_THROWER, -56, 5680, &mt2);
 
 	}
 	if (App->ui->curr_check <= 3) {				// y < 4900
@@ -567,7 +579,7 @@ update_status ModuleSceneLevels::Update()
 	if (App->render->camera.y > -1){
 		if (App->ui->first_time) 
 			App->ui->GetScore();
-		App->fade->FadeToBlack(this, (Module*)App->winscreen, 15.0f);
+		
 	}
 	// Draw everything --------------------------------------
 	if (App->ui->game){

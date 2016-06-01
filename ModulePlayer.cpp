@@ -219,6 +219,17 @@ ModulePlayer::ModulePlayer()
 	dead_explo.speed = 0.2f;
 	dead_explo.loop = false;
 
+	out_of_energy.PushBack({ 10, 63, 30, 30 });
+	out_of_energy.PushBack({ 59, 63, 30, 30 });
+	out_of_energy.PushBack({ 111, 63, 30, 30 });
+	out_of_energy.PushBack({ 160, 63, 30, 30 });
+	out_of_energy.speed = 0.08f;
+	out_of_energy.loop = false;
+
+	go_ahead.x = 45;
+	go_ahead.y = 416;
+	go_ahead.w = 50;
+	go_ahead.h = 50;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -232,6 +243,7 @@ bool ModulePlayer::Start()
 	bomb_tex = App->textures->Load("OutZone/Sprites/Weapon Shots/bomb.png");
 	dead_explo_text = App->textures->Load("OutZone/Sprites/Main Char/Dead_char_explosion.png");
 	casual_tex = App->textures->Load("OutZone/Sprites/Main Char/casual.png");
+	dead_energy_text = App->textures->Load("Outzone/Sprites/Main Char/Energy_dead_char.png");
 	bomb_pressed = false;
 	current_animation = &up;
 	bool ret = true;
@@ -255,6 +267,7 @@ bool ModulePlayer::Start()
 	last_multi = SDL_GetTicks();
 	ResetPosition();
 	move_up = move_down = move_left = move_right = true;
+	go = 0;
 
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
 	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
@@ -270,9 +283,12 @@ bool ModulePlayer::CleanUp(){
 
 	dead = false;
 	dead_fall = false;
+	dead_energy = false;
 	fall_hole.Reset();
 	dead_explo.Reset();
+	out_of_energy.Reset();
 
+	App->textures->Unload(dead_energy_text);
 	App->textures->Unload(main_char_tex);
 	App->textures->Unload(bomb_tex);
 	App->textures->Unload(dead_explo_text);
@@ -283,9 +299,11 @@ bool ModulePlayer::CleanUp(){
 update_status ModulePlayer::PostUpdate(){
 
 	if (!dead){
+		
 		int speed = 2;
 		// W key
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
+			go = 0;
 			direction = UP;
 			current_animation = SelectAnimation(direction);
 			if ((App->render->camera.y / 3 - 200) + (position.y) < 0 && App->render->camera.y < 0 && scroll){
@@ -460,6 +478,11 @@ update_status ModulePlayer::Update()
 			App->ui->SubBomb(1);
 		}
 
+		/*if (go > 150)
+			App->render->Blit((App->ui->ui_graphics), 60, 60, &go_ahead);
+		else
+			go++;*/
+
 		if (direction != IDLE){
 			if (CheckPJAnimPos(weapon_anim, direction))
 				App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -484,7 +507,19 @@ update_status ModulePlayer::Update()
 			else
 				App->render->Blit(main_char_tex, position.x, position.y, &(current_animation->GetCurrentFrame()));
 		}
-		else{
+		else if (dead_energy) {
+			if (out_of_energy.Finished()) {
+				App->ui->dead = true;
+				out_of_energy.Finished();
+				if (App->ui->lives > 0){
+					App->enemies->DestroyEnemies();
+					App->levels->RestartEnemies();
+				}
+			}
+			else
+				App->render->Blit(dead_energy_text, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		}
+		else {
 			if (dead_explo.Finished()){
 				Player_explosion->to_delete = true;
 				collider_create = false;
@@ -520,70 +555,103 @@ bool ModulePlayer::CheckPJAnimPos(Animation* anim, Direction dest_anim){
 	else {
 		pos_changed = true;
 		switch (dest_anim){
-		case LEFT: if (FrameIndex > RIGHT)
-			anim->AnimForward();
-				   else anim->AnimBack();
-				   break;
-		case ANGLE_60: if (FrameIndex > ANGLE_240 || FrameIndex < ANGLE_60)
-			anim->AnimForward();
-					   else anim->AnimBack();
-					   break;
-		case LEFT_UP: if (FrameIndex > RIGHT_DOWN || FrameIndex < LEFT_UP)
-			anim->AnimForward();
-					  else anim->AnimBack();
-					  break;
-		case ANGLE_30: if (FrameIndex > ANGLE_210 || FrameIndex < ANGLE_30)
-			anim->AnimForward();
-					   else anim->AnimBack();
-					   break;
-		case UP: if (FrameIndex > DOWN || FrameIndex < UP)
-			anim->AnimForward();
-				 else anim->AnimBack();
-				 break;
-		case ANGLE_330: if (FrameIndex > ANGLE_150 || FrameIndex < ANGLE_330)
-			anim->AnimForward();
-						else anim->AnimBack();
-						break;
-		case RIGHT_UP: if (FrameIndex > LEFT_DOWN || FrameIndex < RIGHT_UP)
-			anim->AnimForward();
-					   else anim->AnimBack();
-					   break;
-		case ANGLE_300: if (FrameIndex < ANGLE_300)
-			anim->AnimForward();
-						else anim->AnimBack();
-						break;
-		case RIGHT: if (FrameIndex < RIGHT)
-			anim->AnimForward();
-					else anim->AnimBack();
-					break;
-		case ANGLE_240: if (FrameIndex >= ANGLE_60)
-			anim->AnimForward();
-						else anim->AnimBack();
-						break;
-		case RIGHT_DOWN: if (FrameIndex >= LEFT_UP && FrameIndex < RIGHT_DOWN)
-			anim->AnimForward();
-						 else anim->AnimBack();
-						 break;
-		case ANGLE_210: if (FrameIndex >= ANGLE_30)
-			anim->AnimForward();
-						else anim->AnimBack();
-						break;
-		case DOWN: if (FrameIndex >= UP && FrameIndex < DOWN)
-			anim->AnimForward();
-				   else anim->AnimBack();
-				   break;
-		case ANGLE_150: if (FrameIndex >= ANGLE_330)
-			anim->AnimForward();
-						else anim->AnimBack();
-						break;
-		case LEFT_DOWN: if (FrameIndex >= RIGHT_UP && FrameIndex < LEFT_DOWN)
-			anim->AnimForward();
-						else anim->AnimBack();
-						break;
-		case ANGLE_120: if (FrameIndex >= ANGLE_300)
-			anim->AnimForward();
-						else anim->AnimBack();
-						break;
+		case LEFT: 
+			if (FrameIndex > RIGHT)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case ANGLE_60: 
+			if (FrameIndex > ANGLE_240 || FrameIndex < ANGLE_60)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case LEFT_UP: 
+			if (FrameIndex > RIGHT_DOWN || FrameIndex < LEFT_UP)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case ANGLE_30: 
+			if (FrameIndex > ANGLE_210 || FrameIndex < ANGLE_30)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case UP: 
+			if (FrameIndex > DOWN || FrameIndex < UP)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case ANGLE_330:
+			if (FrameIndex > ANGLE_150 || FrameIndex < ANGLE_330)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case RIGHT_UP: 
+			if (FrameIndex > LEFT_DOWN || FrameIndex < RIGHT_UP)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case ANGLE_300: 
+			if (FrameIndex < ANGLE_300)
+				anim->AnimForward();
+						
+			else 
+				anim->AnimBack();
+			break;
+		case RIGHT: 
+			if (FrameIndex < RIGHT)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case ANGLE_240:
+			if (FrameIndex >= ANGLE_60)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case RIGHT_DOWN: 
+			if (FrameIndex >= LEFT_UP && FrameIndex < RIGHT_DOWN)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case ANGLE_210: 
+			if (FrameIndex >= ANGLE_30)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case DOWN: 
+			if (FrameIndex >= UP && FrameIndex < DOWN)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case ANGLE_150: 
+			if (FrameIndex >= ANGLE_330)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case LEFT_DOWN: 
+			if (FrameIndex >= RIGHT_UP && FrameIndex < LEFT_DOWN)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
+		case ANGLE_120:
+			if (FrameIndex >= ANGLE_300)
+				anim->AnimForward();
+			else 
+				anim->AnimBack();
+			break;
 
 		}
 	}
@@ -1068,7 +1136,7 @@ void ModulePlayer::ResetPosition(){
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 	if (PlayerCollider == c1 && PlayerCollider != nullptr){
-		if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_PASS_BULLET){
+		if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_PASS_BULLET || c2->type == COLLIDER_BOX){
 			switch (dir) {
 			case UP:
 				if (move_up) {
@@ -1101,10 +1169,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 			dead_fall = true;
 			current_animation = &fall_hole;
 		}
-		if (c2->type == COLLIDER_PLATFORMR&&position.x<240){
+		if (c2->type == COLLIDER_PLATFORMR && position.x < 240){
 			position.x+=1;
 		}
-		if (c2->type == COLLIDER_PLATFORML&&position.x>0){
+		if (c2->type == COLLIDER_PLATFORML && position.x > 0){
 			position.x-=1;
 		}
 	}
@@ -1156,6 +1224,14 @@ int ModulePlayer::GetDmg(){
 		break;
 	default:
 		break;
+	}
+}
+
+void ModulePlayer::SetEnergyDeath() {
+	if (!dead) {
+		current_animation = &out_of_energy;
+		dead = true;
+		dead_energy = true;
 	}
 }
 /*

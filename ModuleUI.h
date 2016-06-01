@@ -137,6 +137,9 @@ public:
 	SDL_Rect stageclear;
 	SDL_Rect bombpoints;
 	SDL_Rect pink_numbers;
+	SDL_Rect bomb_cont;
+
+	uint e_dead;
 
 	Mix_Chunk* coin_sound;
 };
