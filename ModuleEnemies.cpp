@@ -257,6 +257,8 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			}
 			else if (c1->type == COLLIDER_SPEED && c2->type == COLLIDER_PLAYER_EBULLETS) {
 				App->player->AddSpeed();
+				App->player->pos_speed = enemies[i]->position;
+				App->player->paintspeed = 1;
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
