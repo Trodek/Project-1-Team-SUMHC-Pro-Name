@@ -71,6 +71,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="EnemyNotSoBasicCommander.h" />
     <ClInclude Include="Extra_Bomb.h" />
     <ClInclude Include="ChangeBox.h" />
     <ClInclude Include="ChangePill.h" />
@@ -130,6 +131,7 @@
     <ClCompile Include="EnemyGreenBasic.cpp" />
     <ClCompile Include="EnemyMissileThrower.cpp" />
     <ClCompile Include="EnemyNotSoBasic.cpp" />
+    <ClCompile Include="EnemyNotSoBasicCommander.cpp" />
     <ClCompile Include="EnemyRoomba.cpp" />
     <ClCompile Include="EnemySmallTurret.cpp" />
     <ClCompile Include="EnemyStrangeLarge.cpp" />

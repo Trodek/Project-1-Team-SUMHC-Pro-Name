@@ -112,6 +112,9 @@
     <ClCompile Include="ModuleDrawEnemies.cpp">
       <Filter>Modules\Core</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyNotSoBasicCommander.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -262,6 +265,9 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Extra_Bomb.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyNotSoBasicCommander.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

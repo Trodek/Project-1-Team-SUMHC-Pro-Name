@@ -17,6 +17,7 @@
 #include "EnemyGreenBasic.h"
 #include "EnemyBoss.h"
 #include "EnemyNotSoBasic.h"
+#include "EnemyNotSoBasicCommander.h"
 #include "EnergyPill.h"
 #include "ModuleBomb.h"
 #include "EnemyStrangeLarge.h"
@@ -210,6 +211,10 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 
 			case ENEMY_TYPES::NOTBASIC:
 				enemies[i] = new EnemyNotSoBasic(info.x, info.y, info.type);
+				enemies[i]->SetPath(info.path);
+				break;
+			case ENEMY_TYPES::NOTBASICCOMMANDER:
+				enemies[i] = new EnemyNotSoBasicCommander(info.x, info.y, info.type);
 				enemies[i]->SetPath(info.path);
 				break;
 
