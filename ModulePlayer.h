@@ -57,8 +57,12 @@ public:
 	
 	bool speedup = false;
 	bool shield = false;
+
 	int paintshield = 0;
 	iPoint pos_shield;
+
+	int paintspeed = 0;
+	iPoint pos_speed;
 
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
@@ -126,6 +130,7 @@ public:
 	uint now;
 	
 	SDL_Rect wordshield;
+	SDL_Rect wordspeed;
 
 	uint go;
 

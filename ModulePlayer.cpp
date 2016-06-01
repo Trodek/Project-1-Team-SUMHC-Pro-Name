@@ -241,6 +241,11 @@ ModulePlayer::ModulePlayer()
 	wordshield.w = 30;
 	wordshield.h = 14;
 
+	wordspeed.x = 93;
+	wordspeed.y = 122;
+	wordspeed.w = 36;
+	wordspeed.h = 23;
+
 	go_ahead.x = 45;
 	go_ahead.y = 416;
 	go_ahead.w = 50;
@@ -513,6 +518,10 @@ update_status ModulePlayer::Update()
 		if (paintshield > 0 && paintshield <= 31) {
 			App->render->Blit(App->particles->boxes, pos_shield.x, pos_shield.y, &wordshield);
 			paintshield++;
+		}
+		if (paintspeed > 0 && paintspeed <= 31) {
+			App->render->Blit(App->particles->boxes, pos_speed.x, pos_speed.y, &wordspeed);
+			paintspeed++;
 		}
 	}
 	else{
