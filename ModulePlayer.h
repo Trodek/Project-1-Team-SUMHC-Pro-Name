@@ -41,7 +41,6 @@ public:
 	void SetEnergyDeath();
 	void AddPower();
 	void AddSpeed();
-	void PaintShield();
 
 	//bool CheckColliders();
 
@@ -59,6 +58,7 @@ public:
 	bool speedup = false;
 	bool shield = false;
 	int paintshield = 0;
+	iPoint pos_shield;
 
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
@@ -124,6 +124,8 @@ public:
 	uint last_laser;
 	uint last_multi;
 	uint now;
+	
+	SDL_Rect wordshield;
 
 	uint go;
 

@@ -258,19 +258,28 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			}
 			else if (c1->type == COLLIDER_POWERUP && c2->type == COLLIDER_PLAYER_EBULLETS) {
 				App->player->AddPower();
+				delete enemies[i];
+				enemies[i] = nullptr;
 			}
 			else if (c1->type == COLLIDER_SPEED && c2->type == COLLIDER_PLAYER_EBULLETS) {
 				App->player->AddSpeed();
 				App->player->pos_speed = enemies[i]->position;
 				App->player->paintspeed = 1;
 				App->audio->PlaySoundEffect(pick_speed);
+				delete enemies[i];
+				enemies[i] = nullptr;
 			}
 			else if (c1->type == COLLIDER_EXTRA_BOMB && c2->type == COLLIDER_PLAYER_EBULLETS) {
 				App->ui->AddBomb();
+				delete enemies[i];
+				enemies[i] = nullptr;
 			}
 			else if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER_EBULLETS) {
 				App->player->shield = true;
-				//App->player->PaintShield();
+				App->player->pos_shield = enemies[i]->position;
+				App->player->paintshield = 1;
+				delete enemies[i];
+				enemies[i] = nullptr;
 			}
 
 			//App->audio->PlaySoundEffect(expand_energy);
@@ -303,8 +312,9 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 							else if (loot % 2 == 1 || loot >= 10) {
 								if (App->player->current_power < 2)
 									App->enemies->AddEnemy(BOMB, enemies[i]->position.x, enemies[i]->position.y);
-								else
+								else {
 									App->enemies->AddEnemy(SHIELD, enemies[i]->position.x, enemies[i]->position.y);
+								}
 							}
 							loot++;
 						}*/
