@@ -250,6 +250,19 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
+			else if (c1->type == COLLIDER_POWERUP && c2->type == COLLIDER_PLAYER_EBULLETS) {
+				App->player->AddPower();
+			}
+			else if (c1->type == COLLIDER_SPEED && c2->type == COLLIDER_PLAYER_EBULLETS) {
+				App->player->AddSpeed();
+			}
+			else if (c1->type == COLLIDER_EXTRA_BOMB && c2->type == COLLIDER_PLAYER_EBULLETS) {
+				App->ui->AddBomb();
+			}
+			else if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER_EBULLETS) {
+				App->player->shield = true;
+				//App->player->PaintShield();
+			}
 			else{
 				if (c2->type == COLLIDER_PLAYER_SHOT && enemies[i]->hp>0){
 					enemies[i]->hp -= App->player->GetDmg();

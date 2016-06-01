@@ -261,6 +261,9 @@
     <ClInclude Include="Shield.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="Extra_Bomb.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Basic">

@@ -226,6 +226,17 @@ ModulePlayer::ModulePlayer()
 	out_of_energy.speed = 0.08f;
 	out_of_energy.loop = false;
 
+	shieldon.PushBack({ 169, 142, 38, 38 });
+	shieldon.PushBack({ 101, 234, 38, 38 });
+	shieldon.PushBack({ 169, 216, 38, 38 });
+	shieldon.PushBack({ 101, 234, 38, 38 });
+	shieldon.PushBack({ 169, 294, 38, 38 });
+	shieldon.PushBack({ 101, 234, 38, 38 });
+	shieldon.PushBack({ 169, 366, 38, 38 });
+	shieldon.PushBack({ 101, 234, 38, 38 });
+	shieldon.speed = 0.05f;
+
+
 	go_ahead.x = 45;
 	go_ahead.y = 416;
 	go_ahead.w = 50;
@@ -268,6 +279,8 @@ bool ModulePlayer::Start()
 	ResetPosition();
 	move_up = move_down = move_left = move_right = true;
 	go = 0;
+	speed = 2;
+	shield = true;
 
 	PlayerCollider = App->collisions->AddCollider({ 0, 0, 10, 10 }, COLLIDER_PLAYER, this);
 	PlayerEBulletsCollider = App->collisions->AddCollider({ 0, 0, 22, 25 }, COLLIDER_PLAYER_EBULLETS, this);
@@ -299,8 +312,6 @@ bool ModulePlayer::CleanUp(){
 update_status ModulePlayer::PostUpdate(){
 
 	if (!dead){
-		
-		int speed = 2;
 		// W key
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 			go = 0;
@@ -489,6 +500,9 @@ update_status ModulePlayer::Update()
 			else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
 		}
 		else App->render->Blit(main_char_tex, position.x, position.y, &(weapon_anim->GetActualFrame()));
+		if (shield) {
+			App->render->Blit((App->particles->boxes), position.x - 2, position.y - 2, &(shieldon.GetCurrentFrame()));
+		}
 		if (god_mode){
 			App->render->Blit(casual_tex, position.x - 50, position.y - 150, &casual);
 		}
@@ -1178,9 +1192,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 	}
 	if (PlayerEBulletsCollider == c1 && PlayerEBulletsCollider != nullptr){
 		if (c2->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY_SHOT){
-			if (!dead){
-				dead = true;
-				current_animation = &dead_explo;
+			if (!shield) {
+				if (!dead){
+					dead = true;
+					current_animation = &dead_explo;
+				}
+			}
+			else {
+				shield = false;
 			}
 		}
 
@@ -1224,6 +1243,24 @@ int ModulePlayer::GetDmg(){
 		break;
 	default:
 		break;
+	}
+}
+
+void ModulePlayer::AddPower() {
+	switch (current_power) {
+	case P0:
+		current_power = P1;
+		break;
+	case P1:
+		current_power = P2;
+		break;
+	}
+}
+
+void ModulePlayer::AddSpeed() {
+	if (!speedup) {
+		speedup = true;
+		speed = 3;
 	}
 }
 

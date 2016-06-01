@@ -39,6 +39,9 @@ public:
 	void ResetPosition();
 	void OnCollision(Collider* c1, Collider* c2, Direction dir);
 	void SetEnergyDeath();
+	void AddPower();
+	void AddSpeed();
+	void PaintShield();
 
 	//bool CheckColliders();
 
@@ -52,6 +55,10 @@ public:
 	bool dead_energy = false;
 	bool pos_changed = false;
 	bool scroll = true;
+	
+	bool speedup = false;
+	bool shield = false;
+	int paintshield = 0;
 
 	SDL_Texture* main_char_tex = nullptr;
 	SDL_Texture* bomb_tex = nullptr;
@@ -60,6 +67,8 @@ public:
 	SDL_Texture* dead_energy_text = nullptr;
 
 	SDL_Rect casual;
+
+	int speed;
 
 	//SDL_Rect Playeraux;
 	bool move_up, move_down, move_left, move_right, god_mode = false;
@@ -77,6 +86,8 @@ public:
 	Animation bomb;
 	Animation dead_explo;
 	Animation out_of_energy;
+
+	Animation shieldon;
 
 	Animation multi_up;
 	Animation multi_down;

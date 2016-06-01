@@ -71,6 +71,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Extra_Bomb.h" />
     <ClInclude Include="ChangeBox.h" />
     <ClInclude Include="ChangePill.h" />
     <ClInclude Include="dynArray.h" />
