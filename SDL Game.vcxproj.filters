@@ -67,9 +67,6 @@
     <ClCompile Include="EnemyStrangeLarge.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyTrain.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules\Player</Filter>
     </ClCompile>
@@ -102,6 +99,12 @@
     </ClCompile>
     <ClCompile Include="ModuleUI.cpp">
       <Filter>Modules\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyFatRobotTrain.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyTrain.cpp">
+      <Filter>Modules\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -186,9 +189,6 @@
     <ClInclude Include="EnemyStrangeLarge.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyTrain.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules\Player</Filter>
     </ClInclude>
@@ -232,6 +232,12 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ChangePill.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFatRobotTrain.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyTrain.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

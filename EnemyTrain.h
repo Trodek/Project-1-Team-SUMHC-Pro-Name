@@ -1,25 +1,40 @@
-#ifndef __ENEMYTRUCK_H__
-#define __ENEMYTRUCK_H__
+#ifndef __Enemy_Train__
+#define __Enemy_Train__
 
 #include "Enemy.h"
+#include "Globals.h"
 #include "ModuleEnemies.h"
 
 class EnemyTrain : public Enemy
 {
 private:
-	iPoint original_pos;
-	Animation idle;
-	
-	int now;
 
-	Particle* dead_hole;
-	Path mov;
+	iPoint original;
+	Animation machine_top_anim;
+	Animation door_anim;
+	Animation turret_idle_anim;
+	Animation turret_shot_anim;
+
+	Particle* bullet;
+	Particle* shoot_start;
+
+	Direction dir = IDLE;
+
+	int now;
+	int last_enemy;
+	int last_shot;
+	bool shot_finish = true;
+
+	float enemy_player_radius;
+	float delta_y;
+	float delta_x;
+	float radius_deltax;
 
 public:
 
 	EnemyTrain(int x, int y, ENEMY_TYPES type);
 
-	void UpdateAnim();
+	void Shot();
 	void Move();
 	void Draw();
 };
