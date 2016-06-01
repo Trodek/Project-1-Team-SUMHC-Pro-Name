@@ -424,7 +424,7 @@ update_status ModulePlayer::Update()
 	if (!dead){
 		//TP last checkpoint
 		if (App->input->keyboard[SDL_SCANCODE_T] == KEY_STATE::KEY_DOWN){
-			App->ui->curr_check = 6;
+			App->ui->curr_check = 4;
 		}
 		// change weapon
 		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN){

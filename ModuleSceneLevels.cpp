@@ -471,6 +471,105 @@ bool ModuleSceneLevels::Start()
 	mt11.PushBack({ 1.5f, 1.5f }, 20);
 	mt11.PushBack({ -1.5f, 1.5f }, 250);
 
+	mt12.PushBack({ 1.5f, 1.5f }, 30);
+	mt12.PushBack({ -1.5f, 1.5f }, 30);
+	mt12.PushBack({ 1.5f, 1.5f }, 30);
+	mt12.PushBack({ -1.5f, 1.5f }, 30);
+	mt12.PushBack({ 1.5f, 1.5f }, 30);
+	mt12.PushBack({ -1.5f, 1.5f }, 30);
+	mt12.PushBack({ 1.5f, 1.5f }, 30);
+
+	mt13.PushBack({ 1.5f, 1.5f }, 30);
+	mt13.PushBack({ -1.5f, 1.5f }, 30);
+	mt13.PushBack({ 1.5f, 1.5f }, 30);
+	mt13.PushBack({ -1.5f, 1.5f }, 30);
+	mt13.PushBack({ 1.5f, 1.5f }, 30);
+	mt13.PushBack({ -1.5f, 1.5f }, 30);
+	mt13.PushBack({ 1.5f, 1.5f }, 30);
+
+	mt14.PushBack({ 1.5f, 1.5f }, 30);
+	mt14.PushBack({ -1.5f, 1.5f }, 30);
+	mt14.PushBack({ 1.5f, 1.5f }, 30);
+	mt14.PushBack({ -1.5f, 1.5f }, 30);
+	mt14.PushBack({ 1.5f, 1.5f }, 30);
+	mt14.PushBack({ -1.5f, 1.5f }, 30);
+	mt14.PushBack({ 1.5f, 1.5f }, 30);
+
+	mt15.PushBack({ 1.5f, 1.5f }, 30);
+	mt15.PushBack({ -1.5f, 1.5f }, 30);
+	mt15.PushBack({ 1.5f, 1.5f }, 30);
+	mt15.PushBack({ -1.5f, 1.5f }, 30);
+	mt15.PushBack({ 1.5f, 1.5f }, 30);
+	mt15.PushBack({ -1.5f, 1.5f }, 30);
+	mt15.PushBack({ 1.5f, 1.5f }, 30);
+
+	mt16.PushBack({ 1.5f, 1.5f }, 30);
+	mt16.PushBack({ -1.5f, 1.5f }, 30);
+	mt16.PushBack({ 1.5f, 1.5f }, 30);
+	mt16.PushBack({ -1.5f, 1.5f }, 30);
+	mt16.PushBack({ 1.5f, 1.5f }, 30);
+	mt16.PushBack({ -1.5f, 1.5f }, 30);
+	mt16.PushBack({ 1.5f, 1.5f }, 30);
+
+	mt17.PushBack({ 1.5f, 1.5f }, 30);
+	mt17.PushBack({ -1.5f, 1.5f }, 30);
+	mt17.PushBack({ 1.5f, 1.5f }, 30);
+	mt17.PushBack({ -1.5f, 1.5f }, 30);
+	mt17.PushBack({ 1.5f, 1.5f }, 30);
+	mt17.PushBack({ -1.5f, 1.5f }, 30);
+	mt17.PushBack({ 1.5f, 1.5f }, 30);
+
+	mt18.PushBack({ 1.5f, 1.5f }, 30);
+	mt18.PushBack({ -1.5f, 1.5f }, 30);
+	mt18.PushBack({ 1.5f, 1.5f }, 30);
+	mt18.PushBack({ -1.5f, 1.5f }, 30);
+	mt18.PushBack({ 1.5f, 1.5f }, 30);
+	mt18.PushBack({ -1.5f, 1.5f }, 30);
+	mt18.PushBack({ 1.5f, 1.5f }, 30);
+
+	mt19.PushBack({ 1.5f, 1.5f }, 30);
+	mt19.PushBack({ -1.5f, 1.5f }, 30);
+	mt19.PushBack({ 1.5f, 1.5f }, 30);
+	mt19.PushBack({ -1.5f, 1.5f }, 30);
+	mt19.PushBack({ 1.5f, 1.5f }, 30);
+	mt19.PushBack({ -1.5f, 1.5f }, 30);
+	mt19.PushBack({ 1.5f, 1.5f }, 30);
+
+	mt20.PushBack({ 1.5f, 1.5f }, 20);
+	mt20.PushBack({ -1.5f, 1.5f }, 20);
+	mt20.PushBack({ 1.5f, 1.5f }, 20);
+	mt20.PushBack({ -1.5f, 1.5f }, 60);
+	mt20.PushBack({ -2, 0 }, 150);
+
+	mt21.PushBack({ 1.5f, 1.5f }, 20);
+	mt21.PushBack({ -1.5f, 1.5f }, 20);
+	mt21.PushBack({ 1.5f, 1.5f }, 20);
+	mt21.PushBack({ -1.5f, 1.5f }, 70);
+	mt21.PushBack({ -2, 0 }, 150);
+
+	mt22.PushBack({ 2, 0 }, 70);
+	mt22.PushBack({ 1.5f, 1.5f }, 20);
+	mt22.PushBack({ -1.5f, 1.5f }, 20);
+	mt22.PushBack({ 1.5f, 1.5f }, 20);
+	mt22.PushBack({ -1.5f, 1.5f }, 20);
+	mt22.PushBack({ 1.5f, 1.5f }, 20);
+	mt22.PushBack({ -1.5f, 1.5f }, 20);
+	mt22.PushBack({ 1.5f, 1.5f }, 20);
+	mt22.PushBack({ -1.5f, 1.5f }, 40);
+	mt22.PushBack({ -2, 0 }, 150);
+
+	mt23.PushBack({ 0, 0 }, 60);
+	mt23.PushBack({ 2, 0 }, 70);
+	mt23.PushBack({ 1.5f, 1.5f }, 20);
+	mt23.PushBack({ -1.5f, 1.5f }, 20);
+	mt23.PushBack({ 1.5f, 1.5f }, 20);
+	mt23.PushBack({ -1.5f, 1.5f }, 20);
+	mt23.PushBack({ 1.5f, 1.5f }, 20);
+	mt23.PushBack({ -1.5f, 1.5f }, 20);
+	mt23.PushBack({ 1.5f, 1.5f }, 20);
+	mt23.PushBack({ -1.5f, 1.5f }, 40);
+	mt23.PushBack({ -2, 0 }, 150);
+
 	RestartEnemies();
 	return ret;
 }
@@ -568,10 +667,23 @@ void ModuleSceneLevels::RestartEnemies() {
 		AddEnergyBox(52, 2972);
 		AddChangeBox(30, 4511);
 		AddChangeBox(18, 4000);
+
+		App->enemies->AddEnemy(MISSILE_THROWER, 84, 3435, &mt12);
+		App->enemies->AddEnemy(MISSILE_THROWER, 84, 3089, &mt13);
+		App->enemies->AddEnemy(MISSILE_THROWER, 84, 3159, &mt14);
+		App->enemies->AddEnemy(MISSILE_THROWER, 84, 2871, &mt15);
+	
+
 	}
 	if (App->ui->curr_check <= 4) {				// y < 2775
 		AddEnergyBox(25, 2319);
 		AddChangeBox(218, 2278);
+		App->enemies->AddEnemy(MISSILE_THROWER, 84, 2696, &mt16);
+		App->enemies->AddEnemy(MISSILE_THROWER, 84, 2755, &mt17);
+		App->enemies->AddEnemy(MISSILE_THROWER, 84, 2646, &mt18);
+		App->enemies->AddEnemy(MISSILE_THROWER, 84, 2446, &mt19);
+		App->enemies->AddEnemy(MISSILE_THROWER, 164, 2075, &mt20);
+		App->enemies->AddEnemy(MISSILE_THROWER, 164, 2000, &mt21);
 
 	}
 	if (App->ui->curr_check <= 5) {				// y < 2000
@@ -586,6 +698,9 @@ void ModuleSceneLevels::RestartEnemies() {
 		AddChangeBox(77, 1903);
 		AddChangeBox(210, 1083);
 
+		App->enemies->AddEnemy(MISSILE_THROWER, 0, 1928, &mt22);
+		App->enemies->AddEnemy(MISSILE_THROWER, 0, 1968, &mt23);
+
 		App->enemies->AddEnemy(BLUEBASIC_TRAIN, 1, 1708);
 		App->enemies->AddEnemy(BLUEBASIC_TRAIN, 25, 1692);
 		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 58, 1670);
@@ -599,6 +714,7 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 564, 1670);
 		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 628, 1670);
 		App->enemies->AddEnemy(TRAIN, 378, 1670);
+
 	}
 	if (App->ui->curr_check <= 6) {				// y < 479
 		App->enemies->AddEnemy(BOSS, 88, -5);
@@ -770,6 +886,18 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	mt9.Restart();
 	mt10.Restart();
 	mt11.Restart();
+	mt12.Restart();
+	mt13.Restart();
+	mt14.Restart();
+	mt15.Restart();
+	mt16.Restart();
+	mt17.Restart();
+	mt18.Restart();
+	mt19.Restart();
+	mt20.Restart();
+	mt21.Restart();
+	mt22.Restart();
+	mt23.Restart();
 	train_platform_first_path.Restart();
 	train_platform_loop_path.Restart();
 	train_platform_death_path.Restart();

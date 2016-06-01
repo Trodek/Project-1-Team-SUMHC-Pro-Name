@@ -96,6 +96,18 @@ public:
 	Path mt9;
 	Path mt10;
 	Path mt11;
+	Path mt12;
+	Path mt13;
+	Path mt14;
+	Path mt15;
+	Path mt16;
+	Path mt17;
+	Path mt18;
+	Path mt19;
+	Path mt20;
+	Path mt21;
+	Path mt22;
+	Path mt23;
 
 	//Platform stuff
 	Path platform_p1;
