@@ -679,15 +679,15 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(NOTBASIC, 140, 4700, &gb21);
 		App->enemies->AddEnemy(NOTBASIC, 73, 3951, &notsobasic1);
 		App->enemies->AddEnemy(NOTBASIC, 140, 3951, &notsobasic2);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 2759);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 2792);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 2825);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 3112);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 3149);
-		App->enemies->AddEnemy(SMALLTURRET, 5, 3189);
-		App->enemies->AddEnemy(SMALLTURRET, 222, 2988);
-		App->enemies->AddEnemy(SMALLTURRET, 222, 2951);
-		App->enemies->AddEnemy(SMALLTURRET, 222, 3025);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 2743);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 2775);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 2807);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 3095);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 3127);
+		App->enemies->AddEnemy(SMALLTURRET, -5, 3159);
+		App->enemies->AddEnemy(SMALLTURRET, 210, 2967);
+		App->enemies->AddEnemy(SMALLTURRET, 210, 2935);
+		App->enemies->AddEnemy(SMALLTURRET, 210, 2999);
 
 		AddEnergyBox(212, 4614);
 		AddEnergyBox(14, 3816);

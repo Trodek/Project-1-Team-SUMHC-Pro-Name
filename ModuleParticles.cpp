@@ -157,11 +157,11 @@ ModuleParticles::ModuleParticles()
 	big_turret_bullet_start.anim.speed = 0.3f;
 	big_turret_bullet_start.collider = COLLIDER_NONE;
 
-	big_turret_dead.anim.PushBack({ 0, 0, 64, 65 });
-	big_turret_dead.anim.PushBack({ 64, 0, 64, 65 });
-	big_turret_dead.anim.PushBack({ 128, 0, 64, 65 });
-	big_turret_dead.anim.PushBack({ 192, 0, 64, 65 });
-	big_turret_dead.anim.PushBack({ 256, 0, 64, 65 });
+	big_turret_dead.anim.PushBack({ 0, 0, 47, 48 });
+	big_turret_dead.anim.PushBack({ 47, 0, 47, 48 });
+	big_turret_dead.anim.PushBack({ 94, 0, 47, 48 });
+	big_turret_dead.anim.PushBack({ 141, 0, 47, 48 });
+	big_turret_dead.anim.PushBack({ 188, 0, 47, 48 });
 	big_turret_dead.anim.speed = 0.2f;
 	big_turret_dead.anim.loop = true;
 	big_turret_dead.collider = COLLIDER_NONE;
@@ -263,7 +263,7 @@ bool ModuleParticles::Start()
 	multi_laser_tex = App->textures->Load("OutZone/Sprites/Main Char/Weapons/multi laser.png");
 	truck_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Truck/Truck.png");
 	small_turret = App->textures->Load("Outzone/Sprites/Enemies/Level 1/Small Turret/Small Turret.png");
-	big_turret_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Big Turret/big turret fire.png");
+	big_turret_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Level 1/Small Turret/Small Turret fire.png");
 	green_basic_dead.tex = App->textures->Load("OutZone/Sprites/Enemies/Enemies Common Dead/common dead sprites.png");
 	boss = App->textures->Load("OutZone/Sprites/Enemies/Level 4/boss.png");
 	roomba = App->textures->Load("OutZone/Sprites/Enemies/Level 4/roomba.png");
