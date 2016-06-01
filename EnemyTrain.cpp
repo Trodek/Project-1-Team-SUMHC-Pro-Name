@@ -28,8 +28,6 @@ EnemyTrain::EnemyTrain(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 
 	tex = App->particles->train;
 
-	last_enemy = SDL_GetTicks();
-
 	dead = &App->particles->green_basic_dead;
 
 	hp = 6;

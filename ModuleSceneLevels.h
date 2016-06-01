@@ -29,6 +29,14 @@ public:
 	void AddEnergyBox(int x, int y);
 	void AddChangeBox(int x, int y);
 
+	int now;
+	int last_enemy;
+	int purple_background_1 = 1055;
+	int purple_background_2 = 1567;
+	int purple_background_3 = 2079;
+	int purple_background_4 = 2591;
+	int purple_background_5 = 3103;
+
 public:
 
 	SDL_Texture* graphics_l4 = nullptr;
@@ -36,13 +44,14 @@ public:
 	SDL_Texture* lava = nullptr;
 	SDL_Texture* on_bg = nullptr;
 	SDL_Texture* sublighttex = nullptr;
+	SDL_Texture* graphics_l4_below_purple = nullptr;
 
 	Animation lavaanim;
 	Animation sublightanim;
 	Animation lights;
 
 	SDL_Rect level4;
-
+	SDL_Rect level4_purple_background;
 
 	float camera_y;
 
@@ -143,6 +152,7 @@ public:
 	iPoint train_platform_pos_aux;
 	Collider* train_platform_coll_left;
 	Collider* train_platform_coll_right;
+	Path notsobasic_train;
 };
 
 #endif // __MODULESCENELevels_H__

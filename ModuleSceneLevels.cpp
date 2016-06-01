@@ -23,6 +23,11 @@ ModuleSceneLevels::ModuleSceneLevels()
 	level4.y = 0;
 	level4.w = 240;
 	level4.h = 7519;
+	//level4 purple
+	level4_purple.x = 0;
+	level4_purple.y = 0;
+	level4_purple.w = 240;
+	level4_purple.h = 512;
 	//Platform
 	platform_anim.PushBack({ 0, 0, 77, 64 });
 	platform_p1.PushBack({ 1.0f, 0 }, 100, &platform_anim);
@@ -96,6 +101,7 @@ bool ModuleSceneLevels::Start()
 	graphics_l4_below = App->textures->Load("OutZone/Sprites/Map/level4_below.png");
 	platform_t = App->textures->Load("Outzone/Sprites/Map/MovingPlatform.png");
 	train_platform_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 4/Train/Train_platforms.png");
+	graphics_l4_below_purple = App->textures->Load("OutZone/Sprites/Map/level4_below_purple.png");
 
 	level4_song = App->audio->LoadMusic("OutZone/Sounds/Music/level4.ogg");
 
@@ -572,6 +578,13 @@ bool ModuleSceneLevels::Start()
 	mt23.PushBack({ -1.5f, 1.5f }, 40);
 	mt23.PushBack({ -2, 0 }, 150);
 
+	notsobasic_train.PushBack({ 0, 1 }, 70);
+	notsobasic_train.PushBack({ 1, 0 }, 5);
+	notsobasic_train.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic_train.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic_train.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic_train.PushBack({ -1, 0 }, 50);
+
 	RestartEnemies();
 	return ret;
 }
@@ -739,6 +752,7 @@ bool ModuleSceneLevels::CleanUp()
 	App->textures->Unload(sublighttex);
 	App->textures->Unload(train_platform_tex);
 	App->textures->Unload(platform_t);
+	App->textures->Unload(graphics_l4_below_purple);
 	
 
 	//Disable player
@@ -766,6 +780,9 @@ bool ModuleSceneLevels::CleanUp()
 // Update: draw background
 update_status ModuleSceneLevels::Update()
 {
+
+	now = SDL_GetTicks();
+
 	// Map movement
 
 	int speed = 1;
@@ -786,6 +803,31 @@ update_status ModuleSceneLevels::Update()
 		App->render->Blit(lava, 0, 5156, &lavaanim.GetCurrentFrame());*/
 
 		//App->render->Blit(sublighttex, 0, 6781, &sublightanim.GetCurrentFrame());
+		if ((purple_background_1 += 1) > 3615){
+			purple_background_1 = 1055;
+		}
+
+		if ((purple_background_2 += 1) > 3615){
+			purple_background_2 = 1055;
+		}
+
+		if ((purple_background_3 += 1) > 3615){
+			purple_background_3 = 1055;
+		}
+
+		if ((purple_background_4 += 1) > 3615){
+			purple_background_4 = 1055;
+		}
+
+		if ((purple_background_5 += 1) > 3615){
+			purple_background_5 = 1055;
+		}
+
+		App->render->Blit(graphics_l4_below_purple, 0, purple_background_1, &level4_purple_background);
+		App->render->Blit(graphics_l4_below_purple, 0, purple_background_2, &level4_purple_background);
+		App->render->Blit(graphics_l4_below_purple, 0, purple_background_3, &level4_purple_background);
+		App->render->Blit(graphics_l4_below_purple, 0, purple_background_4, &level4_purple_background);
+		App->render->Blit(graphics_l4_below_purple, 0, purple_background_5, &level4_purple_background);
 		App->render->Blit(graphics_l4_below, 0, 0, &level4);
 		App->render->Blit(graphics_l4, 0, 0, &level4); // Map
 		//App->render->Blit(on_bg, 0, 8445, &lights.GetCurrentFrame());
@@ -833,6 +875,10 @@ update_status ModuleSceneLevels::Update()
 		}
 		if (!train_dead && first_path_made){
 			train_platform_pos_aux = train_platform_pos + train_platform_loop_path.GetCurrentSpeed();
+			if (now - last_enemy > 2000){
+				App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 420, train_platform_pos_aux.y, &notsobasic_train);
+				last_enemy = SDL_GetTicks();
+			}
 		}
 		if (train_dead){
 			App->player->scroll = true;
@@ -907,7 +953,6 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	mt23.Restart();
 	train_platform_first_path.Restart();
 	train_platform_loop_path.Restart();
-	train_platform_death_path.Restart();
 
 }
 
