@@ -273,6 +273,8 @@ bool ModuleParticles::Start()
 	fat_robot_train = App->textures->Load("OutZone/Sprites/Enemies/Level 4/Train/laser_robot.png");
 	train = App->textures->Load("OutZone/Sprites/Enemies/Level 4/Train/train.png");
 
+	rounded_turret = App->textures->Load("OutZone/Sprites/Enemies/Level 4/rounded turret.png");
+
 	enemy_blaster.tex = strange_large;
 	enemy_shot_especial.tex = strange_large;
 

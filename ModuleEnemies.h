@@ -30,7 +30,8 @@ enum ENEMY_TYPES
 	POWERUP,
 	SHIELD, 
 	EXTRA_BOMB,
-	SPEED
+	SPEED,
+	ROUNDED_TURRET,
 };
 
 struct SDL_Texture;

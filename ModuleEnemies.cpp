@@ -29,6 +29,7 @@
 #include "Shield.h"
 #include "Speed.h"
 #include "Extra_Bomb.h"
+#include "EnemyRoundedTurret.h"
 #include "ModuleSceneLevels.h"
 
 #define SPAWN_MARGIN 150
@@ -249,6 +250,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 				break;
 			case ENEMY_TYPES::SPEED:
 				enemies[i] = new Speed(info.x, info.y, info.type);
+				break;
+			case ENEMY_TYPES::ROUNDED_TURRET:
+				enemies[i] = new EnemyRoundedTurret(info.x, info.y, info.type);
 				break;
 		}
 	}

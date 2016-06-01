@@ -618,6 +618,11 @@ void ModuleSceneLevels::RestartEnemies() {
 		AddChangeBox(108, 6336);
 		AddEnergyBox(18,6161);
 
+		App->enemies->AddEnemy(ROUNDED_TURRET, 15, 6542);
+		App->enemies->AddEnemy(ROUNDED_TURRET, 79, 6571);
+		App->enemies->AddEnemy(ROUNDED_TURRET, 43, 6279);
+		App->enemies->AddEnemy(ROUNDED_TURRET, 105, 6053);
+
 	}
 	if (App->ui->curr_check <= 2) {					// y < 5965
 
@@ -660,6 +665,9 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(MISSILE_THROWER, -40, 5247, &mt10);
 		App->enemies->AddEnemy(MISSILE_THROWER, -40, 5177, &mt11);
 
+		App->enemies->AddEnemy(ROUNDED_TURRET, 74, 5095);
+		App->enemies->AddEnemy(ROUNDED_TURRET, 203, 5002);
+
 
 	}
 	if (App->ui->curr_check <= 3) {				// y < 4900
@@ -687,6 +695,9 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(MISSILE_THROWER, 84, 3089, &mt13);
 		App->enemies->AddEnemy(MISSILE_THROWER, 84, 3159, &mt14);
 		App->enemies->AddEnemy(MISSILE_THROWER, 84, 2871, &mt15);
+
+		App->enemies->AddEnemy(ROUNDED_TURRET, 139, 4616);
+		App->enemies->AddEnemy(ROUNDED_TURRET, 185, 4071);
 	
 
 	}

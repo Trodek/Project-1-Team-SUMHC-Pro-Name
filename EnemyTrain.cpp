@@ -41,11 +41,6 @@ EnemyTrain::EnemyTrain(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 }
 
 void EnemyTrain::Move(){
-	
-	enemy_player_radius = position.DistanceTo(App->player->position);
-	delta_y = position.y - App->player->position.y;
-	delta_x = original.x - App->player->position.x;
-	radius_deltax = enemy_player_radius - delta_x;
 
 	if (hp > 0){
 		position.x = App->levels->train_platform_pos_aux.x + 378;
@@ -70,6 +65,11 @@ void EnemyTrain::Draw()
 void EnemyTrain::Shot(){
 
 	now = SDL_GetTicks();
+
+	enemy_player_radius = position.DistanceTo(App->player->position);
+	delta_y = position.y - App->player->position.y;
+	delta_x = original.x - App->player->position.x;
+	radius_deltax = enemy_player_radius - delta_x;
 
 	if (now - last_shot > 1000 && (position.y - App->player->position.y >-200 && position.y - App->player->position.y < 200
 		&& position.x < SCREEN_WIDTH && position.x > 0)){

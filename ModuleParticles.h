@@ -79,6 +79,7 @@ public:
 	SDL_Texture* missilethrower;
 	SDL_Texture* fat_robot_train;
 	SDL_Texture* train;
+	SDL_Texture* rounded_turret;
 
 
 	Particle basic_laser_p0;
