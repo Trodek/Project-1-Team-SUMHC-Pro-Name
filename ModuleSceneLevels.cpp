@@ -30,9 +30,9 @@ ModuleSceneLevels::ModuleSceneLevels()
 	level4_purple_background.h = 512;
 	//Platform
 	platform_anim.PushBack({ 0, 0, 77, 64 });
-	platform_p1.PushBack({ 1.0f, 0 }, 100, &platform_anim);
-	platform_p2.PushBack({ 1.0f, 0 }, 100, &platform_anim);
-	platform_p3.PushBack({ 1.0f, 0 }, 100, &platform_anim);
+	platform_p1.PushBack({ 2.0f, 0 }, 100, &platform_anim);
+	platform_p2.PushBack({ 2.0f, 0 }, 100, &platform_anim);
+	platform_p3.PushBack({ 2.0f, 0 }, 100, &platform_anim);
 	platform_p1.loop = true;
 	platform_p2.loop = true;
 	platform_p3.loop = true;
@@ -225,9 +225,9 @@ bool ModuleSceneLevels::Start()
 	platform_3_1 = App->collisions->AddCollider({ -SCREEN_WIDTH - 123, 3870, SCREEN_WIDTH+177, 64 }, COLLIDER_HOLE);
 	platform_3_2 = App->collisions->AddCollider({ -23, 3870, SCREEN_WIDTH+23, 64 }, COLLIDER_HOLE);
 
-	platformr1 = App->collisions->AddCollider({ 0, 0, 70, 46 }, COLLIDER_PLATFORMR);
-	platformr2 = App->collisions->AddCollider({ 0, 0, 70, 46 }, COLLIDER_PLATFORMR);
-	platforml = App->collisions->AddCollider({ 0, 0, 70, 46 }, COLLIDER_PLATFORML);
+	platformr1 = App->collisions->AddCollider({ 0, 0, 72, 50 }, COLLIDER_PLATFORMR);
+	platformr2 = App->collisions->AddCollider({ 0, 0, 72, 50 }, COLLIDER_PLATFORMR);
+	platforml = App->collisions->AddCollider({ 0, 0, 72, 50 }, COLLIDER_PLATFORML);
 
 	train_platform_coll_left = App->collisions->AddCollider({ 0, 1694, 379, 64 }, COLLIDER_PASS_BULLET);
 	train_platform_coll_right = App->collisions->AddCollider({ 475, 1694, 285, 64 }, COLLIDER_PASS_BULLET);
@@ -853,14 +853,14 @@ update_status ModuleSceneLevels::Update()
 		if (platform1_aux_pos.x > SCREEN_WIDTH + 150){
 			platform_p1.Restart();
 		}
-		platformr1->SetPos(platform1_aux_pos.x, platform1_aux_pos.y+10);
+		platformr1->SetPos(platform1_aux_pos.x, platform1_aux_pos.y+7);
 
 		platform2_aux_pos = platform2_pos - platform_p2.GetCurrentSpeed();
 		App->render->Blit(platform_t, platform2_aux_pos.x, platform2_aux_pos.y, &platform_anim.GetCurrentFrame());
 		platform_2_1->SetPos(platform2_aux_pos.x - SCREEN_WIDTH-106, platform2_aux_pos.y);
 		platform_2_2->SetPos(platform2_aux_pos.x + 84, platform2_aux_pos.y);
 		if (platform2_aux_pos.x < -150) platform_p2.Restart();
-		platforml->SetPos(platform2_aux_pos.x, platform2_aux_pos.y + 10);
+		platforml->SetPos(platform2_aux_pos.x, platform2_aux_pos.y + 7);
 
 		platform3_aux_pos = platform3_pos + platform_p3.GetCurrentSpeed();
 		App->render->Blit(platform_t, platform3_aux_pos.x, platform3_aux_pos.y, &platform_anim.GetCurrentFrame());
@@ -869,7 +869,7 @@ update_status ModuleSceneLevels::Update()
 		if (platform3_aux_pos.x > SCREEN_WIDTH + 150)
 			platform_p3.Restart();
 		}
-		platformr2->SetPos(platform3_aux_pos.x, platform3_aux_pos.y + 10);
+		platformr2->SetPos(platform3_aux_pos.x, platform3_aux_pos.y + 7);
 
 		//train
 

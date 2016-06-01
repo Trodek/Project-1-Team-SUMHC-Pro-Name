@@ -444,7 +444,6 @@ update_status ModulePlayer::PostUpdate(){
 update_status ModulePlayer::Update()
 {
 	PreviousPos = position;
-	int speed = 2;
 	now = SDL_GetTicks();
 
 	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN){
@@ -1223,10 +1222,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 			current_animation = &fall_hole;
 		}
 		if (c2->type == COLLIDER_PLATFORMR && position.x < 240){
-			position.x+=1;
+			position.x += 2;
 		}
 		if (c2->type == COLLIDER_PLATFORML && position.x > 0){
-			position.x-=1;
+			position.x -= 2;
 		}
 	}
 	if (PlayerEBulletsCollider == c1 && PlayerEBulletsCollider != nullptr){
