@@ -55,6 +55,17 @@ ModuleSceneLevels::ModuleSceneLevels()
 	lavaanim.PushBack({ 256, 0, 256, 830 });
 	lavaanim.PushBack({ 512, 0, 256, 830 });
 	lavaanim.speed = 0.01f;
+
+	//train
+	train_platform_anim.PushBack({ 0, 0, 760, 64 });
+	train_platform_first_path.PushBack({ -1.0f, 0 }, 333, &train_platform_anim);
+	train_platform_first_path.loop = false;
+	train_platform_loop_path.PushBack({ 1.0f, 0 }, 165, &train_platform_anim);
+	train_platform_loop_path.PushBack({ -1.0f, 0 }, 170, &train_platform_anim);
+	train_platform_death_path.PushBack({ 0, 0 }, 177, &train_platform_anim);
+	train_platform_pos.x = 0;
+	train_platform_pos.y = 1694;
+	train_dead = false;
 	
 	
 }
@@ -82,6 +93,7 @@ bool ModuleSceneLevels::Start()
 	graphics_l4 = App->textures->Load("OutZone/Sprites/Map/level4.png");
 	graphics_l4_below = App->textures->Load("OutZone/Sprites/Map/level4_below.png");
 	platform_t = App->textures->Load("Outzone/Sprites/Map/MovingPlatform.png");
+	train_platform_tex = App->textures->Load("OutZone/Sprites/Enemies/Level 4/Train/Train_platforms.png");
 
 	level4_song = App->audio->LoadMusic("OutZone/Sounds/Music/level4.ogg");
 
@@ -207,6 +219,8 @@ bool ModuleSceneLevels::Start()
 	platformr2 = App->collisions->AddCollider({ 0, 0, 70, 46 }, COLLIDER_PLATFORMR);
 	platforml = App->collisions->AddCollider({ 0, 0, 70, 46 }, COLLIDER_PLATFORML);
 
+	train_platform_coll_left = App->collisions->AddCollider({ 0, 1694, 379, 64 }, COLLIDER_PASS_BULLET);
+	train_platform_coll_right = App->collisions->AddCollider({ 475, 1694, 285, 64 }, COLLIDER_PASS_BULLET);
 
 
 	App->render->camera.y = -7199*SCREEN_SIZE;
@@ -427,8 +441,6 @@ void ModuleSceneLevels::RestartEnemies() {
 
 
 	if (App->ui->curr_check == 0) {							// y < 7159
-		App->enemies->AddEnemy(BLUEBASIC, 100, 6100);
-		
 		
 	}
 
@@ -524,6 +536,20 @@ void ModuleSceneLevels::RestartEnemies() {
 		AddEnergyBox(15, 528);
 		AddChangeBox(77, 1903);
 		AddChangeBox(210, 1083);
+
+		App->enemies->AddEnemy(BLUEBASIC_TRAIN, 1, 1708);
+		App->enemies->AddEnemy(BLUEBASIC_TRAIN, 25, 1692);
+		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 58, 1670);
+		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 122, 1670);
+		App->enemies->AddEnemy(BLUEBASIC_TRAIN, 192, 1692);
+		App->enemies->AddEnemy(BLUEBASIC_TRAIN, 218, 1708);
+		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 247, 1670);
+		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 311, 1670);
+		App->enemies->AddEnemy(BLUEBASIC_TRAIN, 507, 1708);
+		App->enemies->AddEnemy(BLUEBASIC_TRAIN, 531, 1692);
+		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 564, 1670);
+		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 628, 1670);
+		App->enemies->AddEnemy(TRAIN, 378, 1670);
 	}
 	if (App->ui->curr_check <= 6) {				// y < 479
 		App->enemies->AddEnemy(BOSS, 88, -5);
@@ -540,9 +566,13 @@ bool ModuleSceneLevels::CleanUp()
 
 	// Unload textures
 	App->textures->Unload(graphics_l4);
+	App->textures->Unload(graphics_l4_below);
 	App->textures->Unload(on_bg);
 	App->textures->Unload(lava);
 	App->textures->Unload(sublighttex);
+	App->textures->Unload(train_platform_tex);
+	App->textures->Unload(platform_t);
+	
 
 	//Disable player
 	App->player->Disable();
@@ -617,6 +647,28 @@ update_status ModuleSceneLevels::Update()
 			platform_p3.Restart();
 		}
 		platformr2->SetPos(platform3_aux_pos.x, platform3_aux_pos.y + 10);
+
+		//train
+		if (App->player->position.y < 1795){
+			if (!first_path_made){
+				train_platform_pos_aux = train_platform_pos + train_platform_first_path.GetCurrentSpeed();
+				if (train_platform_pos_aux.x < -312){
+					first_path_made = true;
+					train_platform_pos = train_platform_pos_aux;
+				}
+			}
+			if (!train_dead && first_path_made){
+				train_platform_pos_aux = train_platform_pos + train_platform_loop_path.GetCurrentSpeed();
+				LOG("%d", train_dead);
+			}
+			/*if (train_dead){
+			train_platform_pos_aux = train_platform_pos + train_platform_death_path.GetCurrentSpeed();
+			}*/
+		}
+
+		App->render->Blit(train_platform_tex, train_platform_pos_aux.x, train_platform_pos_aux.y, &train_platform_anim.GetCurrentFrame());
+		train_platform_coll_left->SetPos(train_platform_pos_aux.x, train_platform_pos_aux.y);
+		train_platform_coll_right->SetPos(train_platform_pos_aux.x + 475, train_platform_pos_aux.y);
 	return UPDATE_CONTINUE;
 }
 
@@ -658,6 +710,9 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	platform_p1.Restart();
 	platform_p2.Restart();
 	platform_p3.Restart();
+	train_platform_first_path.Restart();
+	train_platform_loop_path.Restart();
+	train_platform_death_path.Restart();
 }
 
 void ModuleSceneLevels::AddChangeBox(int x,int y){

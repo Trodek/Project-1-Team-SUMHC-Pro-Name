@@ -77,6 +77,8 @@ public:
 	SDL_Texture* strange_large = nullptr;;
 	SDL_Texture* boxes;
 	SDL_Texture* missilethrower;
+	SDL_Texture* fat_robot_train;
+	SDL_Texture* train;
 
 
 	Particle basic_laser_p0;

@@ -52,7 +52,13 @@
     <ClCompile Include="EnemyBoss.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyFatRobotTrain.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
     <ClCompile Include="EnemyGreenBasic.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyMissileThrower.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="EnemyNotSoBasic.cpp">
@@ -103,19 +109,6 @@
     <ClCompile Include="ModuleUI.cpp">
       <Filter>Modules\UI</Filter>
     </ClCompile>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <ClCompile Include="EnemyFatRobotTrain.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyTrain.cpp">
-=======
-    <ClCompile Include="EnemyMissileThrower.cpp">
->>>>>>> origin/master
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-=======
->>>>>>> parent of 4053ad4... train + enemies
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -184,7 +177,13 @@
     <ClInclude Include="EnemyBoss.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyFatRobotTrain.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
     <ClInclude Include="EnemyGreenBasic.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyMissileThrower.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="EnemyNotSoBasic.h">
@@ -200,6 +199,12 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="EnemyTrain.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnergyBox.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnergyPill.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ModulePlayer.h">
@@ -235,56 +240,37 @@
     <ClInclude Include="ModuleUI.h">
       <Filter>Modules\UI</Filter>
     </ClInclude>
-    <ClInclude Include="EnergyBox.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="EnergyPill.h">
+    <ClInclude Include="ChangePill.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ChangeBox.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="ChangePill.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <ClInclude Include="EnemyFatRobotTrain.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyTrain.h">
-=======
-    <ClInclude Include="EnemyMissileThrower.h">
->>>>>>> origin/master
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-=======
->>>>>>> parent of 4053ad4... train + enemies
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Basic">
-      <UniqueIdentifier>{5f35acd5-8c3a-441c-84f8-6615354b0913}</UniqueIdentifier>
+      <UniqueIdentifier>{f782661e-945c-4dc6-953f-6dd914489985}</UniqueIdentifier>
     </Filter>
     <Filter Include="Containers">
-      <UniqueIdentifier>{d0aafa92-84b1-4223-a100-669672bd3183}</UniqueIdentifier>
+      <UniqueIdentifier>{3e00fcc3-32b4-4c5f-843e-60cbad064005}</UniqueIdentifier>
     </Filter>
     <Filter Include="Modules">
-      <UniqueIdentifier>{5e4ea6d1-efb5-46ab-a62e-b17b6e893602}</UniqueIdentifier>
+      <UniqueIdentifier>{83561641-abfd-4471-bd14-74168c21dac6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Modules\Core">
-      <UniqueIdentifier>{31ab3cdb-8828-467d-b8a8-116b7215f447}</UniqueIdentifier>
+      <UniqueIdentifier>{c3f974fc-7828-4839-a82c-12a26bd590e0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Modules\Enemies">
-      <UniqueIdentifier>{1ae6cf46-b94d-4436-847e-4f22490880c8}</UniqueIdentifier>
+      <UniqueIdentifier>{fd87d350-c70d-4990-afd1-1083b2b3bb29}</UniqueIdentifier>
     </Filter>
     <Filter Include="Modules\Player">
-      <UniqueIdentifier>{20b33e08-79f8-4b29-be86-d75551cbfb37}</UniqueIdentifier>
+      <UniqueIdentifier>{7edc228a-fb7f-4776-8ecc-bb7f5e1651cc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Modules\Scenes">
-      <UniqueIdentifier>{b0a3e1b0-0d3b-4c56-a015-5beba9477cd3}</UniqueIdentifier>
+      <UniqueIdentifier>{0070a730-fe74-4f57-8578-ae710da7181f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Modules\UI">
-      <UniqueIdentifier>{1915d182-0da2-4c2c-950a-9529ab7bfade}</UniqueIdentifier>
+      <UniqueIdentifier>{9648a23c-1ab0-4f29-8a6d-ce69d6d3f554}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

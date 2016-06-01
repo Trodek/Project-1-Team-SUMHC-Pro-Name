@@ -270,6 +270,9 @@ bool ModuleParticles::Start()
 	notbasic = App->textures->Load("OutZone/Sprites/Enemies/Level 4/notsobasic.png");
 	strange_large = App->textures->Load("OutZone/Sprites/Enemies/Level 4/StrangeLargeShit.png");
 
+	fat_robot_train = App->textures->Load("OutZone/Sprites/Enemies/Level 4/Train/laser_robot.png");
+	train = App->textures->Load("OutZone/Sprites/Enemies/Level 4/Train/train.png");
+
 	enemy_blaster.tex = strange_large;
 	enemy_shot_especial.tex = strange_large;
 
