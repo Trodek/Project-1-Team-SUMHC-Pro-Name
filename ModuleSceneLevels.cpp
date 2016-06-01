@@ -24,10 +24,10 @@ ModuleSceneLevels::ModuleSceneLevels()
 	level4.w = 240;
 	level4.h = 7519;
 	//level4 purple
-	level4_purple.x = 0;
-	level4_purple.y = 0;
-	level4_purple.w = 240;
-	level4_purple.h = 512;
+	level4_purple_background.x = 0;
+	level4_purple_background.y = 0;
+	level4_purple_background.w = 240;
+	level4_purple_background.h = 512;
 	//Platform
 	platform_anim.PushBack({ 0, 0, 77, 64 });
 	platform_p1.PushBack({ 1.0f, 0 }, 100, &platform_anim);
