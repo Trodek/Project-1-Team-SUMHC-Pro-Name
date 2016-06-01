@@ -83,8 +83,10 @@ private:
 	int player_collisioning;
 	bool player_collided;
 	Collider* colliders[MAX_COLLIDERS];
-	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 	bool debug = false;
+
+public:
+	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 };
 
 #endif // __ModuleCollision_H__

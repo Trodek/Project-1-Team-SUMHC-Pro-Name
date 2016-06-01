@@ -85,6 +85,9 @@ EnemyBoss::EnemyBoss(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 	twister1_col->SetPos(twister1.x, twister1.y);
 
 	App->player->scroll = false;
+
+	App->collisions->matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY_SHOT] = true;
+	App->collisions->matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER_SHOT] = true;
 }
 
 void EnemyBoss::Draw(){
@@ -345,4 +348,6 @@ void EnemyBoss::DeleteAll(){
 	App->collisions->EraseCollider(twister8_col);
 	App->collisions->EraseCollider(shell_left_col);
 	App->collisions->EraseCollider(shell_right_col);
+	App->collisions->matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY_SHOT] = false;
+	App->collisions->matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER_SHOT] = false;
 }
