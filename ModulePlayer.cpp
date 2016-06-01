@@ -515,7 +515,7 @@ update_status ModulePlayer::Update()
 			App->ui->SubBomb(1);
 		}
 
-		if (go > 150 && (go % 25) < 14)  
+		if (go > 300 && (go % 25) < 14)  
 			App->render->Blit((App->ui->ui_graphics), 95, (-App->render->camera.y) / SCREEN_SIZE + 60, &go_ahead);
 		go++;
 

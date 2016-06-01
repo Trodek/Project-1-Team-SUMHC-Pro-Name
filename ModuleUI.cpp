@@ -172,6 +172,8 @@ ModuleUI::ModuleUI(){
 
 	top_score = TopScores[0].Tscore;
 	get_score = false;
+
+	low_energy_sound = false;
 }
 
 ModuleUI::~ModuleUI(){}
@@ -283,10 +285,12 @@ update_status ModuleUI::Update(){
 		for (int i = 0; i < bombs; i++)																				
 			App->render->Blit(ui_graphics, 8 * i, (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);							//bombs
 
-		if (!energy_sound && energy < 0 && (((energy*energy) + energy_cont % (4 * (energy - 1) + 1) < (energy * energy + energy + 2)) && energy < 9)) { //Don't ask me about this equation. PLS. 1 hour working on it :DDDD
+		if (energy > 0 && (((energy*energy) + energy_cont % (4 * (energy - 1) + 1) < (energy * energy + energy + 2)) && energy < 9)) { //Don't ask me about this equation. PLS. 1 hour working on it :DDDD
 			App->render->Blit(low_energy, 8, (-App->render->camera.y) / SCREEN_SIZE + 27, &Low_energy_static);					//Low energy
-			App->audio->PlaySoundEffect(low_energy_sound);
-			energy_sound = true;
+			if (!energy_sound) {
+				App->audio->PlaySoundEffect(low_energy_sound);
+				energy_sound = true;
+			}
 		}
 		else
 			energy_sound = false;
