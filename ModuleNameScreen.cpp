@@ -51,7 +51,7 @@ bool ModuleNameScreen::Start()
 	name_input_1.y = 248;
 	name_input_1.w = 8;
 	name_input_1.h = 8;
-	
+
 	name_input_2.x = 6;
 	name_input_2.y = 248;
 	name_input_2.w = 8;
@@ -68,13 +68,19 @@ bool ModuleNameScreen::Start()
 	Points.w = 7;
 	Points.h = 7;
 
+	//% of the area
+	percent.x = 182;
+	percent.y = 307;
+	percent.w = 6;
+	percent.h = 6;
+
 	for (rank = 0; App->ui->TopScores[rank].Tscore > App->ui->score; rank++);
 
 	UpdateScores();
 
 	App->ui->TopScores[rank].Tscore = App->ui->score;
-	App->ui->TopScores[rank].area = (App->ui->curr_check / 14) * 100;
-
+	App->ui->TopScores[rank].area = (App->player->position.y / 7519) * 100;
+	if (App->ui->TopScores[rank].area > 100) App->ui->TopScores[rank].area = 100;
 
 	//Ranking position
 	pos_ranking.x = 151;
@@ -151,6 +157,8 @@ update_status ModuleNameScreen::Update()
 	App->render->Blit(App->ui->ui_graphics, 64, 264, &name_input_1);
 	App->render->Blit(App->ui->ui_graphics, 80, 264, &name_input_2);
 	App->render->Blit(App->ui->ui_graphics, 96, 264, &name_input_3);
+	App->ui->DrawNumber(App->ui->TopScores[rank].area, 120, 265, 8, Points);
+	App->render->Blit(App->ui->ui_graphics, 129, 265, &percent);
 	App->ui->DrawNumber(App->ui->score, 219, 265, 8, Points);
 
 	return UPDATE_CONTINUE;

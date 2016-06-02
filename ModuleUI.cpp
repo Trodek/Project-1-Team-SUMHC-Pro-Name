@@ -300,7 +300,7 @@ update_status ModuleUI::Update(){
 		}
 
 		energy_cont++;
-
+		App->player->PaintArrow();
 		/*---------------------- TOP SCORE ----------------------*/
 		App->render->Blit(ui_graphics, 105, (-App->render->camera.y) / SCREEN_SIZE + 1, &top_name);								//top name
 		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);									//top score
@@ -367,7 +367,7 @@ update_status ModuleUI::Update(){
 			DrawNumber(score, 74, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);							//player score	
 		}
 	}
-	App->player->PaintArrow();
+	
 	return UPDATE_CONTINUE;
 }
 

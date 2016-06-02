@@ -45,6 +45,7 @@ public:
 	SDL_Rect name_input_1;
 	SDL_Rect name_input_2;
 	SDL_Rect name_input_3;
+	SDL_Rect percent;
 
 };
 
