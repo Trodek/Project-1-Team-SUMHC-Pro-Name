@@ -88,6 +88,8 @@ EnemyBoss::EnemyBoss(int x, int y, ENEMY_TYPES type) : Enemy(x, y, type)
 
 	App->collisions->matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY_SHOT] = true;
 	App->collisions->matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER_SHOT] = true;
+	App->collisions->matrix[COLLIDER_PASS_BULLET][COLLIDER_PLAYER_SHOT] = true;
+	App->collisions->matrix[COLLIDER_PLAYER_SHOT][COLLIDER_PASS_BULLET] = true;
 }
 
 void EnemyBoss::Draw(){
@@ -350,4 +352,6 @@ void EnemyBoss::DeleteAll(){
 	App->collisions->EraseCollider(shell_right_col);
 	App->collisions->matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY_SHOT] = false;
 	App->collisions->matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER_SHOT] = false;
+	App->collisions->matrix[COLLIDER_PASS_BULLET][COLLIDER_PLAYER_SHOT] = false;
+	App->collisions->matrix[COLLIDER_PLAYER_SHOT][COLLIDER_PASS_BULLET] = false;
 }
