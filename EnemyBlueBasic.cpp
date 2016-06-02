@@ -54,6 +54,8 @@ void EnemyBlueBasic::Move(){
 
 	//-----------Face Player---------------
 
+	original.x = App->levels->train_platform_pos_aux.x + position.x;
+
 	enemy_player_radius = position.DistanceTo(App->player->position);
 	delta_y = position.y - App->player->position.y;
 	delta_x = original.x - App->player->position.x;
@@ -140,7 +142,6 @@ void EnemyBlueBasic::Move(){
 
 	//-----------------------------------------------
 	
-	original.x = App->levels->train_platform_pos_aux.x + position.x;
 }
 
 void EnemyBlueBasic::Draw(){

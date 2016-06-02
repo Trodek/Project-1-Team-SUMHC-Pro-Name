@@ -1165,15 +1165,15 @@ update_status ModuleSceneLevels::Update()
 			train_platform_pos_aux = train_platform_pos + train_platform_loop_path.GetCurrentSpeed();
 			if (now - last_enemy > 5000){
 				if (!third_enemy_train_spawn && second_enemy_train_spawn){
-					App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 403, train_platform_pos_aux.y+5, &notsobasic_train3);
+					App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 401, train_platform_pos_aux.y+5, &notsobasic_train3);
 					third_enemy_train_spawn = true;
 				}
 				if (!second_enemy_train_spawn && first_enemy_train_spawn){
-					App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 403, train_platform_pos_aux.y, &notsobasic_train2);
+					App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 400, train_platform_pos_aux.y, &notsobasic_train2);
 					second_enemy_train_spawn = true;
 				}
 				if (!first_enemy_train_spawn){
-					App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 424, train_platform_pos_aux.y, &notsobasic_train);
+					App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 422, train_platform_pos_aux.y, &notsobasic_train);
 					first_enemy_train_spawn = true;
 				}
 				

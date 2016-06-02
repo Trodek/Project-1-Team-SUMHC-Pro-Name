@@ -22,7 +22,7 @@ EnemyFatRobotTrain::EnemyFatRobotTrain(int x, int y, ENEMY_TYPES type) : Enemy(x
 
 	hp = 114;
 	points = 800;
-	collider = App->collisions->AddCollider({ 0, 0, 63, 72 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 63, 65 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	collider->SetPos(position.x, position.y);
 	bullet = &App->particles->fat_robot_train_laser;
 	shoot_start = &App->particles->green_basic_bullet_start;

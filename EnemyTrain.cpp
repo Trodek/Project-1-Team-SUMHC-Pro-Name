@@ -71,7 +71,7 @@ void EnemyTrain::Shot(){
 
 	enemy_player_radius = position.DistanceTo(App->player->position);
 	delta_y = position.y - App->player->position.y;
-	delta_x = original.x - App->player->position.x;
+	delta_x = position.x - App->player->position.x;
 	radius_deltax = enemy_player_radius - delta_x;
 
 	if (now - last_shot > 1000 && (position.y - App->player->position.y >-200 && position.y - App->player->position.y < 200
