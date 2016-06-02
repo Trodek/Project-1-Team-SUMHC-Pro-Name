@@ -1215,9 +1215,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 			}
 		}
 		if (c2->type == COLLIDER_HOLE){
-			dead = true;
-			dead_fall = true;
-			current_animation = &fall_hole;
+			if (!dead) {
+				current_animation = &fall_hole;
+				dead = true;
+				dead_fall = true;
+			}
 		}
 		if (c2->type == COLLIDER_PLATFORMR && position.x < 216){
 			position.x += 2;

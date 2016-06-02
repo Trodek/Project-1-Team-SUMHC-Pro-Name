@@ -218,6 +218,7 @@ update_status ModuleUI::Update(){
 		if (dead){
 			lives--;
 			if (lives >= 0){
+				LOG("ASADSDASDASD");
 				dead = false;
 				App->player->position.x = checkpoints[curr_check].x;
 				App->player->position.y = checkpoints[curr_check].y;
@@ -227,7 +228,7 @@ update_status ModuleUI::Update(){
 				App->player->last_basic_weapon = LASER;
 				App->player->current_weapon = LASER;
 				App->player->current_power = P0;
-				App->player->current_animation = &(App->player->up);
+				//App->player->current_animation = &(App->player->up);
 				App->player->weapon_anim = &(App->player->laser_360);
 				App->player->dead = false;
 				App->player->speed = 2;
@@ -240,6 +241,8 @@ update_status ModuleUI::Update(){
 				App->player->fall_hole.Reset();
 				energy = 36;
 				max_energy = 36;
+				App->player->dead_fall = false;
+				App->player->dead_energy = false;
 			}
 			else {
 				//App->render->Blit(ui_graphics, 23, (-App->render->camera.y) / SCREEN_SIZE + 136, &gameover);
@@ -306,26 +309,26 @@ update_status ModuleUI::Update(){
 		DrawNumber(top_score, 137, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);									//top score
 
 		/*---------------------- PLAYER 2 ----------------------*/
-		if (player2_enabled) {
-			App->render->Blit(ui_graphics, 158, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2_name.GetCurrentFrame()));	//player2 name
-			DrawNumber(score_p2, 206, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);								//player2 score
+		//if (player2_enabled) {
+		//	App->render->Blit(ui_graphics, 158, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2_name.GetCurrentFrame()));	//player2 name
+		//	DrawNumber(score_p2, 206, (-App->render->camera.y) / SCREEN_SIZE + 9, 8, top_points);								//player2 score
 
-			App->render->Blit(ui_graphics, 164 + 59, (-App->render->camera.y) / SCREEN_SIZE, &lives_symbol);					//lives icon
-			DrawNumber(lives_p2, 164 + 57 + 10, (-App->render->camera.y) / SCREEN_SIZE + 1, 9, lives_num);						//lives number
+		//	App->render->Blit(ui_graphics, 164 + 59, (-App->render->camera.y) / SCREEN_SIZE, &lives_symbol);					//lives icon
+		//	DrawNumber(lives_p2, 164 + 57 + 10, (-App->render->camera.y) / SCREEN_SIZE + 1, 9, lives_num);						//lives number
 
-			App->render->Blit(ui_graphics, 148, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar_p2);					//energy bar
-			for (int i = 0; i < energy; i++) 
-				App->render->Blit(ui_graphics, 164 + 58 - (2 * i), (-App->render->camera.y) / SCREEN_SIZE + 18, &energy_pill);	//fill the bar
-			for (int i = 0; i < bombs_p2;  i++)																					
-				App->render->Blit(ui_graphics, 232 - (8 * i), (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);				//bombs
+		//	App->render->Blit(ui_graphics, 148, (-App->render->camera.y) / SCREEN_SIZE + 17, &energy_bar_p2);					//energy bar
+		//	for (int i = 0; i < energy; i++) 
+		//		App->render->Blit(ui_graphics, 164 + 58 - (2 * i), (-App->render->camera.y) / SCREEN_SIZE + 18, &energy_pill);	//fill the bar
+		//	for (int i = 0; i < bombs_p2;  i++)																					
+		//		App->render->Blit(ui_graphics, 232 - (8 * i), (-App->render->camera.y) / SCREEN_SIZE + 304, &bomb);				//bombs
 
-			if (!(energy % 2) && energy < 7) {
-				App->render->Blit(low_energy, 190, (-App->render->camera.y) / SCREEN_SIZE + 27, &Low_energy_static);			//Low energy
+		//	if (!(energy % 2) && energy < 7) {
+		//		App->render->Blit(low_energy, 190, (-App->render->camera.y) / SCREEN_SIZE + 27, &Low_energy_static);			//Low energy
 
-			}
-		}
-		else
-			App->render->Blit(ui_graphics, 160, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2.GetCurrentFrame()));		//player2
+		//	}
+		//}
+		//else
+		App->render->Blit(ui_graphics, 160, (-App->render->camera.y) / SCREEN_SIZE + 1, &(player2.GetCurrentFrame()));		//player2
 		if (get_score) {
 			App->render->Blit(ui_graphics, 60, 60, &stageclear);
 			App->render->Blit(ui_graphics, 60, 110, &bombpoints);
@@ -449,8 +452,8 @@ void ModuleUI::ResetEnergyBombs(){
 
 bool ModuleUI::TopScore() {
 	for (int i = 0; i < 5; i++)
-	if (score > TopScores[i].Tscore)
-		return true;
+		if (score > TopScores[i].Tscore)
+			return true;
 	return false;
 }
 
