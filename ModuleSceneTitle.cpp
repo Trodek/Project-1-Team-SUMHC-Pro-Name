@@ -8,6 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleLoseScreen.h"
 #include "ModuleScoreScreen.h"
+#include "ModuleAudio.h"
 #include "ModuleSceneLevels.h"
 #include "Path.h"
 #include "SDL/include/SDL_timer.h"
@@ -126,6 +127,7 @@ bool ModuleSceneTitle::Start()
 	App->player->Disable();
 	App->ui->title = true;
 	App->ui->startgame = false;
+	letter_sound = App->audio->LoadSoundEffect("OutZone/Sounds/Effects/menu letters.wav");
 	
 	return true;
 }
@@ -138,6 +140,7 @@ bool ModuleSceneTitle::CleanUp()
 	App->textures->Unload(chars_tex);
 	App->ui->title = false;
 	no_pay = true;
+	App->audio->UnloadSoundEffect(letter_sound);
 
 	return true;
 }
@@ -157,26 +160,50 @@ update_status ModuleSceneTitle::Update()
 
 	//App->render->Blit(copyr, 0, 0, &copyr_rec); Copyright thing
 	if (now - born < TIME_ELAPSED * 6) {
+		if (!l1){
+			App->audio->PlaySoundEffect(letter_sound);
+			l1 = true;
+		}
 		co = o + Ob_path.GetCurrentSpeed();
 		App->render->Blit(chars_tex, co.x, co.y, &Ob_anim.GetCurrentFrame());
 	}
 	if (now - born > TIME_ELAPSED && now-born < TIME_ELAPSED*6) {
+		if (!l2){
+			App->audio->PlaySoundEffect(letter_sound);
+			l2 = true;
+		}
 		cz = z + zb_path.GetCurrentSpeed();
 		App->render->Blit(chars_tex, cz.x, cz.y, &zb_anim.GetCurrentFrame());
 	}
 	if (now - born > TIME_ELAPSED * 2 && now - born < TIME_ELAPSED * 6) {
+		if (!l3){
+			App->audio->PlaySoundEffect(letter_sound);
+			l3 = true;
+		}
 		cu = u + ub_path.GetCurrentSpeed();
 		App->render->Blit(chars_tex, cu.x, cu.y, &ub_anim.GetCurrentFrame());
 	}
 	if (now - born > TIME_ELAPSED * 3 && now - born < TIME_ELAPSED * 6) {
+		if (!l4){
+			App->audio->PlaySoundEffect(letter_sound);
+			l4 = true;
+		}
 		co2 = o2 + o2b_path.GetCurrentSpeed();
 		App->render->Blit(chars_tex, co2.x, co2.y, &o2b_anim.GetCurrentFrame());
 	}
 	if (now - born > TIME_ELAPSED * 4 && now - born < TIME_ELAPSED * 6) {
+		if (!l5){
+			App->audio->PlaySoundEffect(letter_sound);
+			l5 = true;
+		}
 		ct = t + tb_path.GetCurrentSpeed();
 		App->render->Blit(chars_tex, ct.x, ct.y, &tb_anim.GetCurrentFrame());
 	}
 	if (now - born > TIME_ELAPSED * 5 && now - born < TIME_ELAPSED * 6) {
+		if (!l6){
+			App->audio->PlaySoundEffect(letter_sound);
+			l6 = true;
+		}
 		cn = n + nb_path.GetCurrentSpeed();
 		App->render->Blit(chars_tex, cn.x, cn.y, &nb_anim.GetCurrentFrame());
 	}

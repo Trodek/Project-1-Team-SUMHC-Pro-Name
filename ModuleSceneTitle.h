@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Path.h"
+#include "ModuleAudio.h"
 #include "Globals.h"
 
 struct SDL_Texture;
@@ -75,6 +76,9 @@ public:
 	iPoint e;
 	iPoint ce;
 
+	Mix_Chunk* letter_sound;
+
+	bool l1 = false, l2 = false, l3 = false, l4 = false, l5 = false, l6 = false;
 
 	SDL_Rect Tittleposition;
 
