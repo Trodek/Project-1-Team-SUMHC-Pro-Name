@@ -79,7 +79,7 @@ bool ModuleNameScreen::Start()
 	UpdateScores();
 
 	App->ui->TopScores[rank].Tscore = App->ui->score;
-	App->ui->TopScores[rank].area = (App->player->position.y / 7519) * 100;
+	App->ui->TopScores[rank].area = (App->player->position.y * 100 / 7519);
 	if (App->ui->TopScores[rank].area > 100) App->ui->TopScores[rank].area = 100;
 
 	//Ranking position
@@ -157,8 +157,8 @@ update_status ModuleNameScreen::Update()
 	App->render->Blit(App->ui->ui_graphics, 64, 264, &name_input_1);
 	App->render->Blit(App->ui->ui_graphics, 80, 264, &name_input_2);
 	App->render->Blit(App->ui->ui_graphics, 96, 264, &name_input_3);
-	App->ui->DrawNumber(App->ui->TopScores[rank].area, 120, 265, 8, Points);
-	App->render->Blit(App->ui->ui_graphics, 129, 265, &percent);
+	App->ui->DrawNumber(App->ui->TopScores[rank].area, 150, 265, 8, Points);
+	App->render->Blit(App->ui->ui_graphics, 160, 265, &percent);
 	App->ui->DrawNumber(App->ui->score, 219, 265, 8, Points);
 
 	return UPDATE_CONTINUE;

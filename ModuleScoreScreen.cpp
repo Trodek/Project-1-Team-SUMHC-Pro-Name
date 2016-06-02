@@ -85,8 +85,8 @@ update_status ModuleScoreScreen::Update()
 	for (int i = 0; i < 5; i++) {
 		//Draw 1st, 2nd, 3rd, 4th, 5th
 		App->render->Blit(App->ui->ui_graphics, 25, 70 + 32 * i, &position);
-		App->ui->DrawNumber(App->ui->TopScores[i].area, 82, 70 + 32 * i, 8, (App->namescreen->Points));
-		App->render->Blit(App->ui->ui_graphics, 90, 70 + 32 * i, &(App->namescreen->percent));
+		App->ui->DrawNumber(App->ui->TopScores[i].area, 140, 70 + 32 * i, 8, (App->namescreen->Points));
+		App->render->Blit(App->ui->ui_graphics, 150, 70 + 32 * i, &(App->namescreen->percent));
 		position.y += 8;
 		//Draw the names
 		for (int j = 0; j < 3; j++) {
