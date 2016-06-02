@@ -52,6 +52,8 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
+	void DestroyParticles();
+
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, SDL_Rect collider_pos, double angle = 0, Uint32 delay = 0);
 	void SetParticleSpeed(Particle* part, float x, float y);
 	void SetColliderCorrection(Particle* part, uint x, uint y);

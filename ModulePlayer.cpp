@@ -552,6 +552,7 @@ update_status ModulePlayer::Update()
 				App->ui->dead = true;
 				fall_hole.Reset();
 				if (App->ui->lives > 0){
+					App->particles->DestroyParticles();
 					App->enemies->DestroyEnemies();
 					App->levels->RestartEnemies();
 				}
@@ -564,6 +565,7 @@ update_status ModulePlayer::Update()
 				App->ui->dead = true;
 				out_of_energy.Reset();
 				if (App->ui->lives > 0){
+					App->particles->DestroyParticles();
 					App->enemies->DestroyEnemies();
 					App->levels->RestartEnemies();
 				}
@@ -577,6 +579,7 @@ update_status ModulePlayer::Update()
 				collider_create = false;
 				App->ui->dead = true;
 				if (App->ui->lives > 0){
+					App->particles->DestroyParticles();
 					App->enemies->DestroyEnemies();
 					App->levels->RestartEnemies();
 				}
@@ -1313,7 +1316,7 @@ void ModulePlayer::SetEnergyDeath() {
 }
 
 void ModulePlayer::PaintArrow() {
-	if (go > 300 && (go % 25) < 14)
+	if (go > 300 && (go % 25) < 14 && scroll)
 		App->render->Blit((App->ui->ui_graphics), 95, (-App->render->camera.y) / SCREEN_SIZE + 60, &go_ahead);
 	go++;
 }

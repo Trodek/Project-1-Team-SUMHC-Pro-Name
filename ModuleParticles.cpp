@@ -382,6 +382,19 @@ bool ModuleParticles::CleanUp()
 	return true;
 }
 
+void ModuleParticles::DestroyParticles()
+{
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		if (active[i] != nullptr)
+		{
+			App->audio->UnloadSoundEffect(active[i]->sound);
+			delete active[i];
+			active[i] = nullptr;
+		}
+	}
+}
+
 // Update: draw background
 update_status ModuleParticles::Update()
 {
