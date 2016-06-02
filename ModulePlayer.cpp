@@ -1216,7 +1216,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 				break;
 			}
 		}
-		if (c2->type == COLLIDER_HOLE){
+		if (c2->type == COLLIDER_HOLE && !god_mode){
 			if (!dead) {
 				current_animation = &fall_hole;
 				dead = true;
