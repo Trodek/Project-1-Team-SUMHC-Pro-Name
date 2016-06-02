@@ -313,7 +313,7 @@ bool ModulePlayer::CleanUp(){
 	LOG("Player CleanUp--------");
 
 	god_mode = false;
-
+	collider_create = false;
 	dead = false;
 	dead_fall = false;
 	dead_energy = false;

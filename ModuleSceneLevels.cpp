@@ -1063,7 +1063,6 @@ bool ModuleSceneLevels::CleanUp()
 	App->textures->Unload(train_platform_tex);
 	App->textures->Unload(platform_t);
 	App->textures->Unload(graphics_l4_below_purple);
-	
 
 	//Disable player
 	App->player->Disable();
