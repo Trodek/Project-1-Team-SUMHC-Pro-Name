@@ -28,7 +28,7 @@ public:
 		text_rect.w = 121;
 		text_rect.h = 113;
 
-		hp = 240;
+		hp = 180;
 		points = 500;
 
 		draw = BEFORE;
