@@ -6,8 +6,8 @@
 
 #include "SDL_mixer\include\SDL_mixer.h"
 
-#define MAX_SONGS 50
-#define MAX_EFFECTS 50
+#define MAX_SONGS 500
+#define MAX_EFFECTS 500
 
 enum Repetitions {
 	LOOP = -1, ONCE, TWICE, THRICE
