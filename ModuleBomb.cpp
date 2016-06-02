@@ -72,6 +72,10 @@ update_status ModuleBomb::Update()
 {
 	
 	// Draw everything --------------------------------------
+	if (BombCollider != nullptr){
+		App->collisions->EraseCollider(BombCollider);
+		BombCollider = nullptr;
+	}
 	if (pressed){
 		
 		if (!bombanim.Finished()){
@@ -79,16 +83,17 @@ update_status ModuleBomb::Update()
 			if (!collider_create){
 				BombCollider = App->collisions->AddCollider({ 0, (-App->render->camera.y) / 3, SCREEN_WIDTH, SCREEN_HEIGHT }, COLLIDER_BOMB, this);
 				collider_create = true;
+				delete_col = true;
 			}
 		}
 		else{
 			pressed = false;
 			bombanim.Reset();
-			BombCollider->to_delete = true;
+			//BombCollider->to_delete = true;
 			collider_create = false;
 		}
 	}
 
-
+	
 	return UPDATE_CONTINUE;
 }
