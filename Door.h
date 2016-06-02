@@ -20,7 +20,7 @@ public:
 		tex = App->textures->Load("OutZone/Sprites/Enemies/Level 4/door.png");
 		
 
-		collider = App->collisions->AddCollider({ 0, 0, 121, 113 }, COLLIDER_DOOR, (Module*)App->enemies);
+		collider = App->collisions->AddCollider({ 0, 0, 121, 90 }, COLLIDER_DOOR, (Module*)App->enemies);
 		collider->SetPos(position.x, position.y);
 
 		text_rect.x = 0;
@@ -28,7 +28,7 @@ public:
 		text_rect.w = 121;
 		text_rect.h = 113;
 
-		hp = 60;
+		hp = 240;
 		points = 500;
 
 		draw = BEFORE;
