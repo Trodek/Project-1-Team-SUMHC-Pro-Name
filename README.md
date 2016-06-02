@@ -1,8 +1,11 @@
 ﻿OutZone v1.0
 
-This is the prototype version. 
+This is the final version. 
 
-In this release you can kill enemies, enemies can kill you and enter the score if you reached a top score.
+In this release you can play all level 4.
+
+Webpage:
+http://trodek.github.io/Project-1-Team-SUMHC-Pro-Name/
 
 Controls:
 
@@ -19,6 +22,7 @@ Controls:
 - Debug Camera: use the arrows to move the debug camera.
 - Show/Hide colliders: press "F1" to show/hide colliders.
 - Teleport: if you want to teleport to the last checkpoint press "T" and die.
+- Close Game: Press "Esc".
 
 Gameplay:
 
@@ -28,7 +32,7 @@ You start with 3 lives. (The UI shows the number of times you can die).
 The initial weapon is the laser with no upgrades. It can be upgraded up to two times.
 
 Inside the game you have to reach the end of level 4 to win. If you are able defeat the boss, the game will reastart allowing you to get a higher score.
-(Por tip:Be carefull to not fall into the  holes.)
+(Pro tip:Be carefull to not fall into the  holes.)
 
 If you die three times, you will go to the next screen depending if you have a top score or not. If space is used to change scenes, you will always go to the continue screen.
 
@@ -75,4 +79,3 @@ v1.0
 - Weapon power upgrade and change weapon pills
 - Level 4 boss
 - Camera scroll lock
-- 
