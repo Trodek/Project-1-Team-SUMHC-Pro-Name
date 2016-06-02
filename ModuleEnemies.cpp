@@ -118,11 +118,6 @@ bool ModuleEnemies::CleanUp()
 {
 	LOG("Freeing all enemies");
 
-	App->audio->UnloadSoundEffect(enemy_hitted);
-	App->audio->UnloadSoundEffect(change_weapon);
-	App->audio->UnloadSoundEffect(pick_energy);
-	App->audio->UnloadSoundEffect(pick_speed);
-
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if(enemies[i] != nullptr)
@@ -137,11 +132,7 @@ bool ModuleEnemies::CleanUp()
 		}
 	}
 
-	App->audio->UnloadSoundEffect(expand_energy);
-	App->audio->UnloadSoundEffect(pick_energy);
-	App->audio->UnloadSoundEffect(pick_speed);
-	App->audio->UnloadSoundEffect(change_weapon);
-	App->audio->UnloadSoundEffect(enemy_hitted);
+
 	return true;
 }
 

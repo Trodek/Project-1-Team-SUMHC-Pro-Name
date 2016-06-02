@@ -99,7 +99,7 @@ update_status ModuleContinue::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN && App->ui->credit > 0) {
 		App->fade->FadeToBlack(this, (Module*)App->levels, 1.0f);
 		if (no_pay) {
 			App->ui->startgame = true;
