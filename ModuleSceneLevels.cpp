@@ -729,12 +729,37 @@ bool ModuleSceneLevels::Start()
 	mt23.PushBack({ -1.5f, 1.5f }, 40);
 	mt23.PushBack({ -2, 0 }, 150);
 
-	notsobasic_train.PushBack({ 0, 1 }, 70);
-	notsobasic_train.PushBack({ 1, 0 }, 5);
+	notsobasic_train.PushBack({ 0, 1.5f }, 45);
 	notsobasic_train.PushBack({ 0.5f, 0.5f }, 20);
 	notsobasic_train.PushBack({ 1.0f, -0.5f }, 20);
 	notsobasic_train.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic_train.PushBack({ -0.5f, -0.5f }, 20);
+	notsobasic_train.PushBack({ 1.0f, 0.5f }, 20);
+	notsobasic_train.PushBack({ -0.5f, 0.5f }, 30);
 	notsobasic_train.PushBack({ -1, 0 }, 50);
+	notsobasic_train.PushBack({ -1, 0 }, 200);
+
+	notsobasic_train2.PushBack({ 0, 1.5f }, 45);
+	notsobasic_train2.PushBack({ -1, 0 }, 5);
+	notsobasic_train2.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic_train2.PushBack({ -1.0f, -0.5f }, 20);
+	notsobasic_train2.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic_train2.PushBack({ -0.5f, -0.5f }, 20);
+	notsobasic_train2.PushBack({ 1.0f, 0.5f }, 20);
+	notsobasic_train2.PushBack({ -0.5f, 0.5f }, 30);
+	notsobasic_train2.PushBack({ 1, 0 }, 50);
+	notsobasic_train2.PushBack({ 1, 0 }, 200);
+
+	notsobasic_train3.PushBack({ 0, 1.5f }, 45);
+	notsobasic_train3.PushBack({ 1, 0 }, 5);
+	notsobasic_train3.PushBack({ 0.5f, 0.5f }, 20);
+	notsobasic_train3.PushBack({ 1.0f, -0.5f }, 20);
+	notsobasic_train3.PushBack({ 0.5f, -0.5f }, 30);
+	notsobasic_train3.PushBack({ -0.5f, -0.5f }, 20);
+	notsobasic_train3.PushBack({ 1.0f, 0.5f }, 20);
+	notsobasic_train3.PushBack({ -0.5f, 0.5f }, 30);
+	notsobasic_train3.PushBack({ -1, 0 }, 50);
+	notsobasic_train3.PushBack({ -1, 0 }, 200);
 
 	doyouevenyolo1.PushBack({ 0, 1 }, 50);
 	doyouevenyolo1.loop = false;
@@ -1138,8 +1163,20 @@ update_status ModuleSceneLevels::Update()
 		}
 		if (!train_dead && first_path_made){
 			train_platform_pos_aux = train_platform_pos + train_platform_loop_path.GetCurrentSpeed();
-			if (now - last_enemy > 2000){
-				App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 426, train_platform_pos_aux.y, &notsobasic_train);
+			if (now - last_enemy > 5000){
+				if (!third_enemy_train_spawn && second_enemy_train_spawn){
+					App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 403, train_platform_pos_aux.y+5, &notsobasic_train3);
+					third_enemy_train_spawn = true;
+				}
+				if (!second_enemy_train_spawn && first_enemy_train_spawn){
+					App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 403, train_platform_pos_aux.y, &notsobasic_train2);
+					second_enemy_train_spawn = true;
+				}
+				if (!first_enemy_train_spawn){
+					App->enemies->AddEnemy(NOTBASIC, train_platform_pos_aux.x + 424, train_platform_pos_aux.y, &notsobasic_train);
+					first_enemy_train_spawn = true;
+				}
+				
 				last_enemy = SDL_GetTicks();
 			}
 		}
@@ -1266,6 +1303,8 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	verticalyolo10.Restart();
 	verticalyolo11.Restart();
 	verticalyolo12.Restart();
+
+	notsobasic_train.Restart();
 }
 
 void ModuleSceneLevels::AddChangeBox(int x,int y){

@@ -25,6 +25,9 @@ public:
 	bool train_first_time = true;
 	bool first_path_made = false;
 	bool train_start_path = false;
+	bool first_enemy_train_spawn = false;
+	bool second_enemy_train_spawn = false;
+	bool third_enemy_train_spawn = false;
 	void RestartEnemiesPaths();
 	void RestartEnemies();
 	void AddEnergyBox(int x, int y);
@@ -205,6 +208,8 @@ public:
 	Collider* train_platform_coll_left;
 	Collider* train_platform_coll_right;
 	Path notsobasic_train;
+	Path notsobasic_train2;
+	Path notsobasic_train3;
 };
 
 #endif // __MODULESCENELevels_H__
