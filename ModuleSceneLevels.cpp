@@ -786,6 +786,19 @@ bool ModuleSceneLevels::Start()
 	verticalyolo11.PushBack({ 0, 1 }, 50);
 	verticalyolo12.PushBack({ 0, 1 }, 50);
 
+	elibanesunmerdes1.PushBack({ 1, 0 },  70);
+	elibanesunmerdes1.PushBack({ -1, 0 }, 70);
+										  
+	elibanesunmerdes2.PushBack({ 1, 0 },  70);
+	elibanesunmerdes2.PushBack({ -1, 0 }, 70);
+										  
+	elibanesunmerdes3.PushBack({ -1, 0 }, 70);
+	elibanesunmerdes3.PushBack({ 1, 0 },  70);
+										  
+	elibanesunmerdes4.PushBack({ -1, 0 }, 70);
+	elibanesunmerdes4.PushBack({ 1, 0 },  70);
+
+
 	RestartEnemies();
 	return ret;
 }
@@ -1009,11 +1022,12 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(NOTBASICGREEN, 0, 900, &turret);
 		App->enemies->AddEnemy(NOTBASICGREEN, 25, 900, &turret);
 
-		App->enemies->AddEnemy(NOTBASICGREEN, 0, 685, &turret);
-		App->enemies->AddEnemy(NOTBASICGREEN, 0, 737, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 0, 685, &elibanesunmerdes1);
+		App->enemies->AddEnemy(NOTBASICGREEN, 0, 737, &elibanesunmerdes2);
 
-		App->enemies->AddEnemy(NOTBASICGREEN, 200, 685, &turret);
-		App->enemies->AddEnemy(NOTBASICGREEN, 200, 737, &turret);
+		App->enemies->AddEnemy(NOTBASICGREEN, 200, 685, &elibanesunmerdes3);
+		App->enemies->AddEnemy(NOTBASICGREEN, 200, 737, &elibanesunmerdes4);
+
 		App->enemies->AddEnemy(NOTBASICCOMMANDER, 178, 507, &turret);
 		App->enemies->AddEnemy(NOTBASICGREEN, 193, 790, &turret);
 

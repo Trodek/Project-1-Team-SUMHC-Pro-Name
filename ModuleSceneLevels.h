@@ -139,6 +139,11 @@ public:
 	Path verticalyolo11;
 	Path verticalyolo12;
 
+	Path elibanesunmerdes1;
+	Path elibanesunmerdes2;
+	Path elibanesunmerdes3;
+	Path elibanesunmerdes4;
+
 	Path fastright;
 	Path fastright1;
 	Path fastright2;
