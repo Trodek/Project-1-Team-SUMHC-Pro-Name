@@ -325,6 +325,7 @@ bool ModulePlayer::CleanUp(){
 	App->textures->Unload(main_char_tex);
 	App->textures->Unload(bomb_tex);
 	App->textures->Unload(dead_explo_text);
+	App->textures->Unload(casual_tex);
 
 	return true;
 }
