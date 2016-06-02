@@ -218,7 +218,6 @@ update_status ModuleUI::Update(){
 		if (dead){
 			lives--;
 			if (lives >= 0){
-				LOG("ASADSDASDASD");
 				dead = false;
 				App->player->position.x = checkpoints[curr_check].x;
 				App->player->position.y = checkpoints[curr_check].y;
