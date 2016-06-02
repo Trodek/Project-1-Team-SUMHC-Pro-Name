@@ -91,6 +91,8 @@ public:
 
 	bool energy_sound;
 
+	uint loops = 0;
+
 	int temp_score;
 	bool get_score;
 	bool first_time;

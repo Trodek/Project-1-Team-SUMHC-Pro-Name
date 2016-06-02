@@ -79,8 +79,7 @@ bool ModuleNameScreen::Start()
 	UpdateScores();
 
 	App->ui->TopScores[rank].Tscore = App->ui->score;
-	App->ui->TopScores[rank].area = (App->player->position.y * 100 / 7519);
-	if (App->ui->TopScores[rank].area > 100) App->ui->TopScores[rank].area = 100;
+	App->ui->TopScores[rank].area = ((((7519 - App->player->position.y) + (7519 * App->ui->loops)) * 100) / 7519);
 
 	//Ranking position
 	pos_ranking.x = 151;

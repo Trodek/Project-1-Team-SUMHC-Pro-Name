@@ -1101,8 +1101,10 @@ update_status ModuleSceneLevels::Update()
 		App->fade->FadeToBlack(this, (Module*)App->losescreen, 1.0f);
 	}
 	if (App->render->camera.y > -1){
-		if (App->ui->first_time) 
+		if (App->ui->first_time) {
 			App->ui->GetScore();
+			App->ui->loops++;
+		}
 		
 	}
 	// Draw everything --------------------------------------

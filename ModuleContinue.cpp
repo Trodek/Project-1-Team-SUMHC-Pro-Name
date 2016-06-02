@@ -110,6 +110,8 @@ update_status ModuleContinue::Update()
 		no_pay = false;
 	}
 
+	App->ui->loops = 0;
+
 	// swap Scene
 	if (now - born > 9000)
 		if (App->ui->TopScore())
