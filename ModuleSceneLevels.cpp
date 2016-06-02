@@ -798,6 +798,12 @@ bool ModuleSceneLevels::Start()
 	elibanesunmerdes4.PushBack({ -1, 0 }, 70);
 	elibanesunmerdes4.PushBack({ 1, 0 },  70);
 
+	elibanesunmerdes5.PushBack({ -1, 0 }, 70);
+	elibanesunmerdes5.PushBack({ 1, 0 }, 70);
+
+	elibanesunmerdes6.PushBack({ 1, 0 }, 70);
+	elibanesunmerdes6.PushBack({ -1, 0 }, 70);
+
 
 	RestartEnemies();
 	return ret;
@@ -1010,6 +1016,8 @@ void ModuleSceneLevels::RestartEnemies() {
 		App->enemies->AddEnemy(FAT_ROBOT_TRAIN, 628, 1670);
 		App->enemies->AddEnemy(TRAIN, 378, 1670);
 
+		App->enemies->AddEnemy(NOTBASICGREEN, 200, 1231-40, &elibanesunmerdes5);
+		App->enemies->AddEnemy(NOTBASICGREEN, 100, 1256-30, &elibanesunmerdes6);
 
 		App->enemies->AddEnemy(NOTBASICCOMMANDER, 150, 1586, &notsobasic18);
 		App->enemies->AddEnemy(NOTBASICGREEN, 60, 1540, &turret);

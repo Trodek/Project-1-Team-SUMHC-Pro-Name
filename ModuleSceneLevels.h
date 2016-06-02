@@ -143,6 +143,8 @@ public:
 	Path elibanesunmerdes2;
 	Path elibanesunmerdes3;
 	Path elibanesunmerdes4;
+	Path elibanesunmerdes5;
+	Path elibanesunmerdes6;
 
 	Path fastright;
 	Path fastright1;
