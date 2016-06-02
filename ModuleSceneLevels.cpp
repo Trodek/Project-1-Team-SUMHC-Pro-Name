@@ -1329,6 +1329,8 @@ void ModuleSceneLevels::RestartEnemiesPaths(){
 	elibanesunmerdes2.Restart();
 	elibanesunmerdes3.Restart();
 	elibanesunmerdes4.Restart();
+	elibanesunmerdes5.Restart();
+	elibanesunmerdes6.Restart();
 
 	notsobasic_train.Restart();
 }
