@@ -17,10 +17,10 @@ public:
 		position.x = x;
 		position.y = y;
 
-		tex = App->textures->Load("OutZone/Sprites/Enemies/Level4/door.png");
+		tex = App->textures->Load("OutZone/Sprites/Enemies/Level 4/door.png");
 		
 
-		collider = App->collisions->AddCollider({ 0, 0, 16, 16 }, COLLIDER_DOOR, (Module*)App->enemies);
+		collider = App->collisions->AddCollider({ 0, 0, 121, 113 }, COLLIDER_DOOR, (Module*)App->enemies);
 		collider->SetPos(position.x, position.y);
 
 		text_rect.x = 0;
