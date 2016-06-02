@@ -380,6 +380,30 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					}
 				}
 				if (c2->type == COLLIDER_BOMB && enemies[i]->hp > 0){
+					if (enemies[i]->type == NOTBASICCOMMANDER) {
+						if (loot % 4 == 0) {
+							if (App->player->current_power < 2)
+								App->enemies->AddEnemy(POWERUP, enemies[i]->position.x, enemies[i]->position.y);
+							else
+								App->enemies->AddEnemy(SPEED, enemies[i]->position.x, enemies[i]->position.y);
+							loot++;
+						}
+						else if (loot % 4 == 1) {
+							App->enemies->AddEnemy(EXTRA_BOMB, enemies[i]->position.x, enemies[i]->position.y);
+							loot++;
+						}
+						else if (loot % 4 == 2) {
+							if (App->player->current_power < 2)
+								App->enemies->AddEnemy(POWERUP, enemies[i]->position.x, enemies[i]->position.y);
+							else
+								App->enemies->AddEnemy(SHIELD, enemies[i]->position.x, enemies[i]->position.y);
+							loot++;
+						}
+						else {
+							App->enemies->AddEnemy(EXTENDEDENERGY, enemies[i]->position.x, enemies[i]->position.y);
+							loot = 0;
+						}
+					}
 					enemies[i]->hp -= 125;
 					if (enemies[i]->hp < 1){
 						if (enemies[i]->type == BOSS){
@@ -401,6 +425,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						delete enemies[i];
 						enemies[i] = nullptr;
 					}
+					
 				}
 				if (c2->type == COLLIDER_DEAD_EXPLO && enemies[i]->hp > 0){
 					if (enemies[i]->type != BOSS && enemies[i]->type != TRAIN) enemies[i]->hp -= 60;
