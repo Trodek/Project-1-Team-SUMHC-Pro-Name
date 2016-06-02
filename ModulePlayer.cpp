@@ -1191,7 +1191,7 @@ void ModulePlayer::ResetPosition(){
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2, Direction dir) {
 	if (PlayerCollider == c1 && PlayerCollider != nullptr){
-		if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_PASS_BULLET || c2->type == COLLIDER_BOX){
+		if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_PASS_BULLET || c2->type == COLLIDER_BOX || c2->type == COLLIDER_DOOR){
 			switch (dir) {
 			case UP:
 				if (move_up) {

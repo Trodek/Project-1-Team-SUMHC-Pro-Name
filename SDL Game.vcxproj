@@ -71,6 +71,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Door.h" />
     <ClInclude Include="EnemyNotSoBasicCommander.h" />
     <ClInclude Include="EnemyNotSoBasicGreen.h" />
     <ClInclude Include="EnemyRoundedTurret.h" />

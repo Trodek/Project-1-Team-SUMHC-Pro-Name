@@ -820,6 +820,8 @@ void ModuleSceneLevels::RestartEnemies() {
 	}
 
 	if (App->ui->curr_check <= 1) {						// y < 7000
+		App->enemies->AddEnemy(DOOR, 52, 6760);
+
 		App->enemies->AddEnemy(NOTBASIC, 50, 6870, &notsobasic2);
 		App->enemies->AddEnemy(NOTBASIC, 70, 6850, &gb12);
 		App->enemies->AddEnemy(NOTBASIC, 40, 6870, &notsobasic1);

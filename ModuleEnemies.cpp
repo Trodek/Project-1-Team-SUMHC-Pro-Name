@@ -33,6 +33,7 @@
 #include "EnemyRoundedTurret.h"
 #include "ModuleSceneLevels.h"
 #include "ExtendedEnergy.h"
+#include "Door.h"
 
 #define SPAWN_MARGIN 150
 
@@ -265,6 +266,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 				break;
 			case ENEMY_TYPES::EXTENDEDENERGY:
 				enemies[i] = new ExtendedEnergy(info.x, info.y, info.type);
+				break;
+			case ENEMY_TYPES::DOOR:
+				enemies[i] = new Door(info.x, info.y, info.type);
 				break;
 		}
 	}
