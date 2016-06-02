@@ -227,7 +227,7 @@ update_status ModuleUI::Update(){
 				App->player->last_basic_weapon = LASER;
 				App->player->current_weapon = LASER;
 				App->player->current_power = P0;
-				//App->player->current_animation = &(App->player->up);
+				App->player->laser_360.SetInitialFrame(UP);
 				App->player->weapon_anim = &(App->player->laser_360);
 				App->player->dead = false;
 				App->player->speed = 2;
