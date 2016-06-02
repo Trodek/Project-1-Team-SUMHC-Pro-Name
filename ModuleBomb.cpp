@@ -83,7 +83,6 @@ update_status ModuleBomb::Update()
 			if (!collider_create){
 				BombCollider = App->collisions->AddCollider({ 0, (-App->render->camera.y) / 3, SCREEN_WIDTH, SCREEN_HEIGHT }, COLLIDER_BOMB, this);
 				collider_create = true;
-				delete_col = true;
 			}
 		}
 		else{

@@ -18,7 +18,6 @@ public:
 	bool CleanUp();
 
 public:
-	bool delete_col = false;
 	bool pressed = false;
 	SDL_Texture* bombtex = nullptr;
 	Animation bombanim;
