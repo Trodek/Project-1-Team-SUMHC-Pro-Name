@@ -107,6 +107,11 @@ bool ModuleSceneLevels::Start()
 
 	App->audio->PlayMusic(level4_song, LOOP);
 
+	App->collisions->matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY_SHOT] = false;
+	App->collisions->matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER_SHOT] = false;
+	App->collisions->matrix[COLLIDER_PASS_BULLET][COLLIDER_PLAYER_SHOT] = false;
+	App->collisions->matrix[COLLIDER_PLAYER_SHOT][COLLIDER_PASS_BULLET] = false;
+
 	//Enable Player and Collisions
 	App->player->Enable();
 	App->collisions->Enable();
